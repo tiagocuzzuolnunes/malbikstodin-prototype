@@ -1,0 +1,102 @@
+/*
+  Design tokens — change values here to update the whole app.
+  Light defaults live in @theme; .dark overrides swap the palette.
+
+  Brand: #0090D4
+  Alert (yellow), Warning (red), Confirmation (green)
+*/
+
+@theme {
+  --color-surface: #ffffff;
+  --color-surface-muted: #f0f7fb;
+  --color-foreground: #0f172a;
+  --color-foreground-muted: #64748b;
+  --color-border: rgb(15 23 42 / 10%);
+
+  /* Brand */
+  --color-accent: #0090d4;
+  --color-accent-foreground: #ffffff;
+  --color-accent-hover: #0077b0;
+
+  /* Warning (red) */
+  --color-danger: #dc2626;
+  --color-danger-foreground: #ffffff;
+  --color-danger-hover: #b91c1c;
+  --color-warning: #dc2626;
+  --color-warning-foreground: #ffffff;
+  --color-warning-hover: #b91c1c;
+
+  /* Alert (yellow) */
+  --color-alert: #d97706;
+  --color-alert-foreground: #ffffff;
+  --color-alert-hover: #b45309;
+
+  /* Confirmation (green) */
+  --color-success: #12a594;
+  --color-success-foreground: #ffffff;
+  --color-success-hover: #0e877a;
+
+  --color-control: rgb(0 144 212 / 18%);
+  --color-control-hover: rgb(0 144 212 / 30%);
+  --color-interactive-hover: rgb(0 144 212 / 10%);
+  --color-interactive-hover-strong: rgb(0 144 212 / 16%);
+
+  --radius-control: 0.375rem;
+  --radius-card: 0.75rem;
+  --radius-pill: 9999px;
+
+  --text-label: 0.875rem;
+  --text-body: 0.875rem;
+  --text-title: 1.5rem;
+  --font-weight-label: 500;
+
+  --shadow-header: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+  --shadow-header-content: inset 0 8px 12px -8px rgb(0 144 212 / 12%);
+  --shadow-card: 0 10px 30px rgb(15 23 42 / 8%);
+}
+
+@layer base {
+  .dark {
+    --color-surface: #0b1220;
+    --color-surface-muted: #060a12;
+    --color-foreground: #f1f5f9;
+    --color-foreground-muted: #94a3b8;
+    --color-border: rgb(148 163 184 / 16%);
+
+    /* Brand — brighter on dark surfaces */
+    --color-accent: #33a8e0;
+    --color-accent-foreground: #061018;
+    --color-accent-hover: #5cbcf0;
+
+    /* Warning (red) */
+    --color-danger: #f87171;
+    --color-danger-foreground: #1c0a0a;
+    --color-danger-hover: #fca5a5;
+    --color-warning: #f87171;
+    --color-warning-foreground: #1c0a0a;
+    --color-warning-hover: #fca5a5;
+
+    /* Alert (yellow) */
+    --color-alert: #fbbf24;
+    --color-alert-foreground: #1c1405;
+    --color-alert-hover: #fcd34d;
+
+    /* Confirmation (green) */
+    --color-success: #2dd4bf;
+    --color-success-foreground: #042f2e;
+    --color-success-hover: #5eead4;
+
+    --color-control: rgb(51 168 224 / 22%);
+    --color-control-hover: rgb(51 168 224 / 38%);
+    --color-interactive-hover: rgb(51 168 224 / 14%);
+    --color-interactive-hover-strong: rgb(51 168 224 / 22%);
+
+    --shadow-header: 0 4px 6px -1px rgb(0 0 0 / 40%), 0 2px 4px -2px rgb(0 0 0 / 30%);
+    --shadow-header-content: inset 0 8px 14px -8px rgb(51 168 224 / 18%);
+    --shadow-card: 0 10px 30px rgb(0 0 0 / 35%);
+  }
+
+  body {
+    @apply bg-surface-muted text-foreground antialiased;
+  }
+}

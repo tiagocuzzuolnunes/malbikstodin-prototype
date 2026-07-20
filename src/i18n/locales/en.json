@@ -1,0 +1,749 @@
+{
+  "brand": {
+    "name": "Malbikstöðin",
+    "logoAlt": "Malbikstöðin Logo"
+  },
+  "common": {
+    "loading": "Loading...",
+    "user": "User",
+    "saveChanges": "Save changes",
+    "breadcrumb": "Breadcrumb",
+    "back": "Go back",
+    "mainNav": "Main"
+  },
+  "theme": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "language": {
+    "switchTo": "Switch to {{language}}",
+    "names": {
+      "en": "English",
+      "is": "Icelandic"
+    }
+  },
+  "notifications": {
+    "open": "Open notifications",
+    "title": "Notifications",
+    "items": {
+      "budget": {
+        "title": "Budget deadline approaching",
+        "body": "Q3 budget submission for Fjármál is due in 4 days.",
+        "time": "2 hours ago"
+      },
+      "safety": {
+        "title": "Safety briefing reminder",
+        "body": "Field teams must complete the Friday safety refresh.",
+        "time": "Yesterday"
+      },
+      "maintenance": {
+        "title": "Plant maintenance window",
+        "body": "Esjusvið production line checks are scheduled next week.",
+        "time": "3 days ago"
+      }
+    }
+  },
+  "nav": {
+    "heim": "Home",
+    "frettir": "News",
+    "mannaudur": "HR",
+    "starfsfolk": "Employees",
+    "yfirlit": "Dashboard",
+    "thjalfun": "Training & certificates",
+    "leyfi": "Licenses",
+    "abendingar": "Ideas & complaints",
+    "taekni": "IT",
+    "fjarmal": "Finance",
+    "verkefni": "Projects",
+    "events": "Events",
+    "rekstrarsvid": "Rekstrarsvið",
+    "flugusvid": "Flugusvið",
+    "esjusvid": "Esjusvið",
+    "worklist": "Worklist",
+    "contracts": "Contracts",
+    "skjalasafn": "Archive",
+    "dagskra": "Schedule",
+    "taeki": "Equipment",
+    "stjornun": "Management",
+    "adgangsstyring": "Access Controls",
+    "ferlar": "Processes"
+  },
+  "pages": {
+    "heim": {
+      "description": "Your company overview for today."
+    },
+    "frettir": {
+      "description": "Company news dashboard with publishing status and announcements."
+    },
+    "mannaudur": {
+      "description": "Choose employee directory, HR dashboard, or ideas & complaints.",
+      "openSection": "Open",
+      "employeesDescription": "Browse employees and filter by department.",
+      "dashboardDescription": "Workforce metrics, training, new hires, and upcoming HR events.",
+      "trainingDescription": "Track certifications, upcoming courses, and department training progress.",
+      "licensesDescription": "Overview and manage employee licenses across departments.",
+      "feedbackDescription": "Register complaints, suggestions, and tips, and track them through review."
+    },
+    "taekni": {
+      "description": "IT dashboard with support tickets and system status."
+    },
+    "fjarmal": {
+      "description": "Register expenses and review the company expense register."
+    },
+    "verkefni": {
+      "description": "Choose an area to view projects, status, and related work.",
+      "openArea": "Open",
+      "eventsTitle": "Events & deadlines",
+      "eventsDescription": "All upcoming company events and important deadlines.",
+      "hub": {
+        "worklistDescription": "Tasks, owners, priorities, and due dates for this area.",
+        "contractsDescription": "Contract register with amounts, dates, and status.",
+        "archiveDescription": "Document archive spreadsheet with type, owner, and approval status.",
+        "scheduleDescription": "One-day employee schedule on a vertical timeline.",
+        "equipmentDescription": "Truck fleet cards and register with available, on hold, and broken status."
+      },
+      "areas": {
+        "rekstrarsvid": {
+          "description": "Choose worklist, contracts, archive, schedule, or equipment for operations planning and oversight."
+        },
+        "flugusvid": {
+          "description": "Choose worklist, contracts, archive, schedule, or equipment for airport and airside paving work."
+        },
+        "esjusvid": {
+          "description": "Choose worklist, contracts, archive, schedule, or equipment for Esja production and field work."
+        }
+      },
+      "stjornun": {
+        "description": "Company administration tools for people, permissions, and oversight.",
+        "accessControlsDescription": "Set staff-category access levels across company websites and systems.",
+        "accessControlsPageDescription": "Choose full, editable, viewer, or forbidden access for each staff category and system area."
+      },
+      "ferlar": {
+        "description": "Step-by-step timelines for core company work processes."
+      }
+    }
+  },
+  "processes": {
+    "stepCount": "{{count}} steps",
+    "stepLabel": "Step {{number}}",
+    "items": {
+      "accidentReporting": {
+        "title": "Reporting accidents",
+        "description": "How to secure the scene, report the incident, and close the case.",
+        "steps": {
+          "secure": {
+            "title": "Secure the scene",
+            "description": "Stop work nearby, protect people, and stabilize any immediate hazards."
+          },
+          "report": {
+            "title": "Record the incident",
+            "description": "Capture what happened, when, where, and who was involved."
+          },
+          "notify": {
+            "title": "Notify supervisors",
+            "description": "Alert the responsible manager and safety contact without delay."
+          },
+          "investigate": {
+            "title": "Investigate causes",
+            "description": "Review evidence, interview witnesses, and identify contributing factors."
+          },
+          "close": {
+            "title": "Close with actions",
+            "description": "Document corrective actions and confirm the case is closed."
+          }
+        }
+      },
+      "projectQualityControl": {
+        "title": "Project quality control",
+        "description": "Checks that keep paving and production work within quality standards.",
+        "steps": {
+          "plan": {
+            "title": "Define checkpoints",
+            "description": "Set inspection points and acceptance criteria for the current work package."
+          },
+          "inspect": {
+            "title": "Run field inspection",
+            "description": "Measure and review materials, thickness, finish, and workmanship on site."
+          },
+          "document": {
+            "title": "Document findings",
+            "description": "Log results, photos, and any nonconformities in the project record."
+          },
+          "approve": {
+            "title": "Approve or rework",
+            "description": "Sign off accepted work or assign corrective actions before the next stage."
+          }
+        }
+      },
+      "deviceSecurityCheck": {
+        "title": "Device security check",
+        "description": "A short checklist to keep company devices compliant and secure.",
+        "steps": {
+          "inventory": {
+            "title": "Confirm device inventory",
+            "description": "Verify the assigned laptop, phone, or tablet is listed and active."
+          },
+          "verify": {
+            "title": "Verify security controls",
+            "description": "Check updates, encryption, screen lock, and approved software status."
+          },
+          "remediate": {
+            "title": "Fix and confirm",
+            "description": "Resolve gaps with IT support and mark the security check complete."
+          }
+        }
+      }
+    }
+  },
+  "accessControls": {
+    "title": "Access matrix",
+    "subtitle": "Each cell sets the access level for one staff category in one system area.",
+    "caption": "Staff category access levels by company website and system area",
+    "columns": {
+      "staffCategory": "Staff category"
+    },
+    "cellLabel": "Access for {{category}} in {{area}}",
+    "reset": "Reset defaults",
+    "saved": "Access levels saved for this session.",
+    "levels": {
+      "full": "Full",
+      "editable": "Editable",
+      "viewer": "Viewer",
+      "forbidden": "Forbidden"
+    },
+    "categories": {
+      "executiveDirector": "Executive Director",
+      "divisionManager": "Division Manager",
+      "departmentManager": "Department Manager",
+      "employee": "Employee",
+      "fieldStaff": "Field Staff",
+      "outsideCompany": "Outside Company"
+    },
+    "areas": {
+      "intranet": "Intranet",
+      "news": "News",
+      "hr": "HR",
+      "it": "IT",
+      "finance": "Finance",
+      "projects": "Projects",
+      "worklist": "Worklist",
+      "contracts": "Contracts",
+      "events": "Events"
+    }
+  },
+  "home": {
+    "greeting": {
+      "morning": "Good morning, {{name}}",
+      "afternoon": "Good afternoon, {{name}}",
+      "evening": "Good evening, {{name}}",
+      "night": "Good night, {{name}}"
+    },
+    "userName": "Vilhjálmur",
+    "weather": {
+      "title": "Reykjavík",
+      "loading": "Fetching Reykjavík weather…",
+      "error": "Reykjavík weather is unavailable right now.",
+      "summary": "{{condition}} in Reykjavík · {{value}}°C · {{speed}} m/s wind",
+      "wind": "{{speed}} m/s wind",
+      "temperature": "{{value}}°C",
+      "conditions": {
+        "clear": "Clear sky",
+        "partlyCloudy": "Partly cloudy",
+        "overcast": "Overcast",
+        "fog": "Fog",
+        "drizzle": "Drizzle",
+        "rain": "Rain",
+        "snow": "Snow",
+        "showers": "Rain showers",
+        "snowShowers": "Snow showers",
+        "thunder": "Thunderstorm",
+        "unknown": "Mixed conditions"
+      }
+    },
+    "news": {
+      "title": "Latest news",
+      "viewAll": "View all news",
+      "items": {
+        "asphalt": {
+          "title": "Summer paving schedule updated",
+          "summary": "Updated asphalt production windows for the capital area this week."
+        },
+        "safety": {
+          "title": "Site safety briefing",
+          "summary": "Mandatory safety refresh for all field teams before Friday."
+        },
+        "hiring": {
+          "title": "New operators joining Flugusvið",
+          "summary": "Two new machine operators start next Monday in Flugusvið."
+        }
+      }
+    },
+    "events": {
+      "title": "Events & deadlines",
+      "viewAll": "See all events",
+      "event": "Event",
+      "deadline": "Deadline",
+      "items": {
+        "board": {
+          "title": "Leadership stand-up",
+          "description": "Weekly leadership sync on operations and delivery."
+        },
+        "budget": {
+          "title": "Q3 budget submission",
+          "description": "Final department budget figures due to Fjármál."
+        },
+        "maintenance": {
+          "title": "Plant maintenance window",
+          "description": "Scheduled downtime for Esjusvið production line checks."
+        },
+        "training": {
+          "title": "IT security training",
+          "description": "Complete the annual cybersecurity module in Tækni."
+        },
+        "client": {
+          "title": "Client delivery review",
+          "description": "Review paving milestones with key capital-area clients."
+        },
+        "inventory": {
+          "title": "Materials inventory close",
+          "description": "Submit stock counts for asphalt and aggregate inventories."
+        }
+      }
+    }
+  },
+  "hr": {
+    "started": "Started",
+    "showing": "{{count}} employees",
+    "filters": {
+      "label": "Department filters",
+      "all": "All"
+    },
+    "departments": {
+      "flugusvid": "Flugusvið",
+      "esjusvid": "Esjusvið",
+      "fjarmal": "Fjármál",
+      "sala": "Sala",
+      "taekni": "Tækni"
+    },
+    "stats": {
+      "working": "Employees working",
+      "newHires": "New hires 2026",
+      "vacancies": "Vacancies",
+      "inTraining": "In training"
+    },
+    "newHires": {
+      "title": "Newly hired",
+      "subtitle": "People who joined the company in 2026.",
+      "count": "{{count}} hires"
+    },
+    "inTraining": {
+      "title": "Employees in training",
+      "subtitle": "People currently enrolled in active courses.",
+      "count": "{{count}} people"
+    },
+    "licenses": {
+      "openHint": "Overview & manage licenses",
+      "manageTitle": "License register",
+      "manageSubtitle": "Filter and review license validity for employees.",
+      "count": "{{count}} licenses",
+      "filters": {
+        "label": "License status filters",
+        "all": "All"
+      },
+      "stats": {
+        "employees": "Employees covered",
+        "active": "Active licenses",
+        "expiring": "Expiring soon",
+        "expired": "Expired"
+      },
+      "columns": {
+        "serial": "Serial",
+        "employee": "Employee",
+        "license": "License",
+        "department": "Department",
+        "expires": "Expires",
+        "status": "Status"
+      },
+      "status": {
+        "valid": "Valid",
+        "expiringSoon": "Expiring soon",
+        "expired": "Expired"
+      },
+      "types": {
+        "airsideAccess": "Airside access",
+        "heavyMachinery": "Heavy machinery",
+        "siteSupervisor": "Site supervisor",
+        "qualityInspector": "Quality inspector",
+        "itAdmin": "IT administrator",
+        "clientSiteAccess": "Client site access",
+        "financeSigning": "Finance signing authority"
+      }
+    },
+    "feedback": {
+      "formTitle": "Register feedback",
+      "formSubtitle": "Submit a complaint, suggestion, or tip for HR review.",
+      "submit": "Submit",
+      "submitted": "Feedback added to New.",
+      "anonymous": "Anonymous",
+      "fields": {
+        "type": "Type",
+        "title": "Title",
+        "titlePlaceholder": "Short summary",
+        "description": "Details",
+        "descriptionPlaceholder": "Describe the idea, complaint, or tip",
+        "authorChoice": "Authorship",
+        "showAuthor": "Show me as the author",
+        "anonymous": "Submit anonymously",
+        "detectedAuthor": "Will be recorded as {{name}}"
+      },
+      "types": {
+        "complaint": "Complaint",
+        "suggestion": "Suggestion",
+        "tip": "Tip"
+      },
+      "stats": {
+        "total": "Complaints / ideas",
+        "inReview": "In review",
+        "approved": "Approved"
+      },
+      "columns": {
+        "new": "New",
+        "inReview": "In review",
+        "approved": "Approved",
+        "implemented": "Implemented"
+      }
+    },
+    "training": {
+      "openHint": "View training & certificates",
+      "openButton": "Training & certificates",
+      "certificationsTitle": "Certifications",
+      "certificationsSubtitle": "Issued certificates and current learning status.",
+      "upcomingTitle": "Upcoming courses",
+      "upcomingSubtitle": "Scheduled training sessions for the company.",
+      "progressTitle": "Department progress",
+      "progressSubtitle": "Course completion progress by department.",
+      "progressAria": "{{department}} course progress: {{value}} percent",
+      "status": {
+        "onCourse": "On course",
+        "valid": "Valid",
+        "expired": "Expired"
+      },
+      "courses": {
+        "airsideSafety": "Airside safety",
+        "qualitySystems": "Quality systems",
+        "financeCompliance": "Finance compliance",
+        "cyberSecurity": "Cyber security",
+        "clientSafety": "Client safety",
+        "equipmentHandling": "Equipment handling"
+      },
+      "certNames": {
+        "airsideSafety": "Airside safety certificate",
+        "heavyEquipment": "Heavy equipment license",
+        "firstAid": "First aid certificate",
+        "isoQuality": "ISO quality systems",
+        "cyberBasics": "Cyber security basics",
+        "financeEthics": "Finance ethics",
+        "salesCompliance": "Sales compliance",
+        "plantSafety": "Plant safety certificate"
+      },
+      "upcomingCourses": {
+        "airsideRefresh": "Airside safety refresh",
+        "qualityWorkshop": "Quality workshop",
+        "cyberDrill": "Cyber security drill",
+        "leadershipBasics": "Leadership basics",
+        "firstAidRenewal": "First aid renewal"
+      }
+    },
+    "events": {
+      "title": "HR calendar",
+      "subtitle": "Upcoming people and training events.",
+      "upcoming": "Upcoming events",
+      "items": {
+        "onboardingKickoff": "New hire onboarding kickoff",
+        "safetyTraining": "Mandatory safety training",
+        "performanceReviews": "Mid-year performance reviews",
+        "benefitsInfoSession": "Benefits information session",
+        "leadershipWorkshop": "Leadership workshop"
+      }
+    }
+  },
+  "worklist": {
+    "title": "Worklist",
+    "count": "{{count}} tasks",
+    "columns": {
+      "serial": "Serial",
+      "task": "Task",
+      "employee": "Responsible",
+      "project": "Project",
+      "priority": "Priority",
+      "status": "Status",
+      "dueDate": "Due date"
+    },
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "status": {
+      "inCourse": "In course",
+      "planned": "Planned",
+      "finished": "Finished",
+      "delayed": "Delayed"
+    }
+  },
+  "contracts": {
+    "title": "Contracts",
+    "count": "{{count}} contracts",
+    "columns": {
+      "serial": "Serial",
+      "name": "Contract name",
+      "amount": "Amount",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "planned": "Planned",
+      "completed": "Completed",
+      "expired": "Expired"
+    }
+  },
+  "archive": {
+    "title": "Archive",
+    "count": "{{count}} documents",
+    "columns": {
+      "serial": "Serial",
+      "name": "Document name",
+      "date": "Date",
+      "insertedBy": "Inserted by",
+      "type": "Type",
+      "status": "Status"
+    },
+    "type": {
+      "word": "Word",
+      "excel": "Excel",
+      "pdf": "PDF"
+    },
+    "status": {
+      "denied": "Denied",
+      "inReview": "In review",
+      "approved": "Approved"
+    }
+  },
+  "equipment": {
+    "title": "Trucks",
+    "subtitle": "Fleet overview for this project area.",
+    "count": "{{count}} trucks",
+    "stats": {
+      "total": "Trucks",
+      "available": "Available",
+      "onHold": "On hold",
+      "broken": "Broken"
+    },
+    "columns": {
+      "serial": "Serial",
+      "name": "Truck",
+      "plate": "Plate",
+      "status": "Status",
+      "assignedTo": "Assigned to",
+      "lastService": "Last service"
+    },
+    "status": {
+      "available": "Available",
+      "onHold": "On hold",
+      "broken": "Broken"
+    }
+  },
+  "schedule": {
+    "title": "Day schedule",
+    "employeeCount": "{{count}} employees",
+    "empty": "No schedule is available for this area yet.",
+    "unknownRole": "Team member",
+    "locations": {
+      "office": "Office",
+      "financeRoom": "Finance room",
+      "opsDesk": "Operations desk",
+      "field": "Field",
+      "airside": "Airside briefing",
+      "runway": "Runway section",
+      "yard": "Equipment yard",
+      "apron": "Apron",
+      "plant": "Esja plant",
+      "quarry": "Quarry",
+      "lab": "Quality lab"
+    },
+    "blocks": {
+      "morningBriefing": "Morning briefing",
+      "budgetReview": "Budget review",
+      "opsCoordination": "Operations coordination",
+      "statusReporting": "Status reporting",
+      "invoiceProcessing": "Invoice processing",
+      "vendorFollowUp": "Vendor follow-up",
+      "monthEndPrep": "Month-end preparation",
+      "siteHandover": "Site handover",
+      "clientCall": "Client call",
+      "deliveryPlanning": "Delivery planning",
+      "teamSync": "Team sync",
+      "airsideBriefing": "Airside briefing",
+      "runwayPaving": "Runway paving window",
+      "equipmentCheck": "Equipment check",
+      "shiftHandover": "Shift handover",
+      "permitReview": "Permit review",
+      "apronInspection": "Apron inspection",
+      "progressReporting": "Progress reporting",
+      "clientWalkthrough": "Client walkthrough",
+      "materialOrders": "Material orders",
+      "deliveryWindow": "Delivery window",
+      "dayCloseout": "Day closeout",
+      "plantStartup": "Plant startup",
+      "haulRoadSupport": "Haul road support",
+      "loaderOps": "Loader operations",
+      "qualitySampling": "Quality sampling",
+      "moistureChecks": "Moisture checks",
+      "docsUpdate": "Documentation update",
+      "qcSignoff": "QC sign-off",
+      "crewBriefing": "Crew briefing",
+      "blastWindowCoord": "Blast window coordination",
+      "accessRoadCheck": "Access road check",
+      "endOfDayReview": "End-of-day review"
+    }
+  },
+  "news": {
+    "stats": {
+      "published": "Published",
+      "drafts": "Drafts",
+      "scheduled": "Scheduled",
+      "views": "Views this month"
+    },
+    "feedTitle": "News feed",
+    "feedSubtitle": "Latest company stories and publishing status.",
+    "feedCount": "{{count}} items",
+    "announcementsTitle": "Announcements",
+    "announcementsSubtitle": "Targeted messages going out this week.",
+    "categories": {
+      "operations": "Operations",
+      "safety": "Safety",
+      "people": "People",
+      "company": "Company"
+    },
+    "status": {
+      "published": "Published",
+      "draft": "Draft",
+      "scheduled": "Scheduled"
+    },
+    "audience": {
+      "allStaff": "All staff",
+      "fieldTeams": "Field teams",
+      "managers": "Managers"
+    },
+    "announcements": {
+      "intranet": "Intranet homepage refresh live",
+      "fieldSafety": "Field safety reminder for Friday",
+      "leadership": "Leadership briefing notes ready"
+    },
+    "items": {
+      "plant": {
+        "title": "Esja plant weekend window",
+        "summary": "Scheduled production checks and filter maintenance this weekend."
+      },
+      "benefits": {
+        "title": "Updated benefits handbook",
+        "summary": "Draft summary of 2026 benefits changes for company review."
+      }
+    }
+  },
+  "it": {
+    "stats": {
+      "openTickets": "Open tickets",
+      "systemsUp": "Systems uptime",
+      "devices": "Managed devices",
+      "pendingAccess": "Pending access"
+    },
+    "ticketsTitle": "Support tickets",
+    "ticketsSubtitle": "Active requests for IT support.",
+    "ticketsCount": "{{count}} tickets",
+    "systemsTitle": "Systems status",
+    "systemsSubtitle": "Core company systems and current health.",
+    "uptime": "Uptime {{value}}",
+    "columns": {
+      "serial": "Serial",
+      "ticket": "Ticket",
+      "requester": "Requester",
+      "priority": "Priority",
+      "status": "Status",
+      "opened": "Opened"
+    },
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "ticketStatus": {
+      "open": "Open",
+      "inProgress": "In progress",
+      "waiting": "Waiting"
+    },
+    "systemStatus": {
+      "operational": "Operational",
+      "degraded": "Degraded",
+      "maintenance": "Maintenance"
+    },
+    "tickets": {
+      "vpnAccess": "VPN access for field laptop",
+      "laptopLock": "Unlock new hire laptop",
+      "printerQueue": "Finance printer queue stuck",
+      "emailShared": "Shared mailbox for sales",
+      "softwareInstall": "Install CAD viewer package"
+    },
+    "systems": {
+      "intranet": "Intranet",
+      "email": "Email",
+      "vpn": "VPN",
+      "erp": "ERP / finance",
+      "backup": "Backup jobs"
+    }
+  },
+  "finance": {
+    "formTitle": "Add expense",
+    "formSubtitle": "Register a new company expense.",
+    "tableTitle": "Expense register",
+    "tableSubtitle": "All recorded expenses for the company.",
+    "count": "{{count}} expenses",
+    "submit": "Add expense",
+    "submitted": "Expense added to the register.",
+    "fields": {
+      "description": "Description",
+      "descriptionPlaceholder": "What was purchased or paid",
+      "category": "Category",
+      "amount": "Amount (ISK)",
+      "amountPlaceholder": "0",
+      "date": "Date",
+      "submittedBy": "Submitted by {{name}}"
+    },
+    "columns": {
+      "serial": "Serial",
+      "description": "Description",
+      "category": "Category",
+      "amount": "Amount",
+      "date": "Date",
+      "submittedBy": "Submitted by"
+    },
+    "categories": {
+      "materials": "Materials",
+      "fuel": "Fuel",
+      "equipment": "Equipment",
+      "payroll": "Payroll",
+      "subcontractors": "Subcontractors",
+      "other": "Other"
+    }
+  },
+  "sidebar": {
+    "expand": "Expand sidebar",
+    "collapse": "Collapse sidebar"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "loginDescription": "Auth layout page example."
+  }
+}
