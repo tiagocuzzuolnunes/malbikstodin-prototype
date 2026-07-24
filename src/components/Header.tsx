@@ -17,6 +17,7 @@ export default function Header({ compact = false }: HeaderProps) {
 
   return (
     <header
+      data-app-header
       className={cn(
         'sticky top-0 z-50 flex items-center justify-between bg-surface transition-[padding] duration-300 ease-out',
         compact ? 'px-7 py-3' : 'p-7',

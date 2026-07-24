@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '../../lib/utils'
+import { scrollOverlayIntoView } from '../../lib/scrollOverlayIntoView'
 import { inputVariants, type InputVariantProps } from './inputVariants'
 
 export type SelectOption = {
@@ -32,6 +33,7 @@ export function Select({
 }: SelectProps) {
   const listId = useId()
   const rootRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLUListElement>(null)
   const [open, setOpen] = useState(false)
   const selected = options.find((option) => option.value === value)
   const displayLabel = selected?.label ?? placeholder ?? ''
@@ -55,6 +57,11 @@ export function Select({
       document.removeEventListener('pointerdown', onPointerDown)
       document.removeEventListener('keydown', onKeyDown)
     }
+  }, [open])
+
+  useEffect(() => {
+    if (!open || !listRef.current) return
+    scrollOverlayIntoView(listRef.current)
   }, [open])
 
   function selectValue(next: string) {
@@ -110,6 +117,7 @@ export function Select({
 
       {open ? (
         <ul
+          ref={listRef}
           id={listId}
           role="listbox"
           aria-labelledby={id}

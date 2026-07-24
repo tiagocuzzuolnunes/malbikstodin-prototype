@@ -7,6 +7,7 @@ import {
   getAppWeekdayLabels,
 } from '../../lib/formatDate'
 import { cn } from '../../lib/utils'
+import { scrollOverlayIntoView } from '../../lib/scrollOverlayIntoView'
 import { inputVariants, type InputVariantProps } from './inputVariants'
 import { Button } from './Button'
 
@@ -77,6 +78,7 @@ export function DatePicker({
   const language = i18n.resolvedLanguage ?? i18n.language
   const panelId = useId()
   const rootRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
   const selectedDate = parseIsoDate(value)
   const [todayIso] = useState(() => toIsoDate(new Date()))
@@ -103,6 +105,11 @@ export function DatePicker({
       document.removeEventListener('pointerdown', onPointerDown)
       document.removeEventListener('keydown', onKeyDown)
     }
+  }, [open])
+
+  useEffect(() => {
+    if (!open || !panelRef.current) return
+    scrollOverlayIntoView(panelRef.current)
   }, [open])
 
   const weekdayLabels = getAppWeekdayLabels(t)
@@ -158,10 +165,11 @@ export function DatePicker({
 
       {open ? (
         <div
+          ref={panelRef}
           id={panelId}
           role="dialog"
           aria-label={t('common.chooseDate')}
-          className="absolute z-40 mt-2 w-full min-w-80 rounded-control border border-border bg-surface p-4 shadow-card sm:w-[22rem]"
+          className="absolute bottom-full z-40 mb-2 w-full min-w-80 rounded-control border border-border bg-surface p-4 shadow-card sm:w-[22rem]"
         >
           <div className="mb-4 flex items-center justify-between gap-2">
             <Button
