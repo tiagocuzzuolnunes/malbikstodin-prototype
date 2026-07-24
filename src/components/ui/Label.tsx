@@ -2,10 +2,10 @@ import type { LabelHTMLAttributes } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '../../lib/utils'
 
-export const labelVariants = cva('text-label font-medium', {
+const labelVariants = cva('mb-5 block font-medium', {
   variants: {
     tone: {
-      default: 'text-foreground',
+      default: 'text-2xl text-foreground',
       muted: 'text-foreground-muted',
     },
   },

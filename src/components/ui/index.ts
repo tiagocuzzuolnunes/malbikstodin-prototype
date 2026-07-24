@@ -1,6 +1,9 @@
 export { Button, buttonVariants, type ButtonProps } from './Button'
-export { Input, inputVariants, type InputProps } from './Input'
-export { Label, labelVariants, type LabelProps } from './Label'
+export { Input, type InputProps } from './Input'
+export { inputVariants, type InputVariantProps } from './inputVariants'
+export { Label, type LabelProps } from './Label'
+export { Select, type SelectProps, type SelectOption } from './Select'
+export { DatePicker, type DatePickerProps } from './DatePicker'
 export {
   Card,
   CardHeader,
