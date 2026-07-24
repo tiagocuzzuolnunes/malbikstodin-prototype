@@ -788,9 +788,10 @@
     "submitted": "Tímum bætt við skrána.",
     "hoursValue": "{{value}} klst",
     "timer": {
-      "label": "Tímamæling",
+      "label": "Tímastimpill",
       "start": "Byrja vinnu",
       "finish": "Ljúka vinnu",
+      "cancel": "Hætta við",
       "running": "Vinna í gangi"
     },
     "fields": {
@@ -801,8 +802,16 @@
       "submittedBy": "Sent inn af {{name}}",
       "job": "Verk",
       "jobPlaceholder": "Veldu verk",
+      "workItem": "Verkliður",
+      "workItemPlaceholder": "Veldu verklið",
       "equipment": "Tæki",
       "equipmentPlaceholder": "Veldu tæki",
+      "equipmentNone": "Ekkert tæki notað",
+      "equipmentName": "Verk nr. tækis og heiti",
+      "roleType": "Hlutverk tækis",
+      "roleTypePlaceholder": "Veldu tegund",
+      "roleSubtype": "Nákvæmara hlutverk",
+      "roleSubtypePlaceholder": "Veldu undirtegund",
       "origin": "Náma / losunarstaður",
       "originPlaceholder": "Veldu upprunastað",
       "startOdometer": "Upphafsstaða (km)",
@@ -846,6 +855,39 @@
       "asphaltMix": "Malbiksblanda",
       "millings": "Fræsingar",
       "fill": "Fyllingarefni"
+    },
+    "underworkJobs": {
+      "basePrep": "Undirbúningur",
+      "grading": "Jöfnun",
+      "compaction": "Þjöppun",
+      "drainage": "Frárennsli",
+      "siteClearing": "Hreinsun svæðis"
+    },
+    "underworkItems": {
+      "subbase": "Undirlag",
+      "binderCourse": "Bindilag",
+      "edgeWork": "Kantavinna",
+      "trenching": "Skurðavinna",
+      "leveling": "Lagfæring",
+      "paving": "Malbikun",
+      "repairs": "Viðgerðir"
+    },
+    "repairRoleTypes": {
+      "mechanical": "Vélvirkja",
+      "electrical": "Rafmagn",
+      "hydraulic": "Vökvakerfi",
+      "welding": "Suða",
+      "bodywork": "Plötusmíði"
+    },
+    "repairRoleSubtypes": {
+      "engineService": "Vélaviðgerð",
+      "electricalFault": "Rafmagnsbilun",
+      "hydraulics": "Vökvakerfi",
+      "structuralWeld": "Burðarvirki",
+      "bodyRepair": "Yfirbygging"
+    },
+    "mvProjectJobs": {
+      "mv25": "MV 25"
     }
   },
   "sidebar": {

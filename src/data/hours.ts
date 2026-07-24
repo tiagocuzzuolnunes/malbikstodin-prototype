@@ -38,12 +38,86 @@ export const driverProducts = [
 
 export type DriverProduct = (typeof driverProducts)[number]
 
+export const underworkJobs = [
+  'basePrep',
+  'grading',
+  'compaction',
+  'drainage',
+  'siteClearing',
+] as const
+
+export type UnderworkJob = (typeof underworkJobs)[number]
+
+export const underworkItems = [
+  'subbase',
+  'binderCourse',
+  'edgeWork',
+  'trenching',
+  'leveling',
+] as const
+
+export type UnderworkItem = (typeof underworkItems)[number]
+
+export const pavingWorkItem = 'paving' as const
+export const repairsWorkItem = 'repairs' as const
+export const mvProjectJob = 'mv25' as const
+
+export type WorkItem = UnderworkItem | typeof pavingWorkItem | typeof repairsWorkItem
+
+export const repairRoleTypes = [
+  'mechanical',
+  'electrical',
+  'hydraulic',
+  'welding',
+  'bodywork',
+] as const
+
+export type RepairRoleType = (typeof repairRoleTypes)[number]
+
+export const repairRoleSubtypes = [
+  'engineService',
+  'electricalFault',
+  'hydraulics',
+  'structuralWeld',
+  'bodyRepair',
+] as const
+
+export type RepairRoleSubtype = (typeof repairRoleSubtypes)[number]
+
+export const repairSubtypeByType: Record<RepairRoleType, RepairRoleSubtype> = {
+  mechanical: 'engineService',
+  electrical: 'electricalFault',
+  hydraulic: 'hydraulics',
+  welding: 'structuralWeld',
+  bodywork: 'bodyRepair',
+}
+
 export type DriverDetails = {
   job: DriverJob
   equipmentId: string
   origin: DriverOrigin
   startOdometerKm: number
   product: DriverProduct
+  comments: string
+}
+
+export type UnderworkDetails = {
+  job: UnderworkJob
+  workItem: WorkItem
+  equipmentId: string | null
+  comments: string
+}
+
+export type RepairDetails = {
+  roleType: RepairRoleType
+  roleSubtype: RepairRoleSubtype
+  workItem: typeof repairsWorkItem
+  equipmentId: string
+  comments: string
+}
+
+export type MvProjectDetails = {
+  job: typeof mvProjectJob
   comments: string
 }
 
@@ -56,6 +130,9 @@ export type HourEntry = {
   date: string
   submittedBy: string
   driverDetails?: DriverDetails
+  underworkDetails?: UnderworkDetails
+  repairDetails?: RepairDetails
+  mvProjectDetails?: MvProjectDetails
 }
 
 export const initialHourEntries: HourEntry[] = [
@@ -84,6 +161,12 @@ export const initialHourEntries: HourEntry[] = [
     hours: 7.5,
     date: '2026-07-21',
     submittedBy: 'Ólafur Sigurðsson',
+    underworkDetails: {
+      job: 'basePrep',
+      workItem: 'subbase',
+      equipmentId: null,
+      comments: 'Kópavogur stretch base prep',
+    },
   },
   {
     id: 'hr3',
@@ -93,6 +176,12 @@ export const initialHourEntries: HourEntry[] = [
     hours: 9,
     date: '2026-07-21',
     submittedBy: 'Guðrún Pálsdóttir',
+    underworkDetails: {
+      job: 'compaction',
+      workItem: 'paving',
+      equipmentId: null,
+      comments: 'Evening paving crew on Ring Road section',
+    },
   },
   {
     id: 'hr4',
@@ -102,15 +191,26 @@ export const initialHourEntries: HourEntry[] = [
     hours: 4,
     date: '2026-07-22',
     submittedBy: 'Ásta Ragnarsdóttir',
+    repairDetails: {
+      roleType: 'hydraulic',
+      roleSubtype: 'hydraulics',
+      workItem: 'repairs',
+      equipmentId: 'eq-f5',
+      comments: 'Pavers hydraulic repair',
+    },
   },
   {
     id: 'hr5',
     serial: 'TIM-05',
-    description: 'MV project coordination on site',
+    description: 'MV 25',
     category: 'mvProjects',
     hours: 6,
     date: '2026-07-22',
     submittedBy: 'Margrét Elíasdóttir',
+    mvProjectDetails: {
+      job: 'mv25',
+      comments: 'MV project coordination on site',
+    },
   },
 ]
 

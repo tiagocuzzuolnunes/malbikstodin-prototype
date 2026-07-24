@@ -788,9 +788,10 @@
     "submitted": "Hours added to the register.",
     "hoursValue": "{{value}} h",
     "timer": {
-      "label": "Time tracking",
+      "label": "Timestamp",
       "start": "Start work",
       "finish": "Finish work",
+      "cancel": "Cancel",
       "running": "Work in progress"
     },
     "fields": {
@@ -801,8 +802,16 @@
       "submittedBy": "Submitted by {{name}}",
       "job": "Job",
       "jobPlaceholder": "Select job",
+      "workItem": "Work item",
+      "workItemPlaceholder": "Select work item",
       "equipment": "Equipment",
       "equipmentPlaceholder": "Select equipment",
+      "equipmentNone": "No equipment used",
+      "equipmentName": "Equipment no. and name",
+      "roleType": "Equipment role",
+      "roleTypePlaceholder": "Select type",
+      "roleSubtype": "More precise role",
+      "roleSubtypePlaceholder": "Select subtype",
       "origin": "Quarry / unload site",
       "originPlaceholder": "Select origin location",
       "startOdometer": "Starting odometer (km)",
@@ -846,6 +855,39 @@
       "asphaltMix": "Asphalt mix",
       "millings": "Millings",
       "fill": "Fill material"
+    },
+    "underworkJobs": {
+      "basePrep": "Base preparation",
+      "grading": "Grading",
+      "compaction": "Compaction",
+      "drainage": "Drainage",
+      "siteClearing": "Site clearing"
+    },
+    "underworkItems": {
+      "subbase": "Subbase",
+      "binderCourse": "Binder course",
+      "edgeWork": "Edge work",
+      "trenching": "Trenching",
+      "leveling": "Leveling",
+      "paving": "Paving",
+      "repairs": "Repairs"
+    },
+    "repairRoleTypes": {
+      "mechanical": "Mechanical",
+      "electrical": "Electrical",
+      "hydraulic": "Hydraulic",
+      "welding": "Welding",
+      "bodywork": "Bodywork"
+    },
+    "repairRoleSubtypes": {
+      "engineService": "Engine service",
+      "electricalFault": "Electrical fault",
+      "hydraulics": "Hydraulics",
+      "structuralWeld": "Structural weld",
+      "bodyRepair": "Body repair"
+    },
+    "mvProjectJobs": {
+      "mv25": "MV 25"
     }
   },
   "sidebar": {
