@@ -88,12 +88,19 @@ export function Select({
         onKeyDown={onTriggerKeyDown}
         className={cn(
           inputVariants({ size }),
-          'group flex cursor-pointer items-center justify-between gap-3 pr-3 text-left',
+          'group flex items-center justify-between gap-3 pr-3 text-left',
+          disabled ? 'cursor-not-allowed' : 'cursor-pointer',
           !selected && 'text-foreground-muted',
         )}
       >
         <span className="min-w-0 flex-1 truncate">{displayLabel}</span>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-control text-accent transition-colors group-hover:bg-interactive-hover group-focus-visible:bg-interactive-hover">
+        <span
+          className={cn(
+            'flex h-10 w-10 shrink-0 items-center justify-center rounded-control text-accent transition-colors',
+            !disabled &&
+              'group-hover:bg-interactive-hover group-focus-visible:bg-interactive-hover',
+          )}
+        >
           <ChevronDown
             className={cn('h-7 w-7 stroke-[2.25] transition-transform', open && 'rotate-180')}
             aria-hidden
