@@ -9,12 +9,9 @@ const layoutRoutes = applyLayouts(routes)
 
 function AppRoutes() {
   const { t } = useTranslation()
+  const element = useRoutes(layoutRoutes)
 
-  return (
-    <Suspense fallback={<p>{t('common.loading')}</p>}>
-      {useRoutes(layoutRoutes)}
-    </Suspense>
-  )
+  return <Suspense fallback={<p>{t('common.loading')}</p>}>{element}</Suspense>
 }
 
 export default function AppRouter() {

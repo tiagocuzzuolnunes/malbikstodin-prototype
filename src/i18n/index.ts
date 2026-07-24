@@ -34,6 +34,10 @@ void i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
+  react: {
+    // Translations are bundled; suspense on language change remounts routes and drops form state.
+    useSuspense: false,
+  },
 })
 
 if (typeof document !== 'undefined') {
