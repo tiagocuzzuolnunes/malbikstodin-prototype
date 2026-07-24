@@ -1,16 +1,30 @@
 import { useEffect, useState, type RefObject } from 'react'
 
+type UseScrollCompactOptions = {
+  threshold?: number
+  /** When false, always returns false and does not listen to scroll. */
+  enabled?: boolean
+}
+
 /**
  * Compacts when a scroll container moves past `threshold`,
  * and expands again only when fully back at the top.
  */
 export function useScrollCompact(
   scrollRef: RefObject<HTMLElement | null>,
-  threshold = 48,
+  options: UseScrollCompactOptions | number = {},
 ) {
+  const normalized = typeof options === 'number' ? { threshold: options } : options
+  const threshold = normalized.threshold ?? 48
+  const enabled = normalized.enabled ?? true
   const [compact, setCompact] = useState(false)
 
   useEffect(() => {
+    if (!enabled) {
+      setCompact(false)
+      return
+    }
+
     const element = scrollRef.current
     if (!element) return
 
@@ -39,7 +53,7 @@ export function useScrollCompact(
       element.removeEventListener('scroll', onScroll)
       if (frame) window.cancelAnimationFrame(frame)
     }
-  }, [scrollRef, threshold])
+  }, [scrollRef, threshold, enabled])
 
-  return compact
+  return enabled ? compact : false
 }

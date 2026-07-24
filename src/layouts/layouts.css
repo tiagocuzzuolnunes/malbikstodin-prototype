@@ -5,8 +5,11 @@
 .layout-root {
   display: flex;
   flex-direction: column;
-  height: 100svh;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 0;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 .layout-header,
