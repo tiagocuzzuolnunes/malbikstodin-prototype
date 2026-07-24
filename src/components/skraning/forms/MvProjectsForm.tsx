@@ -7,19 +7,14 @@ import {
   fieldRowClassName,
   textareaClassName,
 } from '../hoursStyles'
-import { HoursTimerField } from '../HoursTimerField'
 
 type MvProjectsFormProps = {
-  isRunning: boolean
-  elapsedMs: number
   mvJob: typeof mvProjectJob | ''
   comments: string
   onCommentsChange: (value: string) => void
 }
 
 export function MvProjectsForm({
-  isRunning,
-  elapsedMs,
   mvJob,
   comments,
   onCommentsChange,
@@ -47,7 +42,7 @@ export function MvProjectsForm({
       </div>
 
       <div className={fieldRowClassName}>
-        <Label htmlFor="mv-comments" className={`${fieldLabelClassName} self-start sm:pt-3`}>
+        <Label htmlFor="mv-comments" className={`${fieldLabelClassName} self-start sm:pt-2`}>
           {t('hours.fields.comments')}
         </Label>
         <textarea
@@ -59,8 +54,6 @@ export function MvProjectsForm({
           rows={4}
         />
       </div>
-
-      <HoursTimerField isRunning={isRunning} elapsedMs={elapsedMs} />
     </div>
   )
 }

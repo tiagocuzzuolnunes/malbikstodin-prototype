@@ -15,12 +15,9 @@ import {
   fieldRowClassName,
   textareaClassName,
 } from '../hoursStyles'
-import { HoursTimerField } from '../HoursTimerField'
 
 type DriverRegistrationFormProps = {
   fieldsLocked: boolean
-  isRunning: boolean
-  elapsedMs: number
   job: DriverJob | ''
   equipmentId: string
   origin: DriverOrigin | ''
@@ -39,8 +36,6 @@ type DriverRegistrationFormProps = {
 
 export function DriverRegistrationForm({
   fieldsLocked,
-  isRunning,
-  elapsedMs,
   job,
   equipmentId,
   origin,
@@ -150,7 +145,7 @@ export function DriverRegistrationForm({
       </div>
 
       <div className={fieldRowClassName}>
-        <Label htmlFor="driver-comments" className={`${fieldLabelClassName} self-start sm:pt-3`}>
+        <Label htmlFor="driver-comments" className={`${fieldLabelClassName} self-start sm:pt-2`}>
           {t('hours.fields.comments')}
         </Label>
         <textarea
@@ -175,8 +170,6 @@ export function DriverRegistrationForm({
           onChange={onDateChange}
         />
       </div>
-
-      <HoursTimerField isRunning={isRunning} elapsedMs={elapsedMs} />
     </div>
   )
 }

@@ -51,8 +51,6 @@ export function HoursRegistrationCard({ registration }: HoursRegistrationCardPro
         {category === 'driverRegistration' ? (
           <DriverRegistrationForm
             fieldsLocked={fieldsLocked}
-            isRunning={isRunning}
-            elapsedMs={elapsedMs}
             job={values.job}
             equipmentId={values.equipmentId}
             origin={values.origin}
@@ -72,8 +70,6 @@ export function HoursRegistrationCard({ registration }: HoursRegistrationCardPro
           <JobWorkForm
             fieldsLocked={fieldsLocked}
             workItemLocked={workItemLocked}
-            isRunning={isRunning}
-            elapsedMs={elapsedMs}
             underworkJob={values.underworkJob}
             workItem={values.workItem}
             equipmentId={values.equipmentId}
@@ -86,8 +82,6 @@ export function HoursRegistrationCard({ registration }: HoursRegistrationCardPro
         ) : category === 'repairs' ? (
           <RepairsForm
             fieldsLocked={fieldsLocked}
-            isRunning={isRunning}
-            elapsedMs={elapsedMs}
             repairRoleType={values.repairRoleType}
             repairRoleSubtype={values.repairRoleSubtype}
             workItem={values.workItem}
@@ -100,8 +94,6 @@ export function HoursRegistrationCard({ registration }: HoursRegistrationCardPro
           />
         ) : (
           <MvProjectsForm
-            isRunning={isRunning}
-            elapsedMs={elapsedMs}
             mvJob={values.mvJob}
             comments={values.comments}
             onCommentsChange={setComments}
@@ -110,6 +102,7 @@ export function HoursRegistrationCard({ registration }: HoursRegistrationCardPro
 
         <HoursFormActions
           isRunning={isRunning}
+          elapsedMs={elapsedMs}
           canStart={canStart}
           submittedNotice={submittedNotice}
           submittedByName={currentUserName}

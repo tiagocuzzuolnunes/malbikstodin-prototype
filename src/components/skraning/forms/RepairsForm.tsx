@@ -16,12 +16,9 @@ import {
   fieldRowClassName,
   textareaClassName,
 } from '../hoursStyles'
-import { HoursTimerField } from '../HoursTimerField'
 
 type RepairsFormProps = {
   fieldsLocked: boolean
-  isRunning: boolean
-  elapsedMs: number
   repairRoleType: RepairRoleType | ''
   repairRoleSubtype: RepairRoleSubtype | ''
   workItem: WorkItem | ''
@@ -35,8 +32,6 @@ type RepairsFormProps = {
 
 export function RepairsForm({
   fieldsLocked,
-  isRunning,
-  elapsedMs,
   repairRoleType,
   repairRoleSubtype,
   workItem,
@@ -130,7 +125,7 @@ export function RepairsForm({
       </div>
 
       <div className={fieldRowClassName}>
-        <Label htmlFor="repair-comments" className={`${fieldLabelClassName} self-start sm:pt-3`}>
+        <Label htmlFor="repair-comments" className={`${fieldLabelClassName} self-start sm:pt-2`}>
           {t('hours.fields.comments')}
         </Label>
         <textarea
@@ -142,8 +137,6 @@ export function RepairsForm({
           rows={4}
         />
       </div>
-
-      <HoursTimerField isRunning={isRunning} elapsedMs={elapsedMs} />
     </div>
   )
 }

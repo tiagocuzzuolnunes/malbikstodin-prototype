@@ -15,13 +15,10 @@ import {
   fieldRowClassName,
   textareaClassName,
 } from '../hoursStyles'
-import { HoursTimerField } from '../HoursTimerField'
 
 type JobWorkFormProps = {
   fieldsLocked: boolean
   workItemLocked: boolean
-  isRunning: boolean
-  elapsedMs: number
   underworkJob: UnderworkJob | ''
   workItem: WorkItem | ''
   equipmentId: string
@@ -35,8 +32,6 @@ type JobWorkFormProps = {
 export function JobWorkForm({
   fieldsLocked,
   workItemLocked,
-  isRunning,
-  elapsedMs,
   underworkJob,
   workItem,
   equipmentId,
@@ -109,7 +104,7 @@ export function JobWorkForm({
       <div className={fieldRowClassName}>
         <Label
           htmlFor="underwork-comments"
-          className={`${fieldLabelClassName} self-start sm:pt-3`}
+          className={`${fieldLabelClassName} self-start sm:pt-2`}
         >
           {t('hours.fields.comments')}
         </Label>
@@ -122,8 +117,6 @@ export function JobWorkForm({
           rows={4}
         />
       </div>
-
-      <HoursTimerField isRunning={isRunning} elapsedMs={elapsedMs} />
     </div>
   )
 }
