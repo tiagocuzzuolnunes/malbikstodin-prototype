@@ -7,8 +7,8 @@ export const cardVariants = cva('rounded-card bg-surface text-foreground', {
     padding: {
       none: 'p-0',
       sm: 'p-4',
-      md: 'p-6',
-      lg: 'p-8',
+      md: 'p-4 sm:p-6',
+      lg: 'p-4 sm:p-6 lg:p-8',
     },
     elevated: {
       true: 'shadow-card',
@@ -35,11 +35,18 @@ export function CardHeader({ className, ...props }: HTMLAttributes<HTMLDivElemen
 }
 
 export function CardTitle({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
-  return <h3 className={cn('text-2xl font-semibold tracking-tight', className)} {...props} />
+  return (
+    <h3
+      className={cn('text-xl font-semibold tracking-tight sm:text-2xl', className)}
+      {...props}
+    />
+  )
 }
 
 export function CardDescription({ className, ...props }: HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn('text-lg text-foreground-muted', className)} {...props} />
+  return (
+    <p className={cn('text-sm text-foreground-muted sm:text-lg', className)} {...props} />
+  )
 }
 
 export function CardContent({ className, ...props }: HTMLAttributes<HTMLDivElement>) {

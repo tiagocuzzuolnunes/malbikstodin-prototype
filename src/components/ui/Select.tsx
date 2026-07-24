@@ -103,13 +103,13 @@ export function Select({
         <span className="min-w-0 flex-1 truncate">{displayLabel}</span>
         <span
           className={cn(
-            'flex h-10 w-10 shrink-0 items-center justify-center rounded-control text-accent transition-colors',
+            'flex h-8 w-8 shrink-0 items-center justify-center rounded-control text-accent transition-colors',
             !disabled &&
               'group-hover:bg-interactive-hover group-focus-visible:bg-interactive-hover',
           )}
         >
           <ChevronDown
-            className={cn('h-7 w-7 stroke-[2.25] transition-transform', open && 'rotate-180')}
+            className={cn('h-5 w-5 stroke-[2.25] transition-transform', open && 'rotate-180')}
             aria-hidden
           />
         </span>
@@ -129,12 +129,12 @@ export function Select({
                 type="button"
                 role="option"
                 aria-selected={!value}
-                className={cn(
-                  'flex w-full cursor-pointer px-4 py-3 text-left text-2xl transition-colors',
-                  !value
-                    ? 'bg-accent/10 font-medium text-accent'
-                    : 'text-foreground-muted hover:bg-interactive-hover',
-                )}
+                  className={cn(
+                    'flex w-full cursor-pointer px-3 py-2 text-left text-sm transition-colors sm:px-3.5 sm:py-2.5 sm:text-base',
+                    !value
+                      ? 'bg-accent/10 font-medium text-accent'
+                      : 'text-foreground-muted hover:bg-interactive-hover',
+                  )}
                 onClick={() => selectValue('')}
               >
                 {placeholder}
@@ -151,7 +151,7 @@ export function Select({
                   role="option"
                   aria-selected={isSelected}
                   className={cn(
-                    'flex w-full cursor-pointer px-4 py-3 text-left text-2xl transition-colors',
+                    'flex w-full cursor-pointer px-3 py-2 text-left text-sm transition-colors sm:px-3.5 sm:py-2.5 sm:text-base',
                     isSelected
                       ? 'bg-accent text-accent-foreground'
                       : 'text-foreground hover:bg-interactive-hover',

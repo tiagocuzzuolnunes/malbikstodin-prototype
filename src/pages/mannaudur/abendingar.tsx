@@ -233,8 +233,7 @@ export default function MannaudurAbendingarPage() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <div className="grid min-w-4xl grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {feedbackStatuses.map((status) => {
               const columnItems = items.filter((item) => item.status === status)
 
@@ -265,7 +264,6 @@ export default function MannaudurAbendingarPage() {
               )
             })}
           </div>
-        </div>
       </div>
     </div>
   )

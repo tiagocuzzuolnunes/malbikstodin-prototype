@@ -7,7 +7,7 @@ export const inputVariants = cva(
       size: {
         sm: 'h-8 px-2.5 text-sm placeholder:text-sm',
         md: 'h-9 px-3 text-sm placeholder:text-sm',
-        lg: 'h-14 px-4 text-2xl placeholder:text-2xl',
+        lg: 'h-11 px-3 text-sm placeholder:text-sm sm:h-11 sm:text-base sm:placeholder:text-base',
       },
     },
     defaultVariants: {

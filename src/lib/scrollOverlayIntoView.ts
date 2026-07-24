@@ -1,5 +1,5 @@
-/** Expanded header: p-7 (28×2) + tallest control (~56px User button) ≈ 112px */
-const MAX_HEADER_HEIGHT_PX = 112
+/** Expanded desktop header: p-7 (28×2) + tallest control (~56px) ≈ 112px */
+const FALLBACK_HEADER_HEIGHT_PX = 112
 const OVERLAY_GAP_PX = 16
 
 /** Scroll the nearest scroll container so `element` is fully visible below the sticky header. */
@@ -34,10 +34,7 @@ export function scrollOverlayIntoView(element: HTMLElement) {
 function getStickyHeaderOffset() {
   const header = document.querySelector<HTMLElement>('[data-app-header]')
   const measured = header?.getBoundingClientRect().height ?? 0
-
-  // Always reserve at least the expanded header height so overlays stay clear
-  // while the header animates between compact and full size.
-  return Math.max(measured, MAX_HEADER_HEIGHT_PX)
+  return measured > 0 ? measured : FALLBACK_HEADER_HEIGHT_PX
 }
 
 function findScrollParent(element: HTMLElement) {
