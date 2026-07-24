@@ -31,13 +31,13 @@ export default function LanguageSwitcher({ compact = false }: LanguageSwitcherPr
       title={t('language.switchTo', { language: t(`language.names.${nextLocale}`) })}
       className={cn(
         'transition-all duration-300 ease-out',
-        compact ? 'p-2' : 'p-3',
+        compact ? 'p-2' : 'p-2 md:p-3',
       )}
     >
       <span
         className={cn(
           'font-semibold tracking-wide',
-          compact ? 'text-xs' : 'text-sm',
+          compact ? 'text-xs' : 'text-xs md:text-sm',
         )}
       >
         {nextLocale.toUpperCase()}

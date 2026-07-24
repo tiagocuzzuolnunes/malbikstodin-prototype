@@ -1,6 +1,7 @@
 {
   "brand": {
     "name": "Malbikstöðin",
+    "header": "MALBIKSTÖÐIN",
     "logoAlt": "Malbikstöðin Logo"
   },
   "common": {
@@ -10,6 +11,7 @@
     "breadcrumb": "Breadcrumb",
     "back": "Go back",
     "mainNav": "Main",
+    "close": "Close",
     "datePlaceholder": "Select date",
     "chooseDate": "Choose date",
     "previousMonth": "Previous month",
@@ -47,10 +49,12 @@
     "weekdaysShort": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
   },
   "theme": {
+    "label": "Appearance",
     "switchToLight": "Switch to light mode",
     "switchToDark": "Switch to dark mode"
   },
   "language": {
+    "label": "Language",
     "switchTo": "Switch to {{language}}",
     "names": {
       "en": "English",
@@ -892,7 +896,8 @@
   },
   "sidebar": {
     "expand": "Expand sidebar",
-    "collapse": "Collapse sidebar"
+    "collapse": "Collapse sidebar",
+    "openMenu": "Open menu"
   },
   "auth": {
     "loginTitle": "Login",

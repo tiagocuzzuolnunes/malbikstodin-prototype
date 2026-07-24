@@ -1,6 +1,7 @@
 {
   "brand": {
     "name": "Malbikstöðin",
+    "header": "MALBIKSTÖÐIN",
     "logoAlt": "Merki Malbikstöðvarinnar"
   },
   "common": {
@@ -10,6 +11,7 @@
     "breadcrumb": "Brauðmolar",
     "back": "Fara til baka",
     "mainNav": "Aðalvalmynd",
+    "close": "Loka",
     "datePlaceholder": "Veldu dagsetningu",
     "chooseDate": "Veldu dagsetningu",
     "previousMonth": "Fyrri mánuður",
@@ -47,10 +49,12 @@
     "weekdaysShort": ["mán.", "þri.", "mið.", "fim.", "fös.", "lau.", "sun."]
   },
   "theme": {
+    "label": "Útlit",
     "switchToLight": "Skipta í ljósa stillingu",
     "switchToDark": "Skipta í dökka stillingu"
   },
   "language": {
+    "label": "Tungumál",
     "switchTo": "Skipta yfir í {{language}}",
     "names": {
       "en": "enska",
@@ -892,7 +896,8 @@
   },
   "sidebar": {
     "expand": "Stækka hliðarstiku",
-    "collapse": "Minkka hliðarstiku"
+    "collapse": "Minkka hliðarstiku",
+    "openMenu": "Opna valmynd"
   },
   "auth": {
     "loginTitle": "Innskráning",
