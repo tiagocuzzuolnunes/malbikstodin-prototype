@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { ClipboardList } from 'lucide-react'
 import { latestNews } from '../data/home'
 import { companyEvents } from '../data/events'
 import { getGreetingPeriod } from '../lib/greeting'
@@ -32,6 +33,16 @@ export default function HeimPage() {
       <section>
         <h1 className="text-4xl font-semibold tracking-tight">{greeting}</h1>
         <p className="mt-3 text-lg text-foreground-muted">{weatherText}</p>
+        <Link
+          to="/skraning"
+          className={cn(
+            buttonVariants({ variant: 'primary', size: 'lg' }),
+            'mt-6 inline-flex min-h-11 px-5',
+          )}
+        >
+          <ClipboardList className="h-5 w-5 shrink-0" aria-hidden />
+          {t('home.skraningCta')}
+        </Link>
       </section>
 
       <section className="space-y-4">

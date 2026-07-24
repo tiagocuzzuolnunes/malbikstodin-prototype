@@ -9,7 +9,42 @@
     "saveChanges": "Save changes",
     "breadcrumb": "Breadcrumb",
     "back": "Go back",
-    "mainNav": "Main"
+    "mainNav": "Main",
+    "datePlaceholder": "Select date",
+    "chooseDate": "Choose date",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month"
+  },
+  "dates": {
+    "monthsLong": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "monthsShort": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "weekdaysShort": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
   },
   "theme": {
     "switchToLight": "Switch to light mode",
@@ -45,6 +80,7 @@
   },
   "nav": {
     "heim": "Home",
+    "skraning": "Registration",
     "frettir": "News",
     "mannaudur": "HR",
     "starfsfolk": "Employees",
@@ -71,6 +107,9 @@
   "pages": {
     "heim": {
       "description": "Your company overview for today."
+    },
+    "skraning": {
+      "description": "Fill in the details, start work, then stop to log hours automatically."
     },
     "frettir": {
       "description": "Company news dashboard with publishing status and announcements."
@@ -238,6 +277,7 @@
       "evening": "Good evening, {{name}}",
       "night": "Good night, {{name}}"
     },
+    "skraningCta": "Register hours",
     "userName": "Vilhjálmur",
     "weather": {
       "title": "Reykjavík",
@@ -736,6 +776,76 @@
       "payroll": "Payroll",
       "subcontractors": "Subcontractors",
       "other": "Other"
+    }
+  },
+  "hours": {
+    "formTitle": "Register hours",
+    "formSubtitle": "Fill in the details, start work, then stop to log the hours automatically.",
+    "tableTitle": "Hours register",
+    "tableSubtitle": "Recently registered work hours.",
+    "count": "{{count}} entries",
+    "submit": "Register hours",
+    "submitted": "Hours added to the register.",
+    "hoursValue": "{{value}} h",
+    "timer": {
+      "label": "Time tracking",
+      "start": "Start work",
+      "finish": "Finish work",
+      "running": "Work in progress"
+    },
+    "fields": {
+      "description": "Description",
+      "descriptionPlaceholder": "What work was done",
+      "category": "Category",
+      "date": "Date",
+      "submittedBy": "Submitted by {{name}}",
+      "job": "Job",
+      "jobPlaceholder": "Select job",
+      "equipment": "Equipment",
+      "equipmentPlaceholder": "Select equipment",
+      "origin": "Quarry / unload site",
+      "originPlaceholder": "Select origin location",
+      "startOdometer": "Starting odometer (km)",
+      "product": "Product",
+      "productPlaceholder": "Select product",
+      "comments": "Comments",
+      "commentsPlaceholder": "Comments..."
+    },
+    "columns": {
+      "serial": "Serial",
+      "description": "Description",
+      "category": "Category",
+      "hours": "Hours",
+      "date": "Date",
+      "submittedBy": "Submitted by"
+    },
+    "categories": {
+      "driverRegistration": "Driver registration",
+      "underwork": "Preparatory work",
+      "paving": "Paving",
+      "repairs": "Repairs",
+      "mvProjects": "MV Projects"
+    },
+    "driverJobs": {
+      "capitalHaul": "Capital area haul",
+      "quarryRun": "Quarry run",
+      "siteDelivery": "Site delivery",
+      "plantFeed": "Plant feed",
+      "nightShift": "Night shift"
+    },
+    "driverOrigins": {
+      "esjaQuarry": "Esja quarry",
+      "plantYard": "Plant yard",
+      "kopavogurSite": "Kópavogur site",
+      "airsideApron": "Airside apron",
+      "ringRoadDump": "Ring Road unload site"
+    },
+    "driverProducts": {
+      "binder": "Binder",
+      "aggregate": "Aggregate",
+      "asphaltMix": "Asphalt mix",
+      "millings": "Millings",
+      "fill": "Fill material"
     }
   },
   "sidebar": {

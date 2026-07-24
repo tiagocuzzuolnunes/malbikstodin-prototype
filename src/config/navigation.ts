@@ -1,5 +1,13 @@
 import type { LucideIcon } from 'lucide-react'
-import { Newspaper, House, Package, PersonStanding, Laptop, HandCoins } from 'lucide-react'
+import {
+  Newspaper,
+  House,
+  Package,
+  PersonStanding,
+  Laptop,
+  HandCoins,
+  ClipboardList,
+} from 'lucide-react'
 
 export type NavItem = {
   to: string
@@ -9,6 +17,7 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   { to: '/', labelKey: 'nav.heim', icon: House },
+  { to: '/skraning', labelKey: 'nav.skraning', icon: ClipboardList },
   { to: '/frettir', labelKey: 'nav.frettir', icon: Newspaper },
   { to: '/mannaudur', labelKey: 'nav.mannaudur', icon: PersonStanding },
   { to: '/taekni', labelKey: 'nav.taekni', icon: Laptop },

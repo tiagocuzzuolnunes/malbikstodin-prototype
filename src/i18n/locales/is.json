@@ -9,7 +9,42 @@
     "saveChanges": "Vista breytingar",
     "breadcrumb": "Brauðmolar",
     "back": "Fara til baka",
-    "mainNav": "Aðalvalmynd"
+    "mainNav": "Aðalvalmynd",
+    "datePlaceholder": "Veldu dagsetningu",
+    "chooseDate": "Veldu dagsetningu",
+    "previousMonth": "Fyrri mánuður",
+    "nextMonth": "Næsti mánuður"
+  },
+  "dates": {
+    "monthsLong": [
+      "janúar",
+      "febrúar",
+      "mars",
+      "apríl",
+      "maí",
+      "júní",
+      "júlí",
+      "ágúst",
+      "september",
+      "október",
+      "nóvember",
+      "desember"
+    ],
+    "monthsShort": [
+      "jan.",
+      "feb.",
+      "mar.",
+      "apr.",
+      "maí",
+      "jún.",
+      "júl.",
+      "ágú.",
+      "sep.",
+      "okt.",
+      "nóv.",
+      "des."
+    ],
+    "weekdaysShort": ["mán.", "þri.", "mið.", "fim.", "fös.", "lau.", "sun."]
   },
   "theme": {
     "switchToLight": "Skipta í ljósa stillingu",
@@ -45,6 +80,7 @@
   },
   "nav": {
     "heim": "Heim",
+    "skraning": "Skráning",
     "frettir": "Fréttir",
     "mannaudur": "Mannauður",
     "starfsfolk": "Starfsfólk",
@@ -71,6 +107,9 @@
   "pages": {
     "heim": {
       "description": "Yfirlit yfir fyrirtækið þitt í dag."
+    },
+    "skraning": {
+      "description": "Fylltu út upplýsingarnar, byrjaðu vinnu og stöðvaðu svo til að skrá tíma sjálfkrafa."
     },
     "frettir": {
       "description": "Yfirlitssíða frétta með stöðu birtingar og tilkynningum."
@@ -238,6 +277,7 @@
       "evening": "Gott kvöld, {{name}}",
       "night": "Góða nótt, {{name}}"
     },
+    "skraningCta": "Skrá tíma",
     "userName": "Vilhjálmur",
     "weather": {
       "title": "Reykjavík",
@@ -736,6 +776,76 @@
       "payroll": "Laun",
       "subcontractors": "Undirverktakar",
       "other": "Annað"
+    }
+  },
+  "hours": {
+    "formTitle": "Skrá tíma",
+    "formSubtitle": "Fylltu út upplýsingarnar, byrjaðu vinnu og stöðvaðu svo til að skrá tímanna sjálfkrafa.",
+    "tableTitle": "Tímaskrá",
+    "tableSubtitle": "Nýlega skráðir vinnutímar.",
+    "count": "{{count}} færslur",
+    "submit": "Skrá tíma",
+    "submitted": "Tímum bætt við skrána.",
+    "hoursValue": "{{value}} klst",
+    "timer": {
+      "label": "Tímamæling",
+      "start": "Byrja vinnu",
+      "finish": "Ljúka vinnu",
+      "running": "Vinna í gangi"
+    },
+    "fields": {
+      "description": "Lýsing",
+      "descriptionPlaceholder": "Hvaða vinna var unnin",
+      "category": "Flokkur",
+      "date": "Dagsetning",
+      "submittedBy": "Sent inn af {{name}}",
+      "job": "Verk",
+      "jobPlaceholder": "Veldu verk",
+      "equipment": "Tæki",
+      "equipmentPlaceholder": "Veldu tæki",
+      "origin": "Náma / losunarstaður",
+      "originPlaceholder": "Veldu upprunastað",
+      "startOdometer": "Upphafsstaða (km)",
+      "product": "Vara",
+      "productPlaceholder": "Veldu vöru",
+      "comments": "Athugasemdarsvæði",
+      "commentsPlaceholder": "Athugasemdir..."
+    },
+    "columns": {
+      "serial": "Raðnúmer",
+      "description": "Lýsing",
+      "category": "Flokkur",
+      "hours": "Tímar",
+      "date": "Dagsetning",
+      "submittedBy": "Sent inn af"
+    },
+    "categories": {
+      "driverRegistration": "Bílstjóraskráning",
+      "underwork": "Undirvinna",
+      "paving": "Malbikun",
+      "repairs": "Viðgerðir",
+      "mvProjects": "MV Verkefni"
+    },
+    "driverJobs": {
+      "capitalHaul": "Akstur á höfuðborgarsvæði",
+      "quarryRun": "Námuakstur",
+      "siteDelivery": "Afhending á verkstað",
+      "plantFeed": "Fóðrun stöðvar",
+      "nightShift": "Næturvakt"
+    },
+    "driverOrigins": {
+      "esjaQuarry": "Náma Esju",
+      "plantYard": "Lóð stöðvar",
+      "kopavogurSite": "Verkstaður Kópavogi",
+      "airsideApron": "Flughlað",
+      "ringRoadDump": "Losunarstaður hringvegar"
+    },
+    "driverProducts": {
+      "binder": "Bindiefni",
+      "aggregate": "Fylliefni",
+      "asphaltMix": "Malbiksblanda",
+      "millings": "Fræsingar",
+      "fill": "Fyllingarefni"
     }
   },
   "sidebar": {
