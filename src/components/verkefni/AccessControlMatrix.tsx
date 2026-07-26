@@ -8,9 +8,9 @@ import {
   type AccessLevel,
   type StaffCategoryId,
   type SystemAreaId,
-} from '../data/accessControls'
-import { cn } from '../lib/utils'
-import { Button } from './ui'
+} from '../../data/accessControls'
+import { cn } from '../../lib/utils'
+import { Button } from '../ui'
 
 const levelClass: Record<AccessLevel, string> = {
   full: 'border-success/30 bg-success/10 text-success',

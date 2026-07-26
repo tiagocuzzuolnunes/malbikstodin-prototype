@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Bell } from 'lucide-react'
-import { notifications } from '../data/notifications'
-import { cn } from '../lib/utils'
-import { Button, Modal } from './ui'
+import { notifications } from '../../data/notifications'
+import { cn } from '../../lib/utils'
+import { Button, Modal } from '../ui'
 
 type NotificationBellProps = {
   compact?: boolean

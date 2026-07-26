@@ -1,4 +1,4 @@
-import SectionPage from '../components/SectionPage'
+import { SectionPage } from '../components/shared'
 import {
   HoursEntriesTable,
   HoursRegistrationCard,

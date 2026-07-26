@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
-import MobileNavDrawer from '../components/MobileNavDrawer'
-import Breadcrumbs from '../components/Breadcrumbs'
+import { Header, Sidebar, MobileNavDrawer, Breadcrumbs } from '../components/layout'
 import { useScrollCompact } from '../hooks/useScrollCompact'
 
 const DESKTOP_MQ = '(min-width: 768px)'

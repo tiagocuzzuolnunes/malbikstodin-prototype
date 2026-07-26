@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { GitBranch, Settings2 } from 'lucide-react'
-import SectionPage from '../../components/SectionPage'
+import { SectionPage } from '../../components/shared'
 import { projectAreas } from '../../config/projects'
 import { cn } from '../../lib/utils'
 import { buttonVariants, CardShell } from '../../components/ui'

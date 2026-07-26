@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Moon, Sun } from 'lucide-react'
-import { useTheme } from '../theme/ThemeProvider'
-import { cn } from '../lib/utils'
-import { Button } from './ui'
+import { useTheme } from '../../theme/ThemeProvider'
+import { cn } from '../../lib/utils'
+import { Button } from '../ui'
 
 type ThemeToggleProps = {
   compact?: boolean

@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { ProjectAreaId } from '../config/projects'
-import { employees } from '../data/employees'
+import type { ProjectAreaId } from '../../config/projects'
+import { employees } from '../../data/employees'
 import {
   getArchiveByArea,
   type ArchiveDocument,
   type ArchiveStatus,
   type DocumentType,
-} from '../data/archive'
-import { cn } from '../lib/utils'
+} from '../../data/archive'
+import { cn } from '../../lib/utils'
 
 type ArchiveListProps = {
   areaId: ProjectAreaId

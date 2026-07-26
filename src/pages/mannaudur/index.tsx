@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { LayoutDashboard, MessageSquarePlus, Users } from 'lucide-react'
-import SectionPage from '../../components/SectionPage'
+import { SectionPage } from '../../components/shared'
 import { cn } from '../../lib/utils'
 import { buttonVariants, CardShell } from '../../components/ui'
 

@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { ProjectAreaId } from '../config/projects'
+import type { ProjectAreaId } from '../../config/projects'
 import {
   getContractsByArea,
   type Contract,
   type ContractStatus,
-} from '../data/contracts'
-import { cn } from '../lib/utils'
+} from '../../data/contracts'
+import { cn } from '../../lib/utils'
 
 type ContractsListProps = {
   areaId: ProjectAreaId

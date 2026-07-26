@@ -1,15 +1,15 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { ProjectAreaId } from '../config/projects'
-import { employees } from '../data/employees'
+import type { ProjectAreaId } from '../../config/projects'
+import { employees } from '../../data/employees'
 import {
   getEquipmentByArea,
   getTruckStats,
   type EquipmentItem,
   type EquipmentStatus,
-} from '../data/equipment'
-import { cn } from '../lib/utils'
-import { Card } from './ui'
+} from '../../data/equipment'
+import { cn } from '../../lib/utils'
+import { Card } from '../ui'
 
 type EquipmentListProps = {
   areaId: ProjectAreaId

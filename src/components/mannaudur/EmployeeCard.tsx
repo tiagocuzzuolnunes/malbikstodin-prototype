@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import type { Employee } from '../data/employees'
-import { Card } from './ui'
+import type { Employee } from '../../data/employees'
+import { Card } from '../ui'
 
 type EmployeeCardProps = {
   employee: Employee

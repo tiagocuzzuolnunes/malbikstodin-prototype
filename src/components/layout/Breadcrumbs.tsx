@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft, ChevronRight } from 'lucide-react'
-import { getBreadcrumbKeys } from '../config/navigation'
-import { cn } from '../lib/utils'
-import { buttonVariants } from './ui'
+import { getBreadcrumbKeys } from '../../config/navigation'
+import { cn } from '../../lib/utils'
+import { buttonVariants } from '../ui'
 
 export default function Breadcrumbs() {
   const { t } = useTranslation()

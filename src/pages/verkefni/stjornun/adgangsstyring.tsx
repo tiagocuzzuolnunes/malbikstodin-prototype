@@ -1,6 +1,5 @@
-import SectionPage from '../../../components/SectionPage'
-import AccessControlMatrix from '../../../components/AccessControlMatrix'
-
+import { SectionPage } from '../../../components/shared'
+import { AccessControlMatrix } from '../../../components/verkefni'
 export default function AdgangsstyringPage() {
   return (
     <div className="space-y-8">

@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { ProjectAreaId } from '../config/projects'
-import { employees } from '../data/employees'
-import { getScheduleByArea, type ScheduleBlock } from '../data/schedules'
-import { cn } from '../lib/utils'
+import type { ProjectAreaId } from '../../config/projects'
+import { employees } from '../../data/employees'
+import { getScheduleByArea, type ScheduleBlock } from '../../data/schedules'
+import { cn } from '../../lib/utils'
 
 type ScheduleTimelineProps = {
   areaId: ProjectAreaId

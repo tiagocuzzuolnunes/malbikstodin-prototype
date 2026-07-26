@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { ProjectAreaId } from '../config/projects'
-import { employees } from '../data/employees'
+import type { ProjectAreaId } from '../../config/projects'
+import { employees } from '../../data/employees'
 import {
   getTasksByArea,
   type Task,
   type TaskPriority,
   type TaskStatus,
-} from '../data/tasks'
-import { cn } from '../lib/utils'
+} from '../../data/tasks'
+import { cn } from '../../lib/utils'
 
 type WorklistProps = {
   areaId: ProjectAreaId

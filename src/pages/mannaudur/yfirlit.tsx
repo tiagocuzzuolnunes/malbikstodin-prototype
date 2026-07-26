@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import SectionPage from '../../components/SectionPage'
+import { SectionPage } from '../../components/shared'
 import { buttonVariants, Card } from '../../components/ui'
 import { cn } from '../../lib/utils'
 import {

@@ -1,6 +1,5 @@
-import SectionPage from '../../components/SectionPage'
-import ProcessTimelines from '../../components/ProcessTimelines'
-
+import { SectionPage } from '../../components/shared'
+import { ProcessTimelines } from '../../components/verkefni'
 export default function FerlarPage() {
   return (
     <div className="space-y-8">

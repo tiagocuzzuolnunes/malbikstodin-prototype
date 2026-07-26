@@ -1,5 +1,4 @@
-import Worklist from '../../../components/Worklist'
-
+import { Worklist } from '../../../components/verkefni'
 export default function FlugusvidWorklistPage() {
   return <Worklist areaId="flugusvid" />
 }

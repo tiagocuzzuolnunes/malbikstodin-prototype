@@ -1,6 +1,6 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import SectionPage from '../../components/SectionPage'
+import { SectionPage } from '../../components/shared'
 import { Button, Card, Input, Label, inputVariants } from '../../components/ui'
 import { cn } from '../../lib/utils'
 import {

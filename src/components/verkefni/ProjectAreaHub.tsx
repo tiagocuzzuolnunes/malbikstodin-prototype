@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Archive, CalendarClock, ClipboardList, FileText, Wrench } from 'lucide-react'
-import SectionPage from './SectionPage'
-import { projectAreas, type ProjectAreaId } from '../config/projects'
-import { cn } from '../lib/utils'
-import { buttonVariants, CardShell } from './ui'
+import { SectionPage } from '../shared'
+import { projectAreas, type ProjectAreaId } from '../../config/projects'
+import { cn } from '../../lib/utils'
+import { buttonVariants, CardShell } from '../ui'
 
 type ProjectAreaHubProps = {
   areaId: ProjectAreaId

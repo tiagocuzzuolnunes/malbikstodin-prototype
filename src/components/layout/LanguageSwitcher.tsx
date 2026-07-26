@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { cn } from '../lib/utils'
-import { Button } from './ui'
-import type { SupportedLocale } from '../i18n'
+import { cn } from '../../lib/utils'
+import { Button } from '../ui'
+import type { SupportedLocale } from '../../i18n'
 
 const LOCALE_STORAGE_KEY = 'malbikstodin-locale'
 

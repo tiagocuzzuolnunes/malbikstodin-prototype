@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { workProcesses } from '../data/processes'
-import { cn } from '../lib/utils'
+import { workProcesses } from '../../data/processes'
+import { cn } from '../../lib/utils'
 
 export default function ProcessTimelines() {
   const { t } = useTranslation()

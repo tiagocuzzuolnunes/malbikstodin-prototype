@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PanelLeftClose, PanelLeftOpen } from 'lucide-react'
-import { navItems } from '../config/navigation'
-import { cn } from '../lib/utils'
-import { Button, Icon } from './ui'
+import { navItems } from '../../config/navigation'
+import { cn } from '../../lib/utils'
+import { Button, Icon } from '../ui'
 
 export default function Sidebar() {
   const { t } = useTranslation()
