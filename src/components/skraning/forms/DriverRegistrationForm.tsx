@@ -25,6 +25,8 @@ type DriverRegistrationFormProps = {
   product: DriverProduct | ''
   comments: string
   date: string
+  minDate: string
+  maxDate: string
   onJobChange: (value: DriverJob | '') => void
   onEquipmentChange: (value: string) => void
   onOriginChange: (value: DriverOrigin | '') => void
@@ -43,6 +45,8 @@ export function DriverRegistrationForm({
   product,
   comments,
   date,
+  minDate,
+  maxDate,
   onJobChange,
   onEquipmentChange,
   onOriginChange,
@@ -165,6 +169,8 @@ export function DriverRegistrationForm({
         <DatePicker
           id="hours-date"
           value={date}
+          minDate={minDate}
+          maxDate={maxDate}
           disabled={fieldsLocked}
           required
           onChange={onDateChange}

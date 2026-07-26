@@ -14,6 +14,7 @@ import {
   type UnderworkJob,
   type WorkItem,
 } from '../../data/hours'
+import { getHoursRegistrationDateBounds } from './hoursUtils'
 
 export type HoursFormValues = {
   category: HourCategory
@@ -35,6 +36,9 @@ export type HoursFormValues = {
 export function canStartHours(values: HoursFormValues) {
   const { category, date } = values
   if (!date) return false
+
+  const { minDate, maxDate } = getHoursRegistrationDateBounds()
+  if (date < minDate || date > maxDate) return false
 
   if (category === 'driverRegistration') {
     if (!values.job || !values.equipmentId || !values.origin || !values.product) return false

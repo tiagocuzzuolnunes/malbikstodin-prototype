@@ -1,3 +1,36 @@
+/** Local calendar date as YYYY-MM-DD (avoids UTC shift from toISOString). */
+export function toLocalIsoDate(date = new Date()) {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
+const HOURS_DATE_LOOKBACK_DAYS = 14
+
+/**
+ * Hours registration dates: current year only, and at most 2 weeks before today.
+ */
+export function getHoursRegistrationDateBounds(now = new Date()) {
+  const year = now.getFullYear()
+  const today = new Date(year, now.getMonth(), now.getDate())
+  const yearStart = new Date(year, 0, 1)
+  const lookback = new Date(year, now.getMonth(), now.getDate() - HOURS_DATE_LOOKBACK_DAYS)
+  const minDate = lookback < yearStart ? yearStart : lookback
+
+  return {
+    minDate: toLocalIsoDate(minDate),
+    maxDate: toLocalIsoDate(today),
+  }
+}
+
+export function clampHoursRegistrationDate(value: string, now = new Date()) {
+  const { minDate, maxDate } = getHoursRegistrationDateBounds(now)
+  if (value < minDate) return minDate
+  if (value > maxDate) return maxDate
+  return value
+}
+
 export function formatHours(value: number, locale: string) {
   return new Intl.NumberFormat(locale, {
     maximumFractionDigits: 2,

@@ -14,6 +14,7 @@ type HoursRegistrationCardProps = {
 export function HoursRegistrationCard({ registration }: HoursRegistrationCardProps) {
   const {
     values,
+    dateBounds,
     fieldsLocked,
     isRunning,
     elapsedMs,
@@ -58,6 +59,8 @@ export function HoursRegistrationCard({ registration }: HoursRegistrationCardPro
             product={values.product}
             comments={values.comments}
             date={values.date}
+            minDate={dateBounds.minDate}
+            maxDate={dateBounds.maxDate}
             onJobChange={setJob}
             onEquipmentChange={setEquipmentId}
             onOriginChange={setOrigin}

@@ -16,11 +16,12 @@ import {
   type WorkItem,
 } from '../../data/hours'
 import { buildHourEntry, canStartHours, type HoursFormValues } from './buildHourEntry'
+import {
+  clampHoursRegistrationDate,
+  getHoursRegistrationDateBounds,
+  toLocalIsoDate,
+} from './hoursUtils'
 import { useHoursTimer } from './useHoursTimer'
-
-function todayIsoDate() {
-  return new Date().toISOString().slice(0, 10)
-}
 
 const defaultCategory: HourCategory = 'driverRegistration'
 
@@ -33,7 +34,8 @@ export function useHoursRegistration() {
   const [submittedNotice, setSubmittedNotice] = useState(false)
 
   const [category, setCategory] = useState<HourCategory>(defaultCategory)
-  const [date, setDate] = useState(todayIsoDate)
+  const [date, setDate] = useState(() => toLocalIsoDate())
+  const dateBounds = getHoursRegistrationDateBounds()
   const [description, setDescription] = useState('')
   const [comments, setComments] = useState('')
   const [job, setJob] = useState<DriverJob | ''>('')
@@ -213,6 +215,7 @@ export function useHoursRegistration() {
     entries,
     submittedNotice,
     values,
+    dateBounds,
     currentUserName,
     isRunning: timer.isRunning,
     elapsedMs: timer.elapsedMs,
@@ -223,7 +226,7 @@ export function useHoursRegistration() {
     handleCancel,
     setDate: (next: string) => {
       touch()
-      setDate(next)
+      setDate(clampHoursRegistrationDate(next))
     },
     setDescription: (next: string) => {
       touch()
