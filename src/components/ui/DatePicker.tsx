@@ -17,6 +17,10 @@ export type DatePickerProps = InputVariantProps & {
   disabled?: boolean
   required?: boolean
   className?: string
+  /** Inclusive lower bound as YYYY-MM-DD */
+  minDate?: string
+  /** Inclusive upper bound as YYYY-MM-DD */
+  maxDate?: string
   onChange: (value: string) => void
 }
 
@@ -46,6 +50,10 @@ function startOfMonth(date: Date) {
   return new Date(date.getFullYear(), date.getMonth(), 1)
 }
 
+function endOfMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0)
+}
+
 function addMonths(date: Date, amount: number) {
   return new Date(date.getFullYear(), date.getMonth() + amount, 1)
 }
@@ -65,6 +73,27 @@ function buildCalendarDays(viewMonth: Date) {
   })
 }
 
+function isIsoInRange(iso: string, minDate?: string, maxDate?: string) {
+  if (minDate && iso < minDate) return false
+  if (maxDate && iso > maxDate) return false
+  return true
+}
+
+function clampViewMonth(month: Date, minDate?: string, maxDate?: string) {
+  let next = startOfMonth(month)
+  const min = minDate ? parseIsoDate(minDate) : null
+  const max = maxDate ? parseIsoDate(maxDate) : null
+
+  if (min && endOfMonth(next) < min) {
+    next = startOfMonth(min)
+  }
+  if (max && next > max) {
+    next = startOfMonth(max)
+  }
+
+  return next
+}
+
 export function DatePicker({
   id,
   value,
@@ -72,6 +101,8 @@ export function DatePicker({
   required = false,
   className,
   size = 'lg',
+  minDate,
+  maxDate,
   onChange,
 }: DatePickerProps) {
   const { t, i18n } = useTranslation()
@@ -83,8 +114,12 @@ export function DatePicker({
   const selectedDate = parseIsoDate(value)
   const [todayIso] = useState(() => toIsoDate(new Date()))
   const [viewMonth, setViewMonth] = useState(() =>
-    startOfMonth(parseIsoDate(value) ?? new Date()),
+    clampViewMonth(startOfMonth(parseIsoDate(value) ?? new Date()), minDate, maxDate),
   )
+
+  useEffect(() => {
+    setViewMonth((current) => clampViewMonth(current, minDate, maxDate))
+  }, [minDate, maxDate])
 
   useEffect(() => {
     if (!open) return
@@ -117,7 +152,20 @@ export function DatePicker({
   const displayValue = selectedDate ? formatAppDate(selectedDate, t, language) : ''
   const days = useMemo(() => buildCalendarDays(viewMonth), [viewMonth])
 
+  const canGoPrev = useMemo(() => {
+    if (!minDate) return true
+    const prev = addMonths(viewMonth, -1)
+    return endOfMonth(prev) >= (parseIsoDate(minDate) ?? prev)
+  }, [viewMonth, minDate])
+
+  const canGoNext = useMemo(() => {
+    if (!maxDate) return true
+    const next = addMonths(viewMonth, 1)
+    return next <= (parseIsoDate(maxDate) ?? next)
+  }, [viewMonth, maxDate])
+
   function selectDay(iso: string) {
+    if (!isIsoInRange(iso, minDate, maxDate)) return
     onChange(iso)
     setOpen(false)
   }
@@ -126,7 +174,9 @@ export function DatePicker({
     if (disabled) return
     if (!open) {
       const selected = parseIsoDate(value)
-      if (selected) setViewMonth(startOfMonth(selected))
+      setViewMonth(
+        clampViewMonth(startOfMonth(selected ?? new Date()), minDate, maxDate),
+      )
     }
     setOpen((current) => !current)
   }
@@ -176,9 +226,14 @@ export function DatePicker({
               type="button"
               variant="ghost"
               size="icon"
-              className="p-2 text-accent hover:bg-interactive-hover"
+              className="p-2 text-accent hover:bg-interactive-hover disabled:opacity-40"
               aria-label={t('common.previousMonth')}
-              onClick={() => setViewMonth((current) => addMonths(current, -1))}
+              disabled={!canGoPrev}
+              onClick={() =>
+                setViewMonth((current) =>
+                  clampViewMonth(addMonths(current, -1), minDate, maxDate),
+                )
+              }
             >
               <ChevronLeft className="h-6 w-6" />
             </Button>
@@ -187,9 +242,14 @@ export function DatePicker({
               type="button"
               variant="ghost"
               size="icon"
-              className="p-2 text-accent hover:bg-interactive-hover"
+              className="p-2 text-accent hover:bg-interactive-hover disabled:opacity-40"
               aria-label={t('common.nextMonth')}
-              onClick={() => setViewMonth((current) => addMonths(current, 1))}
+              disabled={!canGoNext}
+              onClick={() =>
+                setViewMonth((current) =>
+                  clampViewMonth(addMonths(current, 1), minDate, maxDate),
+                )
+              }
             >
               <ChevronRight className="h-6 w-6" />
             </Button>
@@ -210,18 +270,26 @@ export function DatePicker({
             {days.map((day) => {
               const isSelected = day.iso === value
               const isToday = day.iso === todayIso
+              const isAllowed = isIsoInRange(day.iso, minDate, maxDate)
 
               return (
                 <button
                   key={day.iso}
                   type="button"
+                  disabled={!isAllowed}
                   onClick={() => selectDay(day.iso)}
                   className={cn(
-                    'flex h-10 cursor-pointer items-center justify-center rounded-control text-sm font-medium transition-colors',
-                    !day.inMonth && 'text-foreground-muted/50',
-                    day.inMonth && !isSelected && 'text-foreground hover:bg-interactive-hover',
-                    isToday && !isSelected && 'ring-1 ring-accent/40',
-                    isSelected && 'bg-accent text-accent-foreground hover:bg-accent-hover',
+                    'flex h-10 items-center justify-center rounded-control text-sm font-medium transition-colors',
+                    !isAllowed && 'cursor-not-allowed text-foreground-muted/35',
+                    isAllowed && !day.inMonth && 'cursor-pointer text-foreground-muted/50',
+                    isAllowed &&
+                      day.inMonth &&
+                      !isSelected &&
+                      'cursor-pointer text-foreground hover:bg-interactive-hover',
+                    isToday && isAllowed && !isSelected && 'ring-1 ring-accent/40',
+                    isSelected &&
+                      isAllowed &&
+                      'bg-accent text-accent-foreground hover:bg-accent-hover',
                   )}
                 >
                   {day.date.getDate()}
