@@ -28,7 +28,7 @@ export function HoursCategoryPicker({
   const { t } = useTranslation()
 
   return (
-    <div className="mb-6 flex flex-col md:mb-8">
+    <div className="mb-6 flex flex-col border-b border-border pb-6 md:mb-8 md:border-b-0 md:pb-0">
       <div className={cn(fieldStackClassName, 'md:hidden')}>
         <Label htmlFor="hours-category" className={fieldLabelClassName}>
           {t('hours.fields.category')}
