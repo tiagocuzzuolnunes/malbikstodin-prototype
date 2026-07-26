@@ -56,15 +56,18 @@ export default function HeimPage() {
           </Link>
         </div>
 
-        <div className="-mx-4 -mb-6 overflow-x-auto px-4 pb-10">
-          <div className="flex gap-4 pt-2">
-            {latestNews.map((item) => (
+        <div className="-mx-4 -mb-6 overflow-x-auto pb-10 pl-4 sm:-mx-5 sm:pl-5 md:-mx-6 md:pl-6">
+          <div className="flex w-max gap-4 pt-2">
+            {latestNews.map((item, index) => (
               <OptionCard
                 key={item.id}
                 size="compact"
                 variant="date"
                 elevated
-                className="w-72 shrink-0"
+                className={cn(
+                  'w-72 shrink-0',
+                  index === latestNews.length - 1 && 'mr-4 sm:mr-5 md:mr-6',
+                )}
                 title={t(item.titleKey)}
                 description={t(item.summaryKey)}
                 date={item.publishedAt}
