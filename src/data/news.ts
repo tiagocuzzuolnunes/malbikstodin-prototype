@@ -69,19 +69,19 @@ export type NewsAnnouncement = {
 export const newsAnnouncements: NewsAnnouncement[] = [
   {
     id: 'a1',
-    titleKey: 'news.announcements.intranet',
+    titleKey: 'intranet',
     date: '2026-07-16',
     audienceKey: 'allStaff',
   },
   {
     id: 'a2',
-    titleKey: 'news.announcements.fieldSafety',
+    titleKey: 'fieldSafety',
     date: '2026-07-17',
     audienceKey: 'fieldTeams',
   },
   {
     id: 'a3',
-    titleKey: 'news.announcements.leadership',
+    titleKey: 'leadership',
     date: '2026-07-19',
     audienceKey: 'managers',
   },
