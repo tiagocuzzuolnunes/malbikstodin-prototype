@@ -6,21 +6,23 @@ export function toLocalIsoDate(date = new Date()) {
   return `${year}-${month}-${day}`
 }
 
-const HOURS_DATE_LOOKBACK_DAYS = 14
+const HOURS_DATE_WINDOW_DAYS = 14
 
 /**
- * Hours registration dates: current year only, and at most 2 weeks before today.
+ * Hours registration dates: current year only, within 2 weeks before/after today.
  */
 export function getHoursRegistrationDateBounds(now = new Date()) {
   const year = now.getFullYear()
-  const today = new Date(year, now.getMonth(), now.getDate())
   const yearStart = new Date(year, 0, 1)
-  const lookback = new Date(year, now.getMonth(), now.getDate() - HOURS_DATE_LOOKBACK_DAYS)
+  const yearEnd = new Date(year, 11, 31)
+  const lookback = new Date(year, now.getMonth(), now.getDate() - HOURS_DATE_WINDOW_DAYS)
+  const lookahead = new Date(year, now.getMonth(), now.getDate() + HOURS_DATE_WINDOW_DAYS)
   const minDate = lookback < yearStart ? yearStart : lookback
+  const maxDate = lookahead > yearEnd ? yearEnd : lookahead
 
   return {
     minDate: toLocalIsoDate(minDate),
-    maxDate: toLocalIsoDate(today),
+    maxDate: toLocalIsoDate(maxDate),
   }
 }
 
