@@ -30,8 +30,8 @@ export default function LanguageSwitcher({ compact = false }: LanguageSwitcherPr
       aria-label={t('language.switchTo', { language: t(`language.names.${nextLocale}`) })}
       title={t('language.switchTo', { language: t(`language.names.${nextLocale}`) })}
       className={cn(
-        'transition-all duration-300 ease-out',
-        compact ? 'p-2' : 'p-2 md:p-3',
+        'aspect-square rounded-full transition-all duration-300 ease-out',
+        compact ? 'h-9 w-9 p-0' : 'h-9 w-9 p-0 md:h-11 md:w-11',
       )}
     >
       <span
