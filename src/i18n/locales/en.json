@@ -894,6 +894,15 @@
       "mv25": "MV 25"
     }
   },
+  "footer": {
+    "tagline": "Internal portal for Malbikstöðin operations, projects, and team tools.",
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "address": "Völuteigur 20, 112 Reykjavík",
+    "phone": "+354 577 5000",
+    "email": "info@malbikstodin.is",
+    "copyright": "© {{year}} Malbikstöðin. All rights reserved."
+  },
   "sidebar": {
     "expand": "Expand sidebar",
     "collapse": "Collapse sidebar",

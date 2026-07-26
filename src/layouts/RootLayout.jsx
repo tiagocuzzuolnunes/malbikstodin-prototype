@@ -1,12 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import { Header, Sidebar, MobileNavDrawer, Breadcrumbs } from '../components/layout'
+import { Outlet, useLocation } from 'react-router-dom'
+import {
+  Header,
+  Sidebar,
+  MobileNavDrawer,
+  Breadcrumbs,
+  Footer,
+  PageTransition,
+} from '../components/layout'
 import { useScrollCompact } from '../hooks/useScrollCompact'
 
 const DESKTOP_MQ = '(min-width: 768px)'
 
 export default function RootLayout() {
   const mainRef = useRef(null)
+  const { pathname } = useLocation()
   const [isDesktop, setIsDesktop] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia(DESKTOP_MQ).matches : false,
   )
@@ -23,6 +31,10 @@ export default function RootLayout() {
     return () => media.removeEventListener('change', sync)
   }, [])
 
+  useEffect(() => {
+    mainRef.current?.scrollTo(0, 0)
+  }, [pathname])
+
   return (
     <div className="layout layout-root flex h-dvh max-h-dvh min-h-0 flex-col overflow-hidden overscroll-none">
       <Header compact={compact} onOpenMobileNav={openMobileNav} />
@@ -33,10 +45,15 @@ export default function RootLayout() {
 
         <main
           ref={mainRef}
-          className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain border-t border-border bg-surface-muted p-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-header-content sm:p-5 sm:pb-[max(1.5rem,env(safe-area-inset-bottom))] md:p-6 md:pb-6"
+          className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain border-t border-border bg-surface-muted px-4 pt-4 pb-0 shadow-header-content sm:px-5 sm:pt-5 md:px-6 md:pt-6"
         >
-          <Breadcrumbs />
-          <Outlet />
+          <PageTransition className="flex min-h-full flex-col">
+            <div className="flex-1">
+              <Breadcrumbs />
+              <Outlet />
+            </div>
+            <Footer />
+          </PageTransition>
         </main>
       </div>
     </div>

@@ -894,6 +894,15 @@
       "mv25": "MV 25"
     }
   },
+  "footer": {
+    "tagline": "Innri gátt Malbikstöðvarinnar fyrir rekstur, verkefni og tæki teymisins.",
+    "quickLinks": "Flýtileiðir",
+    "contact": "Samband",
+    "address": "Völuteigur 20, 112 Reykjavík",
+    "phone": "+354 577 5000",
+    "email": "info@malbikstodin.is",
+    "copyright": "© {{year}} Malbikstöðin. Öll réttindi áskilin."
+  },
   "sidebar": {
     "expand": "Stækka hliðarstiku",
     "collapse": "Minkka hliðarstiku",
