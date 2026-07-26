@@ -132,7 +132,7 @@ export default function AccessControlMatrix() {
 
       <div className="overflow-hidden rounded-card border border-border bg-surface shadow-card">
         <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-          <table className="w-full min-w-[48rem] border-collapse text-left text-sm md:min-w-5xl">
+          <table className="w-full min-w-3xl border-collapse text-left text-sm md:min-w-5xl">
             <caption className="sr-only">{t('accessControls.caption')}</caption>
             <thead>
               <tr className="border-b border-border bg-surface-muted/60">

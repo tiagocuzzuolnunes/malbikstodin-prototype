@@ -51,8 +51,8 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
             className={cn(
               'hidden font-black overflow-hidden whitespace-nowrap transition-all duration-300 ease-out sm:block',
               compact
-                ? 'max-w-0 translate-x-[-4px] opacity-0'
-                : 'max-w-[14rem] translate-x-0 opacity-100',
+                ? 'max-w-0 -translate-x-1 opacity-0'
+                : 'max-w-56 translate-x-0 opacity-100',
             )}
             aria-hidden={compact}
           >

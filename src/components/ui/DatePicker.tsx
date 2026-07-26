@@ -169,7 +169,7 @@ export function DatePicker({
           id={panelId}
           role="dialog"
           aria-label={t('common.chooseDate')}
-          className="absolute bottom-full z-40 mb-2 w-full max-w-[calc(100vw-2rem)] min-w-0 rounded-control border border-border bg-surface p-3 shadow-card sm:min-w-80 sm:p-4 sm:w-[22rem]"
+          className="absolute bottom-full z-40 mb-2 w-full max-w-[calc(100vw-2rem)] min-w-0 rounded-control border border-border bg-surface p-3 shadow-card sm:min-w-80 sm:p-4 sm:w-88"
         >
           <div className="mb-4 flex items-center justify-between gap-2">
             <Button
