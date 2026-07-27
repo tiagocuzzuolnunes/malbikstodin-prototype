@@ -94,6 +94,7 @@
     "abendingar": "Ábendingar & kvartanir",
     "taekni": "Tækni",
     "fjarmal": "Fjármál",
+    "reikningar": "Reikningar",
     "verkefni": "Verkefni",
     "events": "Viðburðir",
     "rekstrarsvid": "Rekstrarsvið",
@@ -132,6 +133,9 @@
     },
     "fjarmal": {
       "description": "Skrá útgjöld og skoða útgjaldaskrá fyrirtækisins."
+    },
+    "reikningar": {
+      "description": "Skoða og stjórna reikningum fyrirtækisins."
     },
     "verkefni": {
       "description": "Veldu svæði til að skoða verkefni, stöðu og tengd verk.",

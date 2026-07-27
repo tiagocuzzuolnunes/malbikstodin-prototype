@@ -7,6 +7,7 @@ import {
   Laptop,
   HandCoins,
   ClipboardList,
+  DollarSign,
 } from 'lucide-react'
 
 export type NavItem = {
@@ -18,6 +19,7 @@ export type NavItem = {
 export const navItems: NavItem[] = [
   { to: '/', labelKey: 'nav.heim', icon: House },
   { to: '/skraning', labelKey: 'nav.skraning', icon: ClipboardList },
+  { to: '/reikningar', labelKey: 'nav.reikningar', icon: DollarSign },
   { to: '/frettir', labelKey: 'nav.frettir', icon: Newspaper },
   { to: '/mannaudur', labelKey: 'nav.mannaudur', icon: PersonStanding },
   { to: '/taekni', labelKey: 'nav.taekni', icon: Laptop },

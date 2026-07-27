@@ -94,6 +94,7 @@
     "abendingar": "Ideas & complaints",
     "taekni": "IT",
     "fjarmal": "Finance",
+    "reikningar": "Invoices",
     "verkefni": "Projects",
     "events": "Events",
     "rekstrarsvid": "Rekstrarsvið",
@@ -132,6 +133,9 @@
     },
     "fjarmal": {
       "description": "Register expenses and review the company expense register."
+    },
+    "reikningar": {
+      "description": "View and manage company invoices."
     },
     "verkefni": {
       "description": "Choose an area to view projects, status, and related work.",
