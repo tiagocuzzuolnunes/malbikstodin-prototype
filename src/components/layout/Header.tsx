@@ -21,7 +21,10 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
       data-app-header
       className={cn(
         'relative z-50 flex shrink-0 items-center justify-between gap-3 bg-surface transition-[padding] duration-300 ease-out',
-        compact ? 'px-4 py-2.5 md:px-7 md:py-3' : 'p-4 md:p-7',
+        'pt-[max(1rem,env(safe-area-inset-top))]',
+        'pl-[max(1rem,env(safe-area-inset-left))]',
+        'pr-[max(1rem,env(safe-area-inset-right))]',
+        compact ? 'pb-2.5 md:px-7 md:py-3' : 'pb-4 md:p-7',
       )}
     >
       <div className="flex min-w-0 items-center gap-2 md:gap-3">

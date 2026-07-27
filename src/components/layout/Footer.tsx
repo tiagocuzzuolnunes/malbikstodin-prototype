@@ -30,10 +30,15 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        '-mx-4 mt-10 border-t border-border bg-surface',
-        'px-4 pt-8 pb-[max(1.5rem,env(safe-area-inset-bottom))]',
-        'sm:-mx-5 sm:px-5',
-        'md:-mx-6 md:mt-14 md:px-6 md:pt-10 md:pb-8',
+        'mt-10 border-t border-border bg-surface',
+        '-ml-[max(1rem,env(safe-area-inset-left))] -mr-[max(1rem,env(safe-area-inset-right))]',
+        'pt-8 pb-[max(1.5rem,env(safe-area-inset-bottom))]',
+        'pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]',
+        'sm:-ml-[max(1.25rem,env(safe-area-inset-left))] sm:-mr-[max(1.25rem,env(safe-area-inset-right))]',
+        'sm:pl-[max(1.25rem,env(safe-area-inset-left))] sm:pr-[max(1.25rem,env(safe-area-inset-right))]',
+        'md:mt-14 md:pt-10 md:pb-8',
+        'md:-ml-[max(1.5rem,env(safe-area-inset-left))] md:-mr-[max(1.5rem,env(safe-area-inset-right))]',
+        'md:pl-[max(1.5rem,env(safe-area-inset-left))] md:pr-[max(1.5rem,env(safe-area-inset-right))]',
       )}
     >
       {/* Desktop */}

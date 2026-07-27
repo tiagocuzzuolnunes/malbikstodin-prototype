@@ -11,7 +11,9 @@ export default function SectionPage({ titleKey, descriptionKey }: SectionPagePro
   return (
     <section>
       <h1 className="text-2xl font-semibold tracking-tight sm:text-title">{t(titleKey)}</h1>
-      <p className="mt-2 text-sm text-foreground-muted sm:text-body">{t(descriptionKey)}</p>
+      <p className="mt-2 line-clamp-2 text-sm text-foreground-muted sm:line-clamp-none sm:text-body">
+        {t(descriptionKey)}
+      </p>
     </section>
   )
 }

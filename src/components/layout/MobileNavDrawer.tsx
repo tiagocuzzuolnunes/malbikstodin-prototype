@@ -64,6 +64,7 @@ export default function MobileNavDrawer({ open, onClose }: MobileNavDrawerProps)
         inert={open ? undefined : true}
         className={cn(
           'relative z-10 flex h-full w-[min(100%,20rem)] flex-col border-r border-border bg-surface shadow-card outline-none transition-transform duration-300 ease-out will-change-transform',
+          'pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)] pb-[env(safe-area-inset-bottom)]',
           open ? 'translate-x-0' : '-translate-x-full',
         )}
       >

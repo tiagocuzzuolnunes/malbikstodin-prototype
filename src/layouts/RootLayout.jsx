@@ -45,7 +45,7 @@ export default function RootLayout() {
 
         <main
           ref={mainRef}
-          className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain border-t border-border bg-surface-muted px-4 pt-4 pb-0 shadow-header-content sm:px-5 sm:pt-5 md:px-6 md:pt-6"
+          className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain border-t border-border bg-surface-muted pt-4 pb-0 shadow-header-content sm:pt-5 md:pt-6 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:pl-[max(1.25rem,env(safe-area-inset-left))] sm:pr-[max(1.25rem,env(safe-area-inset-right))] md:pl-[max(1.5rem,env(safe-area-inset-left))] md:pr-[max(1.5rem,env(safe-area-inset-right))]"
         >
           <PageTransition className="flex min-h-full flex-col">
             <div className="flex-1">
