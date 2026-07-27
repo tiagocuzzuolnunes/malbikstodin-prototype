@@ -12,6 +12,7 @@
     "back": "Fara til baka",
     "mainNav": "Aðalvalmynd",
     "close": "Loka",
+    "cancel": "Hætta við",
     "datePlaceholder": "Veldu dagsetningu",
     "chooseDate": "Veldu dagsetningu",
     "previousMonth": "Fyrri mánuður",
@@ -95,6 +96,10 @@
     "taekni": "Tækni",
     "fjarmal": "Fjármál",
     "reikningar": "Reikningar",
+    "yfirferd": "Einföld yfirferð",
+    "serfraedingur": "Sérfræðingayfirlit",
+    "vantar": "Vantar skráningar",
+    "leiga": "Leigureikningar",
     "verkefni": "Verkefni",
     "events": "Viðburðir",
     "rekstrarsvid": "Rekstrarsvið",
@@ -135,7 +140,12 @@
       "description": "Skrá útgjöld og skoða útgjaldaskrá fyrirtækisins."
     },
     "reikningar": {
-      "description": "Skoða og stjórna reikningum fyrirtækisins."
+      "description": "Para reikninga birgja og leigu við samþykktar ferðir — merktu aðeins það sem er rangt, ekki það sem er rétt.",
+      "openSection": "Opna",
+      "reviewDescription": "Leysa frávik eitt í einu með skýrum valkostum.",
+      "expertDescription": "Línulengd pörun fyrir skrifstofu og stjórnendur.",
+      "missingDescription": "Skrá ferðir fyrir leigð ökutæki út frá vigtun eða reikningslínum.",
+      "rentalDescription": "Bera saman tíma verktaka við samþykktar skráningar, eitt ökutæki í einu."
     },
     "verkefni": {
       "description": "Veldu svæði til að skoða verkefni, stöðu og tengd verk.",
@@ -898,11 +908,147 @@
       "mv25": "MV 25"
     }
   },
+  "invoices": {
+    "stats": {
+      "today": "Reikningar í dag",
+      "autoApproved": "Sjálfvirkt samþykkt",
+      "discrepancies": "Frávik",
+      "awaiting": "Bíður ferða",
+      "missingTrips": "Vantar ferðir"
+    },
+    "inbox": {
+      "title": "Pósthólf bókara",
+      "subtitle": "Grænt þarf ekki að snerta. Gult er eina verkið. Grátt leysist þegar verkstjóri samþykkir daginn.",
+      "count": "{{count}} reikningar",
+      "filterLabel": "Sía pósthólfs",
+      "needsAction": "Þarfnast aðgerðar ({{count}})",
+      "showAll": "Allir reikningar",
+      "noAction": "Ekkert þarfnast aðgerðar núna."
+    },
+    "hub": {
+      "title": "Staðfestingarverkfæri",
+      "subtitle": "Opnaðu yfirlitið sem hentar hlutverkinu þínu."
+    },
+    "status": {
+      "ok": "Passar",
+      "discrepancy": "Frávik",
+      "awaitingTrips": "Bíður ferða",
+      "matching": "Pörun",
+      "approved": "Samþykkt",
+      "posted": "Bókað í BC"
+    },
+    "type": {
+      "supplier": "Birgjareikningur",
+      "rental": "Leigureikningur"
+    },
+    "columns": {
+      "serial": "Reikningur",
+      "supplier": "Birgir",
+      "date": "Dagsetning",
+      "lines": "Línur/ferðir",
+      "quantity": "Magn",
+      "amount": "Upphæð",
+      "status": "Staða",
+      "action": "Aðgerð",
+      "truck": "Bíll",
+      "time": "Tími",
+      "product": "Vara",
+      "trip": "Pöruð ferð",
+      "driver": "Bílstjóri",
+      "job": "Verk",
+      "owner": "Eigandi"
+    },
+    "actions": {
+      "viewDiscrepancy": "Skoða frávik",
+      "waiting": "Bíður dagsamþykktar",
+      "view": "Skoða",
+      "approveInvoice": "Samþykkja reikning",
+      "okApproveLine": "Í lagi — samþykkja línu",
+      "addNote": "Bæta við athugasemd",
+      "saveNote": "Vista athugasemd",
+      "rejectLine": "Hafna — senda til birgja",
+      "reject": "Hafna",
+      "matchManually": "Para handvirkt",
+      "registerTrip": "Skrá ferð"
+    },
+    "review": {
+      "emptyTitle": "Ekkert í bið",
+      "emptySubtitle": "Öll frávik á reikningum eru leyst í bili.",
+      "backToInbox": "Til baka í pósthólf",
+      "taskHint": "{{count}} frávik til að leysa",
+      "readyTitle": "Reikningur tilbúinn til samþykktar",
+      "readySubtitle": "Öll frávik á {{serial}} eru leyst. Samþykktu til að skrifa til baka í Business Central.",
+      "nextInvoice": "Næsti reikningur",
+      "discrepancyCounter": "Frávik {{current}} af {{total}}",
+      "invoiceSide": "Reikningur",
+      "systemSide": "Skráningarkerfi",
+      "noteLabel": "Athugasemd",
+      "notePlaceholder": "Útskýrðu úrlausnina…"
+    },
+    "discrepancies": {
+      "weighingWithoutTrip": "Reikningurinn segir {{invoiceTrips}} ferðir en bílstjórinn skráði {{registeredTrips}}.",
+      "tripWithoutWeighing": "Skráð ferð hefur enga samsvarandi vigtun á reikningnum.",
+      "quantityMismatch": "Vigtun á reikningi er {{invoiceQty}} t — ferðin hefur annað magn.",
+      "unknownProduct": "Óþekkt vörunúmer birgja: {{product}}. Skráðu vöruvörpun.",
+      "wrongJob": "Verknúmer á vigtun passar ekki við ferðina.",
+      "awaitingApproval": "Verkstjóri hefur ekki samþykkt vinnudaginn enn.",
+      "approvedManually": "Lína samþykkt handvirkt.",
+      "rejected": "Línu hafnað — senda til birgja.",
+      "matched": "Lína pöruð."
+    },
+    "lineStatus": {
+      "matched": "Passar",
+      "weighingWithoutTrip": "Vigtun án ferðar",
+      "tripWithoutWeighing": "Ferð án vigtunar",
+      "quantityMismatch": "Magnfrávik",
+      "unknownProduct": "Óþekkt vara",
+      "wrongJob": "Rangt verknúmer",
+      "awaitingApproval": "Bíður samþykktar",
+      "approvedManually": "Samþykkt handvirkt",
+      "rejected": "Hafnað"
+    },
+    "expert": {
+      "selectInvoice": "Reikningur",
+      "discrepanciesOnly": "Aðeins frávik",
+      "weighings": "Vigtanir",
+      "trips": "Skráðar ferðir",
+      "quantity": "Heildarmagn",
+      "discrepancies": "Frávik",
+      "noLines": "Engar vigtunarlínur hlaðnar fyrir þennan reikning.",
+      "matchedTo": "{{trip}} · {{driver}} · {{time}}",
+      "noMatch": "Engin pöruð ferð"
+    },
+    "missing": {
+      "title": "Vantar ferðaskráningar",
+      "subtitle": "Vigtanir og reikningslínur á leigðum bílum án skráðrar ferðar. Búðu til ferðina forútfyllta — svo samþykkir verkstjóri og pörun keyrir aftur.",
+      "openCount": "Óskráðar ferðir",
+      "registeredCount": "Skráð í þessari lotu",
+      "empty": "Allar vantaðar ferðir hafa verið skráðar.",
+      "source": {
+        "ownScale": "Eigin vigt",
+        "supplierInvoice": "Birgjareikningur"
+      }
+    },
+    "rental": {
+      "compareHint": "Væntanlegur reikningur úr samþykktum skráningum á móti reikningi verktaka.",
+      "expected": "Væntanlegt (kerfi)",
+      "invoiced": "Reikningur verktaka",
+      "invoiceHours": "Tímar á reikningi",
+      "registeredHours": "Skráðir tímar",
+      "rate": "Taxti / klst",
+      "matchedMessage": "Reikningur segir {{hours}} tíma — kerfið hefur það sama.",
+      "mismatchMessage": "Reikningur segir {{invoiceHours}} tíma — kerfið hefur {{registeredHours}} skráða.",
+      "truckStatus": {
+        "matched": "Passar",
+        "discrepancy": "Frávik"
+      }
+    }
+  },
   "footer": {
     "tagline": "Innri gátt Malbikstöðvarinnar fyrir rekstur, verkefni og tæki teymisins.",
     "quickLinks": "Flýtileiðir",
     "contact": "Samband",
-    "address": "Völuteigur 20, 112 Reykjavík",
+    "address": "162 Mosfellsbær, Iceland",
     "phone": "+354 577 5000",
     "email": "info@malbikstodin.is",
     "copyright": "© {{year}} Malbikstöðin. Öll réttindi áskilin."

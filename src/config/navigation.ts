@@ -39,6 +39,40 @@ export function getBreadcrumbKeys(pathname: string) {
     crumbs.push({ to: match.to, labelKey: match.labelKey })
   }
 
+  if (pathname.startsWith('/reikningar/')) {
+    if (
+      pathname === '/reikningar/yfirferd' ||
+      pathname.startsWith('/reikningar/yfirferd/')
+    ) {
+      crumbs.push({ to: '/reikningar/yfirferd', labelKey: 'nav.yfirferd' })
+      return crumbs
+    }
+
+    if (
+      pathname === '/reikningar/serfraedingur' ||
+      pathname.startsWith('/reikningar/serfraedingur/')
+    ) {
+      crumbs.push({ to: '/reikningar/serfraedingur', labelKey: 'nav.serfraedingur' })
+      return crumbs
+    }
+
+    if (
+      pathname === '/reikningar/vantar' ||
+      pathname.startsWith('/reikningar/vantar/')
+    ) {
+      crumbs.push({ to: '/reikningar/vantar', labelKey: 'nav.vantar' })
+      return crumbs
+    }
+
+    if (
+      pathname === '/reikningar/leiga' ||
+      pathname.startsWith('/reikningar/leiga/')
+    ) {
+      crumbs.push({ to: '/reikningar/leiga', labelKey: 'nav.leiga' })
+      return crumbs
+    }
+  }
+
   if (pathname.startsWith('/mannaudur/')) {
     if (
       pathname === '/mannaudur/starfsfolk' ||

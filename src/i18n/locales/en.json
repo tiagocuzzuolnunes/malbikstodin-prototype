@@ -12,6 +12,7 @@
     "back": "Go back",
     "mainNav": "Main",
     "close": "Close",
+    "cancel": "Cancel",
     "datePlaceholder": "Select date",
     "chooseDate": "Choose date",
     "previousMonth": "Previous month",
@@ -95,6 +96,10 @@
     "taekni": "IT",
     "fjarmal": "Finance",
     "reikningar": "Invoices",
+    "yfirferd": "Simple review",
+    "serfraedingur": "Expert verification",
+    "vantar": "Missing trips",
+    "leiga": "Rental invoices",
     "verkefni": "Projects",
     "events": "Events",
     "rekstrarsvid": "Rekstrarsvið",
@@ -135,7 +140,12 @@
       "description": "Register expenses and review the company expense register."
     },
     "reikningar": {
-      "description": "View and manage company invoices."
+      "description": "Match supplier and rental invoices to approved trips — clock out what is wrong, not what is right.",
+      "openSection": "Open",
+      "reviewDescription": "Resolve discrepancies one at a time with plain-language choices.",
+      "expertDescription": "Line-by-line matching for office and managers.",
+      "missingDescription": "Register trips for rented trucks from weighings or invoice lines.",
+      "rentalDescription": "Compare contractor hours with approved registrations, one truck at a time."
     },
     "verkefni": {
       "description": "Choose an area to view projects, status, and related work.",
@@ -898,11 +908,147 @@
       "mv25": "MV 25"
     }
   },
+  "invoices": {
+    "stats": {
+      "today": "Invoices today",
+      "autoApproved": "Auto-approved",
+      "discrepancies": "Discrepancies",
+      "awaiting": "Awaiting trips",
+      "missingTrips": "Missing trips"
+    },
+    "inbox": {
+      "title": "Bookkeeper inbox",
+      "subtitle": "Green needs no touch. Yellow is the only work. Grey resolves when the foreman approves the day.",
+      "count": "{{count}} invoices",
+      "filterLabel": "Inbox filter",
+      "needsAction": "Needs action ({{count}})",
+      "showAll": "All invoices",
+      "noAction": "Nothing needs action right now."
+    },
+    "hub": {
+      "title": "Verification tools",
+      "subtitle": "Open the view that matches your role."
+    },
+    "status": {
+      "ok": "Matched",
+      "discrepancy": "Discrepancy",
+      "awaitingTrips": "Awaiting trips",
+      "matching": "Matching",
+      "approved": "Approved",
+      "posted": "Posted in BC"
+    },
+    "type": {
+      "supplier": "Supplier invoice",
+      "rental": "Rental invoice"
+    },
+    "columns": {
+      "serial": "Invoice",
+      "supplier": "Supplier",
+      "date": "Date",
+      "lines": "Lines/trips",
+      "quantity": "Quantity",
+      "amount": "Amount",
+      "status": "Status",
+      "action": "Action",
+      "truck": "Truck",
+      "time": "Time",
+      "product": "Product",
+      "trip": "Matched trip",
+      "driver": "Driver",
+      "job": "Job",
+      "owner": "Owner"
+    },
+    "actions": {
+      "viewDiscrepancy": "View discrepancy",
+      "waiting": "Waiting for day approval",
+      "view": "View",
+      "approveInvoice": "Approve invoice",
+      "okApproveLine": "OK — approve line",
+      "addNote": "Add note",
+      "saveNote": "Save note",
+      "rejectLine": "Reject — send to supplier",
+      "reject": "Reject",
+      "matchManually": "Match manually",
+      "registerTrip": "Register trip"
+    },
+    "review": {
+      "emptyTitle": "Nothing waiting",
+      "emptySubtitle": "All discrepancy invoices are resolved for now.",
+      "backToInbox": "Back to inbox",
+      "taskHint": "{{count}} discrepancies to resolve",
+      "readyTitle": "Invoice ready to approve",
+      "readySubtitle": "All discrepancies on {{serial}} are resolved. Approve to write back to Business Central.",
+      "nextInvoice": "Next invoice",
+      "discrepancyCounter": "Discrepancy {{current}} of {{total}}",
+      "invoiceSide": "Invoice",
+      "systemSide": "Registration system",
+      "noteLabel": "Note",
+      "notePlaceholder": "Explain the resolution…"
+    },
+    "discrepancies": {
+      "weighingWithoutTrip": "The invoice says {{invoiceTrips}} trips but the driver registered {{registeredTrips}}.",
+      "tripWithoutWeighing": "A registered trip has no matching weighing on the invoice.",
+      "quantityMismatch": "Invoice weighing is {{invoiceQty}} t — the trip has a different quantity.",
+      "unknownProduct": "Unknown supplier product: {{product}}. Register the product mapping.",
+      "wrongJob": "Job number on the weighing does not match the trip.",
+      "awaitingApproval": "Foreman has not approved the working day yet.",
+      "approvedManually": "Line approved manually.",
+      "rejected": "Line rejected — send to supplier.",
+      "matched": "Line matched."
+    },
+    "lineStatus": {
+      "matched": "Matched",
+      "weighingWithoutTrip": "Weighing without trip",
+      "tripWithoutWeighing": "Trip without weighing",
+      "quantityMismatch": "Quantity mismatch",
+      "unknownProduct": "Unknown product",
+      "wrongJob": "Wrong job number",
+      "awaitingApproval": "Awaiting approval",
+      "approvedManually": "Approved manually",
+      "rejected": "Rejected"
+    },
+    "expert": {
+      "selectInvoice": "Invoice",
+      "discrepanciesOnly": "Discrepancies only",
+      "weighings": "Weighings",
+      "trips": "Registered trips",
+      "quantity": "Total quantity",
+      "discrepancies": "Discrepancies",
+      "noLines": "No weighing lines loaded for this invoice.",
+      "matchedTo": "{{trip}} · {{driver}} · {{time}}",
+      "noMatch": "No matched trip"
+    },
+    "missing": {
+      "title": "Missing trip registrations",
+      "subtitle": "Weighings and invoice lines on rented trucks without a registered trip. Create the trip pre-filled — then the foreman approves and matching re-runs.",
+      "openCount": "Unregistered trips",
+      "registeredCount": "Registered this session",
+      "empty": "All missing trips have been registered.",
+      "source": {
+        "ownScale": "Own scale",
+        "supplierInvoice": "Supplier invoice"
+      }
+    },
+    "rental": {
+      "compareHint": "Expected invoice from approved registrations versus the contractor invoice.",
+      "expected": "Expected (system)",
+      "invoiced": "Contractor invoice",
+      "invoiceHours": "Invoice hours",
+      "registeredHours": "Registered hours",
+      "rate": "Rate / hour",
+      "matchedMessage": "Invoice says {{hours}} hours — system has the same.",
+      "mismatchMessage": "Invoice says {{invoiceHours}} hours — system has {{registeredHours}} registered.",
+      "truckStatus": {
+        "matched": "Matched",
+        "discrepancy": "Discrepancy"
+      }
+    }
+  },
   "footer": {
     "tagline": "Internal portal for Malbikstöðin operations, projects, and team tools.",
     "quickLinks": "Quick links",
     "contact": "Contact",
-    "address": "Völuteigur 20, 112 Reykjavík",
+    "address": "162 Mosfellsbær, Iceland",
     "phone": "+354 577 5000",
     "email": "info@malbikstodin.is",
     "copyright": "© {{year}} Malbikstöðin. All rights reserved."
