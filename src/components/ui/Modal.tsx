@@ -36,7 +36,7 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center p-4 sm:items-center">
+    <div className="fixed inset-0 z-100 flex items-start justify-center p-4 sm:items-center">
       <button
         type="button"
         className="absolute inset-0 bg-foreground/40"

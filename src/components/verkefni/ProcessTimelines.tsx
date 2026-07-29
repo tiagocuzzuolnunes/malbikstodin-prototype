@@ -39,7 +39,7 @@ export default function ProcessTimelines() {
                 <li key={stepKey} className="relative flex gap-4 pb-8 last:pb-0">
                   {!isLast ? (
                     <span
-                      className="absolute top-9 bottom-0 left-[1.05rem] w-px bg-border"
+                      className="absolute top-9 bottom-0 left-4.5 w-px bg-border"
                       aria-hidden
                     />
                   ) : null}

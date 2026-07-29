@@ -103,7 +103,7 @@ export default function YfirferdPage() {
       <div className="space-y-5 sm:space-y-8">
       <SectionPage titleKey="nav.yfirferd" descriptionKey="pages.reikningar.reviewDescription" />
 
-      <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 [scrollbar-width:none] sm:[scrollbar-width:auto] [&::-webkit-scrollbar]:hidden sm:[&::-webkit-scrollbar]:block">
+      <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 scrollbar-none sm:scrollbar-auto [&::-webkit-scrollbar]:hidden sm:[&::-webkit-scrollbar]:block">
         {reviewQueue.map((invoice, index) => {
           const isActive = index === activeInvoiceIndex
           const done = approvedInvoices.includes(invoice.id)
@@ -117,7 +117,7 @@ export default function YfirferdPage() {
                 setNoteOpen(false)
               }}
               className={cn(
-                'min-w-[14rem] shrink-0 snap-start rounded-card border px-4 py-3.5 text-left transition-colors sm:min-w-0 sm:py-4',
+                'min-w-56 shrink-0 snap-start rounded-card border px-4 py-3.5 text-left transition-colors sm:min-w-0 sm:py-4',
                 isActive
                   ? 'border-accent bg-accent/5 shadow-card'
                   : 'border-border bg-surface hover:bg-interactive-hover',

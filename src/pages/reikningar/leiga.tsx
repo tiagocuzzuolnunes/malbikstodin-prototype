@@ -32,7 +32,7 @@ export default function LeigaPage() {
     <div className="min-w-0 space-y-5 sm:space-y-8">
       <SectionPage titleKey="nav.leiga" descriptionKey="pages.reikningar.rentalDescription" />
 
-      <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 md:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:[scrollbar-width:auto] md:[&::-webkit-scrollbar]:block">
+      <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 md:mx-0 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 md:pb-0 scrollbar-none [&::-webkit-scrollbar]:hidden md:scrollbar-auto md:[&::-webkit-scrollbar]:block">
         {rentalInvoices.map((item) => {
           const active = item.id === invoice.id
           return (
@@ -41,7 +41,7 @@ export default function LeigaPage() {
               type="button"
               onClick={() => setSelectedId(item.id)}
               className={cn(
-                'min-w-[15rem] shrink-0 snap-start rounded-card border px-4 py-3.5 text-left transition-colors md:min-w-0 md:py-4',
+                'min-w-60 shrink-0 snap-start rounded-card border px-4 py-3.5 text-left transition-colors md:min-w-0 md:py-4',
                 active
                   ? 'border-accent bg-accent/5 shadow-card'
                   : 'border-border bg-surface hover:bg-interactive-hover',

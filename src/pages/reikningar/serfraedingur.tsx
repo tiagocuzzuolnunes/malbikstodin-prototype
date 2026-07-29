@@ -177,7 +177,7 @@ export default function SerfraedingurPage() {
             </div>
 
             <div className="hidden min-w-0 overflow-x-auto md:block">
-              <table className="w-full min-w-[56rem] border-collapse text-left text-sm">
+              <table className="w-full min-w-4xl border-collapse text-left text-sm">
                 <thead>
                   <tr className="border-b border-border bg-surface-muted">
                     <th className="px-3 py-3 font-medium text-foreground-muted">
@@ -222,13 +222,13 @@ export default function SerfraedingurPage() {
                         {formatQuantity(line.quantity, line.unit, locale)}
                       </td>
                       <td className="px-3 py-3 align-top font-mono text-xs">{line.truck}</td>
-                      <td className="px-3 py-3 align-top break-words">
+                      <td className="px-3 py-3 align-top wrap-break-word">
                         <span className="font-medium">{line.internalProduct || '—'}</span>
                         <span className="mt-1 block text-xs text-foreground-muted">
                           {line.supplierProduct}
                         </span>
                       </td>
-                      <td className="px-3 py-3 align-top break-words">
+                      <td className="px-3 py-3 align-top wrap-break-word">
                         {line.matchedTrip ? (
                           <>
                             <span className="font-medium">{line.matchedTrip}</span>
