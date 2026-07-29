@@ -45,7 +45,7 @@ function Badge({
   return (
     <span
       className={cn(
-        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide break-words whitespace-normal',
+        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide wrap-break-word whitespace-normal',
         className,
       )}
     >
@@ -70,7 +70,7 @@ function MobileRow({
           <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
             {contract.serial}
           </p>
-          <h3 className="mt-1 text-base font-semibold tracking-tight break-words">
+          <h3 className="mt-1 text-base font-semibold tracking-tight wrap-break-word">
             {contract.name}
           </h3>
         </div>
@@ -162,7 +162,7 @@ export default function ContractsList({ areaId }: ContractsListProps) {
                   <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                     {contract.serial}
                   </td>
-                  <td className="px-3 py-3 align-top font-medium break-words whitespace-normal">
+                  <td className="px-3 py-3 align-top font-medium wrap-break-word whitespace-normal">
                     {contract.name}
                   </td>
                   <td className="px-3 py-3 align-top tabular-nums whitespace-normal">

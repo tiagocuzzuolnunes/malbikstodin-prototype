@@ -134,8 +134,8 @@ export default function VantarPage() {
                       </td>
                       <td className="px-3 py-3 align-top">{trip.time}</td>
                       <td className="px-3 py-3 align-top font-mono text-xs">{trip.truck}</td>
-                      <td className="px-3 py-3 align-top break-words">{trip.owner}</td>
-                      <td className="px-3 py-3 align-top break-words">
+                      <td className="px-3 py-3 align-top wrap-break-word">{trip.owner}</td>
+                      <td className="px-3 py-3 align-top wrap-break-word">
                         {trip.product}
                         <span className="mt-1 block text-xs text-foreground-muted">
                           {t(`invoices.missing.source.${trip.source}`)}

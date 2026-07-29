@@ -165,10 +165,10 @@ export default function TaekniPage() {
                       <td className="px-2 py-3 align-top font-mono text-xs text-foreground-muted">
                         {ticket.serial}
                       </td>
-                      <td className="px-2 py-3 align-top font-medium break-words">
+                      <td className="px-2 py-3 align-top font-medium wrap-break-word">
                         {t(`it.tickets.${ticket.titleKey}`)}
                       </td>
-                      <td className="px-2 py-3 align-top break-words">{ticket.requester}</td>
+                      <td className="px-2 py-3 align-top wrap-break-word">{ticket.requester}</td>
                       <td className="px-2 py-3 align-top">
                         <Badge className={priorityClass[ticket.priority]}>
                           {t(`it.priority.${ticket.priority}`)}
@@ -179,7 +179,7 @@ export default function TaekniPage() {
                           {t(`it.ticketStatus.${ticket.status}`)}
                         </Badge>
                       </td>
-                      <td className="px-2 py-3 align-top break-words">
+                      <td className="px-2 py-3 align-top wrap-break-word">
                         {formatDate(ticket.openedAt, locale)}
                       </td>
                     </tr>

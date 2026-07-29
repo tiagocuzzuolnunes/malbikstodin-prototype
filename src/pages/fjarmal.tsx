@@ -180,7 +180,7 @@ export default function FjarmalPage() {
                       <p className="font-mono text-xs tracking-wide text-foreground-muted">
                         {expense.serial}
                       </p>
-                      <h3 className="mt-1 font-semibold tracking-tight break-words">
+                      <h3 className="mt-1 font-semibold tracking-tight wrap-break-word">
                         {expense.description}
                       </h3>
                     </div>
@@ -238,19 +238,19 @@ export default function FjarmalPage() {
                       <td className="px-2 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                         {expense.serial}
                       </td>
-                      <td className="px-2 py-3 align-top font-medium break-words whitespace-normal">
+                      <td className="px-2 py-3 align-top font-medium wrap-break-word whitespace-normal">
                         {expense.description}
                       </td>
-                      <td className="px-2 py-3 align-top break-words whitespace-normal">
+                      <td className="px-2 py-3 align-top wrap-break-word whitespace-normal">
                         {t(`finance.categories.${expense.category}`)}
                       </td>
-                      <td className="px-2 py-3 align-top tabular-nums break-words whitespace-normal">
+                      <td className="px-2 py-3 align-top tabular-nums wrap-break-word whitespace-normal">
                         {formatIsk(expense.amountIsk, locale)}
                       </td>
-                      <td className="px-2 py-3 align-top break-words whitespace-normal">
+                      <td className="px-2 py-3 align-top wrap-break-word whitespace-normal">
                         {formatDate(expense.date, locale)}
                       </td>
-                      <td className="px-2 py-3 align-top break-words whitespace-normal">
+                      <td className="px-2 py-3 align-top wrap-break-word whitespace-normal">
                         {expense.submittedBy}
                       </td>
                     </tr>

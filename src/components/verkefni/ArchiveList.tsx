@@ -48,7 +48,7 @@ function Badge({
   return (
     <span
       className={cn(
-        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide break-words whitespace-normal',
+        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide wrap-break-word whitespace-normal',
         className,
       )}
     >
@@ -73,7 +73,7 @@ function MobileRow({
           <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
             {document.serial}
           </p>
-          <h3 className="mt-1 text-base font-semibold tracking-tight break-words">
+          <h3 className="mt-1 text-base font-semibold tracking-tight wrap-break-word">
             {document.name}
           </h3>
         </div>
@@ -97,7 +97,7 @@ function MobileRow({
         </div>
         <div className="min-w-0 col-span-2">
           <dt className="text-foreground-muted">{t('archive.columns.insertedBy')}</dt>
-          <dd className="mt-0.5 break-words">{employeeName(document.insertedByEmployeeId)}</dd>
+          <dd className="mt-0.5 wrap-break-word">{employeeName(document.insertedByEmployeeId)}</dd>
         </div>
       </dl>
     </article>
@@ -167,13 +167,13 @@ export default function ArchiveList({ areaId }: ArchiveListProps) {
                   <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                     {document.serial}
                   </td>
-                  <td className="px-3 py-3 align-top font-medium break-words whitespace-normal">
+                  <td className="px-3 py-3 align-top font-medium wrap-break-word whitespace-normal">
                     {document.name}
                   </td>
                   <td className="px-3 py-3 align-top whitespace-normal">
                     {formatDate(document.date, i18n.language)}
                   </td>
-                  <td className="px-3 py-3 align-top break-words whitespace-normal">
+                  <td className="px-3 py-3 align-top wrap-break-word whitespace-normal">
                     {employeeName(document.insertedByEmployeeId)}
                   </td>
                   <td className="px-3 py-3 align-top">

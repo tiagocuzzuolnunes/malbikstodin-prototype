@@ -49,7 +49,7 @@ function Badge({
   return (
     <span
       className={cn(
-        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide break-words whitespace-normal',
+        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide wrap-break-word whitespace-normal',
         className,
       )}
     >
@@ -74,7 +74,7 @@ function MobileRow({
           <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
             {task.serial}
           </p>
-          <h3 className="mt-1 text-base font-semibold tracking-tight break-words">
+          <h3 className="mt-1 text-base font-semibold tracking-tight wrap-break-word">
             {task.title}
           </h3>
         </div>
@@ -86,11 +86,11 @@ function MobileRow({
       <dl className="grid grid-cols-2 gap-x-3 gap-y-3 text-sm">
         <div className="min-w-0">
           <dt className="text-foreground-muted">{t('worklist.columns.employee')}</dt>
-          <dd className="mt-0.5 break-words">{employeeName(task.employeeId)}</dd>
+          <dd className="mt-0.5 wrap-break-word">{employeeName(task.employeeId)}</dd>
         </div>
         <div className="min-w-0">
           <dt className="text-foreground-muted">{t('worklist.columns.project')}</dt>
-          <dd className="mt-0.5 break-words">{task.projectName}</dd>
+          <dd className="mt-0.5 wrap-break-word">{task.projectName}</dd>
         </div>
         <div className="min-w-0">
           <dt className="text-foreground-muted">{t('worklist.columns.status')}</dt>
@@ -178,13 +178,13 @@ export default function Worklist({ areaId }: WorklistProps) {
                   <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                     {task.serial}
                   </td>
-                  <td className="px-3 py-3 align-top font-medium break-words whitespace-normal">
+                  <td className="px-3 py-3 align-top font-medium wrap-break-word whitespace-normal">
                     {task.title}
                   </td>
-                  <td className="px-3 py-3 align-top break-words whitespace-normal">
+                  <td className="px-3 py-3 align-top wrap-break-word whitespace-normal">
                     {employeeName(task.employeeId)}
                   </td>
-                  <td className="px-3 py-3 align-top break-words whitespace-normal text-foreground-muted">
+                  <td className="px-3 py-3 align-top wrap-break-word whitespace-normal text-foreground-muted">
                     {task.projectName}
                   </td>
                   <td className="px-3 py-3 align-top">

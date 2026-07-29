@@ -68,7 +68,7 @@ export default function ReikningarInboxPage() {
       {/* Mobile: 2×2 grid of 4 cards */}
       <div className="grid grid-cols-2 gap-3 sm:hidden">
         {mobileStats.map((stat) => (
-          <Card key={stat.id} elevated padding="md" className="min-h-0 min-w-0 !p-3">
+          <Card key={stat.id} elevated padding="md" className="min-h-0 min-w-0 p-3">
             <p className="text-xs font-medium tracking-wide text-foreground-muted">
               {t(stat.labelKey)}
             </p>
@@ -191,22 +191,22 @@ export default function ReikningarInboxPage() {
                       invoiceRowTint[invoice.status],
                     )}
                   >
-                    <td className="px-2 py-3 align-top font-mono text-xs break-words text-foreground-muted">
+                    <td className="px-2 py-3 align-top font-mono text-xs wrap-break-word text-foreground-muted">
                       {invoice.serial}
                     </td>
-                    <td className="px-2 py-3 align-top font-medium break-words">
+                    <td className="px-2 py-3 align-top font-medium wrap-break-word">
                       {invoice.supplier}
                     </td>
-                    <td className="px-2 py-3 align-top break-words">
+                    <td className="px-2 py-3 align-top wrap-break-word">
                       {formatDate(invoice.invoiceDate, locale)}
                     </td>
                     <td className="px-2 py-3 align-top tabular-nums">
                       {invoice.lineCount}/{invoice.tripCount}
                     </td>
-                    <td className="px-2 py-3 align-top tabular-nums break-words">
+                    <td className="px-2 py-3 align-top tabular-nums wrap-break-word">
                       {formatQuantity(invoice.totalQuantity, invoice.unit, locale)}
                     </td>
-                    <td className="px-2 py-3 align-top tabular-nums break-words">
+                    <td className="px-2 py-3 align-top tabular-nums wrap-break-word">
                       {formatIsk(invoice.amountIsk, locale)}
                     </td>
                     <td className="px-2 py-3 align-top">
@@ -292,7 +292,7 @@ function InboxAction({
 
   if (status === 'awaitingTrips') {
     return (
-      <span className="block text-sm break-words text-foreground-muted">
+      <span className="block text-sm wrap-break-word text-foreground-muted">
         {t('invoices.actions.waiting')}
       </span>
     )

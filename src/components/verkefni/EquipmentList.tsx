@@ -44,7 +44,7 @@ function Badge({
   return (
     <span
       className={cn(
-        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide break-words whitespace-normal',
+        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide wrap-break-word whitespace-normal',
         className,
       )}
     >
@@ -69,7 +69,7 @@ function MobileRow({
           <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
             {item.serial}
           </p>
-          <h3 className="mt-1 text-base font-semibold tracking-tight break-words">
+          <h3 className="mt-1 text-base font-semibold tracking-tight wrap-break-word">
             {item.name}
           </h3>
         </div>
@@ -89,7 +89,7 @@ function MobileRow({
         </div>
         <div className="min-w-0 col-span-2">
           <dt className="text-foreground-muted">{t('equipment.columns.assignedTo')}</dt>
-          <dd className="mt-0.5 break-words">{employeeName(item.assignedEmployeeId)}</dd>
+          <dd className="mt-0.5 wrap-break-word">{employeeName(item.assignedEmployeeId)}</dd>
         </div>
       </dl>
     </article>
@@ -183,7 +183,7 @@ export default function EquipmentList({ areaId }: EquipmentListProps) {
                   <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                     {item.serial}
                   </td>
-                  <td className="px-3 py-3 align-top font-medium break-words whitespace-normal">
+                  <td className="px-3 py-3 align-top font-medium wrap-break-word whitespace-normal">
                     {item.name}
                   </td>
                   <td className="px-3 py-3 align-top font-mono text-xs tracking-wide">
@@ -194,7 +194,7 @@ export default function EquipmentList({ areaId }: EquipmentListProps) {
                       {t(`equipment.status.${item.status}`)}
                     </Badge>
                   </td>
-                  <td className="px-3 py-3 align-top break-words whitespace-normal">
+                  <td className="px-3 py-3 align-top wrap-break-word whitespace-normal">
                     {employeeName(item.assignedEmployeeId)}
                   </td>
                   <td className="px-3 py-3 align-top whitespace-normal">
