@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { ProjectAreaId } from '../../config/projects'
 import { employees } from '../../data/employees'
@@ -8,11 +8,15 @@ import {
   type TaskPriority,
   type TaskStatus,
 } from '../../data/tasks'
+import { useVirtualWindow } from '../../hooks/useVirtualWindow'
 import { cn } from '../../lib/utils'
 
 type WorklistProps = {
   areaId: ProjectAreaId
 }
+
+const ROW_HEIGHT = 56
+const VIRTUALIZE_THRESHOLD = 20
 
 const priorityClass: Record<TaskPriority, string> = {
   high: 'bg-danger/10 text-danger',
@@ -109,9 +113,53 @@ function MobileRow({
   )
 }
 
+function DesktopTaskRow({ task, locale }: { task: Task; locale: string }) {
+  const { t } = useTranslation()
+
+  return (
+    <tr className="border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40">
+      <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
+        {task.serial}
+      </td>
+      <td className="px-3 py-3 align-top font-medium wrap-break-word whitespace-normal">
+        {task.title}
+      </td>
+      <td className="px-3 py-3 align-top wrap-break-word whitespace-normal">
+        {employeeName(task.employeeId)}
+      </td>
+      <td className="px-3 py-3 align-top wrap-break-word whitespace-normal text-foreground-muted">
+        {task.projectName}
+      </td>
+      <td className="px-3 py-3 align-top">
+        <Badge className={priorityClass[task.priority]}>
+          {t(`worklist.priority.${task.priority}`)}
+        </Badge>
+      </td>
+      <td className="px-3 py-3 align-top">
+        <Badge className={statusClass[task.status]}>
+          {t(`worklist.status.${task.status}`)}
+        </Badge>
+      </td>
+      <td className="px-3 py-3 align-top whitespace-normal">
+        {formatDueDate(task.dueDate, locale)}
+      </td>
+    </tr>
+  )
+}
+
 export default function Worklist({ areaId }: WorklistProps) {
   const { t, i18n } = useTranslation()
   const areaTasks = useMemo(() => getTasksByArea(areaId), [areaId])
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const windowing = useVirtualWindow(scrollRef, {
+    itemCount: areaTasks.length,
+    itemHeight: ROW_HEIGHT,
+    threshold: VIRTUALIZE_THRESHOLD,
+  })
+
+  const visibleTasks = windowing.enabled
+    ? areaTasks.slice(windowing.startIndex, windowing.endIndex)
+    : areaTasks
 
   return (
     <section className="space-y-4" aria-labelledby="worklist-heading">
@@ -132,7 +180,7 @@ export default function Worklist({ areaId }: WorklistProps) {
           ))}
         </div>
 
-        {/* Desktop: fixed-layout table that wraps instead of scrolling */}
+        {/* Desktop: windowed table body when lists grow past the threshold */}
         <div className="hidden md:block">
           <table className="w-full table-fixed border-collapse text-left text-sm">
             <colgroup>
@@ -169,41 +217,67 @@ export default function Worklist({ areaId }: WorklistProps) {
                 </th>
               </tr>
             </thead>
-            <tbody>
-              {areaTasks.map((task) => (
-                <tr
-                  key={task.id}
-                  className="border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40"
-                >
-                  <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
-                    {task.serial}
-                  </td>
-                  <td className="px-3 py-3 align-top font-medium wrap-break-word whitespace-normal">
-                    {task.title}
-                  </td>
-                  <td className="px-3 py-3 align-top wrap-break-word whitespace-normal">
-                    {employeeName(task.employeeId)}
-                  </td>
-                  <td className="px-3 py-3 align-top wrap-break-word whitespace-normal text-foreground-muted">
-                    {task.projectName}
-                  </td>
-                  <td className="px-3 py-3 align-top">
-                    <Badge className={priorityClass[task.priority]}>
-                      {t(`worklist.priority.${task.priority}`)}
-                    </Badge>
-                  </td>
-                  <td className="px-3 py-3 align-top">
-                    <Badge className={statusClass[task.status]}>
-                      {t(`worklist.status.${task.status}`)}
-                    </Badge>
-                  </td>
-                  <td className="px-3 py-3 align-top whitespace-normal">
-                    {formatDueDate(task.dueDate, i18n.language)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
           </table>
+
+          <div
+            ref={scrollRef}
+            className={cn(windowing.enabled && 'max-h-[32rem] overflow-y-auto')}
+            onScroll={windowing.enabled ? windowing.onScroll : undefined}
+          >
+            {windowing.enabled ? (
+              <div style={{ height: windowing.totalHeight, position: 'relative' }}>
+                <table
+                  className="w-full table-fixed border-collapse text-left text-sm"
+                  style={{
+                    position: 'absolute',
+                    top: windowing.offsetTop,
+                    left: 0,
+                    right: 0,
+                  }}
+                >
+                  <colgroup>
+                    <col className="w-[7%]" />
+                    <col className="w-[24%]" />
+                    <col className="w-[16%]" />
+                    <col className="w-[16%]" />
+                    <col className="w-[12%]" />
+                    <col className="w-[13%]" />
+                    <col className="w-[12%]" />
+                  </colgroup>
+                  <tbody>
+                    {visibleTasks.map((task) => (
+                      <DesktopTaskRow
+                        key={task.id}
+                        task={task}
+                        locale={i18n.language}
+                      />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <table className="w-full table-fixed border-collapse text-left text-sm">
+                <colgroup>
+                  <col className="w-[7%]" />
+                  <col className="w-[24%]" />
+                  <col className="w-[16%]" />
+                  <col className="w-[16%]" />
+                  <col className="w-[12%]" />
+                  <col className="w-[13%]" />
+                  <col className="w-[12%]" />
+                </colgroup>
+                <tbody>
+                  {visibleTasks.map((task) => (
+                    <DesktopTaskRow
+                      key={task.id}
+                      task={task}
+                      locale={i18n.language}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         </div>
       </div>
     </section>
