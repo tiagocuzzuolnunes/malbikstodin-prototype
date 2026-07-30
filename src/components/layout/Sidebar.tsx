@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import { navItems } from '../../config/navigation'
+import { prefetchRoute } from '../../lib/prefetchRoute'
 import { cn } from '../../lib/utils'
 import { Button, Icon } from '../ui'
 
@@ -40,6 +41,8 @@ export default function Sidebar() {
               to={to}
               end={to === '/'}
               title={collapsed ? label : undefined}
+              onMouseEnter={() => prefetchRoute(to)}
+              onFocus={() => prefetchRoute(to)}
               className={({ isActive }) =>
                 cn(
                   'flex cursor-pointer items-center gap-3 rounded-control p-3 text-lg whitespace-nowrap transition-colors',

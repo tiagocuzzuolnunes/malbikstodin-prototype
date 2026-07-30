@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { X } from 'lucide-react'
 import { navItems } from '../../config/navigation'
+import { prefetchRoute } from '../../lib/prefetchRoute'
 import { cn } from '../../lib/utils'
 import { Button, Icon } from '../ui'
 
@@ -96,6 +97,8 @@ export default function MobileNavDrawer({ open, onClose }: MobileNavDrawerProps)
                 to={to}
                 end={to === '/'}
                 onClick={onClose}
+                onMouseEnter={() => prefetchRoute(to)}
+                onFocus={() => prefetchRoute(to)}
                 tabIndex={open ? 0 : -1}
                 className={({ isActive }) =>
                   cn(

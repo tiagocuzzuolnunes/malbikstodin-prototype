@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import {
-  Header,
-  Sidebar,
-  MobileNavDrawer,
-  Breadcrumbs,
-  Footer,
-  PageTransition,
-} from '../components/layout'
+import Breadcrumbs from '../components/layout/Breadcrumbs'
+import Footer from '../components/layout/Footer'
+import Header from '../components/layout/Header'
+import MobileNavDrawer from '../components/layout/MobileNavDrawer'
+import PageSkeleton from '../components/layout/PageSkeleton'
+import PageTransition from '../components/layout/PageTransition'
+import Sidebar from '../components/layout/Sidebar'
 import { useScrollCompact } from '../hooks/useScrollCompact'
 
 const DESKTOP_MQ = '(min-width: 768px)'
@@ -50,7 +49,9 @@ export default function RootLayout() {
           <PageTransition className="flex min-h-full flex-col">
             <div className="flex-1">
               <Breadcrumbs />
-              <Outlet />
+              <Suspense fallback={<PageSkeleton />}>
+                <Outlet />
+              </Suspense>
             </div>
             <Footer />
           </PageTransition>
