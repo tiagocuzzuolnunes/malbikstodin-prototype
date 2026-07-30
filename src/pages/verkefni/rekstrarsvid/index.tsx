@@ -1,4 +1,4 @@
-import { ProjectAreaHub } from '../../../components/verkefni'
+import ProjectAreaHub from '../../../components/verkefni/ProjectAreaHub'
 export default function RekstrarsvidPage() {
   return <ProjectAreaHub areaId="rekstrarsvid" />
 }

@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SectionPage } from '../../components/shared'
-import { EmployeeCard } from '../../components/mannaudur'
+import EmployeeCard from '../../components/mannaudur/EmployeeCard'
 import { Button } from '../../components/ui'
 import { cn } from '../../lib/utils'
 import { departments, employees, type Department } from '../../data/employees'
