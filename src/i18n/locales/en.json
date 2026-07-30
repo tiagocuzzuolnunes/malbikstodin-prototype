@@ -83,6 +83,17 @@
       }
     }
   },
+  "settings": {
+    "open": "Open settings",
+    "title": "Settings"
+  },
+  "userMenu": {
+    "open": "Open account",
+    "title": "Account",
+    "role": "Project owner",
+    "email": "vilhjalmur@malbikstodin.is",
+    "signOut": "Sign out"
+  },
   "nav": {
     "heim": "Home",
     "skraning": "Registration",

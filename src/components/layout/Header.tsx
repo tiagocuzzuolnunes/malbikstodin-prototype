@@ -1,12 +1,13 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Menu, User } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import logo from '../../assets/logo.png'
 import { cn } from '../../lib/utils'
 import { Button } from '../ui'
-import ThemeToggle from './ThemeToggle'
-import LanguageSwitcher from './LanguageSwitcher'
 import NotificationBell from './NotificationBell'
+import SettingsMenu from './SettingsMenu'
+import UserMenu from './UserMenu'
 
 type HeaderProps = {
   compact?: boolean
@@ -15,12 +16,37 @@ type HeaderProps = {
 
 export default function Header({ compact = false, onOpenMobileNav }: HeaderProps) {
   const { t } = useTranslation()
+  const headerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const header = headerRef.current
+    if (!header) return
+
+    const syncHeaderHeight = () => {
+      document.documentElement.style.setProperty(
+        '--app-header-height',
+        `${header.getBoundingClientRect().height}px`,
+      )
+    }
+
+    syncHeaderHeight()
+
+    const observer = new ResizeObserver(syncHeaderHeight)
+    observer.observe(header)
+    window.addEventListener('resize', syncHeaderHeight)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', syncHeaderHeight)
+    }
+  }, [compact])
 
   return (
     <header
+      ref={headerRef}
       data-app-header
       className={cn(
-        'relative z-50 flex shrink-0 items-center justify-between gap-3 bg-surface transition-[padding] duration-300 ease-out',
+        'relative z-110 flex shrink-0 items-center justify-between gap-3 bg-surface transition-[padding] duration-300 ease-out',
         'pt-[max(1rem,env(safe-area-inset-top))]',
         'pl-[max(1rem,env(safe-area-inset-left))]',
         'pr-[max(1rem,env(safe-area-inset-right))]',
@@ -70,27 +96,9 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
           compact ? 'gap-1.5 md:gap-2' : 'gap-2 md:gap-4',
         )}
       >
-        <div className="hidden md:contents">
-          <LanguageSwitcher compact={compact} />
-          <ThemeToggle compact={compact} />
-        </div>
+        <SettingsMenu compact={compact} />
         <NotificationBell compact={compact} />
-        <Button
-          variant="muted"
-          size="icon"
-          aria-label={t('common.user')}
-          className={cn(
-            'transition-all duration-300 ease-out',
-            compact ? 'p-2' : 'p-2 md:p-3',
-          )}
-        >
-          <User
-            className={cn(
-              'shrink-0 transition-all duration-300 ease-out',
-              compact ? 'h-5 w-5' : 'h-6 w-6 md:h-8 md:w-8',
-            )}
-          />
-        </Button>
+        <UserMenu compact={compact} />
       </div>
     </header>
   )

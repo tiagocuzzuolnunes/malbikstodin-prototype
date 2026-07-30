@@ -5,8 +5,6 @@ import { X } from 'lucide-react'
 import { navItems } from '../../config/navigation'
 import { cn } from '../../lib/utils'
 import { Button, Icon } from '../ui'
-import LanguageSwitcher from './LanguageSwitcher'
-import ThemeToggle from './ThemeToggle'
 
 type MobileNavDrawerProps = {
   open: boolean
@@ -116,17 +114,6 @@ export default function MobileNavDrawer({ open, onClose }: MobileNavDrawerProps)
             )
           })}
         </nav>
-
-        <div className="space-y-1 border-t border-border p-3">
-          <div className="flex items-center justify-between gap-3 rounded-control px-3 py-2">
-            <p className="text-sm font-medium text-foreground-muted">{t('language.label')}</p>
-            <LanguageSwitcher compact />
-          </div>
-          <div className="flex items-center justify-between gap-3 rounded-control px-3 py-2">
-            <p className="text-sm font-medium text-foreground-muted">{t('theme.label')}</p>
-            <ThemeToggle compact />
-          </div>
-        </div>
       </div>
     </div>
   )

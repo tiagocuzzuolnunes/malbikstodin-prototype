@@ -83,6 +83,17 @@
       }
     }
   },
+  "settings": {
+    "open": "Opna stillingar",
+    "title": "Stillingar"
+  },
+  "userMenu": {
+    "open": "Opna aðgang",
+    "title": "Aðgangur",
+    "role": "Verkefnisstjóri",
+    "email": "vilhjalmur@malbikstodin.is",
+    "signOut": "Skrá út"
+  },
   "nav": {
     "heim": "Heim",
     "skraning": "Skráning",
