@@ -32,7 +32,53 @@ const REYKJAVIK = {
   longitude: -21.9426,
 }
 
-export async function fetchReykjavikWeather(signal?: AbortSignal): Promise<ReykjavikWeather> {
+const WEATHER_CACHE_KEY = 'malbikstodin-reykjavik-weather'
+/** Fresh enough to show without blocking; background refresh still runs. */
+export const WEATHER_TTL_MS = 10 * 60 * 1000
+
+type CachedWeather = {
+  data: ReykjavikWeather
+  fetchedAt: number
+}
+
+function readWeatherCache(): CachedWeather | null {
+  try {
+    const raw = sessionStorage.getItem(WEATHER_CACHE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as CachedWeather
+    if (
+      !parsed?.data ||
+      typeof parsed.fetchedAt !== 'number' ||
+      typeof parsed.data.temperature !== 'number'
+    ) {
+      return null
+    }
+    return parsed
+  } catch {
+    return null
+  }
+}
+
+function writeWeatherCache(data: ReykjavikWeather) {
+  try {
+    const payload: CachedWeather = { data, fetchedAt: Date.now() }
+    sessionStorage.setItem(WEATHER_CACHE_KEY, JSON.stringify(payload))
+  } catch {
+    // Ignore quota / private mode failures.
+  }
+}
+
+export function getCachedReykjavikWeather(): CachedWeather | null {
+  return readWeatherCache()
+}
+
+export function isWeatherFresh(fetchedAt: number, now = Date.now()): boolean {
+  return now - fetchedAt < WEATHER_TTL_MS
+}
+
+async function fetchReykjavikWeatherNetwork(
+  signal?: AbortSignal,
+): Promise<ReykjavikWeather> {
   const url = new URL('https://api.open-meteo.com/v1/forecast')
   url.searchParams.set('latitude', String(REYKJAVIK.latitude))
   url.searchParams.set('longitude', String(REYKJAVIK.longitude))
@@ -61,4 +107,40 @@ export async function fetchReykjavikWeather(signal?: AbortSignal): Promise<Reykj
     windSpeed: Math.round(current.wind_speed_10m),
     conditionKey: weatherCodeToKey(current.weather_code),
   }
+}
+
+/**
+ * Returns cached weather when present; refreshes in the background when stale
+ * (stale-while-revalidate). Network-only when the cache is empty.
+ */
+export async function fetchReykjavikWeather(
+  signal?: AbortSignal,
+): Promise<{ data: ReykjavikWeather; fromCache: boolean }> {
+  const cached = readWeatherCache()
+
+  if (cached && isWeatherFresh(cached.fetchedAt)) {
+    return { data: cached.data, fromCache: true }
+  }
+
+  if (cached) {
+    // Stale: return immediately and refresh without blocking callers that
+    // already received the promise — callers should use the hook for SWR.
+    void fetchReykjavikWeatherNetwork()
+      .then(writeWeatherCache)
+      .catch(() => {})
+    return { data: cached.data, fromCache: true }
+  }
+
+  const data = await fetchReykjavikWeatherNetwork(signal)
+  writeWeatherCache(data)
+  return { data, fromCache: false }
+}
+
+/** Force a network refresh and update the session cache. */
+export async function refreshReykjavikWeather(
+  signal?: AbortSignal,
+): Promise<ReykjavikWeather> {
+  const data = await fetchReykjavikWeatherNetwork(signal)
+  writeWeatherCache(data)
+  return data
 }
