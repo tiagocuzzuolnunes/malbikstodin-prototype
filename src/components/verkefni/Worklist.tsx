@@ -221,7 +221,7 @@ export default function Worklist({ areaId }: WorklistProps) {
 
           <div
             ref={scrollRef}
-            className={cn(windowing.enabled && 'max-h-[32rem] overflow-y-auto')}
+            className={cn(windowing.enabled && 'max-h-128 overflow-y-auto')}
             onScroll={windowing.enabled ? windowing.onScroll : undefined}
           >
             {windowing.enabled ? (
