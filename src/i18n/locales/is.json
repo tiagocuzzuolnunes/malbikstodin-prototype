@@ -118,6 +118,11 @@
     "heim": {
       "description": "Yfirlit yfir fyrirtækið þitt í dag."
     },
+    "notFound": {
+      "title": "Síða fannst ekki",
+      "description": "Þessi síða er ekki til eða hefur verið færð. Farðu aftur á forsíðuna til að halda áfram.",
+      "backHome": "Til baka heim"
+    },
     "skraning": {
       "description": "Fylltu út upplýsingarnar, byrjaðu vinnu og stöðvaðu svo til að skrá tíma sjálfkrafa."
     },

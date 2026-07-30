@@ -118,6 +118,11 @@
     "heim": {
       "description": "Your company overview for today."
     },
+    "notFound": {
+      "title": "Page not found",
+      "description": "This page does not exist or may have moved. Go back to the home page to continue.",
+      "backHome": "Back to home"
+    },
     "skraning": {
       "description": "Fill in the details, start work, then stop to log hours automatically."
     },
