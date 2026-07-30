@@ -65,6 +65,7 @@ export default function NotFoundPage() {
           className={cn(
             'not-found-fade-bg not-found-delay-3 pointer-events-none absolute inset-0 size-full object-cover object-center',
             'scale-125 sm:scale-110 md:scale-125',
+            'dark:inset-auto dark:top-1/2 dark:left-1/2 dark:size-[38%] dark:max-w-none dark:-translate-x-1/2 dark:-translate-y-1/2 dark:scale-100 dark:object-contain dark:sm:size-[32%] dark:md:size-[28%]',
           )}
         />
         <div className="relative z-10 max-w-full">
