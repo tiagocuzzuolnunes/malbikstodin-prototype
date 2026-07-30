@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next'
+import { changeAppLocale, type SupportedLocale } from '../../i18n'
 import { cn } from '../../lib/utils'
 import { Button } from '../ui'
-import type { SupportedLocale } from '../../i18n'
-
-const LOCALE_STORAGE_KEY = 'malbikstodin-locale'
 
 type LanguageSwitcherProps = {
   compact?: boolean
@@ -19,13 +17,7 @@ export default function LanguageSwitcher({ compact = false }: LanguageSwitcherPr
       variant="muted"
       size="icon"
       onClick={() => {
-        void i18n.changeLanguage(nextLocale)
-        try {
-          localStorage.setItem(LOCALE_STORAGE_KEY, nextLocale)
-        } catch {
-          // Ignore storage failures in private mode.
-        }
-        document.documentElement.lang = nextLocale
+        void changeAppLocale(nextLocale)
       }}
       aria-label={t('language.switchTo', { language: t(`language.names.${nextLocale}`) })}
       title={t('language.switchTo', { language: t(`language.names.${nextLocale}`) })}

@@ -1,12 +1,10 @@
 import { useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Moon, Settings, Sun } from 'lucide-react'
-import type { SupportedLocale } from '../../i18n'
+import { changeAppLocale, type SupportedLocale } from '../../i18n'
 import { cn } from '../../lib/utils'
 import { useTheme } from '../../theme/ThemeProvider'
 import { Button, Modal } from '../ui'
-
-const LOCALE_STORAGE_KEY = 'malbikstodin-locale'
 
 type SettingsMenuProps = {
   compact?: boolean
@@ -82,13 +80,7 @@ export default function SettingsMenu({ compact = false }: SettingsMenuProps) {
 
   function setLocale(nextLocale: SupportedLocale) {
     if (nextLocale === currentLocale) return
-    void i18n.changeLanguage(nextLocale)
-    try {
-      localStorage.setItem(LOCALE_STORAGE_KEY, nextLocale)
-    } catch {
-      // Ignore storage failures in private mode.
-    }
-    document.documentElement.lang = nextLocale
+    void changeAppLocale(nextLocale)
   }
 
   return (
