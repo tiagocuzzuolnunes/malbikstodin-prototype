@@ -4,6 +4,7 @@ import { buttonVariants } from '../components/ui'
 import { cn } from '../lib/utils'
 import asphalt from '../assets/asphalt.png'
 import clouds from '../assets/clouds.png'
+import logo from '../assets/logo.png'
 
 export default function NotFoundPage() {
   const { t } = useTranslation()
@@ -18,34 +19,66 @@ export default function NotFoundPage() {
         'pr-[max(1rem,env(safe-area-inset-right))]',
       )}
     >
+      <Link
+        to="/"
+        className={cn(
+          'not-found-fade not-found-delay-1 absolute top-0 left-0 z-20 flex items-center gap-2 p-4 md:gap-3 md:p-7',
+          'pt-[max(1rem,env(safe-area-inset-top))]',
+          'pl-[max(1rem,env(safe-area-inset-left))]',
+        )}
+      >
+        <img
+          className="h-8 w-auto object-contain md:h-10"
+          src={logo}
+          alt={t('brand.logoAlt')}
+        />
+        <span className="hidden font-black tracking-tight text-foreground sm:inline">
+          {t('brand.header')}
+        </span>
+      </Link>
+
       <img
         src={asphalt}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute top-1/2 left-1/2 h-full w-full max-w-none -translate-x-1/2 -translate-y-1/2 scale-[0.85] object-cover"
+        className={cn(
+          'not-found-fade-bg pointer-events-none absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2 object-cover',
+          'lg:h-[55dvh] lg:w-[70dvw] lg:max-h-full lg:max-w-full',
+          'w-[85%]',
+          'md:w-[85%]',
+        )}
       />
 
       <div
-        className="relative z-10 mx-auto flex min-h-112 w-full max-w-5xl flex-col items-center justify-center overflow-hidden rounded-card px-8 py-20 sm:min-h-128 sm:max-w-6xl sm:px-16 sm:py-24"
+        className={cn(
+          'not-found-fade not-found-delay-2 relative z-10 mx-auto flex w-full flex-col items-center justify-center overflow-hidden rounded-card text-center',
+          'min-h-[min(24rem,62dvh)] max-w-full px-5 py-12',
+          'sm:min-h-[min(28rem,60dvh)] sm:max-w-5xl sm:px-8 sm:py-16',
+          'md:min-h-112 md:max-w-5xl md:px-14 md:py-20',
+          'lg:min-h-128 lg:max-w-6xl lg:px-16 lg:py-24',
+        )}
       >
         <img
           src={clouds}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full scale-125 object-cover"
+          className={cn(
+            'not-found-fade-bg not-found-delay-3 pointer-events-none absolute inset-0 size-full object-cover object-center',
+            'scale-125 sm:scale-110 md:scale-125',
+          )}
         />
-        <div className="relative z-10">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        <div className="relative z-10 max-w-full">
+          <h1 className="not-found-fade not-found-delay-4 text-2xl font-semibold tracking-tight text-foreground wrap-break-word sm:text-3xl md:text-4xl">
             {t('pages.notFound.title')}
           </h1>
-          <p className="mt-3 text-sm text-foreground-muted sm:text-body">
+          <p className="not-found-fade not-found-delay-5 mt-3 text-sm text-foreground-muted wrap-break-word sm:text-body">
             {t('pages.notFound.description')}
           </p>
           <Link
             to="/"
             className={cn(
               buttonVariants({ variant: 'primary', size: 'lg' }),
-              'mt-8 inline-flex min-h-11 px-5',
+              'not-found-fade not-found-delay-6 mt-8 inline-flex min-h-11 px-5',
             )}
           >
             {t('pages.notFound.backHome')}

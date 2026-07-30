@@ -9,7 +9,13 @@ export default defineConfig({
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
-    Pages(),
+    Pages({
+      importMode(filepath) {
+        // Keep the 404 catch-all in the main bundle so it never flashes a Suspense fallback.
+        if (filepath.includes('[...all]')) return 'sync'
+        return 'async'
+      },
+    }),
     tailwindcss(),
   ],
 })
