@@ -18,7 +18,6 @@ export type AccessModeStatus = (typeof accessModeStatuses)[number]
 export type AccessMode = {
   id: string
   name: string
-  status: AccessModeStatus
   /** Whether this mode can access each system area. */
   access: Record<SystemAreaId, boolean>
 }
@@ -42,13 +41,11 @@ export const defaultAccessModes: AccessMode[] = [
   {
     id: 'full-access',
     name: 'Full access',
-    status: 'active',
     access: access({ default: true }),
   },
   {
     id: 'manager',
     name: 'Manager',
-    status: 'active',
     access: access({
       default: true,
       it: false,
@@ -57,7 +54,6 @@ export const defaultAccessModes: AccessMode[] = [
   {
     id: 'employee',
     name: 'Employee',
-    status: 'active',
     access: access({
       intranet: true,
       news: true,
@@ -73,7 +69,6 @@ export const defaultAccessModes: AccessMode[] = [
   {
     id: 'field-staff',
     name: 'Field staff',
-    status: 'active',
     access: access({
       intranet: true,
       news: true,
@@ -89,7 +84,6 @@ export const defaultAccessModes: AccessMode[] = [
   {
     id: 'external',
     name: 'External',
-    status: 'inactive',
     access: access({
       intranet: false,
       news: true,
@@ -133,11 +127,10 @@ export function createEmployeeAccess(
   return { ...source }
 }
 
-export function createBlankAccessMode(name: string, id?: string): AccessMode {
+export function createBlankAccessMode(name = '', id?: string): AccessMode {
   return {
     id: id ?? `mode-${Date.now()}`,
     name,
-    status: 'active',
     access: access({ default: false }),
   }
 }
@@ -147,4 +140,18 @@ export function countEmployeesForMode(
   assignments: EmployeeAccessAssignment,
 ) {
   return Object.values(assignments).filter((assigned) => assigned === modeId).length
+}
+
+export function hasAnySystemArea(accessMap: Record<SystemAreaId, boolean>) {
+  return systemAreas.some((area) => accessMap[area])
+}
+
+/** Active only when the level unlocks at least one area and is assigned to at least one user. */
+export function resolveAccessModeStatus(
+  mode: Pick<AccessMode, 'id' | 'access'>,
+  assignments: EmployeeAccessAssignment,
+): AccessModeStatus {
+  const hasAreas = hasAnySystemArea(mode.access)
+  const hasUsers = countEmployeesForMode(mode.id, assignments) > 0
+  return hasAreas && hasUsers ? 'active' : 'inactive'
 }
