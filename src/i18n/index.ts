@@ -9,7 +9,7 @@ export const LOCALE_STORAGE_KEY = 'malbikstodin-locale'
 
 const localeLoaders: Record<
   SupportedLocale,
-  () => Promise<{ default: Record<string, unknown> }>
+  () => Promise<{ default?: Record<string, unknown> } & Record<string, unknown>>
 > = {
   en: () => import('./locales/en.json'),
   is: () => import('./locales/is.json'),
@@ -27,15 +27,26 @@ function resolveInitialLocale(): SupportedLocale {
   return defaultLocale
 }
 
-async function ensureLocaleResources(locale: SupportedLocale) {
-  if (i18n.hasResourceBundle(locale, 'translation')) return
+function asTranslation(mod: {
+  default?: Record<string, unknown>
+} & Record<string, unknown>): Record<string, unknown> {
+  if (mod.default && typeof mod.default === 'object') return mod.default
+  const { default: _ignored, ...rest } = mod
+  return rest
+}
+
+async function loadLocaleResources(
+  locale: SupportedLocale,
+  { force = false }: { force?: boolean } = {},
+) {
+  if (!force && i18n.hasResourceBundle(locale, 'translation')) return
 
   const mod = await localeLoaders[locale]()
-  i18n.addResourceBundle(locale, 'translation', mod.default, true, true)
+  i18n.addResourceBundle(locale, 'translation', asTranslation(mod), true, true)
 }
 
 export async function changeAppLocale(locale: SupportedLocale) {
-  await ensureLocaleResources(locale)
+  await loadLocaleResources(locale)
   await i18n.changeLanguage(locale)
 
   try {
@@ -55,7 +66,7 @@ async function initI18n() {
 
   await i18n.use(initReactI18next).init({
     resources: {
-      [initialLocale]: { translation: mod.default },
+      [initialLocale]: { translation: asTranslation(mod) },
     },
     lng: initialLocale,
     // Only the active locale is bundled at boot; missing keys stay as keys.
@@ -79,5 +90,13 @@ async function initI18n() {
 }
 
 export const i18nReady = initI18n()
+
+if (import.meta.hot) {
+  import.meta.hot.accept(['./locales/en.json', './locales/is.json'], async () => {
+    await Promise.all(
+      supportedLocales.map((locale) => loadLocaleResources(locale, { force: true })),
+    )
+  })
+}
 
 export default i18n
