@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 import { cn } from '../../lib/utils'
 import { Button } from './Button'
@@ -9,9 +10,18 @@ export type ModalProps = {
   onClose: () => void
   children: ReactNode
   className?: string
+  /** Prefer visible when nested dropdowns need to escape the dialog. */
+  contentOverflow?: 'auto' | 'visible'
 }
 
-export function Modal({ open, title, onClose, children, className }: ModalProps) {
+export function Modal({
+  open,
+  title,
+  onClose,
+  children,
+  className,
+  contentOverflow = 'auto',
+}: ModalProps) {
   const titleId = useId()
   const dialogRef = useRef<HTMLDivElement>(null)
 
@@ -33,14 +43,13 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
     }
   }, [open, onClose])
 
-  if (!open) return null
+  if (!open || typeof document === 'undefined') return null
 
-  return (
+  return createPortal(
     <div
       className={cn(
-        'fixed inset-x-0 bottom-0 z-100 flex items-start justify-center p-4',
+        'fixed inset-x-0 bottom-0 z-100 flex items-center justify-center p-4',
         'top-(--app-header-height,4.5rem)',
-        'md:inset-0 md:items-center',
       )}
     >
       <button
@@ -56,7 +65,8 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
         aria-labelledby={titleId}
         tabIndex={-1}
         className={cn(
-          'relative z-10 w-full max-w-lg rounded-card border border-border bg-surface p-6 shadow-card outline-none md:p-8',
+          'relative z-10 max-h-[min(90dvh,44rem)] w-full max-w-lg rounded-card border border-border bg-surface p-6 shadow-card outline-none md:p-8',
+          contentOverflow === 'visible' ? 'overflow-visible' : 'overflow-y-auto',
           className,
         )}
       >
@@ -77,6 +87,7 @@ export function Modal({ open, title, onClose, children, className }: ModalProps)
         </div>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

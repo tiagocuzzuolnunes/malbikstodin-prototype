@@ -17,6 +17,8 @@ export type SelectProps = InputVariantProps & {
   disabled?: boolean
   required?: boolean
   className?: string
+  /** Cap visible options; extra items scroll. Defaults to uncapped (max-h-72). */
+  maxVisibleOptions?: number
   onChange: (value: string) => void
 }
 
@@ -29,6 +31,7 @@ export function Select({
   required = false,
   className,
   size = 'lg',
+  maxVisibleOptions,
   onChange,
 }: SelectProps) {
   const listId = useId()
@@ -37,6 +40,11 @@ export function Select({
   const [open, setOpen] = useState(false)
   const selected = options.find((option) => option.value === value)
   const displayLabel = selected?.label ?? placeholder ?? ''
+  // ~2.75rem per option (py + text) + 0.5rem list padding
+  const listMaxHeight =
+    maxVisibleOptions != null
+      ? `calc(${maxVisibleOptions} * 2.75rem + 0.5rem)`
+      : undefined
 
   useEffect(() => {
     if (!open) return
@@ -121,7 +129,11 @@ export function Select({
           id={listId}
           role="listbox"
           aria-labelledby={id}
-          className="absolute z-40 mt-2 max-h-72 w-full overflow-auto rounded-control border border-border bg-surface py-2 shadow-card"
+          style={listMaxHeight ? { maxHeight: listMaxHeight } : undefined}
+          className={cn(
+            'absolute z-40 mt-2 w-full overflow-y-auto overscroll-y-contain rounded-control border border-border bg-surface py-2 shadow-card',
+            listMaxHeight ? undefined : 'max-h-72',
+          )}
         >
           {placeholder ? (
             <li role="presentation">
