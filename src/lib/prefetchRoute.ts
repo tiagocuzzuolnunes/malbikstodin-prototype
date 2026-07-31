@@ -8,6 +8,7 @@ const routeImporters: Record<string, () => Promise<unknown>> = {
   '/taekni': () => import('../pages/taekni'),
   '/fjarmal': () => import('../pages/fjarmal'),
   '/verkefni': () => import('../pages/verkefni/index'),
+  '/stjornun': () => import('../pages/stjornun/index'),
 }
 
 const prefetched = new Set<string>()

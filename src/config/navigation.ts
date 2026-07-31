@@ -8,7 +8,9 @@ import {
   HandCoins,
   ClipboardList,
   DollarSign,
+  Settings2,
 } from 'lucide-react'
+import { projectAreas } from './projects'
 
 export type NavItem = {
   to: string
@@ -25,9 +27,8 @@ export const navItems: NavItem[] = [
   { to: '/taekni', labelKey: 'nav.taekni', icon: Laptop },
   { to: '/fjarmal', labelKey: 'nav.fjarmal', icon: HandCoins },
   { to: '/verkefni', labelKey: 'nav.verkefni', icon: Package },
+  { to: '/stjornun', labelKey: 'nav.stjornun', icon: Settings2 },
 ]
-
-import { projectAreas } from './projects'
 
 export function getBreadcrumbKeys(pathname: string) {
   const crumbs = [{ to: '/', labelKey: 'nav.heim' }]
@@ -117,6 +118,20 @@ export function getBreadcrumbKeys(pathname: string) {
     }
   }
 
+  if (pathname.startsWith('/stjornun')) {
+    if (
+      pathname === '/stjornun/adgangsstyring' ||
+      pathname.startsWith('/stjornun/adgangsstyring/')
+    ) {
+      crumbs.push({
+        to: '/stjornun/adgangsstyring',
+        labelKey: 'nav.adgangsstyring',
+      })
+    }
+
+    return crumbs
+  }
+
   if (pathname.startsWith('/verkefni/events')) {
     crumbs.push({ to: '/verkefni/events', labelKey: 'nav.events' })
     return crumbs
@@ -124,22 +139,6 @@ export function getBreadcrumbKeys(pathname: string) {
 
   if (pathname.startsWith('/verkefni/ferlar')) {
     crumbs.push({ to: '/verkefni/ferlar', labelKey: 'nav.ferlar' })
-    return crumbs
-  }
-
-  if (pathname.startsWith('/verkefni/stjornun')) {
-    crumbs.push({ to: '/verkefni/stjornun', labelKey: 'nav.stjornun' })
-
-    if (
-      pathname === '/verkefni/stjornun/adgangsstyring' ||
-      pathname.startsWith('/verkefni/stjornun/adgangsstyring/')
-    ) {
-      crumbs.push({
-        to: '/verkefni/stjornun/adgangsstyring',
-        labelKey: 'nav.adgangsstyring',
-      })
-    }
-
     return crumbs
   }
 

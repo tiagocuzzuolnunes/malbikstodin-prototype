@@ -31,7 +31,10 @@ export default function Sidebar() {
         </Button>
       </div>
 
-      <nav className="flex flex-1 flex-col gap-4 p-2" aria-label={t('common.mainNav')}>
+      <nav
+        className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-y-contain p-2"
+        aria-label={t('common.mainNav')}
+      >
         {navItems.map(({ to, labelKey, icon }) => {
           const label = t(labelKey)
 

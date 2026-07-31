@@ -186,14 +186,15 @@
           "description": "Veldu verkefnalista, samninga, skjalasafn, dagskrá eða tæki fyrir framleiðslu og vettvangsstarfsemi á Esju."
         }
       },
-      "stjornun": {
-        "description": "Stjórnunartól fyrirtækisins fyrir fólk, heimildir og eftirlit.",
-        "accessControlsDescription": "Stilla aðgangsstig starfsmannaflokka þvert á vefi og kerfi fyrirtækisins.",
-        "accessControlsPageDescription": "Veldu fullan aðgang, breytanlegan aðgang, áhorfsaðgang eða bannaðan aðgang fyrir hvern starfsmannaflokk og kerfissvæði."
-      },
       "ferlar": {
         "description": "Skref-fyrir-skref tímalínur fyrir kjarnaferla í starfsemi fyrirtækisins."
       }
+    },
+    "stjornun": {
+      "description": "Stjórnunartól fyrirtækisins fyrir fólk, heimildir og eftirlit.",
+      "openSection": "Opna",
+      "accessControlsDescription": "Skilgreindu aðgangshamla og úthlutaðu þeim til starfsmanna.",
+      "accessControlsPageDescription": "Skiptu á milli þess að aðlaga aðgangsstig og að úthluta þeim til starfsfólks."
     }
   },
   "processes": {
@@ -269,29 +270,39 @@
     }
   },
   "accessControls": {
-    "title": "Aðgangsfylki",
-    "subtitle": "Hver reitur stillir aðgangsstig fyrir einn starfsmannaflokk á einu kerfissvæði.",
-    "caption": "Aðgangsstig starfsmannaflokka eftir vefjum og kerfissvæðum fyrirtækisins",
+    "title": "Aðgangsstýring",
+    "tabsLabel": "Yfirlit aðgangsstýringar",
+    "tabs": {
+      "levels": "Aðgangsstig",
+      "staff": "Starfsfólk"
+    },
+    "levelsSubtitle": "Sýsla með aðgangsstig, fjölda notenda og hvaða svæði þau opna.",
+    "staffSubtitle": "Skoða starfsfólk og úthluta aðgangsstigi til hvers og eins.",
+    "levelsCaption": "Aðgangsstig með fjölda starfsmanna og stöðu",
+    "staffCaption": "Listi starfsfólks með sviði og aðgangsstigi",
     "columns": {
-      "staffCategory": "Starfsmannaflokkur"
+      "level": "Stig",
+      "employees": "Starfsmenn",
+      "status": "Staða",
+      "actions": "Aðgerðir",
+      "employee": "Nafn",
+      "email": "Netfang",
+      "sector": "Svið",
+      "accessMode": "Stig"
     },
-    "cellLabel": "Aðgangur fyrir {{category}} á {{area}}",
+    "status": {
+      "active": "Virkt",
+      "inactive": "Óvirkt"
+    },
+    "edit": "Breyta",
+    "editLevelTitle": "Breyta aðgangsstigi",
+    "editStaffTitle": "Breyta aðgangi starfsmanns",
+    "areasLegend": "Leyfð svæði",
+    "newLevelName": "Nýtt stig",
+    "addMode": "Bæta við stigi",
+    "removeMode": "Eyða stigi",
     "reset": "Frumstilla sjálfgefið",
-    "saved": "Aðgangsstig vistuð fyrir þessa lotu.",
-    "levels": {
-      "full": "Fullur",
-      "editable": "Breytanlegur",
-      "viewer": "Skoðun",
-      "forbidden": "Bannaður"
-    },
-    "categories": {
-      "executiveDirector": "Framkvæmdastjóri",
-      "divisionManager": "Sviðsstjóri",
-      "departmentManager": "Deildarstjóri",
-      "employee": "Starfsmaður",
-      "fieldStaff": "Starfsfólk á vettvangi",
-      "outsideCompany": "Aðili utan fyrirtækis"
-    },
+    "saved": "Aðgangsstýring vistuð fyrir þessa lotu.",
     "areas": {
       "intranet": "Innrivefur",
       "news": "Fréttir",

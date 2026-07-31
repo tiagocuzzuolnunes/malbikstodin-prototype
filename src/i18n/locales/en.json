@@ -186,14 +186,15 @@
           "description": "Choose worklist, contracts, archive, schedule, or equipment for Esja production and field work."
         }
       },
-      "stjornun": {
-        "description": "Company administration tools for people, permissions, and oversight.",
-        "accessControlsDescription": "Set staff-category access levels across company websites and systems.",
-        "accessControlsPageDescription": "Choose full, editable, viewer, or forbidden access for each staff category and system area."
-      },
       "ferlar": {
         "description": "Step-by-step timelines for core company work processes."
       }
+    },
+    "stjornun": {
+      "description": "Company administration tools for people, permissions, and oversight.",
+      "openSection": "Open",
+      "accessControlsDescription": "Define access modes and assign them to employees.",
+      "accessControlsPageDescription": "Toggle between customizing access levels and assigning those levels to staff."
     }
   },
   "processes": {
@@ -269,29 +270,39 @@
     }
   },
   "accessControls": {
-    "title": "Access matrix",
-    "subtitle": "Each cell sets the access level for one staff category in one system area.",
-    "caption": "Staff category access levels by company website and system area",
+    "title": "Access controls",
+    "tabsLabel": "Access control views",
+    "tabs": {
+      "levels": "Access levels",
+      "staff": "Staff"
+    },
+    "levelsSubtitle": "Manage access levels, how many people use them, and which areas they unlock.",
+    "staffSubtitle": "Review staff and assign an access level to each person.",
+    "levelsCaption": "Access levels with employee count and status",
+    "staffCaption": "Staff list with sector and access level",
     "columns": {
-      "staffCategory": "Staff category"
+      "level": "Level",
+      "employees": "Employees",
+      "status": "Status",
+      "actions": "Actions",
+      "employee": "Name",
+      "email": "Email",
+      "sector": "Sector",
+      "accessMode": "Level"
     },
-    "cellLabel": "Access for {{category}} in {{area}}",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "edit": "Edit",
+    "editLevelTitle": "Edit access level",
+    "editStaffTitle": "Edit staff access",
+    "areasLegend": "Allowed areas",
+    "newLevelName": "New level",
+    "addMode": "Add level",
+    "removeMode": "Delete level",
     "reset": "Reset defaults",
-    "saved": "Access levels saved for this session.",
-    "levels": {
-      "full": "Full",
-      "editable": "Editable",
-      "viewer": "Viewer",
-      "forbidden": "Forbidden"
-    },
-    "categories": {
-      "executiveDirector": "Executive Director",
-      "divisionManager": "Division Manager",
-      "departmentManager": "Department Manager",
-      "employee": "Employee",
-      "fieldStaff": "Field Staff",
-      "outsideCompany": "Outside Company"
-    },
+    "saved": "Access controls saved for this session.",
     "areas": {
       "intranet": "Intranet",
       "news": "News",

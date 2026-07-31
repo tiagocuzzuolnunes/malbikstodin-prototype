@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { GitBranch, Settings2 } from 'lucide-react'
+import { GitBranch } from 'lucide-react'
 import { SectionPage } from '../../components/shared'
 import { projectAreas } from '../../config/projects'
 import { cn } from '../../lib/utils'
@@ -8,23 +8,6 @@ import { buttonVariants, CardShell } from '../../components/ui'
 
 export default function VerkefniPage() {
   const { t } = useTranslation()
-
-  const secondaryLinks = [
-    {
-      id: 'ferlar',
-      to: '/verkefni/ferlar',
-      titleKey: 'nav.ferlar',
-      descriptionKey: 'pages.verkefni.ferlar.description',
-      icon: GitBranch,
-    },
-    {
-      id: 'stjornun',
-      to: '/verkefni/stjornun',
-      titleKey: 'nav.stjornun',
-      descriptionKey: 'pages.verkefni.stjornun.description',
-      icon: Settings2,
-    },
-  ] as const
 
   return (
     <div className="space-y-8">
@@ -52,33 +35,26 @@ export default function VerkefniPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {secondaryLinks.map((item) => {
-          const Icon = item.icon
-
-          return (
-            <CardShell
-              key={item.id}
-              title={
-                <span className="flex items-center gap-3">
-                  <Icon className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
-                  {t(item.titleKey)}
-                </span>
-              }
-              description={t(item.descriptionKey)}
-              footer={
-                <Link
-                  to={item.to}
-                  className={cn(
-                    buttonVariants({ variant: 'primary', size: 'lg' }),
-                    'min-h-12 px-5 text-base',
-                  )}
-                >
-                  {t('pages.verkefni.openArea')}
-                </Link>
-              }
-            />
-          )
-        })}
+        <CardShell
+          title={
+            <span className="flex items-center gap-3">
+              <GitBranch className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
+              {t('nav.ferlar')}
+            </span>
+          }
+          description={t('pages.verkefni.ferlar.description')}
+          footer={
+            <Link
+              to="/verkefni/ferlar"
+              className={cn(
+                buttonVariants({ variant: 'primary', size: 'lg' }),
+                'min-h-12 px-5 text-base',
+              )}
+            >
+              {t('pages.verkefni.openArea')}
+            </Link>
+          }
+        />
       </div>
 
       <div className="flex justify-end">
