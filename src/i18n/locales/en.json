@@ -298,6 +298,7 @@
     "editLevelTitle": "Edit access level",
     "editStaffTitle": "Edit staff access",
     "areasLegend": "Allowed areas",
+    "namePlaceholder": "e.g. Contractor",
     "newLevelName": "New level",
     "addMode": "Add level",
     "removeMode": "Delete level",

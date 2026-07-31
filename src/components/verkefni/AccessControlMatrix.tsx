@@ -1,15 +1,16 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Pencil, Plus } from 'lucide-react'
 import {
-  accessModeStatuses,
   countEmployeesForMode,
   createAccessModes,
   createBlankAccessMode,
   createEmployeeAccess,
+  resolveAccessModeStatus,
   systemAreas,
   type AccessMode,
   type AccessModeStatus,
+  type EmployeeAccessAssignment,
 } from '../../data/accessControls'
 import { employees } from '../../data/employees'
 import { cn } from '../../lib/utils'
@@ -18,8 +19,13 @@ import { Button, Input, Label, Modal, Select } from '../ui'
 type AccessTab = 'levels' | 'staff'
 
 const statusClass: Record<AccessModeStatus, string> = {
-  active: 'bg-success/10 text-success',
-  inactive: 'bg-surface-muted text-foreground-muted',
+  active: 'bg-success/15 text-success ring-1 ring-success/25',
+  inactive: 'bg-danger/10 text-danger ring-1 ring-danger/20',
+}
+
+const statusDotClass: Record<AccessModeStatus, string> = {
+  active: 'bg-success',
+  inactive: 'bg-danger',
 }
 
 function SegmentedControl({
@@ -80,10 +86,14 @@ function StatusBadge({ status }: { status: AccessModeStatus }) {
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-control px-2.5 py-1 text-xs font-medium tracking-wide',
+        'inline-flex items-center gap-1.5 rounded-control px-2.5 py-1 text-xs font-semibold tracking-wide',
         statusClass[status],
       )}
     >
+      <span
+        aria-hidden
+        className={cn('h-1.5 w-1.5 shrink-0 rounded-full', statusDotClass[status])}
+      />
       {t(`accessControls.status.${status}`)}
     </span>
   )
@@ -92,6 +102,7 @@ function StatusBadge({ status }: { status: AccessModeStatus }) {
 function LevelEditModal({
   open,
   mode,
+  isNew,
   onClose,
   onSave,
   onDelete,
@@ -99,140 +110,135 @@ function LevelEditModal({
 }: {
   open: boolean
   mode: AccessMode | null
+  isNew: boolean
+  onClose: () => void
+  onSave: (mode: AccessMode) => void
+  onDelete?: (modeId: string) => void
+  canDelete: boolean
+}) {
+  if (!open || !mode) return null
+
+  return (
+    <LevelEditModalForm
+      key={mode.id}
+      mode={mode}
+      isNew={isNew}
+      onClose={onClose}
+      onSave={onSave}
+      onDelete={onDelete}
+      canDelete={canDelete}
+    />
+  )
+}
+
+function LevelEditModalForm({
+  mode,
+  isNew,
+  onClose,
+  onSave,
+  onDelete,
+  canDelete,
+}: {
+  mode: AccessMode
+  isNew: boolean
   onClose: () => void
   onSave: (mode: AccessMode) => void
   onDelete?: (modeId: string) => void
   canDelete: boolean
 }) {
   const { t } = useTranslation()
-  const [draft, setDraft] = useState<AccessMode | null>(null)
-
-  useEffect(() => {
-    if (open && mode) {
-      setDraft({ ...mode, access: { ...mode.access } })
-    } else {
-      setDraft(null)
-    }
-  }, [open, mode])
-
-  const editing = draft
+  const [draft, setDraft] = useState<AccessMode>(() => ({
+    ...mode,
+    access: { ...mode.access },
+  }))
 
   return (
-    <Modal
-      open={open && !!editing}
-      onClose={onClose}
-      title={t('accessControls.editLevelTitle')}
-      className="max-w-xl"
-    >
-      {editing ? (
-        <div className="space-y-5">
-          <div className="space-y-1.5">
-            <Label htmlFor="level-name">{t('accessControls.columns.level')}</Label>
-            <Input
-              id="level-name"
-              value={editing.name}
-              onChange={(event) =>
-                setDraft((current) =>
-                  current ? { ...current, name: event.target.value } : current,
-                )
-              }
-            />
+    <Modal open onClose={onClose} title={t('accessControls.editLevelTitle')} className="max-w-xl">
+      <div className="space-y-5">
+        <div className="space-y-1.5">
+          <Label htmlFor="level-name">{t('accessControls.columns.level')}</Label>
+          <Input
+            id="level-name"
+            value={draft.name}
+            placeholder={t('accessControls.namePlaceholder')}
+            onChange={(event) =>
+              setDraft((current) => ({ ...current, name: event.target.value }))
+            }
+          />
+        </div>
+
+        <fieldset className="space-y-3">
+          <legend className="text-sm font-medium text-foreground-muted">
+            {t('accessControls.areasLegend')}
+          </legend>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {systemAreas.map((areaId) => {
+              const checkboxId = `level-area-${areaId}`
+              return (
+                <label
+                  key={areaId}
+                  htmlFor={checkboxId}
+                  className="flex cursor-pointer items-center gap-3 rounded-control border border-border px-3 py-2.5 hover:bg-interactive-hover/50"
+                >
+                  <input
+                    id={checkboxId}
+                    type="checkbox"
+                    checked={draft.access[areaId]}
+                    onChange={(event) => {
+                      const allowed = event.target.checked
+                      setDraft((current) => ({
+                        ...current,
+                        access: { ...current.access, [areaId]: allowed },
+                      }))
+                    }}
+                    className="h-4 w-4 cursor-pointer accent-accent"
+                  />
+                  <span className="text-sm font-medium">
+                    {t(`accessControls.areas.${areaId}`)}
+                  </span>
+                </label>
+              )
+            })}
           </div>
+        </fieldset>
 
-          <div className="space-y-1.5">
-            <Label htmlFor="level-status">{t('accessControls.columns.status')}</Label>
-            <Select
-              id="level-status"
-              value={editing.status}
-              options={accessModeStatuses.map((status) => ({
-                value: status,
-                label: t(`accessControls.status.${status}`),
-              }))}
-              onChange={(next) =>
-                setDraft((current) =>
-                  current ? { ...current, status: next as AccessModeStatus } : current,
-                )
-              }
-            />
-          </div>
-
-          <fieldset className="space-y-3">
-            <legend className="text-sm font-medium text-foreground-muted">
-              {t('accessControls.areasLegend')}
-            </legend>
-            <div className="grid gap-2 sm:grid-cols-2">
-              {systemAreas.map((areaId) => {
-                const checkboxId = `level-area-${areaId}`
-                return (
-                  <label
-                    key={areaId}
-                    htmlFor={checkboxId}
-                    className="flex cursor-pointer items-center gap-3 rounded-control border border-border px-3 py-2.5 hover:bg-interactive-hover/50"
-                  >
-                    <input
-                      id={checkboxId}
-                      type="checkbox"
-                      checked={editing.access[areaId]}
-                      onChange={(event) => {
-                        const allowed = event.target.checked
-                        setDraft((current) =>
-                          current
-                            ? {
-                                ...current,
-                                access: { ...current.access, [areaId]: allowed },
-                              }
-                            : current,
-                        )
-                      }}
-                      className="h-4 w-4 cursor-pointer accent-accent"
-                    />
-                    <span className="text-sm font-medium">
-                      {t(`accessControls.areas.${areaId}`)}
-                    </span>
-                  </label>
-                )
-              })}
-            </div>
-          </fieldset>
-
-          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-            {onDelete && canDelete ? (
-              <Button
-                type="button"
-                variant="secondary"
-                size="md"
-                className="text-danger"
-                onClick={() => {
-                  onDelete(editing.id)
-                  onClose()
-                }}
-              >
-                {t('accessControls.removeMode')}
-              </Button>
-            ) : (
-              <span />
-            )}
-            <div className="flex gap-2">
-              <Button type="button" variant="ghost" size="md" onClick={onClose}>
-                {t('common.cancel')}
-              </Button>
-              <Button
-                type="button"
-                variant="primary"
-                size="md"
-                onClick={() => {
-                  const trimmed = editing.name.trim()
-                  if (!trimmed) return
-                  onSave({ ...editing, name: trimmed })
-                  onClose()
-                }}
-              >
-                {t('common.saveChanges')}
-              </Button>
-            </div>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
+          {onDelete && canDelete ? (
+            <Button
+              type="button"
+              variant="secondary"
+              size="md"
+              className="text-danger"
+              onClick={() => {
+                onDelete(draft.id)
+                onClose()
+              }}
+            >
+              {t('accessControls.removeMode')}
+            </Button>
+          ) : (
+            <span />
+          )}
+          <div className="flex gap-2">
+            <Button type="button" variant="ghost" size="md" onClick={onClose}>
+              {t('common.cancel')}
+            </Button>
+            <Button
+              type="button"
+              variant="primary"
+              size="md"
+              onClick={() => {
+                const trimmed = draft.name.trim()
+                if (!trimmed) return
+                onSave({ ...draft, name: trimmed })
+                onClose()
+              }}
+            >
+              {isNew ? t('accessControls.addMode') : t('common.saveChanges')}
+            </Button>
           </div>
         </div>
-      ) : null}
+      </div>
     </Modal>
   )
 }
@@ -242,6 +248,7 @@ function StaffEditModal({
   employeeId,
   modes,
   modeId,
+  assignments,
   onClose,
   onSave,
 }: {
@@ -249,23 +256,47 @@ function StaffEditModal({
   employeeId: string | null
   modes: AccessMode[]
   modeId: string
+  assignments: EmployeeAccessAssignment
+  onClose: () => void
+  onSave: (employeeId: string, modeId: string) => void
+}) {
+  if (!open || !employeeId) return null
+
+  return (
+    <StaffEditModalForm
+      key={employeeId}
+      employeeId={employeeId}
+      modes={modes}
+      modeId={modeId}
+      assignments={assignments}
+      onClose={onClose}
+      onSave={onSave}
+    />
+  )
+}
+
+function StaffEditModalForm({
+  employeeId,
+  modes,
+  modeId,
+  assignments,
+  onClose,
+  onSave,
+}: {
+  employeeId: string
+  modes: AccessMode[]
+  modeId: string
+  assignments: EmployeeAccessAssignment
   onClose: () => void
   onSave: (employeeId: string, modeId: string) => void
 }) {
   const { t } = useTranslation()
   const [selectedModeId, setSelectedModeId] = useState(modeId)
   const employee = employees.find((item) => item.id === employeeId) ?? null
-  const selectableModes = modes.filter(
-    (mode) => mode.status === 'active' || mode.id === modeId,
-  )
-
-  useEffect(() => {
-    if (open) setSelectedModeId(modeId)
-  }, [open, modeId])
 
   return (
     <Modal
-      open={open && !!employee}
+      open={!!employee}
       onClose={onClose}
       title={t('accessControls.editStaffTitle')}
       contentOverflow="visible"
@@ -287,13 +318,16 @@ function StaffEditModal({
               id="staff-level"
               value={selectedModeId}
               maxVisibleOptions={6}
-              options={selectableModes.map((mode) => ({
-                value: mode.id,
-                label:
-                  mode.status === 'inactive'
-                    ? `${mode.name} (${t('accessControls.status.inactive')})`
-                    : mode.name,
-              }))}
+              options={modes.map((mode) => {
+                const status = resolveAccessModeStatus(mode, assignments)
+                return {
+                  value: mode.id,
+                  label:
+                    status === 'inactive'
+                      ? `${mode.name} (${t('accessControls.status.inactive')})`
+                      : mode.name,
+                }
+              })}
               onChange={setSelectedModeId}
             />
           </div>
@@ -325,7 +359,6 @@ export default function AccessControlMatrix() {
   const [tab, setTab] = useState<AccessTab>('levels')
   const [modes, setModes] = useState(() => createAccessModes())
   const [assignments, setAssignments] = useState(() => createEmployeeAccess())
-  const [savedNotice, setSavedNotice] = useState(false)
 
   const [editingLevelId, setEditingLevelId] = useState<string | null>(null)
   const [creatingLevel, setCreatingLevel] = useState(false)
@@ -344,14 +377,10 @@ export default function AccessControlMatrix() {
         ? (modeById[editingLevelId] ?? null)
         : null
 
-  function touch() {
-    setSavedNotice(false)
-  }
-
   function openCreateLevel() {
     setCreatingLevel(true)
     setEditingLevelId(null)
-    setDraftNewLevel(createBlankAccessMode(t('accessControls.newLevelName')))
+    setDraftNewLevel(createBlankAccessMode())
   }
 
   function closeLevelModal() {
@@ -361,7 +390,6 @@ export default function AccessControlMatrix() {
   }
 
   function handleSaveLevel(mode: AccessMode) {
-    touch()
     setModes((current) => {
       const exists = current.some((item) => item.id === mode.id)
       if (exists) {
@@ -373,7 +401,6 @@ export default function AccessControlMatrix() {
 
   function handleDeleteLevel(modeId: string) {
     if (modes.length <= 1) return
-    touch()
     const remaining = modes.filter((mode) => mode.id !== modeId)
     const fallbackId = remaining[0]?.id
     setModes(remaining)
@@ -389,16 +416,7 @@ export default function AccessControlMatrix() {
   }
 
   function handleSaveStaff(employeeId: string, modeId: string) {
-    touch()
     setAssignments((current) => ({ ...current, [employeeId]: modeId }))
-  }
-
-  function handleReset() {
-    setModes(createAccessModes())
-    setAssignments(createEmployeeAccess())
-    setSavedNotice(false)
-    closeLevelModal()
-    setEditingEmployeeId(null)
   }
 
   const editingEmployeeModeId =
@@ -407,34 +425,7 @@ export default function AccessControlMatrix() {
       : ''
 
   return (
-    <section className="space-y-4" aria-labelledby="access-controls-heading">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h2 id="access-controls-heading" className="text-2xl font-semibold tracking-tight">
-            {t('accessControls.title')}
-          </h2>
-          <p className="mt-1 text-sm text-foreground-muted">
-            {tab === 'levels'
-              ? t('accessControls.levelsSubtitle')
-              : t('accessControls.staffSubtitle')}
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          {savedNotice ? (
-            <p className="text-sm text-foreground-muted" role="status">
-              {t('accessControls.saved')}
-            </p>
-          ) : null}
-          <Button variant="secondary" size="md" onClick={handleReset}>
-            {t('accessControls.reset')}
-          </Button>
-          <Button variant="primary" size="md" onClick={() => setSavedNotice(true)}>
-            {t('common.saveChanges')}
-          </Button>
-        </div>
-      </div>
-
+    <section className="space-y-4" aria-label={t('accessControls.title')}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <SegmentedControl
           label={t('accessControls.tabsLabel')}
@@ -486,6 +477,7 @@ export default function AccessControlMatrix() {
               <tbody>
                 {modes.map((mode) => {
                   const employeeCount = countEmployeesForMode(mode.id, assignments)
+                  const status = resolveAccessModeStatus(mode, assignments)
 
                   return (
                     <tr key={mode.id} className="hover:bg-interactive-hover/40">
@@ -499,7 +491,7 @@ export default function AccessControlMatrix() {
                         {employeeCount}
                       </td>
                       <td className="border-b border-border px-4 py-3">
-                        <StatusBadge status={mode.status} />
+                        <StatusBadge status={status} />
                       </td>
                       <td className="border-b border-border px-4 py-3 text-right">
                         <Button
@@ -590,6 +582,7 @@ export default function AccessControlMatrix() {
       <LevelEditModal
         open={!!editingLevel}
         mode={editingLevel}
+        isNew={creatingLevel}
         onClose={closeLevelModal}
         onSave={handleSaveLevel}
         onDelete={creatingLevel ? undefined : handleDeleteLevel}
@@ -601,6 +594,7 @@ export default function AccessControlMatrix() {
         employeeId={editingEmployeeId}
         modes={modes}
         modeId={editingEmployeeModeId}
+        assignments={assignments}
         onClose={() => setEditingEmployeeId(null)}
         onSave={handleSaveStaff}
       />
