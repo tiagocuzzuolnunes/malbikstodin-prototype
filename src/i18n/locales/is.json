@@ -97,6 +97,8 @@
   "nav": {
     "heim": "Heim",
     "skraning": "Skráning",
+    "hours": "Tímar",
+    "radstofunVigtana": "Ráðstöfun vigtana",
     "frettir": "Fréttir",
     "mannaudur": "Mannauður",
     "starfsfolk": "Starfsfólk",
@@ -135,7 +137,10 @@
       "backHome": "Til baka heim"
     },
     "skraning": {
-      "description": "Fylltu út upplýsingarnar, byrjaðu vinnu og stöðvaðu svo til að skrá tíma sjálfkrafa."
+      "description": "Veldu tímaskráningu eða ráðstöfun vigtana fyrir stöðina.",
+      "openSection": "Opna",
+      "hoursDescription": "Fylltu út upplýsingarnar, byrjaðu vinnu og stöðvaðu svo til að skrá tíma sjálfkrafa.",
+      "dispatchDescription": "Sýnir hverja vigtun á tímabilinu við hliðina á því hvert hún fór — ferð á verk, fylgiseðil til kaupanda eða innkaup sem bíða reiknings birgis."
     },
     "frettir": {
       "description": "Yfirlitssíða frétta með stöðu birtingar og tilkynningum."
@@ -822,6 +827,126 @@
       "payroll": "Laun",
       "subcontractors": "Undirverktakar",
       "other": "Annað"
+    }
+  },
+  "weighingDispatch": {
+    "caption": "Vigtanir á tímabilinu með ráðstöfun og stöðu",
+    "plant": {
+      "asphalt": "Malbiksstöð"
+    },
+    "scales": {
+      "asphalt1": "Malbiksstöð — vigt 1",
+      "asphalt2": "Malbiksstöð — vigt 2",
+      "quarry": "Námavigt"
+    },
+    "jobs": {
+      "hringbraut": "Hringbraut, suðurakrein",
+      "kaltakot": "Kaltakot, burðarlag",
+      "plantYard": "Lager á stöð"
+    },
+    "register": {
+      "title": "Vigtun",
+      "subtitle": "Skráðu vigtunina af vigtinni áður en hún er ráðstöfuð.",
+      "tonnes": "tonn",
+      "autoStop": "Sjálfvirkt stopp (10 mín)",
+      "lastUpdate": "Síðasta uppfærsla: {{time}}",
+      "submit": "Skrá vigtun",
+      "submitted": "Vigtun bætt við ráðstöfunarlistann.",
+      "scalePill": {
+        "1": "Vigt 1",
+        "2": "Vigt 2"
+      },
+      "fields": {
+        "scale": "Vigt",
+        "net": "Farmþyngd (Nettó)",
+        "gross": "Heildarþyngd",
+        "direction": "Inn/Út",
+        "equipment": "Tæki",
+        "driver": "Bílstjóri",
+        "product": "Vara",
+        "job": "Verk",
+        "description": "Lýsing"
+      },
+      "placeholders": {
+        "equipment": "Veldu tæki",
+        "driver": "Veldu ökumann",
+        "product": "Veldu vöru",
+        "job": "Veldu verk",
+        "description": "Skrifaðu athugasemd..."
+      }
+    },
+    "stats": {
+      "weighingsToday": "Vigtanir í dag",
+      "unrouted": "Óráðstafað",
+      "tonnesOut": "Tonn út",
+      "tonnesIn": "Tonn inn"
+    },
+    "columns": {
+      "time": "Tími",
+      "weighingNo": "Vigtunarnr.",
+      "direction": "Inn/Út",
+      "vehicle": "Ökutæki",
+      "product": "Vara",
+      "recipient": "Verk / viðtakandi",
+      "net": "Nettó (t)",
+      "routedTo": "Ráðstafað á",
+      "status": "Staða"
+    },
+    "direction": {
+      "in": "Inn",
+      "out": "Út"
+    },
+    "status": {
+      "routed": "Ráðstafað",
+      "unrouted": "Óráðstafað",
+      "needsReview": "Þarf yfirferð",
+      "awaitingDocket": "Bíður fylgiseðils",
+      "awaitingInvoice": "Bíður reiknings",
+      "discrepancy": "Frávik"
+    },
+    "filters": {
+      "label": "Sía eftir stöðu",
+      "all": "Allt"
+    },
+    "actions": {
+      "excel": "Excel",
+      "loadData": "Sækja gögn",
+      "route": "Ráðstafa"
+    },
+    "unroutedTitle": "Óráðstafaðar vigtanir",
+    "unroutedSummary": "{{count}} óráðstafaðar vigtanir · {{tonnes}} t",
+    "unroutedEmpty": "Allar vigtanir á tímabilinu hafa ráðstöfun.",
+    "routeOptions": {
+      "tripOnJob": "Ferð á verki",
+      "docketToBuyer": "Fylgiseðill til kaupanda",
+      "purchase": "Innkaup — bíður reiknings",
+      "supplierInvoice": "Para við reikning birgis"
+    },
+    "products": {
+      "asphaltY16": "Malbik Y16",
+      "binderCourseTh11": "Bindilag Þ11",
+      "gravel016": "Möl 0-16"
+    },
+    "recipient": {
+      "none": "—",
+      "job": "{{job}} — {{place}}",
+      "buyer": "{{buyer}}",
+      "supplierSite": "{{site}} (birgir: {{supplier}})",
+      "jobMissing": "Verk vantar"
+    },
+    "route": {
+      "noRouteFound": "Engin leið fannst",
+      "tripOnJob": "Ferð á verki #{{trip}}",
+      "docketToBuyer": "Fylgiseðill til kaupanda",
+      "purchaseAwaitingInvoice": "Innkaup — bíður reiknings",
+      "supplierInvoice": "Reikningur birgis: {{tonnes}} t",
+      "tripJobMissing": "Ferð fannst — verk vantar",
+      "manualQueued": "Sett í bið fyrir ráðstöfun"
+    },
+    "rules": {
+      "tripOnJob": "Para út-vigtun við ferð á verki",
+      "docketToBuyer": "Para út-vigtun við fylgiseðil kaupanda",
+      "supplierInvoice": "Para inn-vigtun við afhendingu birgis"
     }
   },
   "hours": {

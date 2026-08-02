@@ -1,7 +1,7 @@
 /** Maps primary app paths to their page modules for hover/idle prefetch. */
 const routeImporters: Record<string, () => Promise<unknown>> = {
   '/': () => import('../pages/index'),
-  '/skraning': () => import('../pages/skraning'),
+  '/skraning': () => import('../pages/skraning/index'),
   '/reikningar': () => import('../pages/reikningar/index'),
   '/frettir': () => import('../pages/frettir'),
   '/mannaudur': () => import('../pages/mannaudur/index'),

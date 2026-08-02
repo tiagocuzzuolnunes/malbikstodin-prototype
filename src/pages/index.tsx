@@ -34,7 +34,7 @@ export default function HeimPage() {
         <h1 className="text-4xl font-semibold tracking-tight">{greeting}</h1>
         <p className="mt-3 text-lg text-foreground-muted">{weatherText}</p>
         <Link
-          to="/skraning"
+          to="/skraning/hours"
           className={cn(
             buttonVariants({ variant: 'primary', size: 'lg' }),
             'mt-6 inline-flex min-h-11 px-5',

@@ -40,6 +40,24 @@ export function getBreadcrumbKeys(pathname: string) {
     crumbs.push({ to: match.to, labelKey: match.labelKey })
   }
 
+  if (pathname.startsWith('/skraning/')) {
+    if (pathname === '/skraning/hours' || pathname.startsWith('/skraning/hours/')) {
+      crumbs.push({ to: '/skraning/hours', labelKey: 'nav.hours' })
+      return crumbs
+    }
+
+    if (
+      pathname === '/skraning/radstofun-vigtana' ||
+      pathname.startsWith('/skraning/radstofun-vigtana/')
+    ) {
+      crumbs.push({
+        to: '/skraning/radstofun-vigtana',
+        labelKey: 'nav.radstofunVigtana',
+      })
+      return crumbs
+    }
+  }
+
   if (pathname.startsWith('/reikningar/')) {
     if (
       pathname === '/reikningar/yfirferd' ||

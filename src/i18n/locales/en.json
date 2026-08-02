@@ -97,6 +97,8 @@
   "nav": {
     "heim": "Home",
     "skraning": "Registration",
+    "hours": "Hours",
+    "radstofunVigtana": "Weighing dispatch",
     "frettir": "News",
     "mannaudur": "HR",
     "starfsfolk": "Employees",
@@ -135,7 +137,10 @@
       "backHome": "Back to home"
     },
     "skraning": {
-      "description": "Fill in the details, start work, then stop to log hours automatically."
+      "description": "Choose hours registration or weighing dispatch for the plant.",
+      "openSection": "Open",
+      "hoursDescription": "Fill in the details, start work, then stop to log hours automatically.",
+      "dispatchDescription": "See every weighing in the period next to where it went — a trip on a job, a docket to a buyer, or a purchase awaiting the supplier invoice."
     },
     "frettir": {
       "description": "Company news dashboard with publishing status and announcements."
@@ -822,6 +827,126 @@
       "payroll": "Payroll",
       "subcontractors": "Subcontractors",
       "other": "Other"
+    }
+  },
+  "weighingDispatch": {
+    "caption": "Weighings in the period with routing destination and status",
+    "plant": {
+      "asphalt": "Asphalt plant"
+    },
+    "scales": {
+      "asphalt1": "Asphalt plant — scale 1",
+      "asphalt2": "Asphalt plant — scale 2",
+      "quarry": "Quarry scale"
+    },
+    "jobs": {
+      "hringbraut": "Hringbraut, south lane",
+      "kaltakot": "Kaltakot, base course",
+      "plantYard": "Plant yard stockpile"
+    },
+    "register": {
+      "title": "Weighing",
+      "subtitle": "Register the weighing from the scale before it is routed.",
+      "tonnes": "tonnes",
+      "autoStop": "Auto stop (10 min)",
+      "lastUpdate": "Last update: {{time}}",
+      "submit": "Register weighing",
+      "submitted": "Weighing added to the dispatch list.",
+      "scalePill": {
+        "1": "Scale 1",
+        "2": "Scale 2"
+      },
+      "fields": {
+        "scale": "Scale",
+        "net": "Payload (net)",
+        "gross": "Gross weight",
+        "direction": "In/Out",
+        "equipment": "Vehicle",
+        "driver": "Driver",
+        "product": "Product",
+        "job": "Job",
+        "description": "Description"
+      },
+      "placeholders": {
+        "equipment": "Select vehicle",
+        "driver": "Select driver",
+        "product": "Select product",
+        "job": "Select job",
+        "description": "Write a comment..."
+      }
+    },
+    "stats": {
+      "weighingsToday": "Weighings today",
+      "unrouted": "Unrouted",
+      "tonnesOut": "Tonnes out",
+      "tonnesIn": "Tonnes in"
+    },
+    "columns": {
+      "time": "Time",
+      "weighingNo": "Weighing no.",
+      "direction": "In/Out",
+      "vehicle": "Vehicle",
+      "product": "Product",
+      "recipient": "Job / recipient",
+      "net": "Net (t)",
+      "routedTo": "Routed to",
+      "status": "Status"
+    },
+    "direction": {
+      "in": "In",
+      "out": "Out"
+    },
+    "status": {
+      "routed": "Routed",
+      "unrouted": "Unrouted",
+      "needsReview": "Needs review",
+      "awaitingDocket": "Awaiting docket",
+      "awaitingInvoice": "Awaiting invoice",
+      "discrepancy": "Discrepancy"
+    },
+    "filters": {
+      "label": "Filter by status",
+      "all": "All"
+    },
+    "actions": {
+      "excel": "Excel",
+      "loadData": "Load data",
+      "route": "Route"
+    },
+    "unroutedTitle": "Unrouted weighings",
+    "unroutedSummary": "{{count}} unrouted weighings · {{tonnes}} t",
+    "unroutedEmpty": "All weighings in this period have a route.",
+    "routeOptions": {
+      "tripOnJob": "Trip on a job",
+      "docketToBuyer": "Docket to buyer",
+      "purchase": "Purchase — awaiting invoice",
+      "supplierInvoice": "Match supplier invoice"
+    },
+    "products": {
+      "asphaltY16": "Asphalt Y16",
+      "binderCourseTh11": "Binder course Þ11",
+      "gravel016": "Gravel 0-16"
+    },
+    "recipient": {
+      "none": "—",
+      "job": "{{job}} — {{place}}",
+      "buyer": "{{buyer}}",
+      "supplierSite": "{{site}} (supplier: {{supplier}})",
+      "jobMissing": "Job missing"
+    },
+    "route": {
+      "noRouteFound": "No route found",
+      "tripOnJob": "Trip on job #{{trip}}",
+      "docketToBuyer": "Docket to buyer",
+      "purchaseAwaitingInvoice": "Purchase — awaiting invoice",
+      "supplierInvoice": "Supplier invoice: {{tonnes}} t",
+      "tripJobMissing": "Trip found — job missing",
+      "manualQueued": "Queued for routing"
+    },
+    "rules": {
+      "tripOnJob": "Match outgoing weighing to trip on job",
+      "docketToBuyer": "Match outgoing weighing to buyer docket",
+      "supplierInvoice": "Match incoming weighing to supplier delivery"
     }
   },
   "hours": {
