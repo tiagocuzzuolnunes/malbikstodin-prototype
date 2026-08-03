@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { employees } from '../../data/employees'
 import { equipmentItems } from '../../data/equipment'
@@ -16,7 +16,7 @@ import {
   type WeighingProductId,
 } from '../../data/weighingDispatch'
 import { cn } from '../../lib/utils'
-import { Button, Card, Label, Select } from '../ui'
+import { Button, Card, Label, PillSwitch, Select } from '../ui'
 import {
   fieldLabelClassName,
   fieldListClassName,
@@ -32,58 +32,6 @@ const plantScales = [
 type WeighingRegistrationFormProps = {
   nextSequence: number
   onRegistered: (row: WeighingDispatchRow) => void
-}
-
-function PillSwitch({
-  label,
-  value,
-  options,
-  onChange,
-}: {
-  label: string
-  value: string
-  options: { value: string; content: ReactNode }[]
-  onChange: (value: string) => void
-}) {
-  const selectedIndex = Math.max(
-    0,
-    options.findIndex((option) => option.value === value),
-  )
-
-  return (
-    <div
-      role="group"
-      aria-label={label}
-      className="relative inline-grid grid-cols-2 rounded-pill bg-control p-1"
-    >
-      <span
-        aria-hidden
-        className="pointer-events-none absolute top-1 bottom-1 left-1 w-[calc(50%-0.25rem)] rounded-pill bg-surface shadow-sm ring-1 ring-border transition-transform duration-300 ease-out"
-        style={{ transform: `translateX(${selectedIndex * 100}%)` }}
-      />
-
-      {options.map((option) => {
-        const active = option.value === value
-
-        return (
-          <button
-            key={option.value}
-            type="button"
-            aria-pressed={active}
-            onClick={() => onChange(option.value)}
-            className={cn(
-              'relative z-10 inline-flex h-9 min-w-24 cursor-pointer items-center justify-center rounded-pill px-4 text-sm font-semibold tracking-wide transition-colors duration-200',
-              active
-                ? 'text-foreground'
-                : 'text-foreground-muted hover:bg-interactive-hover hover:text-foreground',
-            )}
-          >
-            {option.content}
-          </button>
-        )
-      })}
-    </div>
-  )
 }
 
 function formatClock(date: Date) {
@@ -180,6 +128,7 @@ export function WeighingRegistrationForm({
         <PillSwitch
           label={t('weighingDispatch.register.fields.scale')}
           value={scaleId}
+          optionMinWidthClassName="min-w-24"
           options={plantScales.map((scale) => ({
             value: scale.id,
             content: t(scale.labelKey),
@@ -189,6 +138,7 @@ export function WeighingRegistrationForm({
         <PillSwitch
           label={t('weighingDispatch.register.fields.direction')}
           value={direction}
+          optionMinWidthClassName="min-w-24"
           options={weighingDirections.map((value) => ({
             value,
             content: t(`weighingDispatch.direction.${value}`),
