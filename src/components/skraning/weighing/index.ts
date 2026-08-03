@@ -7,3 +7,10 @@ export {
   weighingProductLabel,
   weighingRecipientLabel,
 } from './status'
+export {
+  parseDispatchView,
+  parseWeighbridgeId,
+  parseWeighingDirection,
+  patchWeighingSearchParams,
+  type DispatchView,
+} from './urlState'

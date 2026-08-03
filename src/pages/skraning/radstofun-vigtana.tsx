@@ -1,11 +1,15 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FileSpreadsheet, RefreshCw } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 import {
   UnroutedRoutingPanel,
   WeighingDispatchList,
   WeighingRegistrationForm,
   formatWeighingDate,
+  parseDispatchView,
+  patchWeighingSearchParams,
+  type DispatchView,
 } from '../../components/skraning'
 import { Button, PillSwitch } from '../../components/ui'
 import {
@@ -19,12 +23,11 @@ import {
   type WeighingRouteStatus,
 } from '../../data/weighingDispatch'
 
-type DispatchView = 'register' | 'list'
-
 export default function RadstofunVigtanaPage() {
   const { t, i18n } = useTranslation()
   const locale = i18n.resolvedLanguage ?? i18n.language
-  const [view, setView] = useState<DispatchView>('register')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const view = parseDispatchView(searchParams.get('view'))
   const [rows, setRows] = useState(() => createWeighingDispatchRows())
   const [statusFilter, setStatusFilter] = useState<'all' | WeighingRouteStatus>('all')
   const [routeChoices, setRouteChoices] = useState<Record<string, string>>({})
@@ -37,6 +40,12 @@ export default function RadstofunVigtanaPage() {
   const unroutedRows = useMemo(() => getUnroutedRows(rows), [rows])
   const unroutedSummary = useMemo(() => getUnroutedSummary(rows), [rows])
   const nextSequence = rows.length + 1
+
+  function setView(next: DispatchView) {
+    setSearchParams((prev) => patchWeighingSearchParams(prev, { view: next }), {
+      replace: true,
+    })
+  }
 
   function handleRegistered(row: WeighingDispatchRow) {
     setRows((current) => [row, ...current])

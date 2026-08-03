@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
 import { employees } from '../../data/employees'
 import { equipmentItems } from '../../data/equipment'
 import {
@@ -23,6 +24,11 @@ import {
   fieldStackClassName,
   textareaClassName,
 } from './hoursStyles'
+import {
+  parseWeighbridgeId,
+  parseWeighingDirection,
+  patchWeighingSearchParams,
+} from './weighing/urlState'
 
 const plantScales = [
   { id: 'wb-asphalt-1' as const, labelKey: 'weighingDispatch.register.scalePill.1' },
@@ -57,9 +63,10 @@ export function WeighingRegistrationForm({
 }: WeighingRegistrationFormProps) {
   const { t, i18n } = useTranslation()
   const locale = i18n.resolvedLanguage ?? i18n.language
+  const [searchParams, setSearchParams] = useSearchParams()
+  const scaleId = parseWeighbridgeId(searchParams.get('scale'))
+  const direction = parseWeighingDirection(searchParams.get('direction'))
 
-  const [scaleId, setScaleId] = useState<WeighbridgeId>('wb-asphalt-1')
-  const [direction, setDirection] = useState<WeighingDirection>('out')
   const [equipmentId, setEquipmentId] = useState('')
   const [driverId, setDriverId] = useState('')
   const [productId, setProductId] = useState<WeighingProductId | ''>('')
@@ -82,8 +89,6 @@ export function WeighingRegistrationForm({
     !!equipmentId && !!productId && !!jobId && reading.netTonnes > 0
 
   function resetForm() {
-    setScaleId('wb-asphalt-1')
-    setDirection('out')
     setEquipmentId('')
     setDriverId('')
     setProductId('')
@@ -92,9 +97,19 @@ export function WeighingRegistrationForm({
     setLastUpdate(new Date())
   }
 
-  function handleScaleChange(next: WeighbridgeId) {
-    setScaleId(next)
+  function setScaleId(next: WeighbridgeId) {
+    setSearchParams(
+      (prev) => patchWeighingSearchParams(prev, { scale: next }),
+      { replace: true },
+    )
     setLastUpdate(new Date())
+  }
+
+  function setDirection(next: WeighingDirection) {
+    setSearchParams(
+      (prev) => patchWeighingSearchParams(prev, { direction: next }),
+      { replace: true },
+    )
   }
 
   function handleSubmit(event: FormEvent) {
@@ -133,7 +148,7 @@ export function WeighingRegistrationForm({
             value: scale.id,
             content: t(scale.labelKey),
           }))}
-          onChange={(next) => handleScaleChange(next as WeighbridgeId)}
+          onChange={(next) => setScaleId(next as WeighbridgeId)}
         />
         <PillSwitch
           label={t('weighingDispatch.register.fields.direction')}

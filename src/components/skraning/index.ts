@@ -8,4 +8,9 @@ export {
   WeighingStatusBadge,
   formatWeighingDate,
   formatWeighingTonnes,
+  parseDispatchView,
+  parseWeighbridgeId,
+  parseWeighingDirection,
+  patchWeighingSearchParams,
+  type DispatchView,
 } from './weighing'
