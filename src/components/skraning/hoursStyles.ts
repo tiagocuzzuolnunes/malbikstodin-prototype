@@ -6,7 +6,7 @@ export const fieldStackClassName = 'flex flex-col gap-2'
 
 export const textareaClassName = cn(
   inputVariants({ size: 'lg' }),
-  'h-auto min-h-24 resize-y',
+  'h-auto min-h-24 resize-y py-2.5',
 )
 
 export const fieldListClassName = 'divide-y divide-foreground/5'
