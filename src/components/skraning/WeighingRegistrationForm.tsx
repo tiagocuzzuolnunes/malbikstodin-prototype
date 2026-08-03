@@ -20,7 +20,7 @@ import { Button, Card, Label, Select } from '../ui'
 import {
   fieldLabelClassName,
   fieldListClassName,
-  fieldRowClassName,
+  fieldStackClassName,
   textareaClassName,
 } from './hoursStyles'
 
@@ -123,7 +123,6 @@ export function WeighingRegistrationForm({
   const reading = useMemo(() => simulateScaleReading(scaleId), [scaleId])
 
   useEffect(() => {
-    setLastUpdate(new Date())
     const timer = window.setInterval(() => {
       setLastUpdate(new Date())
     }, 2500)
@@ -142,6 +141,12 @@ export function WeighingRegistrationForm({
     setProductId('')
     setJobId('')
     setDescription('')
+    setLastUpdate(new Date())
+  }
+
+  function handleScaleChange(next: WeighbridgeId) {
+    setScaleId(next)
+    setLastUpdate(new Date())
   }
 
   function handleSubmit(event: FormEvent) {
@@ -179,7 +184,7 @@ export function WeighingRegistrationForm({
             value: scale.id,
             content: t(scale.labelKey),
           }))}
-          onChange={(next) => setScaleId(next as WeighbridgeId)}
+          onChange={(next) => handleScaleChange(next as WeighbridgeId)}
         />
         <PillSwitch
           label={t('weighingDispatch.register.fields.direction')}
@@ -200,9 +205,9 @@ export function WeighingRegistrationForm({
                 <span className={fieldLabelClassName}>
                   {t('weighingDispatch.register.fields.net')}
                 </span>
-                <p className="text-2xl font-semibold tracking-tight tabular-nums">
+                <p className="text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl">
                   {formatTonnes(reading.netTonnes, locale)}{' '}
-                  <span className="text-base font-medium text-foreground-muted">
+                  <span className="text-lg font-medium text-foreground-muted sm:text-xl">
                     {t('weighingDispatch.register.tonnes')}
                   </span>
                 </p>
@@ -211,9 +216,9 @@ export function WeighingRegistrationForm({
                 <span className={fieldLabelClassName}>
                   {t('weighingDispatch.register.fields.gross')}
                 </span>
-                <p className="text-2xl font-semibold tracking-tight tabular-nums">
+                <p className="text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl">
                   {formatTonnes(reading.grossTonnes, locale)}{' '}
-                  <span className="text-base font-medium text-foreground-muted">
+                  <span className="text-lg font-medium text-foreground-muted sm:text-xl">
                     {t('weighingDispatch.register.tonnes')}
                   </span>
                 </p>
@@ -229,7 +234,7 @@ export function WeighingRegistrationForm({
           </div>
 
           <div className="grid gap-4 py-4 sm:grid-cols-2 sm:gap-6 sm:py-5">
-            <div className="space-y-2">
+            <div className={fieldStackClassName}>
               <Label htmlFor="weighing-equipment" className={fieldLabelClassName}>
                 {t('weighingDispatch.register.fields.equipment')} *
               </Label>
@@ -246,7 +251,7 @@ export function WeighingRegistrationForm({
                 onChange={setEquipmentId}
               />
             </div>
-            <div className="space-y-2">
+            <div className={fieldStackClassName}>
               <Label htmlFor="weighing-driver" className={fieldLabelClassName}>
                 {t('weighingDispatch.register.fields.driver')}
               </Label>
@@ -265,7 +270,7 @@ export function WeighingRegistrationForm({
           </div>
 
           <div className="grid gap-4 py-4 sm:grid-cols-2 sm:gap-6 sm:py-5">
-            <div className="space-y-2">
+            <div className={fieldStackClassName}>
               <Label htmlFor="weighing-product" className={fieldLabelClassName}>
                 {t('weighingDispatch.register.fields.product')} *
               </Label>
@@ -281,7 +286,7 @@ export function WeighingRegistrationForm({
                 onChange={(next) => setProductId(next as WeighingProductId | '')}
               />
             </div>
-            <div className="space-y-2">
+            <div className={fieldStackClassName}>
               <Label htmlFor="weighing-job" className={fieldLabelClassName}>
                 {t('weighingDispatch.register.fields.job')} *
               </Label>
@@ -299,11 +304,8 @@ export function WeighingRegistrationForm({
             </div>
           </div>
 
-          <div className={fieldRowClassName}>
-            <Label
-              htmlFor="weighing-description"
-              className={`${fieldLabelClassName} self-start sm:pt-2`}
-            >
+          <div className={cn(fieldStackClassName, 'py-4 first:pt-1 last:pb-1 sm:py-5')}>
+            <Label htmlFor="weighing-description" className={fieldLabelClassName}>
               {t('weighingDispatch.register.fields.description')}
             </Label>
             <textarea
