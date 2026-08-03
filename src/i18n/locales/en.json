@@ -831,6 +831,11 @@
   },
   "weighingDispatch": {
     "caption": "Weighings in the period with routing destination and status",
+    "views": {
+      "label": "Weighing dispatch views",
+      "register": "Register",
+      "list": "Registered"
+    },
     "plant": {
       "asphalt": "Asphalt plant"
     },

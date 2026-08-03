@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FileSpreadsheet, RefreshCw } from 'lucide-react'
 import { WeighingRegistrationForm } from '../../components/skraning'
@@ -16,6 +16,60 @@ import {
   type WeighingDispatchRow,
   type WeighingRouteStatus,
 } from '../../data/weighingDispatch'
+
+type DispatchView = 'register' | 'list'
+
+function ViewSwitch({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string
+  value: string
+  options: { value: string; content: ReactNode }[]
+  onChange: (value: string) => void
+}) {
+  const selectedIndex = Math.max(
+    0,
+    options.findIndex((option) => option.value === value),
+  )
+
+  return (
+    <div
+      role="group"
+      aria-label={label}
+      className="relative inline-grid grid-cols-2 rounded-pill bg-control p-1"
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute top-1 bottom-1 left-1 w-[calc(50%-0.25rem)] rounded-pill bg-surface shadow-sm ring-1 ring-border transition-transform duration-300 ease-out"
+        style={{ transform: `translateX(${selectedIndex * 100}%)` }}
+      />
+
+      {options.map((option) => {
+        const active = option.value === value
+
+        return (
+          <button
+            key={option.value}
+            type="button"
+            aria-pressed={active}
+            onClick={() => onChange(option.value)}
+            className={cn(
+              'relative z-10 inline-flex h-9 min-w-28 cursor-pointer items-center justify-center rounded-pill px-4 text-sm font-semibold tracking-wide transition-colors duration-200',
+              active
+                ? 'text-foreground'
+                : 'text-foreground-muted hover:bg-interactive-hover hover:text-foreground',
+            )}
+          >
+            {option.content}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
 
 const statusClass: Record<WeighingRouteStatus, string> = {
   routed: 'bg-success/15 text-success ring-1 ring-success/25',
@@ -90,6 +144,7 @@ function recipientLabel(
 export default function RadstofunVigtanaPage() {
   const { t, i18n } = useTranslation()
   const locale = i18n.resolvedLanguage ?? i18n.language
+  const [view, setView] = useState<DispatchView>('register')
   const [rows, setRows] = useState(() => createWeighingDispatchRows())
   const [statusFilter, setStatusFilter] = useState<'all' | WeighingRouteStatus>('all')
   const [routeChoices, setRouteChoices] = useState<Record<string, string>>({})
@@ -105,6 +160,7 @@ export default function RadstofunVigtanaPage() {
 
   function handleRegistered(row: WeighingDispatchRow) {
     setRows((current) => [row, ...current])
+    setView('list')
   }
 
   function handleRoute(row: WeighingDispatchRow) {
@@ -146,67 +202,88 @@ export default function RadstofunVigtanaPage() {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          <Button type="button" variant="secondary" size="md">
-            <FileSpreadsheet className="h-4 w-4" aria-hidden />
-            {t('weighingDispatch.actions.excel')}
-          </Button>
-          <Button type="button" variant="primary" size="md">
-            <RefreshCw className="h-4 w-4" aria-hidden />
-            {t('weighingDispatch.actions.loadData')}
-          </Button>
-        </div>
+        {view === 'list' ? (
+          <div className="flex flex-wrap items-center gap-2">
+            <Button type="button" variant="secondary" size="md">
+              <FileSpreadsheet className="h-4 w-4" aria-hidden />
+              {t('weighingDispatch.actions.excel')}
+            </Button>
+            <Button type="button" variant="primary" size="md">
+              <RefreshCw className="h-4 w-4" aria-hidden />
+              {t('weighingDispatch.actions.loadData')}
+            </Button>
+          </div>
+        ) : null}
       </div>
 
-      <WeighingRegistrationForm
-        nextSequence={nextSequence}
-        onRegistered={handleRegistered}
-      />
+      <div className="space-y-4">
+        <ViewSwitch
+          label={t('weighingDispatch.views.label')}
+          value={view}
+          options={[
+            {
+              value: 'register',
+              content: t('weighingDispatch.views.register'),
+            },
+            {
+              value: 'list',
+              content: t('weighingDispatch.views.list'),
+            },
+          ]}
+          onChange={(next) => setView(next as DispatchView)}
+        />
 
-      <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
-        {weighingDispatchStats.map((stat) => {
-          const value =
-            stat.id === 'unrouted' ? unroutedSummary.count : stat.value
+        {view === 'register' ? (
+          <WeighingRegistrationForm
+            nextSequence={nextSequence}
+            onRegistered={handleRegistered}
+          />
+        ) : (
+          <div className="space-y-5 sm:space-y-8">
+            <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+              {weighingDispatchStats.map((stat) => {
+                const value =
+                  stat.id === 'unrouted' ? unroutedSummary.count : stat.value
 
-          return (
-            <Card key={stat.id} elevated padding="md" className="min-h-0 min-w-0">
-              <p className="text-xs font-medium tracking-wide text-foreground-muted sm:text-sm">
-                {t(stat.labelKey)}
-              </p>
-              <p className="mt-2 text-2xl font-semibold tracking-tight tabular-nums sm:mt-3 sm:text-4xl">
-                {'unit' in stat && stat.unit
-                  ? formatTonnes(stat.value, locale)
-                  : value.toLocaleString(locale)}
-              </p>
-            </Card>
-          )
-        })}
-      </div>
+                return (
+                  <Card key={stat.id} elevated padding="md" className="min-h-0 min-w-0">
+                    <p className="text-xs font-medium tracking-wide text-foreground-muted sm:text-sm">
+                      {t(stat.labelKey)}
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold tracking-tight tabular-nums sm:mt-3 sm:text-4xl">
+                      {'unit' in stat && stat.unit
+                        ? formatTonnes(stat.value, locale)
+                        : value.toLocaleString(locale)}
+                    </p>
+                  </Card>
+                )
+              })}
+            </div>
 
-      <section className="space-y-4">
-        <div
-          className="flex flex-wrap gap-2"
-          role="group"
-          aria-label={t('weighingDispatch.filters.label')}
-        >
-          {filters.map((item) => {
-            const isActive = statusFilter === item.id
-
-            return (
-              <Button
-                key={item.id}
-                type="button"
-                size="md"
-                variant={isActive ? 'primary' : 'ghost'}
-                aria-pressed={isActive}
-                className={cn(!isActive && 'text-foreground hover:bg-interactive-hover')}
-                onClick={() => setStatusFilter(item.id)}
+            <section className="space-y-4">
+              <div
+                className="flex flex-wrap gap-2"
+                role="group"
+                aria-label={t('weighingDispatch.filters.label')}
               >
-                {item.label}
-              </Button>
-            )
-          })}
-        </div>
+                {filters.map((item) => {
+                  const isActive = statusFilter === item.id
+
+                  return (
+                    <Button
+                      key={item.id}
+                      type="button"
+                      size="md"
+                      variant={isActive ? 'primary' : 'ghost'}
+                      aria-pressed={isActive}
+                      className={cn(!isActive && 'text-foreground hover:bg-interactive-hover')}
+                      onClick={() => setStatusFilter(item.id)}
+                    >
+                      {item.label}
+                    </Button>
+                  )
+                })}
+              </div>
 
         <div className="overflow-hidden rounded-card border border-border bg-surface shadow-card">
           <div className="md:hidden">
@@ -401,7 +478,10 @@ export default function RadstofunVigtanaPage() {
             </ul>
           )}
         </div>
-      </section>
+            </section>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

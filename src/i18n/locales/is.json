@@ -831,6 +831,11 @@
   },
   "weighingDispatch": {
     "caption": "Vigtanir á tímabilinu með ráðstöfun og stöðu",
+    "views": {
+      "label": "Yfirlit ráðstöfunar vigtana",
+      "register": "Skrá",
+      "list": "Skráðar"
+    },
     "plant": {
       "asphalt": "Malbiksstöð"
     },
