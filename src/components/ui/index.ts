@@ -25,3 +25,5 @@ export {
 } from './OptionCard'
 export { Icon, iconVariants, type IconProps } from './Icon'
 export { Modal, type ModalProps } from './Modal'
+export { PillSwitch, type PillSwitchProps, type PillSwitchOption } from './PillSwitch'
+export { StatusDotBadge, type StatusDotBadgeProps } from './StatusDotBadge'
