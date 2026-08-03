@@ -172,6 +172,7 @@ export function OptionCard(props: OptionCardProps) {
         elevated={elevated}
         className={className}
         size={size}
+        contentAlign="end"
       >
         {props.meta ? (
           <div

@@ -57,7 +57,7 @@ export default function HeimPage() {
         </div>
 
         <div className="-mx-4 -mb-6 overflow-x-auto pb-10 pl-4 sm:-mx-5 sm:pl-5 md:-mx-6 md:pl-6">
-          <div className="flex w-max gap-4 pt-2">
+          <div className="flex w-max items-stretch gap-4 pt-2">
             {latestNews.map((item, index) => (
               <OptionCard
                 key={item.id}
