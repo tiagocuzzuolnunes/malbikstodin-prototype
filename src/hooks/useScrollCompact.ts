@@ -20,10 +20,7 @@ export function useScrollCompact(
   const [compact, setCompact] = useState(false)
 
   useEffect(() => {
-    if (!enabled) {
-      setCompact(false)
-      return
-    }
+    if (!enabled) return
 
     const element = scrollRef.current
     if (!element) return
