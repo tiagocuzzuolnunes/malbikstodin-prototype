@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import {
@@ -116,10 +116,7 @@ export function DatePicker({
   const [viewMonth, setViewMonth] = useState(() =>
     clampViewMonth(startOfMonth(parseIsoDate(value) ?? new Date()), minDate, maxDate),
   )
-
-  useEffect(() => {
-    setViewMonth((current) => clampViewMonth(current, minDate, maxDate))
-  }, [minDate, maxDate])
+  const visibleMonth = clampViewMonth(viewMonth, minDate, maxDate)
 
   useEffect(() => {
     if (!open) return
@@ -148,21 +145,15 @@ export function DatePicker({
   }, [open])
 
   const weekdayLabels = getAppWeekdayLabels(t)
-  const monthLabel = formatAppMonthYear(viewMonth, t, language)
+  const monthLabel = formatAppMonthYear(visibleMonth, t, language)
   const displayValue = selectedDate ? formatAppDate(selectedDate, t, language) : ''
-  const days = useMemo(() => buildCalendarDays(viewMonth), [viewMonth])
-
-  const canGoPrev = useMemo(() => {
-    if (!minDate) return true
-    const prev = addMonths(viewMonth, -1)
-    return endOfMonth(prev) >= (parseIsoDate(minDate) ?? prev)
-  }, [viewMonth, minDate])
-
-  const canGoNext = useMemo(() => {
-    if (!maxDate) return true
-    const next = addMonths(viewMonth, 1)
-    return next <= (parseIsoDate(maxDate) ?? next)
-  }, [viewMonth, maxDate])
+  const days = buildCalendarDays(visibleMonth)
+  const prevMonth = addMonths(visibleMonth, -1)
+  const nextMonth = addMonths(visibleMonth, 1)
+  const canGoPrev =
+    !minDate || endOfMonth(prevMonth) >= (parseIsoDate(minDate) ?? prevMonth)
+  const canGoNext =
+    !maxDate || nextMonth <= (parseIsoDate(maxDate) ?? nextMonth)
 
   function selectDay(iso: string) {
     if (!isIsoInRange(iso, minDate, maxDate)) return
@@ -230,8 +221,8 @@ export function DatePicker({
               aria-label={t('common.previousMonth')}
               disabled={!canGoPrev}
               onClick={() =>
-                setViewMonth((current) =>
-                  clampViewMonth(addMonths(current, -1), minDate, maxDate),
+                setViewMonth(
+                  clampViewMonth(addMonths(visibleMonth, -1), minDate, maxDate),
                 )
               }
             >
@@ -246,8 +237,8 @@ export function DatePicker({
               aria-label={t('common.nextMonth')}
               disabled={!canGoNext}
               onClick={() =>
-                setViewMonth((current) =>
-                  clampViewMonth(addMonths(current, 1), minDate, maxDate),
+                setViewMonth(
+                  clampViewMonth(addMonths(visibleMonth, 1), minDate, maxDate),
                 )
               }
             >
