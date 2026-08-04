@@ -12,10 +12,10 @@ export {
   CardContent,
   CardFooter,
   CardShell,
-  cardVariants,
   type CardProps,
   type CardShellProps,
 } from './Card'
+export { cardVariants, type CardVariantProps } from './cardVariants'
 export {
   OptionCard,
   type OptionCardProps,

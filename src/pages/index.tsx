@@ -65,7 +65,7 @@ export default function HeimPage() {
                 variant="date"
                 elevated
                 className={cn(
-                  'w-72 shrink-0',
+                  'h-full min-h-56 w-72 shrink-0',
                   index === latestNews.length - 1 && 'mr-4 sm:mr-5 md:mr-6',
                 )}
                 title={t(item.titleKey)}

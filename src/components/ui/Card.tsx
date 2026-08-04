@@ -1,28 +1,8 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '../../lib/utils'
+import { cardVariants, type CardVariantProps } from './cardVariants'
 
-export const cardVariants = cva('rounded-card bg-surface text-foreground', {
-  variants: {
-    padding: {
-      none: 'p-0',
-      sm: 'p-4',
-      md: 'p-4 sm:p-6',
-      lg: 'p-4 sm:p-6 lg:p-8',
-    },
-    elevated: {
-      true: 'shadow-card',
-      false: 'border border-border',
-    },
-  },
-  defaultVariants: {
-    padding: 'lg',
-    elevated: false,
-  },
-})
-
-export type CardProps = HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof cardVariants>
+export type CardProps = HTMLAttributes<HTMLDivElement> & CardVariantProps
 
 export function Card({ className, padding, elevated, ...props }: CardProps) {
   return (
@@ -96,9 +76,11 @@ export function CardShell({
       className={cn('flex h-full flex-col', compact ? 'min-h-0' : 'min-h-56', className)}
     >
       <CardHeader className={cn(compact && 'gap-1')}>
-        <CardTitle className={cn(compact && 'text-lg')}>{title}</CardTitle>
+        <CardTitle className={cn(compact && 'truncate')}>{title}</CardTitle>
         {description ? (
-          <CardDescription className={cn(compact && 'text-sm')}>{description}</CardDescription>
+          <CardDescription className={cn(compact && 'line-clamp-3')}>
+            {description}
+          </CardDescription>
         ) : null}
       </CardHeader>
       {children ? (
