@@ -1,15 +1,25 @@
 import { useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { SectionPage } from '../components/shared'
-import { Button, Card, Input, Label, inputVariants } from '../components/ui'
-import { cn } from '../lib/utils'
+import { Calculator } from 'lucide-react'
+import { SectionPage } from '../../components/shared'
+import {
+  Button,
+  Card,
+  CardShell,
+  Input,
+  Label,
+  buttonVariants,
+  inputVariants,
+} from '../../components/ui'
+import { cn } from '../../lib/utils'
 import {
   expenseCategories,
   initialExpenses,
   nextExpenseSerial,
   type Expense,
   type ExpenseCategory,
-} from '../data/expenses'
+} from '../../data/expenses'
 
 function formatDate(value: string, locale: string) {
   return new Intl.DateTimeFormat(locale, {
@@ -67,6 +77,28 @@ export default function FjarmalPage() {
   return (
     <div className="space-y-8">
       <SectionPage titleKey="nav.fjarmal" descriptionKey="pages.fjarmal.description" />
+
+      <CardShell
+        size="compact"
+        title={
+          <span className="flex items-center gap-3">
+            <Calculator className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
+            {t('nav.kostnadargreining')}
+          </span>
+        }
+        description={t('pages.fjarmal.costAnalysisDescription')}
+        footer={
+          <Link
+            to="/fjarmal/kostnadargreining"
+            className={cn(
+              buttonVariants({ variant: 'primary', size: 'lg' }),
+              'min-h-11 px-5',
+            )}
+          >
+            {t('pages.fjarmal.openSection')}
+          </Link>
+        }
+      />
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,20rem)_minmax(0,1fr)]">
         <Card elevated padding="lg" className="min-h-0 xl:max-w-80">

@@ -136,6 +136,19 @@ export function getBreadcrumbKeys(pathname: string) {
     }
   }
 
+  if (pathname.startsWith('/fjarmal/')) {
+    if (
+      pathname === '/fjarmal/kostnadargreining' ||
+      pathname.startsWith('/fjarmal/kostnadargreining/')
+    ) {
+      crumbs.push({
+        to: '/fjarmal/kostnadargreining',
+        labelKey: 'nav.kostnadargreining',
+      })
+      return crumbs
+    }
+  }
+
   if (pathname.startsWith('/stjornun')) {
     if (
       pathname === '/stjornun/adgangsstyring' ||

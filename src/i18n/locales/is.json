@@ -125,7 +125,8 @@
     "taeki": "Tæki",
     "stjornun": "Stjórnun",
     "adgangsstyring": "Aðgangsstýring",
-    "ferlar": "Ferlar"
+    "ferlar": "Ferlar",
+    "kostnadargreining": "Kostnaðargreining verks"
   },
   "pages": {
     "heim": {
@@ -158,7 +159,9 @@
       "description": "Yfirlitssíða upplýsingatækni með þjónustubeiðnum og kerfisstöðu."
     },
     "fjarmal": {
-      "description": "Skrá útgjöld og skoða útgjaldaskrá fyrirtækisins."
+      "description": "Skrá útgjöld, skoða útgjaldaskrá og greina kostnað verks á móti tilboði.",
+      "openSection": "Opna",
+      "costAnalysisDescription": "Raunkostnaður eins verks — vinna, flutningur, efni og tæki — borinn saman við tilboðsupphæð meðan verkið er enn í gangi."
     },
     "reikningar": {
       "description": "Para reikninga birgja og leigu við samþykktar ferðir — merktu aðeins það sem er rangt, ekki það sem er rétt.",
@@ -827,6 +830,144 @@
       "payroll": "Laun",
       "subcontractors": "Undirverktakar",
       "other": "Annað"
+    }
+  },
+  "jobCost": {
+    "freezeCost": "Frysta kostnað",
+    "unfreezeCost": "Affrysta kostnað",
+    "loadData": "Sækja gögn",
+    "frozenBanner": "Kostnaðarblað fryst — ProjectCostSnapshot vistað og taxtar uppfærast ekki lengur.",
+    "loadedNotice": "Nýjustu magn og taxtar sótt fyrir þetta verk.",
+    "caveat": "Hver kostnaðarlína sýnir magn × taxta á móti tilboði meðan verkið er enn í gangi. RateHistory gerir eldri taxta endurgeranlega; LabourRates geymir laun; Frysta kostnað skrifar ProjectCostSnapshot. Staða á línu sýnir enn bil — vöntun á launataxta, ósamþykkt laun eða taxta sem breyttust eftir að verkið hófst.",
+    "views": {
+      "label": "Kostnaðarskrár verks",
+      "costSheet": "Kostnaðarblað",
+      "rateHistory": "Taxtasaga",
+      "labourRates": "Launataxtar",
+      "snapshots": "Kostnaðarmyndir"
+    },
+    "stats": {
+      "tender": "Tilboðsupphæð",
+      "actual": "Raunkostnaður",
+      "variance": "Frávik",
+      "variancePct": "{{value}}%",
+      "unconfirmed": "Óstaðfestir taxtar",
+      "unconfirmedHint": "Línur sem enn vantar staðfestan taxta"
+    },
+    "tableTitle": "Kostnaðarlínur",
+    "tableSubtitle": "Magn × taxti eftir flokki, með verðdagsetningu og staðfestingarstöðu.",
+    "lineCount": "{{count}} sýnilínur",
+    "statusLegend": "Taxtastaða",
+    "totalActual": "Samtals raunkostnaður",
+    "columns": {
+      "category": "Flokkur",
+      "item": "Liður",
+      "workType": "Verktegund",
+      "qty": "Magn",
+      "unit": "Eining",
+      "rate": "Taxti",
+      "amount": "Upphæð",
+      "rateDate": "Verðdagsetning",
+      "status": "Staða"
+    },
+    "categories": {
+      "labour": "Vinna",
+      "equipment": "Tæki",
+      "materials": "Efni",
+      "haulage": "Flutningur"
+    },
+    "status": {
+      "confirmed": "Taxti staðfestur",
+      "changedSince": "Taxti breyttur síðan",
+      "noRate": "Enginn taxti",
+      "noLabourRate": "Enginn launataxti",
+      "notApproved": "Ósamþykkt"
+    },
+    "units": {
+      "h": "klst",
+      "t": "t",
+      "km": "km"
+    },
+    "workTypes": {
+      "paving": "Malbikun",
+      "groundwork": "Jarðvinna"
+    },
+    "jobs": {
+      "reykjanesbraut": "Malbikun Reykjanesbrautar"
+    },
+    "clients": {
+      "vegagerdin": "Vegagerðin"
+    },
+    "items": {
+      "workersDayRate": "Verkamenn — dagsvinna",
+      "mu471": "MU-471 — 4-ása vörubíll",
+      "tf812": "TF-812 — Vals Hamm HD90",
+      "asphaltY16": "1204 — Malbik Y16",
+      "gravel016": "3002 — Möl 0-16",
+      "kmTrucks": "Km — vörubílar"
+    },
+    "people": {
+      "financeLead": "Ásta Jónsdóttir",
+      "plantManager": "Björn Sigurðsson",
+      "procurement": "Guðrún Pálsdóttir",
+      "logistics": "Kristín Ólafsdóttir",
+      "projectController": "Vilhjálmur Einarsson",
+      "currentUser": "Núverandi notandi"
+    },
+    "labourRoles": {
+      "workersDay": "Verkamenn — dagsvinna",
+      "foreman": "Verkstjóri",
+      "machineOperator": "Tækjastjóri",
+      "groundCrew": "Jarðvinnuflokkur"
+    },
+    "rateHistory": {
+      "title": "Taxtasaga",
+      "subtitle": "Allar útgáfur taxta með gildistíma — sögulegur kostnaður helst endurgeranlegur.",
+      "count": "{{count}} taxtaútgáfur",
+      "current": "Í gildi",
+      "columns": {
+        "category": "Flokkur",
+        "item": "Liður",
+        "rate": "Taxti",
+        "from": "Gildir frá",
+        "to": "Gildir til",
+        "changedBy": "Breytt af"
+      }
+    },
+    "labourRates": {
+      "title": "Launataxtar",
+      "subtitle": "Launataxtar fyrir hlutverk á verkum — samþykki þarf áður en kostnaður treystir þeim.",
+      "count": "{{count}} launataxtar",
+      "approvedYes": "Samþykkt",
+      "approvedNo": "Ósamþykkt",
+      "columns": {
+        "role": "Hlutverk",
+        "workType": "Verktegund",
+        "rate": "Taxti",
+        "unit": "Eining",
+        "from": "Gildir frá",
+        "approved": "Samþykki",
+        "status": "Staða"
+      }
+    },
+    "snapshots": {
+      "title": "Kostnaðarmyndir",
+      "subtitle": "Fryst kostnaðarblöð tekin meðan verkið er enn í gangi — kostnaðaraukning læsist í tíma.",
+      "count": "{{count}} kostnaðarmyndir",
+      "empty": "Engar kostnaðarmyndir enn. Notaðu Frysta kostnað til að vista blaðið.",
+      "columns": {
+        "frozenAt": "Fryst",
+        "frozenBy": "Fryst af",
+        "tender": "Tilboð",
+        "actual": "Raunkostnaður",
+        "variance": "Frávik",
+        "unconfirmed": "Óstaðfest",
+        "note": "Athugasemd"
+      }
+    },
+    "snapshotNotes": {
+      "marchCheckpoint": "Mars-stöðumat",
+      "manualFreeze": "Handvirk frysting"
     }
   },
   "weighingDispatch": {
