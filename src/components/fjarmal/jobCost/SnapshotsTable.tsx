@@ -16,10 +16,7 @@ export function SnapshotsTable({ snapshots, locale }: SnapshotsTableProps) {
     <section className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
-            ProjectCostSnapshots
-          </p>
-          <h2 className="mt-1 text-2xl font-semibold tracking-tight">
+          <h2 className="text-2xl font-semibold tracking-tight">
             {t('jobCost.snapshots.title')}
           </h2>
           <p className="mt-1 text-sm text-foreground-muted">{t('jobCost.snapshots.subtitle')}</p>

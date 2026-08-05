@@ -78,25 +78,25 @@ export function JobCostAnalysis() {
 
   return (
     <div className="space-y-8">
-      <section className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="min-w-0">
-          <p className="font-mono text-sm font-medium tracking-wide text-foreground-muted">
-            {job.jobCode}
-            <span className="mx-2 text-border">·</span>
-            {t(job.jobNameKey)}
-            <span className="mx-2 text-border">·</span>
-            {t(job.clientKey)}
-          </p>
-          {frozen ? (
-            <p className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-accent">
-              <Lock className="h-4 w-4 shrink-0" aria-hidden />
-              {t('jobCost.frozenBanner')}
-            </p>
-          ) : null}
-          {loadedNotice ? (
-            <p className="mt-2 text-sm text-success">{t('jobCost.loadedNotice')}</p>
-          ) : null}
-        </div>
+      <section
+        className={cn(
+          'flex flex-col gap-4 sm:flex-row sm:items-end',
+          frozen || loadedNotice ? 'sm:justify-between' : 'sm:justify-end',
+        )}
+      >
+        {frozen || loadedNotice ? (
+          <div className="min-w-0 space-y-2">
+            {frozen ? (
+              <p className="inline-flex items-center gap-2 text-sm font-medium text-accent">
+                <Lock className="h-4 w-4 shrink-0" aria-hidden />
+                {t('jobCost.frozenBanner')}
+              </p>
+            ) : null}
+            {loadedNotice ? (
+              <p className="text-sm text-success">{t('jobCost.loadedNotice')}</p>
+            ) : null}
+          </div>
+        ) : null}
 
         <div className="flex flex-wrap gap-3">
           <Button
@@ -182,10 +182,6 @@ export function JobCostAnalysis() {
           </p>
         </Card>
       </div>
-
-      <Card elevated padding="md" className="min-h-0">
-        <p className="text-sm font-medium text-foreground-muted">{t('jobCost.caveat')}</p>
-      </Card>
 
       <div
         className="flex flex-wrap gap-3"

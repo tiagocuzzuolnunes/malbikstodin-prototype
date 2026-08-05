@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   jobCostCategories,
-  jobCostRateStatuses,
   lineAmountIsk,
   type JobCostCategory,
   type JobCostLine,
@@ -11,7 +10,6 @@ import { cn } from '../../../lib/utils'
 import { DataTable } from './DataTable'
 import { formatIsk, formatQty, formatRate, formatRateDate } from './format'
 import { JobCostStatusBadge } from './status'
-import { jobCostStatusClass, jobCostStatusDotClass } from './statusStyles'
 
 function groupLinesByCategory(lines: JobCostLine[]) {
   const groups = new Map<JobCostCategory, JobCostLine[]>()
@@ -99,32 +97,6 @@ export function CostLinesTable({ lines, actualCostIsk, locale }: CostLinesTableP
         </p>
       </div>
 
-      <div
-        className="flex flex-wrap gap-2"
-        role="list"
-        aria-label={t('jobCost.statusLegend')}
-      >
-        {jobCostRateStatuses.map((status) => (
-          <span key={status} role="listitem">
-            <span
-              className={cn(
-                'inline-flex items-center gap-1.5 rounded-control px-2.5 py-1 text-xs font-semibold tracking-wide',
-                jobCostStatusClass[status],
-              )}
-            >
-              <span
-                aria-hidden
-                className={cn(
-                  'h-1.5 w-1.5 shrink-0 rounded-full',
-                  jobCostStatusDotClass[status],
-                )}
-              />
-              {t(`jobCost.status.${status}`)}
-            </span>
-          </span>
-        ))}
-      </div>
-
       <DataTable
         minWidthClassName="min-w-[64rem]"
         header={
@@ -158,14 +130,17 @@ export function CostLinesTable({ lines, actualCostIsk, locale }: CostLinesTableP
             </th>
           </tr>
         }
-        body={jobCostCategories.map((category) => {
+        body={jobCostCategories.map((category, categoryIndex) => {
           const categoryLines = grouped.get(category) ?? []
           if (categoryLines.length === 0) return null
+
+          const categoryTone =
+            categoryIndex % 2 === 0 ? 'bg-surface' : 'bg-surface-muted/40'
 
           return categoryLines.map((line, index) => (
             <tr
               key={line.id}
-              className="h-14 border-t border-border odd:bg-surface even:bg-surface-muted/40"
+              className={cn('h-14 border-t border-border', categoryTone)}
             >
               <td className="px-4 align-middle font-medium">
                 {index === 0 ? t(`jobCost.categories.${category}`) : null}
@@ -208,9 +183,19 @@ export function CostLinesTable({ lines, actualCostIsk, locale }: CostLinesTableP
         }
         mobile={
           <>
-            {lines.map((line) => (
-              <LineMobileCard key={line.id} line={line} locale={locale} />
-            ))}
+            {jobCostCategories.map((category, categoryIndex) => {
+              const categoryLines = grouped.get(category) ?? []
+              if (categoryLines.length === 0) return null
+
+              const categoryTone =
+                categoryIndex % 2 === 0 ? 'bg-surface' : 'bg-surface-muted/40'
+
+              return categoryLines.map((line) => (
+                <div key={line.id} className={categoryTone}>
+                  <LineMobileCard line={line} locale={locale} />
+                </div>
+              ))
+            })}
             <div className="flex items-center justify-between gap-3 bg-surface-muted px-4 py-4">
               <p className="font-semibold tracking-tight">{t('jobCost.totalActual')}</p>
               <p className="font-semibold tabular-nums">{formatIsk(actualCostIsk, locale)}</p>
