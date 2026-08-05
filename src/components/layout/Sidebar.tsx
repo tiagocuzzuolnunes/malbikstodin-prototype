@@ -14,7 +14,8 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        'sticky top-0 hidden h-full shrink-0 flex-col self-stretch overflow-hidden border-r border-border bg-surface transition-[width] duration-200 ease-in-out md:flex',
+        'sticky top-0 z-20 hidden shrink-0 flex-col self-start overflow-hidden border-r border-border bg-surface transition-[width] duration-200 ease-in-out md:flex',
+        'h-[calc(100dvh-var(--app-header-height,4.5rem))]',
         collapsed ? 'w-20' : 'w-56',
       )}
     >

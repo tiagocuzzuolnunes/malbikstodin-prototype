@@ -52,6 +52,9 @@
 
   --shadow-header: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
   --shadow-header-content: inset 0 8px 12px -8px rgb(0 144 212 / 12%);
+  --shadow-footer-content: inset 0 -8px 12px -8px rgb(0 144 212 / 12%);
+  --shadow-shell-content:
+    inset 0 8px 12px -8px rgb(0 144 212 / 12%), inset 0 -8px 12px -8px rgb(0 144 212 / 12%);
   --shadow-card: 0 10px 30px rgb(15 23 42 / 8%);
 }
 
@@ -93,6 +96,9 @@
 
     --shadow-header: 0 4px 6px -1px rgb(0 0 0 / 40%), 0 2px 4px -2px rgb(0 0 0 / 30%);
     --shadow-header-content: inset 0 8px 14px -8px rgb(51 168 224 / 18%);
+    --shadow-footer-content: inset 0 -8px 14px -8px rgb(51 168 224 / 18%);
+    --shadow-shell-content:
+      inset 0 8px 14px -8px rgb(51 168 224 / 18%), inset 0 -8px 14px -8px rgb(51 168 224 / 18%);
     --shadow-card: 0 10px 30px rgb(0 0 0 / 35%);
   }
 

@@ -12,12 +12,12 @@ import { useScrollCompact } from '../hooks/useScrollCompact'
 const DESKTOP_MQ = '(min-width: 768px)'
 
 export default function RootLayout() {
-  const mainRef = useRef(null)
+  const scrollRef = useRef(null)
   const { pathname } = useLocation()
   const [isDesktop, setIsDesktop] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia(DESKTOP_MQ).matches : false,
   )
-  const compact = useScrollCompact(mainRef, { enabled: isDesktop })
+  const compact = useScrollCompact(scrollRef, { enabled: isDesktop })
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const openMobileNav = useCallback(() => setMobileNavOpen(true), [])
   const closeMobileNav = useCallback(() => setMobileNavOpen(false), [])
@@ -31,7 +31,7 @@ export default function RootLayout() {
   }, [])
 
   useEffect(() => {
-    mainRef.current?.scrollTo(0, 0)
+    scrollRef.current?.scrollTo(0, 0)
   }, [pathname])
 
   return (
@@ -39,23 +39,24 @@ export default function RootLayout() {
       <Header compact={compact} onOpenMobileNav={openMobileNav} />
       <MobileNavDrawer open={mobileNavOpen} onClose={closeMobileNav} />
 
-      <div className="flex min-h-0 flex-1 overflow-hidden">
-        <Sidebar />
+      <div
+        ref={scrollRef}
+        className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain"
+      >
+        <div className="flex min-h-full">
+          <Sidebar />
 
-        <main
-          ref={mainRef}
-          className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain border-t border-border bg-surface-muted pt-4 pb-0 shadow-header-content sm:pt-5 md:pt-6 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:pl-[max(1.25rem,env(safe-area-inset-left))] sm:pr-[max(1.25rem,env(safe-area-inset-right))] md:pl-[max(1.5rem,env(safe-area-inset-left))] md:pr-[max(1.5rem,env(safe-area-inset-right))]"
-        >
-          <PageTransition className="flex min-h-full flex-col">
-            <div className="flex-1">
+          <main className="min-w-0 flex-1 border-t border-b border-border bg-surface-muted pt-4 pb-16 shadow-shell-content sm:pt-5 sm:pb-20 md:pt-6 md:pb-24 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:pl-[max(1.25rem,env(safe-area-inset-left))] sm:pr-[max(1.25rem,env(safe-area-inset-right))] md:pl-[max(1.5rem,env(safe-area-inset-left))] md:pr-[max(1.5rem,env(safe-area-inset-right))]">
+            <PageTransition>
               <Breadcrumbs />
               <Suspense fallback={<PageSkeleton />}>
                 <Outlet />
               </Suspense>
-            </div>
-            <Footer />
-          </PageTransition>
-        </main>
+            </PageTransition>
+          </main>
+        </div>
+
+        <Footer />
       </div>
     </div>
   )
