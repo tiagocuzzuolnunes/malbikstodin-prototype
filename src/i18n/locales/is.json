@@ -841,6 +841,11 @@
     "frozenBanner": "Kostnaðarblað fryst — ProjectCostSnapshot vistað og taxtar uppfærast ekki lengur.",
     "loadedNotice": "Nýjustu magn og taxtar sótt fyrir þetta verk.",
     "caveat": "Hver kostnaðarlína sýnir magn × taxta á móti tilboði meðan verkið er enn í gangi. RateHistory gerir eldri taxta endurgeranlega; LabourRates geymir laun; Frysta kostnað skrifar ProjectCostSnapshot. Staða á línu sýnir enn bil — vöntun á launataxta, ósamþykkt laun eða taxta sem breyttust eftir að verkið hófst.",
+    "modes": {
+      "label": "Yfirlit kostnaðar verks",
+      "analysis": "Kostnaðargreining",
+      "pipeline": "Kostnaðarferill"
+    },
     "views": {
       "label": "Kostnaðarskrár verks",
       "costSheet": "Kostnaðarblað",

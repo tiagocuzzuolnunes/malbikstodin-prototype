@@ -841,6 +841,11 @@
     "frozenBanner": "Cost sheet frozen — a ProjectCostSnapshot was saved and rates no longer refresh.",
     "loadedNotice": "Latest quantities and rates loaded for this job.",
     "caveat": "Each cost line shows quantity × rate against tender while the job is still running. RateHistory keeps past rates reproducible; LabourRates holds wages; Freeze cost writes a ProjectCostSnapshot. Per-line status still surfaces gaps — missing labour rates, unapproved wages, or rates changed after the job started.",
+    "modes": {
+      "label": "Job cost views",
+      "analysis": "Cost analysis",
+      "pipeline": "Cost pipeline"
+    },
     "views": {
       "label": "Job cost registers",
       "costSheet": "Cost sheet",
