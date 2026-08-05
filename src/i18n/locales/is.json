@@ -126,7 +126,8 @@
     "stjornun": "Stjórnun",
     "adgangsstyring": "Aðgangsstýring",
     "ferlar": "Ferlar",
-    "kostnadargreining": "Kostnaðargreining verks"
+    "kostnadargreining": "Kostnaðargreining verks",
+    "utgjold": "Útgjaldaskrá"
   },
   "pages": {
     "heim": {
@@ -159,8 +160,9 @@
       "description": "Yfirlitssíða upplýsingatækni með þjónustubeiðnum og kerfisstöðu."
     },
     "fjarmal": {
-      "description": "Skrá útgjöld, skoða útgjaldaskrá og greina kostnað verks á móti tilboði.",
+      "description": "Veldu útgjaldaskrá eða kostnaðargreiningu verks.",
       "openSection": "Opna",
+      "registerDescription": "Skrá útgjöld og skoða útgjaldaskrá fyrirtækisins.",
       "costAnalysisDescription": "Raunkostnaður eins verks — vinna, flutningur, efni og tæki — borinn saman við tilboðsupphæð meðan verkið er enn í gangi."
     },
     "reikningar": {

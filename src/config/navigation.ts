@@ -138,6 +138,14 @@ export function getBreadcrumbKeys(pathname: string) {
 
   if (pathname.startsWith('/fjarmal/')) {
     if (
+      pathname === '/fjarmal/utgjold' ||
+      pathname.startsWith('/fjarmal/utgjold/')
+    ) {
+      crumbs.push({ to: '/fjarmal/utgjold', labelKey: 'nav.utgjold' })
+      return crumbs
+    }
+
+    if (
       pathname === '/fjarmal/kostnadargreining' ||
       pathname.startsWith('/fjarmal/kostnadargreining/')
     ) {

@@ -126,7 +126,8 @@
     "stjornun": "Management",
     "adgangsstyring": "Access Controls",
     "ferlar": "Processes",
-    "kostnadargreining": "Job cost analysis"
+    "kostnadargreining": "Job cost analysis",
+    "utgjold": "Expense register"
   },
   "pages": {
     "heim": {
@@ -159,8 +160,9 @@
       "description": "IT dashboard with support tickets and system status."
     },
     "fjarmal": {
-      "description": "Register expenses, review the expense register, and analyse job cost against tender.",
+      "description": "Choose the expense register or job cost analysis.",
       "openSection": "Open",
+      "registerDescription": "Register expenses and review the company expense register.",
       "costAnalysisDescription": "One job’s real cost — labour, haulage, materials and equipment — set against the tender amount while the job is still running."
     },
     "reikningar": {
