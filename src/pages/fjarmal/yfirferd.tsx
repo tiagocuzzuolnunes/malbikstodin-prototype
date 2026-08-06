@@ -31,7 +31,7 @@ export default function YfirferdPage() {
           </h2>
           <p className="mt-2 text-foreground-muted">{t('invoices.review.emptySubtitle')}</p>
           <Link
-            to="/reikningar"
+            to="/fjarmal/reikningar"
             className="mt-6 inline-flex text-accent hover:underline"
           >
             {t('invoices.review.backToInbox')}

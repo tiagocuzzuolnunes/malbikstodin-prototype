@@ -47,7 +47,15 @@
       "nóv.",
       "des."
     ],
-    "weekdaysShort": ["mán.", "þri.", "mið.", "fim.", "fös.", "lau.", "sun."]
+    "weekdaysShort": [
+      "mán.",
+      "þri.",
+      "mið.",
+      "fim.",
+      "fös.",
+      "lau.",
+      "sun."
+    ]
   },
   "theme": {
     "label": "Útlit",
@@ -160,7 +168,7 @@
       "description": "Yfirlitssíða upplýsingatækni með þjónustubeiðnum og kerfisstöðu."
     },
     "fjarmal": {
-      "description": "Veldu útgjaldaskrá eða kostnaðargreiningu verks.",
+      "description": "Veldu útgjöld, kostnaðargreiningu verka eða reikninga.",
       "openSection": "Opna",
       "registerDescription": "Skrá útgjöld og skoða útgjaldaskrá fyrirtækisins.",
       "costAnalysisDescription": "Raunkostnaður eins verks — vinna, flutningur, efni og tæki — borinn saman við tilboðsupphæð meðan verkið er enn í gangi."

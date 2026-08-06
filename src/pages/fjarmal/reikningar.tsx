@@ -6,43 +6,43 @@ import {
   Search,
   Truck,
 } from 'lucide-react'
+import { InvoiceInbox } from '../../components/reikningar'
 import { SectionPage } from '../../components/shared'
 import { buttonVariants, CardShell } from '../../components/ui'
 import { cn } from '../../lib/utils'
-import { InvoiceInbox } from '../../components/reikningar'
 
-const hubLinks = [
+const invoiceLinks = [
   {
     id: 'yfirferd',
-    to: '/reikningar/yfirferd',
+    to: '/fjarmal/yfirferd',
     titleKey: 'nav.yfirferd',
     descriptionKey: 'pages.reikningar.reviewDescription',
     icon: ClipboardCheck,
   },
   {
     id: 'serfraedingur',
-    to: '/reikningar/serfraedingur',
+    to: '/fjarmal/serfraedingur',
     titleKey: 'nav.serfraedingur',
     descriptionKey: 'pages.reikningar.expertDescription',
     icon: Search,
   },
   {
     id: 'vantar',
-    to: '/reikningar/vantar',
+    to: '/fjarmal/vantar',
     titleKey: 'nav.vantar',
     descriptionKey: 'pages.reikningar.missingDescription',
     icon: ListChecks,
   },
   {
     id: 'leiga',
-    to: '/reikningar/leiga',
+    to: '/fjarmal/leiga',
     titleKey: 'nav.leiga',
     descriptionKey: 'pages.reikningar.rentalDescription',
     icon: Truck,
   },
 ] as const
 
-export default function ReikningarInboxPage() {
+export default function FjarmalReikningarPage() {
   const { t } = useTranslation()
 
   return (
@@ -57,11 +57,12 @@ export default function ReikningarInboxPage() {
         </h2>
         <p className="mt-1 text-sm text-foreground-muted">{t('invoices.hub.subtitle')}</p>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {hubLinks.map((item) => {
+          {invoiceLinks.map((item) => {
             const Icon = item.icon
             return (
               <CardShell
                 key={item.id}
+                interactive
                 size="compact"
                 className="min-h-0"
                 title={

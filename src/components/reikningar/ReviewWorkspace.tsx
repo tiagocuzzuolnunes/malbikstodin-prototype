@@ -137,7 +137,7 @@ export function ReviewWorkspace({ reviewQueue }: ReviewWorkspaceProps) {
               </Button>
             ) : (
               <Link
-                to="/reikningar"
+                to="/fjarmal/reikningar"
                 className="inline-flex min-h-12 items-center rounded-control border border-border bg-surface-muted px-6 text-base font-medium hover:bg-interactive-hover-strong"
               >
                 {t('invoices.review.backToInbox')}

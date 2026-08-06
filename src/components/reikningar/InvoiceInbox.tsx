@@ -200,7 +200,7 @@ function InboxAction({
   if (status === 'discrepancy') {
     return (
       <Link
-        to={`/reikningar/yfirferd?invoice=${invoiceId}`}
+        to={`/fjarmal/yfirferd?invoice=${invoiceId}`}
         className={cn(
           buttonVariants({ variant: 'alert', size: 'sm' }),
           'h-auto min-h-8 max-w-full whitespace-normal px-2.5 py-1.5 text-left leading-snug',
@@ -222,7 +222,7 @@ function InboxAction({
   if (status === 'ok' || status === 'approved' || status === 'posted') {
     return (
       <Link
-        to={`/reikningar/serfraedingur?invoice=${invoiceId}`}
+        to={`/fjarmal/serfraedingur?invoice=${invoiceId}`}
         className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'max-w-full')}
       >
         {t('invoices.actions.view')}

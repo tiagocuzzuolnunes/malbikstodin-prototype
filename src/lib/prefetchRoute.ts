@@ -2,11 +2,10 @@
 const routeImporters: Record<string, () => Promise<unknown>> = {
   '/': () => import('../pages/index'),
   '/skraning': () => import('../pages/skraning/index'),
-  '/reikningar': () => import('../pages/reikningar/index'),
   '/frettir': () => import('../pages/frettir'),
   '/mannaudur': () => import('../pages/mannaudur/index'),
   '/taekni': () => import('../pages/taekni'),
-  '/fjarmal': () => import('../pages/fjarmal'),
+  '/fjarmal': () => import('../pages/fjarmal/index'),
   '/verkefni': () => import('../pages/verkefni/index'),
   '/stjornun': () => import('../pages/stjornun/index'),
 }

@@ -47,7 +47,15 @@
       "Nov",
       "Dec"
     ],
-    "weekdaysShort": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    "weekdaysShort": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ]
   },
   "theme": {
     "label": "Appearance",
@@ -160,7 +168,7 @@
       "description": "IT dashboard with support tickets and system status."
     },
     "fjarmal": {
-      "description": "Choose the expense register or job cost analysis.",
+      "description": "Choose expenses, job cost analysis, or invoices.",
       "openSection": "Open",
       "registerDescription": "Register expenses and review the company expense register.",
       "costAnalysisDescription": "One job’s real cost — labour, haulage, materials and equipment — set against the tender amount while the job is still running."

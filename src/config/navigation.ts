@@ -7,7 +7,6 @@ import {
   Laptop,
   HandCoins,
   ClipboardList,
-  DollarSign,
   Settings2,
 } from 'lucide-react'
 import { projectAreas } from './projects'
@@ -21,7 +20,6 @@ export type NavItem = {
 export const navItems: NavItem[] = [
   { to: '/', labelKey: 'nav.heim', icon: House },
   { to: '/skraning', labelKey: 'nav.skraning', icon: ClipboardList },
-  { to: '/reikningar', labelKey: 'nav.reikningar', icon: DollarSign },
   { to: '/frettir', labelKey: 'nav.frettir', icon: Newspaper },
   { to: '/mannaudur', labelKey: 'nav.mannaudur', icon: PersonStanding },
   { to: '/taekni', labelKey: 'nav.taekni', icon: Laptop },
@@ -54,40 +52,6 @@ export function getBreadcrumbKeys(pathname: string) {
         to: '/skraning/radstofun-vigtana',
         labelKey: 'nav.radstofunVigtana',
       })
-      return crumbs
-    }
-  }
-
-  if (pathname.startsWith('/reikningar/')) {
-    if (
-      pathname === '/reikningar/yfirferd' ||
-      pathname.startsWith('/reikningar/yfirferd/')
-    ) {
-      crumbs.push({ to: '/reikningar/yfirferd', labelKey: 'nav.yfirferd' })
-      return crumbs
-    }
-
-    if (
-      pathname === '/reikningar/serfraedingur' ||
-      pathname.startsWith('/reikningar/serfraedingur/')
-    ) {
-      crumbs.push({ to: '/reikningar/serfraedingur', labelKey: 'nav.serfraedingur' })
-      return crumbs
-    }
-
-    if (
-      pathname === '/reikningar/vantar' ||
-      pathname.startsWith('/reikningar/vantar/')
-    ) {
-      crumbs.push({ to: '/reikningar/vantar', labelKey: 'nav.vantar' })
-      return crumbs
-    }
-
-    if (
-      pathname === '/reikningar/leiga' ||
-      pathname.startsWith('/reikningar/leiga/')
-    ) {
-      crumbs.push({ to: '/reikningar/leiga', labelKey: 'nav.leiga' })
       return crumbs
     }
   }
@@ -154,6 +118,29 @@ export function getBreadcrumbKeys(pathname: string) {
         labelKey: 'nav.kostnadargreining',
       })
       return crumbs
+    }
+
+    if (
+      pathname === '/fjarmal/reikningar' ||
+      pathname.startsWith('/fjarmal/reikningar/')
+    ) {
+      crumbs.push({ to: '/fjarmal/reikningar', labelKey: 'nav.reikningar' })
+      return crumbs
+    }
+
+    const invoiceRoutes = [
+      { match: '/fjarmal/yfirferd', labelKey: 'nav.yfirferd' },
+      { match: '/fjarmal/serfraedingur', labelKey: 'nav.serfraedingur' },
+      { match: '/fjarmal/vantar', labelKey: 'nav.vantar' },
+      { match: '/fjarmal/leiga', labelKey: 'nav.leiga' },
+    ] as const
+
+    for (const route of invoiceRoutes) {
+      if (pathname === route.match || pathname.startsWith(`${route.match}/`)) {
+        crumbs.push({ to: '/fjarmal/reikningar', labelKey: 'nav.reikningar' })
+        crumbs.push({ to: route.match, labelKey: route.labelKey })
+        return crumbs
+      }
     }
   }
 
