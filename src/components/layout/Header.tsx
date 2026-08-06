@@ -46,32 +46,48 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
       ref={headerRef}
       data-app-header
       className={cn(
-        'relative z-110 flex shrink-0 items-center justify-between gap-3 bg-surface transition-[padding] duration-300 ease-out',
-        'pt-[max(1rem,env(safe-area-inset-top))]',
-        'pl-[max(1rem,env(safe-area-inset-left))]',
-        'pr-[max(1rem,env(safe-area-inset-right))]',
-        compact ? 'pb-2.5 md:px-7 md:py-3' : 'pb-4 md:p-7',
+        'relative z-110 flex shrink-0 items-center justify-between bg-surface transition-[padding,gap] duration-300 ease-out',
+        'gap-[calc(0.75rem*var(--shell-scale))]',
+        'pt-[max(calc(1rem*var(--shell-scale)),env(safe-area-inset-top))]',
+        'pl-[max(calc(1rem*var(--shell-scale)),env(safe-area-inset-left))]',
+        'pr-[max(calc(1rem*var(--shell-scale)),env(safe-area-inset-right))]',
+        compact
+          ? 'pb-[calc(0.625rem*var(--shell-scale))] md:px-[calc(1.75rem*var(--shell-scale))] md:py-[calc(0.75rem*var(--shell-scale))]'
+          : 'pb-[calc(1rem*var(--shell-scale))] md:p-[calc(1.75rem*var(--shell-scale))]',
       )}
     >
-      <div className="flex min-w-0 items-center gap-2 md:gap-3">
+      <div
+        className={cn(
+          'flex min-w-0 items-center',
+          'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(0.75rem*var(--shell-scale))]',
+        )}
+      >
         {onOpenMobileNav ? (
           <Button
             type="button"
             variant="ghost"
             size="icon"
-            className="shrink-0 p-2 md:hidden"
+            className="shrink-0 p-[calc(0.5rem*var(--shell-scale))] md:hidden"
             aria-label={t('sidebar.openMenu')}
             onClick={onOpenMobileNav}
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-[calc(1.5rem*var(--shell-scale))] w-[calc(1.5rem*var(--shell-scale))]" />
           </Button>
         ) : null}
 
-        <Link to="/" className="flex min-w-0 items-center gap-2 text-foreground md:gap-3">
+        <Link
+          to="/"
+          className={cn(
+            'flex min-w-0 items-center text-foreground',
+            'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(0.75rem*var(--shell-scale))]',
+          )}
+        >
           <img
             className={cn(
               'w-auto object-contain transition-[height,width] duration-300 ease-out',
-              compact ? 'h-7' : 'h-8 md:h-10',
+              compact
+                ? 'h-[calc(1.75rem*var(--shell-scale))]'
+                : 'h-[calc(2rem*var(--shell-scale))] md:h-[calc(2.5rem*var(--shell-scale))]',
             )}
             src={logo}
             alt={t('brand.logoAlt')}
@@ -79,9 +95,10 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
           <p
             className={cn(
               'hidden font-black overflow-hidden whitespace-nowrap transition-all duration-300 ease-out sm:block',
+              'text-[length:calc(1rem*var(--shell-scale))]',
               compact
                 ? 'max-w-0 -translate-x-1 opacity-0'
-                : 'max-w-56 translate-x-0 opacity-100',
+                : 'max-w-[calc(14rem*var(--shell-scale))] translate-x-0 opacity-100',
             )}
             aria-hidden={compact}
           >
@@ -93,7 +110,9 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
       <div
         className={cn(
           'flex shrink-0 items-center transition-[gap] duration-300 ease-out',
-          compact ? 'gap-1.5 md:gap-2' : 'gap-2 md:gap-4',
+          compact
+            ? 'gap-[calc(0.375rem*var(--shell-scale))] md:gap-[calc(0.5rem*var(--shell-scale))]'
+            : 'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(1rem*var(--shell-scale))]',
         )}
       >
         <SettingsMenu compact={compact} />

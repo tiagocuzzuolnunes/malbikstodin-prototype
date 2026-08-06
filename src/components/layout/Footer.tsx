@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Mail, MapPin, Phone } from 'lucide-react'
-import logo from '../../assets/logo.png'
 import { navItems } from '../../config/navigation'
 import { cn } from '../../lib/utils'
 
@@ -25,42 +24,65 @@ const contactItems = [
 
 export default function Footer() {
   const { t } = useTranslation()
-  const year = new Date().getFullYear()
 
   return (
     <footer
       className={cn(
-        'relative bg-surface',
-        'pt-8 pb-[max(1.5rem,env(safe-area-inset-bottom))]',
+        'border-t border-border bg-surface',
+        /* Bleed flush to main edges (must match RootLayout main padding, not shell-scale) */
+        'mt-[calc(1.5rem*var(--shell-scale))]',
+        '-ml-[max(1rem,env(safe-area-inset-left))]',
+        '-mr-[max(1rem,env(safe-area-inset-right))]',
+        'pt-[calc(1rem*var(--shell-scale))]',
+        'pb-[max(calc(1rem*var(--shell-scale)),env(safe-area-inset-bottom))]',
         'pl-[max(1rem,env(safe-area-inset-left))]',
         'pr-[max(1rem,env(safe-area-inset-right))]',
+        'sm:-ml-[max(1.25rem,env(safe-area-inset-left))]',
+        'sm:-mr-[max(1.25rem,env(safe-area-inset-right))]',
         'sm:pl-[max(1.25rem,env(safe-area-inset-left))]',
         'sm:pr-[max(1.25rem,env(safe-area-inset-right))]',
-        'md:px-7 md:pt-10 md:pb-8',
+        'md:mt-[calc(2rem*var(--shell-scale))]',
+        'md:pt-[calc(1.25rem*var(--shell-scale))]',
+        'md:pb-[calc(1.25rem*var(--shell-scale))]',
+        'md:-ml-[max(1.5rem,env(safe-area-inset-left))]',
+        'md:-mr-[max(1.5rem,env(safe-area-inset-right))]',
+        'md:pl-[max(1.5rem,env(safe-area-inset-left))]',
+        'md:pr-[max(1.5rem,env(safe-area-inset-right))]',
       )}
     >
-      {/* Desktop */}
-      <div className="hidden md:grid md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10 lg:gap-14">
+      <div
+        className={cn(
+          'grid gap-[calc(1.25rem*var(--shell-scale))]',
+          'sm:grid-cols-2 sm:gap-[calc(1.5rem*var(--shell-scale))]',
+          'md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]',
+          'md:items-start md:gap-[calc(2rem*var(--shell-scale))]',
+        )}
+      >
         <div className="min-w-0">
-          <Link to="/" className="inline-flex items-center gap-3 text-foreground">
-            <img className="h-9 w-auto object-contain" src={logo} alt={t('brand.logoAlt')} />
-            <span className="font-black tracking-tight">{t('brand.header')}</span>
-          </Link>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-foreground-muted">
-            {t('footer.tagline')}
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xs font-semibold tracking-wide text-foreground-muted uppercase">
+          <h2
+            className={cn(
+              'font-semibold tracking-wide text-foreground-muted uppercase',
+              'text-[length:calc(0.75rem*var(--shell-scale))]',
+            )}
+          >
             {t('footer.quickLinks')}
           </h2>
-          <nav className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5" aria-label={t('footer.quickLinks')}>
+          <nav
+            className={cn(
+              'grid grid-cols-2',
+              'mt-[calc(0.625rem*var(--shell-scale))]',
+              'gap-x-[calc(1rem*var(--shell-scale))]',
+              'gap-y-[calc(0.375rem*var(--shell-scale))]',
+              'sm:grid-cols-3',
+              'md:grid-cols-4',
+            )}
+            aria-label={t('footer.quickLinks')}
+          >
             {navItems.map(({ to, labelKey }) => (
               <Link
                 key={to}
                 to={to}
-                className="text-sm font-medium text-foreground transition-colors hover:text-accent"
+                className="font-medium text-foreground transition-colors hover:text-accent text-[length:calc(0.875rem*var(--shell-scale))]"
               >
                 {t(labelKey)}
               </Link>
@@ -68,96 +90,50 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div>
-          <h2 className="text-xs font-semibold tracking-wide text-foreground-muted uppercase">
+        <div className="min-w-0">
+          <h2
+            className={cn(
+              'font-semibold tracking-wide text-foreground-muted uppercase',
+              'text-[length:calc(0.75rem*var(--shell-scale))]',
+            )}
+          >
             {t('footer.contact')}
           </h2>
-          <ul className="mt-4 space-y-3">
+          <ul
+            className={cn(
+              'mt-[calc(0.625rem*var(--shell-scale))]',
+              'flex flex-col gap-[calc(0.375rem*var(--shell-scale))]',
+              'sm:gap-[calc(0.5rem*var(--shell-scale))]',
+            )}
+          >
             {contactItems.map(({ key, icon: Icon, href }) => {
               const value = t(`footer.${key}`)
               const link = typeof href === 'function' ? href(value) : null
 
               return (
-                <li key={key} className="flex items-start gap-2.5 text-sm text-foreground">
-                  <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
+                <li
+                  key={key}
+                  className="flex min-w-0 items-center gap-[calc(0.5rem*var(--shell-scale))] text-foreground text-[length:calc(0.875rem*var(--shell-scale))]"
+                >
+                  <Icon
+                    className="h-[calc(1rem*var(--shell-scale))] w-[calc(1rem*var(--shell-scale))] shrink-0 text-accent"
+                    aria-hidden
+                  />
                   {link ? (
                     <a
                       href={link}
-                      className="font-medium transition-colors hover:text-accent"
+                      className="min-w-0 truncate font-medium transition-colors hover:text-accent"
                     >
                       {value}
                     </a>
                   ) : (
-                    <span className="font-medium">{value}</span>
+                    <span className="min-w-0 truncate font-medium">{value}</span>
                   )}
                 </li>
               )
             })}
           </ul>
         </div>
-      </div>
-
-      {/* Mobile */}
-      <div className="flex flex-col gap-6 md:hidden">
-        <Link to="/" className="inline-flex items-center gap-2.5 self-start text-foreground">
-          <img className="h-8 w-auto object-contain" src={logo} alt={t('brand.logoAlt')} />
-          <span className="text-sm font-black tracking-tight">{t('brand.header')}</span>
-        </Link>
-
-        <p className="text-sm leading-relaxed text-foreground-muted">{t('footer.tagline')}</p>
-
-        <ul className="space-y-3 border-y border-border py-5">
-          {contactItems.map(({ key, icon: Icon, href }) => {
-            const value = t(`footer.${key}`)
-            const link = typeof href === 'function' ? href(value) : null
-
-            return (
-              <li key={key}>
-                {link ? (
-                  <a
-                    href={link}
-                    className="flex items-center gap-3 text-sm font-medium text-foreground transition-colors hover:text-accent"
-                  >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-control text-accent">
-                      <Icon className="h-4 w-4" aria-hidden />
-                    </span>
-                    {value}
-                  </a>
-                ) : (
-                  <div className="flex items-center gap-3 text-sm font-medium text-foreground">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-control text-accent">
-                      <Icon className="h-4 w-4" aria-hidden />
-                    </span>
-                    {value}
-                  </div>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-
-        <nav aria-label={t('footer.quickLinks')}>
-          <p className="text-xs font-semibold tracking-wide text-foreground-muted uppercase">
-            {t('footer.quickLinks')}
-          </p>
-          <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2">
-            {navItems.map(({ to, labelKey }) => (
-              <Link
-                key={to}
-                to={to}
-                className="text-sm font-medium text-foreground transition-colors hover:text-accent"
-              >
-                {t(labelKey)}
-              </Link>
-            ))}
-          </div>
-        </nav>
-      </div>
-
-      <div className="mt-8 border-t border-border pt-5 md:mt-10">
-        <p className="text-center text-xs text-foreground-muted md:text-left">
-          {t('footer.copyright', { year })}
-        </p>
       </div>
     </footer>
   )

@@ -59,6 +59,11 @@
 }
 
 @layer base {
+  :root {
+    /* 1 at ~900px viewport height — scales header/footer chrome while keeping proportions */
+    --shell-scale: clamp(0.82, 100dvh / 56.25rem, 1.12);
+  }
+
   .dark {
     --color-surface: #0b1220;
     --color-surface-muted: #060a12;

@@ -93,13 +93,17 @@ export default function SettingsMenu({ compact = false }: SettingsMenuProps) {
         title={t('settings.open')}
         className={cn(
           'transition-all duration-300 ease-out',
-          compact ? 'p-2' : 'p-3',
+          compact
+            ? 'p-[calc(0.5rem*var(--shell-scale))]'
+            : 'p-[calc(0.75rem*var(--shell-scale))]',
         )}
       >
         <Settings
           className={cn(
             'shrink-0 transition-all duration-300 ease-out',
-            compact ? 'h-5 w-5' : 'h-6 w-6',
+            compact
+              ? 'h-[calc(1.25rem*var(--shell-scale))] w-[calc(1.25rem*var(--shell-scale))]'
+              : 'h-[calc(1.5rem*var(--shell-scale))] w-[calc(1.5rem*var(--shell-scale))]',
           )}
         />
       </Button>

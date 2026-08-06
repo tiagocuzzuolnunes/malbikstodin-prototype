@@ -67,17 +67,21 @@ export default function NotificationBell({ compact = false }: NotificationBellPr
         title={t('notifications.open')}
         className={cn(
           'relative transition-all duration-300 ease-out',
-          compact ? 'p-2' : 'p-3',
+          compact
+            ? 'p-[calc(0.5rem*var(--shell-scale))]'
+            : 'p-[calc(0.75rem*var(--shell-scale))]',
         )}
       >
         <Bell
           className={cn(
             'shrink-0 transition-all duration-300 ease-out',
-            compact ? 'h-5 w-5' : 'h-6 w-6',
+            compact
+              ? 'h-[calc(1.25rem*var(--shell-scale))] w-[calc(1.25rem*var(--shell-scale))]'
+              : 'h-[calc(1.5rem*var(--shell-scale))] w-[calc(1.5rem*var(--shell-scale))]',
           )}
         />
         {unreadCount > 0 ? (
-          <span className="absolute top-1.5 right-1.5 h-2.5 w-2.5 rounded-full bg-danger" />
+          <span className="absolute top-[calc(0.375rem*var(--shell-scale))] right-[calc(0.375rem*var(--shell-scale))] h-[calc(0.625rem*var(--shell-scale))] w-[calc(0.625rem*var(--shell-scale))] rounded-full bg-danger" />
         ) : null}
       </Button>
 
