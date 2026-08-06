@@ -17,6 +17,7 @@ export default function StjornunPage() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <CardShell
+          interactive
           title={
             <span className="flex items-center gap-3">
               <ShieldCheck className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />

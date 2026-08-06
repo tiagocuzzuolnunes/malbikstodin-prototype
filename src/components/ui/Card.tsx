@@ -47,6 +47,11 @@ export type CardShellProps = {
   size?: 'default' | 'compact'
   /** Pin children to the bottom when cards share a taller stretch height. */
   contentAlign?: 'start' | 'end'
+  /**
+   * Hub / subpage cards: pointer over the whole card, stretched footer link,
+   * and open-button highlight on card hover.
+   */
+  interactive?: boolean
 }
 
 export function CardShell({
@@ -58,6 +63,7 @@ export function CardShell({
   className,
   size = 'default',
   contentAlign = 'start',
+  interactive = false,
 }: CardShellProps) {
   const compact = size === 'compact'
   const contentSpacing =
@@ -73,7 +79,12 @@ export function CardShell({
     <Card
       elevated={elevated}
       padding={compact ? 'md' : 'lg'}
-      className={cn('flex h-full flex-col', compact ? 'min-h-0' : 'min-h-56', className)}
+      className={cn(
+        'flex h-full flex-col',
+        compact ? 'min-h-0' : 'min-h-56',
+        interactive && 'group relative cursor-pointer',
+        className,
+      )}
     >
       <CardHeader className={cn(compact && 'gap-1')}>
         <CardTitle className={cn(compact && 'truncate')}>{title}</CardTitle>
@@ -91,6 +102,8 @@ export function CardShell({
           className={cn(
             children ? (compact ? 'mt-4' : 'mt-8') : contentSpacing,
             compact && 'gap-2',
+            interactive &&
+              '[&_a]:after:absolute [&_a]:after:inset-0 [&_a]:group-hover:bg-accent-hover',
           )}
         >
           {footer}

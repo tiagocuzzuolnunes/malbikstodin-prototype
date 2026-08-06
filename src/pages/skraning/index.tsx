@@ -36,6 +36,7 @@ export default function SkraningHubPage() {
           return (
             <CardShell
               key={item.id}
+              interactive
               title={
                 <span className="flex items-center gap-3">
                   <Icon className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
