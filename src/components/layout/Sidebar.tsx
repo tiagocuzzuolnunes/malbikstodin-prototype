@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import { navItems } from '../../config/navigation'
@@ -10,12 +10,38 @@ import { Button, Icon } from '../ui'
 const EXPANDED_WIDTH_REM = 14
 const COLLAPSED_WIDTH_REM = 5
 
+function getActiveNavTo(pathname: string) {
+  if (pathname === '/') return '/'
+
+  const match = navItems
+    .filter((item) => item.to !== '/' && pathname.startsWith(item.to))
+    .sort((a, b) => b.to.length - a.to.length)[0]
+
+  return match?.to ?? null
+}
+
+type Indicator = {
+  top: number
+  height: number
+  ready: boolean
+}
+
 export default function Sidebar() {
   const { t } = useTranslation()
+  const { pathname } = useLocation()
   const [collapsed, setCollapsed] = useState(false)
   const shellRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const navRef = useRef<HTMLElement>(null)
+  const itemRefs = useRef(new Map<string, HTMLAnchorElement>())
   const [scale, setScale] = useState(1)
+  const [indicator, setIndicator] = useState<Indicator>({
+    top: 0,
+    height: 0,
+    ready: false,
+  })
+
+  const activeTo = getActiveNavTo(pathname)
 
   useLayoutEffect(() => {
     const shell = shellRef.current
@@ -47,6 +73,34 @@ export default function Sidebar() {
     }
   }, [collapsed])
 
+  useLayoutEffect(() => {
+    const nav = navRef.current
+    if (!nav || !activeTo) {
+      setIndicator((current) => (current.ready ? { ...current, ready: false } : current))
+      return
+    }
+
+    const updateIndicator = () => {
+      const item = itemRefs.current.get(activeTo)
+      if (!item) return
+
+      setIndicator({
+        top: item.offsetTop,
+        height: item.offsetHeight,
+        ready: true,
+      })
+    }
+
+    updateIndicator()
+
+    const observer = new ResizeObserver(updateIndicator)
+    observer.observe(nav)
+    const activeItem = itemRefs.current.get(activeTo)
+    if (activeItem) observer.observe(activeItem)
+
+    return () => observer.disconnect()
+  }, [activeTo, collapsed, scale])
+
   const designWidthRem = collapsed ? COLLAPSED_WIDTH_REM : EXPANDED_WIDTH_REM
 
   return (
@@ -77,9 +131,27 @@ export default function Sidebar() {
           </Button>
         </div>
 
-        <nav className="flex flex-col gap-4 p-2" aria-label={t('common.mainNav')}>
+        <nav
+          ref={navRef}
+          className="relative flex flex-col gap-4 p-2"
+          aria-label={t('common.mainNav')}
+        >
+          <span
+            aria-hidden
+            className={cn(
+              'pointer-events-none absolute top-0 left-2 right-2 rounded-control bg-accent/10',
+              'transition-[transform,height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
+              indicator.ready ? 'opacity-100' : 'opacity-0',
+            )}
+            style={{
+              height: indicator.height,
+              transform: `translateY(${indicator.top}px)`,
+            }}
+          />
+
           {navItems.map(({ to, labelKey, icon }) => {
             const label = t(labelKey)
+            const isCurrent = to === activeTo
 
             return (
               <NavLink
@@ -89,17 +161,27 @@ export default function Sidebar() {
                 title={collapsed ? label : undefined}
                 onMouseEnter={() => prefetchRoute(to)}
                 onFocus={() => prefetchRoute(to)}
-                className={({ isActive }) =>
-                  cn(
-                    'flex cursor-pointer items-center gap-3 rounded-control p-3 text-lg whitespace-nowrap transition-colors',
-                    isActive
-                      ? 'bg-foreground/10 font-bold text-foreground'
-                      : 'text-foreground-muted font-medium hover:bg-foreground/5 hover:text-foreground',
-                  )
-                }
+                ref={(node) => {
+                  if (node) itemRefs.current.set(to, node)
+                  else itemRefs.current.delete(to)
+                }}
+                className={cn(
+                  'relative z-10 flex cursor-pointer items-center gap-3 rounded-control p-3 text-lg whitespace-nowrap transition-colors duration-200',
+                  isCurrent
+                    ? 'font-bold text-foreground'
+                    : 'font-medium text-foreground-muted hover:bg-interactive-hover hover:text-foreground',
+                )}
               >
                 <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center">
-                  <Icon icon={icon} size="md" aria-hidden />
+                  <Icon
+                    icon={icon}
+                    size="md"
+                    aria-hidden
+                    className={cn(
+                      'transition-colors duration-200',
+                      isCurrent && 'text-accent',
+                    )}
+                  />
                 </span>
                 <span
                   className={cn(
