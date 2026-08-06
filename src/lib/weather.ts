@@ -27,12 +27,13 @@ type OpenMeteoResponse = {
   }
 }
 
-const REYKJAVIK = {
-  latitude: 64.1466,
-  longitude: -21.9426,
+/** 162 Mosfellsbær, Iceland */
+const MOSFELLSBAER = {
+  latitude: 64.17141,
+  longitude: -21.69389,
 }
 
-const WEATHER_CACHE_KEY = 'malbikstodin-reykjavik-weather'
+const WEATHER_CACHE_KEY = 'malbikstodin-mosfellsbaer-weather'
 /** Fresh enough to show without blocking; background refresh still runs. */
 export const WEATHER_TTL_MS = 10 * 60 * 1000
 
@@ -80,8 +81,8 @@ async function fetchReykjavikWeatherNetwork(
   signal?: AbortSignal,
 ): Promise<ReykjavikWeather> {
   const url = new URL('https://api.open-meteo.com/v1/forecast')
-  url.searchParams.set('latitude', String(REYKJAVIK.latitude))
-  url.searchParams.set('longitude', String(REYKJAVIK.longitude))
+  url.searchParams.set('latitude', String(MOSFELLSBAER.latitude))
+  url.searchParams.set('longitude', String(MOSFELLSBAER.longitude))
   url.searchParams.set('current', 'temperature_2m,weather_code,wind_speed_10m')
   url.searchParams.set('timezone', 'Atlantic/Reykjavik')
   url.searchParams.set('wind_speed_unit', 'ms')

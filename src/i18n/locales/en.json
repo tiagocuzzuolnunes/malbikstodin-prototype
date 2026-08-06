@@ -344,10 +344,10 @@
     "skraningCta": "Register hours",
     "userName": "Vilhjálmur",
     "weather": {
-      "title": "Reykjavík",
-      "loading": "Fetching Reykjavík weather…",
-      "error": "Reykjavík weather is unavailable right now.",
-      "summary": "{{condition}} in Reykjavík · {{value}}°C · {{speed}} m/s wind",
+      "title": "Mosfellsbær",
+      "loading": "Fetching Mosfellsbær weather…",
+      "error": "Mosfellsbær weather is unavailable right now.",
+      "summary": "{{condition}} in Mosfellsbær · {{value}}°C · {{speed}} m/s wind",
       "wind": "{{speed}} m/s wind",
       "temperature": "{{value}}°C",
       "conditions": {

@@ -344,10 +344,10 @@
     "skraningCta": "Skrá tíma",
     "userName": "Vilhjálmur",
     "weather": {
-      "title": "Reykjavík",
-      "loading": "Sækir veður í Reykjavík…",
-      "error": "Veðurupplýsingar fyrir Reykjavík eru ekki tiltækar sem stendur.",
-      "summary": "{{condition}} í Reykjavík · {{value}}°C · {{speed}} m/s vindur",
+      "title": "Mosfellsbær",
+      "loading": "Sækir veður í Mosfellsbæ…",
+      "error": "Veðurupplýsingar fyrir Mosfellsbæ eru ekki tiltækar sem stendur.",
+      "summary": "{{condition}} í Mosfellsbæ · {{value}}°C · {{speed}} m/s vindur",
       "wind": "{{speed}} m/s vindur",
       "temperature": "{{value}}°C",
       "conditions": {
