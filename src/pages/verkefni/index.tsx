@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { GitBranch } from 'lucide-react'
+import { GitBranch, Workflow } from 'lucide-react'
 import { SectionPage } from '../../components/shared'
 import { projectAreas } from '../../config/projects'
 import { cn } from '../../lib/utils'
@@ -48,6 +48,27 @@ export default function VerkefniPage() {
           footer={
             <Link
               to="/verkefni/ferlar"
+              className={cn(
+                buttonVariants({ variant: 'primary', size: 'lg' }),
+                'min-h-12 px-5 text-base',
+              )}
+            >
+              {t('pages.verkefni.openArea')}
+            </Link>
+          }
+        />
+        <CardShell
+          interactive
+          title={
+            <span className="flex items-center gap-3">
+              <Workflow className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
+              {t('nav.verkferill')}
+            </span>
+          }
+          description={t('pages.verkefni.verkferill.description')}
+          footer={
+            <Link
+              to="/verkefni/verkferill"
               className={cn(
                 buttonVariants({ variant: 'primary', size: 'lg' }),
                 'min-h-12 px-5 text-base',
