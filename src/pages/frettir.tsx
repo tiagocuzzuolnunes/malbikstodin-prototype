@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next'
 import { SectionPage } from '../components/shared'
 import { Card } from '../components/ui'
-import { cn } from '../lib/utils'
 import {
   dashboardNews,
   newsAnnouncements,
   newsStats,
   type DashboardNewsItem,
 } from '../data/news'
+import { statusRowBg } from '../lib/statusRowTint'
+import { cn } from '../lib/utils'
 
 function formatDate(value: string, locale: string) {
   return new Intl.DateTimeFormat(locale, {
@@ -21,6 +22,12 @@ const statusClass: Record<DashboardNewsItem['status'], string> = {
   published: 'bg-success/10 text-success',
   draft: 'bg-surface-muted text-foreground-muted',
   scheduled: 'bg-alert/15 text-alert',
+}
+
+const statusRowTint: Record<DashboardNewsItem['status'], string> = {
+  published: statusRowBg.success,
+  draft: statusRowBg.muted,
+  scheduled: statusRowBg.alert,
 }
 
 export default function FrettirPage() {
@@ -62,7 +69,10 @@ export default function FrettirPage() {
             {dashboardNews.map((item) => (
               <li
                 key={item.id}
-                className="flex flex-col gap-3 py-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between"
+                className={cn(
+                  'flex flex-col gap-3 px-3 py-4 -mx-3 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:px-4 sm:-mx-4',
+                  statusRowTint[item.status],
+                )}
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-medium tracking-wide text-foreground-muted uppercase">

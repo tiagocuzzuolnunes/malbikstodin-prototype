@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { SectionPage } from '../components/shared'
 import { Card } from '../components/ui'
-import { cn } from '../lib/utils'
 import {
   itStats,
   itSystems,
@@ -10,6 +9,8 @@ import {
   type TicketPriority,
   type TicketStatus,
 } from '../data/it'
+import { statusRowBg } from '../lib/statusRowTint'
+import { cn } from '../lib/utils'
 
 function formatDate(value: string, locale: string) {
   return new Intl.DateTimeFormat(locale, {
@@ -31,6 +32,12 @@ const ticketStatusClass: Record<TicketStatus, string> = {
   waiting: 'bg-surface-muted text-foreground-muted',
 }
 
+const ticketStatusRowTint: Record<TicketStatus, string> = {
+  open: statusRowBg.accent,
+  inProgress: statusRowBg.alert,
+  waiting: statusRowBg.muted,
+}
+
 const systemStatusClass: Record<SystemStatus, string> = {
   operational: 'bg-success/10 text-success',
   degraded: 'bg-alert/15 text-alert',
@@ -46,8 +53,9 @@ function Badge({
 }) {
   return (
     <span
+      title={children}
       className={cn(
-        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide',
+        'block min-w-0 w-fit max-w-full truncate rounded-control px-2 py-0.5 text-xs font-medium tracking-wide',
         className,
       )}
     >
@@ -96,7 +104,10 @@ export default function TaekniPage() {
               {itTickets.map((ticket) => (
                 <article
                   key={ticket.id}
-                  className="space-y-2 border-b border-border px-4 py-4 last:border-b-0"
+                  className={cn(
+                    'space-y-2 border-b border-border px-4 py-4 last:border-b-0',
+                    ticketStatusRowTint[ticket.status],
+                  )}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -107,7 +118,7 @@ export default function TaekniPage() {
                         {t(`it.tickets.${ticket.titleKey}`)}
                       </h3>
                     </div>
-                    <Badge className={priorityClass[ticket.priority]}>
+                    <Badge className={cn(priorityClass[ticket.priority], 'shrink')}>
                       {t(`it.priority.${ticket.priority}`)}
                     </Badge>
                   </div>
@@ -160,7 +171,10 @@ export default function TaekniPage() {
                   {itTickets.map((ticket) => (
                     <tr
                       key={ticket.id}
-                      className="border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40"
+                      className={cn(
+                        'border-b border-border last:border-b-0',
+                        ticketStatusRowTint[ticket.status],
+                      )}
                     >
                       <td className="px-2 py-3 align-top font-mono text-xs text-foreground-muted">
                         {ticket.serial}
@@ -169,12 +183,12 @@ export default function TaekniPage() {
                         {t(`it.tickets.${ticket.titleKey}`)}
                       </td>
                       <td className="px-2 py-3 align-top wrap-break-word">{ticket.requester}</td>
-                      <td className="px-2 py-3 align-top">
+                      <td className="min-w-0 px-2 py-3 align-top">
                         <Badge className={priorityClass[ticket.priority]}>
                           {t(`it.priority.${ticket.priority}`)}
                         </Badge>
                       </td>
-                      <td className="px-2 py-3 align-top">
+                      <td className="min-w-0 px-2 py-3 align-top">
                         <Badge className={ticketStatusClass[ticket.status]}>
                           {t(`it.ticketStatus.${ticket.status}`)}
                         </Badge>

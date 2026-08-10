@@ -10,10 +10,11 @@ import {
   type AccessMode,
 } from '../../data/accessControls'
 import { employees } from '../../data/employees'
+import { cn } from '../../lib/utils'
 import { Button, PillSwitch } from '../ui'
 import { LevelEditModal } from './access/LevelEditModal'
 import { StaffEditModal } from './access/StaffEditModal'
-import { AccessStatusBadge } from './access/status'
+import { AccessStatusBadge, accessStatusRowTint } from './access/status'
 
 type AccessTab = 'levels' | 'staff'
 
@@ -141,7 +142,13 @@ export default function AccessControlMatrix() {
                   const status = resolveAccessModeStatus(mode, assignments)
 
                   return (
-                    <tr key={mode.id} className="hover:bg-interactive-hover/40">
+                    <tr
+                      key={mode.id}
+                      className={cn(
+                        'hover:bg-interactive-hover/40',
+                        accessStatusRowTint[status],
+                      )}
+                    >
                       <th
                         scope="row"
                         className="border-b border-border px-4 py-3 font-semibold tracking-tight"

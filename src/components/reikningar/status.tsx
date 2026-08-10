@@ -1,3 +1,4 @@
+import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 import type { InvoiceStatus, LineStatus } from '../../data/invoices'
 
@@ -10,8 +11,9 @@ export function StatusBadge({
 }) {
   return (
     <span
+      title={children}
       className={cn(
-        'inline-flex max-w-full items-center rounded-control px-2 py-0.5 text-xs font-medium tracking-wide',
+        'inline-flex min-w-0 max-w-full items-center truncate rounded-control px-2 py-0.5 text-xs font-medium tracking-wide whitespace-nowrap',
         className,
       )}
     >
@@ -30,12 +32,12 @@ export const invoiceStatusClass: Record<InvoiceStatus, string> = {
 }
 
 export const invoiceRowTint: Record<InvoiceStatus, string> = {
-  ok: 'border-l-4 border-l-success',
-  approved: 'border-l-4 border-l-success',
-  posted: 'border-l-4 border-l-success',
-  discrepancy: 'border-l-4 border-l-alert',
-  awaitingTrips: 'border-l-4 border-l-foreground-muted/40',
-  matching: 'border-l-4 border-l-accent',
+  ok: statusRowBg.success,
+  approved: statusRowBg.success,
+  posted: statusRowBg.success,
+  discrepancy: statusRowBg.alert,
+  awaitingTrips: statusRowBg.muted,
+  matching: statusRowBg.accent,
 }
 
 export const lineStatusClass: Record<LineStatus, string> = {
@@ -48,6 +50,18 @@ export const lineStatusClass: Record<LineStatus, string> = {
   wrongJob: 'bg-danger/10 text-danger',
   awaitingApproval: 'bg-surface-muted text-foreground-muted',
   rejected: 'bg-danger/10 text-danger',
+}
+
+export const lineStatusRowTint: Record<LineStatus, string> = {
+  matched: statusRowBg.success,
+  approvedManually: statusRowBg.success,
+  weighingWithoutTrip: statusRowBg.alert,
+  tripWithoutWeighing: statusRowBg.alert,
+  quantityMismatch: statusRowBg.alert,
+  unknownProduct: statusRowBg.danger,
+  wrongJob: statusRowBg.danger,
+  awaitingApproval: statusRowBg.muted,
+  rejected: statusRowBg.danger,
 }
 
 export function formatDate(value: string, locale: string) {

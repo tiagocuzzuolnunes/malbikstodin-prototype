@@ -1,4 +1,5 @@
 import type { JobCostRateStatus } from '../../../data/jobCost'
+import { statusRowBg } from '../../../lib/statusRowTint'
 
 export const jobCostStatusClass: Record<JobCostRateStatus, string> = {
   confirmed: 'bg-success/15 text-success ring-1 ring-success/25',
@@ -14,4 +15,12 @@ export const jobCostStatusDotClass: Record<JobCostRateStatus, string> = {
   noRate: 'bg-danger',
   noLabourRate: 'bg-danger',
   notApproved: 'bg-foreground-muted',
+}
+
+export const jobCostStatusRowTint: Record<JobCostRateStatus, string> = {
+  confirmed: statusRowBg.success,
+  changedSince: statusRowBg.alert,
+  noRate: statusRowBg.danger,
+  noLabourRate: statusRowBg.danger,
+  notApproved: statusRowBg.muted,
 }

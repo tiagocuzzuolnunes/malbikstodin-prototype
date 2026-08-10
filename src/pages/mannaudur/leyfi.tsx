@@ -2,17 +2,24 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SectionPage } from '../../components/shared'
 import { Button, Card } from '../../components/ui'
-import { cn } from '../../lib/utils'
 import {
   employeeLicenses,
   licenseOverviewStats,
   type LicenseStatus,
 } from '../../data/licenses'
+import { statusRowBg } from '../../lib/statusRowTint'
+import { cn } from '../../lib/utils'
 
 const statusClass: Record<LicenseStatus, string> = {
   valid: 'bg-success/10 text-success',
   expiringSoon: 'bg-alert/15 text-alert',
   expired: 'bg-danger/10 text-danger',
+}
+
+const statusRowTint: Record<LicenseStatus, string> = {
+  valid: statusRowBg.success,
+  expiringSoon: statusRowBg.alert,
+  expired: statusRowBg.danger,
 }
 
 function formatDate(value: string, locale: string) {
@@ -104,7 +111,10 @@ export default function MannaudurLeyfiPage() {
             {filtered.map((license) => (
               <article
                 key={license.id}
-                className="space-y-3 border-b border-border px-4 py-4 last:border-b-0"
+                className={cn(
+                  'space-y-3 border-b border-border px-4 py-4 last:border-b-0',
+                  statusRowTint[license.status],
+                )}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
@@ -169,7 +179,10 @@ export default function MannaudurLeyfiPage() {
                 {filtered.map((license) => (
                   <tr
                     key={license.id}
-                    className="border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40"
+                    className={cn(
+                      'border-b border-border last:border-b-0',
+                      statusRowTint[license.status],
+                    )}
                   >
                     <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                       {license.serial}

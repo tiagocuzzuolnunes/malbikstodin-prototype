@@ -8,6 +8,7 @@ import { rentalInvoices } from '../../data/invoices'
 import {
   formatDate,
   formatIsk,
+  invoiceRowTint,
   invoiceStatusClass,
   StatusBadge,
 } from '../../components/reikningar'
@@ -43,8 +44,9 @@ export default function LeigaPage() {
               className={cn(
                 'min-w-60 shrink-0 snap-start rounded-card border px-4 py-3.5 text-left transition-colors md:min-w-0 md:py-4',
                 active
-                  ? 'border-accent bg-accent/5 shadow-card'
-                  : 'border-border bg-surface hover:bg-interactive-hover',
+                  ? 'border-accent shadow-card ring-1 ring-accent/30'
+                  : 'border-border hover:brightness-[0.98]',
+                invoiceRowTint[item.status],
               )}
             >
               <div className="flex items-start justify-between gap-3">

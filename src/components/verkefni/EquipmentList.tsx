@@ -8,6 +8,7 @@ import {
   type EquipmentItem,
   type EquipmentStatus,
 } from '../../data/equipment'
+import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 import { Card } from '../ui'
 
@@ -19,6 +20,12 @@ const statusClass: Record<EquipmentStatus, string> = {
   available: 'bg-success/10 text-success',
   onHold: 'bg-alert/15 text-alert',
   broken: 'bg-danger/10 text-danger',
+}
+
+const statusRowTint: Record<EquipmentStatus, string> = {
+  available: statusRowBg.success,
+  onHold: statusRowBg.alert,
+  broken: statusRowBg.danger,
 }
 
 function employeeName(employeeId: string | null) {
@@ -63,7 +70,12 @@ function MobileRow({
   const { t } = useTranslation()
 
   return (
-    <article className="space-y-3 border-b border-border px-4 py-4 last:border-b-0">
+    <article
+      className={cn(
+        'space-y-3 border-b border-border px-4 py-4 last:border-b-0',
+        statusRowTint[item.status],
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
@@ -178,7 +190,10 @@ export default function EquipmentList({ areaId }: EquipmentListProps) {
               {trucks.map((item) => (
                 <tr
                   key={item.id}
-                  className="border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40"
+                  className={cn(
+                    'border-b border-border last:border-b-0',
+                    statusRowTint[item.status],
+                  )}
                 >
                   <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                     {item.serial}

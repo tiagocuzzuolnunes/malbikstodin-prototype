@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { StatusDotBadge } from '../../ui'
 import type { WeighingRouteStatus } from '../../../data/weighingDispatch'
+import { statusRowBg } from '../../../lib/statusRowTint'
+import { StatusDotBadge } from '../../ui'
 
 export const weighingStatusClass: Record<WeighingRouteStatus, string> = {
   routed: 'bg-success/15 text-success ring-1 ring-success/25',
@@ -18,6 +19,15 @@ export const weighingStatusDotClass: Record<WeighingRouteStatus, string> = {
   awaitingDocket: 'bg-accent',
   awaitingInvoice: 'bg-accent',
   discrepancy: 'bg-alert',
+}
+
+export const weighingStatusRowTint: Record<WeighingRouteStatus, string> = {
+  routed: statusRowBg.success,
+  unrouted: statusRowBg.danger,
+  needsReview: statusRowBg.alert,
+  awaitingDocket: statusRowBg.accent,
+  awaitingInvoice: statusRowBg.accent,
+  discrepancy: statusRowBg.alert,
 }
 
 export function WeighingStatusBadge({ status }: { status: WeighingRouteStatus }) {

@@ -147,34 +147,34 @@ export function InvoiceInbox() {
                   <tr
                     key={invoice.id}
                     className={cn(
-                      'border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40',
+                      'h-14 border-b border-border last:border-b-0',
                       invoiceRowTint[invoice.status],
                     )}
                   >
-                    <td className="px-2 py-3 align-top font-mono text-xs wrap-break-word text-foreground-muted">
+                    <td className="truncate px-2 align-middle font-mono text-xs text-foreground-muted">
                       {invoice.serial}
                     </td>
-                    <td className="px-2 py-3 align-top font-medium wrap-break-word">
+                    <td className="truncate px-2 align-middle font-medium">
                       {invoice.supplier}
                     </td>
-                    <td className="px-2 py-3 align-top wrap-break-word">
+                    <td className="truncate px-2 align-middle">
                       {formatDate(invoice.invoiceDate, locale)}
                     </td>
-                    <td className="px-2 py-3 align-top tabular-nums">
+                    <td className="truncate px-2 align-middle tabular-nums">
                       {invoice.lineCount}/{invoice.tripCount}
                     </td>
-                    <td className="px-2 py-3 align-top tabular-nums wrap-break-word">
+                    <td className="truncate px-2 align-middle tabular-nums">
                       {formatQuantity(invoice.totalQuantity, invoice.unit, locale)}
                     </td>
-                    <td className="px-2 py-3 align-top tabular-nums wrap-break-word">
+                    <td className="truncate px-2 align-middle tabular-nums">
                       {formatIsk(invoice.amountIsk, locale)}
                     </td>
-                    <td className="px-2 py-3 align-top">
+                    <td className="min-w-0 px-2 align-middle">
                       <StatusBadge className={invoiceStatusClass[invoice.status]}>
                         {t(`invoices.status.${invoice.status}`)}
                       </StatusBadge>
                     </td>
-                    <td className="min-w-0 px-2 py-3 align-top">
+                    <td className="min-w-0 px-2 align-middle">
                       <InboxAction invoiceId={invoice.id} status={invoice.status} />
                     </td>
                   </tr>
@@ -201,9 +201,10 @@ function InboxAction({
     return (
       <Link
         to={`/fjarmal/yfirferd?invoice=${invoiceId}`}
+        title={t('invoices.actions.viewDiscrepancy')}
         className={cn(
           buttonVariants({ variant: 'alert', size: 'sm' }),
-          'h-auto min-h-8 max-w-full whitespace-normal px-2.5 py-1.5 text-left leading-snug',
+          'max-w-full truncate',
         )}
       >
         {t('invoices.actions.viewDiscrepancy')}
@@ -213,7 +214,7 @@ function InboxAction({
 
   if (status === 'awaitingTrips') {
     return (
-      <span className="block text-sm wrap-break-word text-foreground-muted">
+      <span className="block truncate text-sm text-foreground-muted">
         {t('invoices.actions.waiting')}
       </span>
     )
@@ -223,7 +224,10 @@ function InboxAction({
     return (
       <Link
         to={`/fjarmal/serfraedingur?invoice=${invoiceId}`}
-        className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'max-w-full')}
+        className={cn(
+          buttonVariants({ variant: 'ghost', size: 'sm' }),
+          'max-w-full truncate',
+        )}
       >
         {t('invoices.actions.view')}
       </Link>

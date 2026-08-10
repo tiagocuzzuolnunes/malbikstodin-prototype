@@ -6,52 +6,63 @@ import {
   type JobPipelineFlag,
   type JobPipelineJob,
 } from '../../data/jobPipeline'
+import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 import { Card, StatusDotBadge } from '../ui'
 
 const flagTone: Record<
   JobPipelineFlag,
-  { className: string; dotClassName: string }
+  { className: string; dotClassName: string; rowTint: string }
 > = {
   onTrack: {
     className: 'bg-success/15 text-success',
     dotClassName: 'bg-success',
+    rowTint: statusRowBg.success,
   },
   deadlineMissing: {
     className: 'bg-danger/10 text-danger',
     dotClassName: 'bg-danger',
+    rowTint: statusRowBg.danger,
   },
   noForeman: {
     className: 'bg-danger/10 text-danger',
     dotClassName: 'bg-danger',
+    rowTint: statusRowBg.danger,
   },
   noScheduleDate: {
     className: 'bg-alert/15 text-alert',
     dotClassName: 'bg-alert',
+    rowTint: statusRowBg.alert,
   },
   unapprovedDays: {
     className: 'bg-alert/15 text-alert',
     dotClassName: 'bg-alert',
+    rowTint: statusRowBg.alert,
   },
   awaitingDocket: {
     className: 'bg-accent/10 text-accent',
     dotClassName: 'bg-accent',
+    rowTint: statusRowBg.accent,
   },
   samplesOutstanding: {
     className: 'bg-alert/15 text-alert',
     dotClassName: 'bg-alert',
+    rowTint: statusRowBg.alert,
   },
   waitingClient: {
     className: 'bg-accent/10 text-accent',
     dotClassName: 'bg-accent',
+    rowTint: statusRowBg.accent,
   },
   rateGap: {
     className: 'bg-danger/10 text-danger',
     dotClassName: 'bg-danger',
+    rowTint: statusRowBg.danger,
   },
   docsMissing: {
     className: 'bg-alert/15 text-alert',
     dotClassName: 'bg-alert',
+    rowTint: statusRowBg.alert,
   },
 }
 
@@ -82,7 +93,12 @@ function JobCard({ job, locale }: { job: JobPipelineJob; locale: string }) {
   const stuck = job.daysInStage >= 14
 
   return (
-    <article className="flex h-36 flex-col rounded-control border border-border bg-surface p-3 shadow-sm">
+    <article
+      className={cn(
+        'flex h-36 flex-col rounded-control border border-border p-3 shadow-sm',
+        tone.rowTint,
+      )}
+    >
       <div className="flex items-start justify-between gap-2">
         <p className="min-w-0 font-mono text-xs font-semibold tracking-wide text-foreground-muted">
           {job.serial}

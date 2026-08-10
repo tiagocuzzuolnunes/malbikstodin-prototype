@@ -9,6 +9,7 @@ import {
   type TaskStatus,
 } from '../../data/tasks'
 import { useVirtualWindow } from '../../hooks/useVirtualWindow'
+import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 
 type WorklistProps = {
@@ -29,6 +30,13 @@ const statusClass: Record<TaskStatus, string> = {
   planned: 'bg-surface-muted text-foreground-muted',
   finished: 'bg-success text-success-foreground',
   delayed: 'bg-danger/10 text-danger',
+}
+
+const statusRowTint: Record<TaskStatus, string> = {
+  inCourse: statusRowBg.accent,
+  planned: statusRowBg.muted,
+  finished: statusRowBg.success,
+  delayed: statusRowBg.danger,
 }
 
 function employeeName(employeeId: string) {
@@ -72,7 +80,12 @@ function MobileRow({
   const { t } = useTranslation()
 
   return (
-    <article className="space-y-3 border-b border-border px-4 py-4 last:border-b-0">
+    <article
+      className={cn(
+        'space-y-3 border-b border-border px-4 py-4 last:border-b-0',
+        statusRowTint[task.status],
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
@@ -117,7 +130,12 @@ function DesktopTaskRow({ task, locale }: { task: Task; locale: string }) {
   const { t } = useTranslation()
 
   return (
-    <tr className="border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40">
+    <tr
+      className={cn(
+        'border-b border-border last:border-b-0',
+        statusRowTint[task.status],
+      )}
+    >
       <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
         {task.serial}
       </td>

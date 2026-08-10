@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import type { LabourRate } from '../../../data/jobCost'
+import { cn } from '../../../lib/utils'
 import { JobCostStatusBadge } from './status'
+import { jobCostStatusRowTint } from './statusStyles'
 import { DataTable } from './DataTable'
 import { formatRate, formatRateDate } from './format'
 
@@ -58,7 +60,10 @@ export function LabourRatesTable({ rates, locale }: LabourRatesTableProps) {
         body={rates.map((rate) => (
           <tr
             key={rate.id}
-            className="h-14 border-t border-border odd:bg-surface even:bg-surface-muted/40"
+            className={cn(
+              'h-14 border-t border-border',
+              jobCostStatusRowTint[rate.status],
+            )}
           >
             <td className="px-4 align-middle font-medium">
               <span className="block truncate">{t(rate.roleKey)}</span>
@@ -86,7 +91,10 @@ export function LabourRatesTable({ rates, locale }: LabourRatesTableProps) {
         mobile={rates.map((rate) => (
           <article
             key={rate.id}
-            className="space-y-3 border-b border-border px-4 py-4 last:border-b-0"
+            className={cn(
+              'space-y-3 border-b border-border px-4 py-4 last:border-b-0',
+              jobCostStatusRowTint[rate.status],
+            )}
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">

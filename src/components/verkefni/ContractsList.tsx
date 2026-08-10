@@ -6,6 +6,7 @@ import {
   type Contract,
   type ContractStatus,
 } from '../../data/contracts'
+import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 
 type ContractsListProps = {
@@ -17,6 +18,13 @@ const statusClass: Record<ContractStatus, string> = {
   planned: 'bg-alert/15 text-alert',
   completed: 'bg-success text-success-foreground',
   expired: 'bg-danger/10 text-danger',
+}
+
+const statusRowTint: Record<ContractStatus, string> = {
+  active: statusRowBg.accent,
+  planned: statusRowBg.alert,
+  completed: statusRowBg.success,
+  expired: statusRowBg.danger,
 }
 
 function formatDate(value: string, locale: string) {
@@ -64,7 +72,12 @@ function MobileRow({
   const { t } = useTranslation()
 
   return (
-    <article className="space-y-3 border-b border-border px-4 py-4 last:border-b-0">
+    <article
+      className={cn(
+        'space-y-3 border-b border-border px-4 py-4 last:border-b-0',
+        statusRowTint[contract.status],
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
@@ -157,7 +170,10 @@ export default function ContractsList({ areaId }: ContractsListProps) {
               {areaContracts.map((contract) => (
                 <tr
                   key={contract.id}
-                  className="border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40"
+                  className={cn(
+                    'border-b border-border last:border-b-0',
+                    statusRowTint[contract.status],
+                  )}
                 >
                   <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                     {contract.serial}

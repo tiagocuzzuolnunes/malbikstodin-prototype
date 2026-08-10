@@ -2,13 +2,14 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SectionPage } from '../../components/shared'
 import { Card } from '../../components/ui'
-import { cn } from '../../lib/utils'
 import {
   certifications,
   departmentCourseProgress,
   upcomingCourses,
   type CertificationStatus,
 } from '../../data/hr'
+import { statusRowBg } from '../../lib/statusRowTint'
+import { cn } from '../../lib/utils'
 
 function formatDate(value: string, locale: string, options?: Intl.DateTimeFormatOptions) {
   return new Intl.DateTimeFormat(locale, options).format(new Date(`${value}T12:00:00`))
@@ -32,6 +33,12 @@ const statusClass: Record<CertificationStatus, string> = {
   onCourse: 'bg-alert/15 text-alert',
   valid: 'bg-success/10 text-success',
   expired: 'bg-danger/10 text-danger',
+}
+
+const statusRowTint: Record<CertificationStatus, string> = {
+  onCourse: statusRowBg.alert,
+  valid: statusRowBg.success,
+  expired: statusRowBg.danger,
 }
 
 function CoursesCalendar({ locale }: { locale: string }) {
@@ -185,7 +192,10 @@ export default function ThjalfunPage() {
             {certifications.map((cert) => (
               <li
                 key={cert.id}
-                className="flex flex-wrap items-start justify-between gap-3 py-4"
+                className={cn(
+                  'flex flex-wrap items-start justify-between gap-3 px-3 py-4 -mx-3 sm:px-4 sm:-mx-4',
+                  statusRowTint[cert.status],
+                )}
               >
                 <div className="min-w-0">
                   <p className="text-base font-semibold tracking-tight">

@@ -8,6 +8,7 @@ import {
   type ArchiveStatus,
   type DocumentType,
 } from '../../data/archive'
+import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 
 type ArchiveListProps = {
@@ -18,6 +19,12 @@ const statusClass: Record<ArchiveStatus, string> = {
   approved: 'bg-success/10 text-success',
   inReview: 'bg-alert/15 text-alert',
   denied: 'bg-danger/10 text-danger',
+}
+
+const statusRowTint: Record<ArchiveStatus, string> = {
+  approved: statusRowBg.success,
+  inReview: statusRowBg.alert,
+  denied: statusRowBg.danger,
 }
 
 const typeClass: Record<DocumentType, string> = {
@@ -67,7 +74,12 @@ function MobileRow({
   const { t } = useTranslation()
 
   return (
-    <article className="space-y-3 border-b border-border px-4 py-4 last:border-b-0">
+    <article
+      className={cn(
+        'space-y-3 border-b border-border px-4 py-4 last:border-b-0',
+        statusRowTint[document.status],
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="font-mono text-xs font-medium tracking-wide text-foreground-muted">
@@ -162,7 +174,10 @@ export default function ArchiveList({ areaId }: ArchiveListProps) {
               {areaDocuments.map((document) => (
                 <tr
                   key={document.id}
-                  className="border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40"
+                  className={cn(
+                    'border-b border-border last:border-b-0',
+                    statusRowTint[document.status],
+                  )}
                 >
                   <td className="px-3 py-3 align-top font-mono text-xs tracking-wide text-foreground-muted">
                     {document.serial}

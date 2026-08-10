@@ -11,6 +11,7 @@ import {
   formatWeighingTonnes,
   weighingProductLabel,
   weighingRecipientLabel,
+  weighingStatusRowTint,
   WeighingStatusBadge,
 } from './status'
 
@@ -89,7 +90,10 @@ export function WeighingDispatchList({
           {filtered.map((row) => (
             <article
               key={row.id}
-              className="space-y-3 border-b border-border px-4 py-4 last:border-b-0"
+              className={cn(
+                'space-y-3 border-b border-border px-4 py-4 last:border-b-0',
+                weighingStatusRowTint[row.status],
+              )}
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
@@ -165,7 +169,13 @@ export function WeighingDispatchList({
             </thead>
             <tbody>
               {filtered.map((row) => (
-                <tr key={row.id} className="hover:bg-interactive-hover/40">
+                <tr
+                  key={row.id}
+                  className={cn(
+                    'hover:bg-interactive-hover/40',
+                    weighingStatusRowTint[row.status],
+                  )}
+                >
                   <td className="border-b border-border px-3 py-3 tabular-nums text-foreground-muted">
                     {row.time}
                   </td>

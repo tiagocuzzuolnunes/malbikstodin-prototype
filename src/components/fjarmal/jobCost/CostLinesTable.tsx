@@ -10,6 +10,7 @@ import { cn } from '../../../lib/utils'
 import { DataTable } from './DataTable'
 import { formatIsk, formatQty, formatRate, formatRateDate } from './format'
 import { JobCostStatusBadge } from './status'
+import { jobCostStatusRowTint } from './statusStyles'
 
 function groupLinesByCategory(lines: JobCostLine[]) {
   const groups = new Map<JobCostCategory, JobCostLine[]>()
@@ -33,7 +34,12 @@ function LineMobileCard({
   const amount = lineAmountIsk(line.rateIsk, line.quantity)
 
   return (
-    <article className="space-y-3 border-b border-border px-4 py-4 last:border-b-0">
+    <article
+      className={cn(
+        'space-y-3 border-b border-border px-4 py-4 last:border-b-0',
+        jobCostStatusRowTint[line.status],
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-xs font-medium tracking-wide text-foreground-muted uppercase">
@@ -130,17 +136,17 @@ export function CostLinesTable({ lines, actualCostIsk, locale }: CostLinesTableP
             </th>
           </tr>
         }
-        body={jobCostCategories.map((category, categoryIndex) => {
+        body={jobCostCategories.map((category) => {
           const categoryLines = grouped.get(category) ?? []
           if (categoryLines.length === 0) return null
-
-          const categoryTone =
-            categoryIndex % 2 === 0 ? 'bg-surface' : 'bg-surface-muted/40'
 
           return categoryLines.map((line, index) => (
             <tr
               key={line.id}
-              className={cn('h-14 border-t border-border', categoryTone)}
+              className={cn(
+                'h-14 border-t border-border',
+                jobCostStatusRowTint[line.status],
+              )}
             >
               <td className="px-4 align-middle font-medium">
                 {index === 0 ? t(`jobCost.categories.${category}`) : null}
@@ -183,17 +189,12 @@ export function CostLinesTable({ lines, actualCostIsk, locale }: CostLinesTableP
         }
         mobile={
           <>
-            {jobCostCategories.map((category, categoryIndex) => {
+            {jobCostCategories.map((category) => {
               const categoryLines = grouped.get(category) ?? []
               if (categoryLines.length === 0) return null
 
-              const categoryTone =
-                categoryIndex % 2 === 0 ? 'bg-surface' : 'bg-surface-muted/40'
-
               return categoryLines.map((line) => (
-                <div key={line.id} className={categoryTone}>
-                  <LineMobileCard line={line} locale={locale} />
-                </div>
+                <LineMobileCard key={line.id} line={line} locale={locale} />
               ))
             })}
             <div className="flex items-center justify-between gap-3 bg-surface-muted px-4 py-4">

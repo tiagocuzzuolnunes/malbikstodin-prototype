@@ -8,6 +8,7 @@ import type { Invoice, InvoiceLine } from '../../data/invoices'
 import {
   formatDate,
   formatQuantity,
+  invoiceRowTint,
   invoiceStatusClass,
   StatusBadge,
 } from './status'
@@ -83,10 +84,11 @@ export function ReviewWorkspace({ reviewQueue }: ReviewWorkspaceProps) {
                 setNoteOpen(false)
               }}
               className={cn(
-                'min-w-56 shrink-0 snap-start rounded-card border px-4 py-3.5 text-left transition-colors sm:min-w-0 sm:py-4',
+                'min-w-56 shrink-0 cursor-pointer snap-start rounded-card border px-4 py-3.5 text-left transition-colors sm:min-w-0 sm:py-4',
                 isActive
-                  ? 'border-accent bg-accent/5 shadow-card'
-                  : 'border-border bg-surface hover:bg-interactive-hover',
+                  ? 'border-accent shadow-card ring-1 ring-accent/30'
+                  : 'border-border hover:brightness-[0.98]',
+                done ? invoiceRowTint.ok : invoiceRowTint.discrepancy,
               )}
             >
               <div className="flex items-start justify-between gap-2">

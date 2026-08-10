@@ -9,6 +9,7 @@ import {
   formatDate,
   formatQuantity,
   lineStatusClass,
+  lineStatusRowTint,
   StatusBadge,
 } from '../../components/reikningar'
 
@@ -146,7 +147,7 @@ export default function SerfraedingurPage() {
                   key={line.id}
                   className={cn(
                     'space-y-2 border-b border-border px-4 py-4 last:border-b-0',
-                    line.status !== 'matched' && 'bg-alert/5',
+                    lineStatusRowTint[line.status],
                   )}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -208,8 +209,8 @@ export default function SerfraedingurPage() {
                     <tr
                       key={line.id}
                       className={cn(
-                        'border-b border-border last:border-b-0 odd:bg-surface even:bg-surface-muted/40',
-                        line.status !== 'matched' && 'bg-alert/5 even:bg-alert/10',
+                        'border-b border-border last:border-b-0',
+                        lineStatusRowTint[line.status],
                       )}
                     >
                       <td className="px-3 py-3 align-top whitespace-nowrap">
