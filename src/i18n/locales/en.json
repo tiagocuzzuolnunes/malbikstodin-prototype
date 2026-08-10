@@ -846,6 +846,53 @@
       "other": "Other"
     }
   },
+  "jobPipeline": {
+    "daysInStage": "{{count}} d",
+    "stats": {
+      "inProgress": "Jobs in progress",
+      "stuck": "Stuck over 14 days",
+      "pastDeadline": "Past deadline",
+      "readyToInvoice": "Ready to invoice"
+    },
+    "stages": {
+      "tender": "Tender",
+      "job": "Job",
+      "schedule": "Schedule",
+      "review": "Review",
+      "invoice": "Invoice",
+      "close": "Close"
+    },
+    "flags": {
+      "deadlineMissing": "Deadline missing",
+      "onTrack": "On track",
+      "noForeman": "No foreman",
+      "noScheduleDate": "No schedule",
+      "unapprovedDays": "Unapproved days",
+      "awaitingDocket": "Awaiting docket",
+      "samplesOutstanding": "Samples pending",
+      "waitingClient": "Awaiting client",
+      "rateGap": "Rate needed",
+      "docsMissing": "Docs missing"
+    },
+    "clients": {
+      "reykjavik": "City of Reykjavík",
+      "gardabaer": "Garðabær",
+      "vegagerdin": "Vegagerðin",
+      "kopavogur": "Kópavogsbær",
+      "hafnarfjordur": "Hafnarfjörður",
+      "istak": "Ístak hf.",
+      "veitur": "Veitur ohf.",
+      "mosfellsbaer": "Mosfellsbær",
+      "akureyri": "Akureyri",
+      "seltiarnarnes": "Seltjarnarnes",
+      "alftanes": "Álftanes",
+      "keldnaholt": "Keldnaholt",
+      "reykjanesbaer": "Reykjanesbær",
+      "selfoss": "Selfoss",
+      "borgarbyggd": "Borgarbyggð",
+      "hveragerdi": "Hveragerði"
+    }
+  },
   "jobCost": {
     "freezeCost": "Freeze cost",
     "unfreezeCost": "Unfreeze cost",

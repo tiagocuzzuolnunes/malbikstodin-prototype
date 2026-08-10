@@ -846,6 +846,53 @@
       "other": "Annað"
     }
   },
+  "jobPipeline": {
+    "daysInStage": "{{count}} d",
+    "stats": {
+      "inProgress": "Verk í vinnslu",
+      "stuck": "Strönduð yfir 14 daga",
+      "pastDeadline": "Útrunninn frestur",
+      "readyToInvoice": "Tilbúið til reiknings"
+    },
+    "stages": {
+      "tender": "Tilboð",
+      "job": "Verk",
+      "schedule": "Dagskrá",
+      "review": "Yfirferð",
+      "invoice": "Reikningur",
+      "close": "Loka"
+    },
+    "flags": {
+      "deadlineMissing": "Frestur vantar",
+      "onTrack": "Á áætlun",
+      "noForeman": "Enginn verkstjóri",
+      "noScheduleDate": "Engin dagskrá",
+      "unapprovedDays": "Ósamþykktir dagar",
+      "awaitingDocket": "Bíður vigtarseðils",
+      "samplesOutstanding": "Sýni vantar",
+      "waitingClient": "Bíður viðskiptavinar",
+      "rateGap": "Taxti vantar",
+      "docsMissing": "Skjöl vantar"
+    },
+    "clients": {
+      "reykjavik": "Reykjavíkurborg",
+      "gardabaer": "Garðabær",
+      "vegagerdin": "Vegagerðin",
+      "kopavogur": "Kópavogsbær",
+      "hafnarfjordur": "Hafnarfjörður",
+      "istak": "Ístak hf.",
+      "veitur": "Veitur ohf.",
+      "mosfellsbaer": "Mosfellsbær",
+      "akureyri": "Akureyri",
+      "seltiarnarnes": "Seltjarnarnes",
+      "alftanes": "Álftanes",
+      "keldnaholt": "Keldnaholt",
+      "reykjanesbaer": "Reykjanesbær",
+      "selfoss": "Selfoss",
+      "borgarbyggd": "Borgarbyggð",
+      "hveragerdi": "Hveragerði"
+    }
+  },
   "jobCost": {
     "freezeCost": "Frysta kostnað",
     "unfreezeCost": "Affrysta kostnað",
