@@ -176,6 +176,14 @@ export function getBreadcrumbKeys(pathname: string) {
     return crumbs
   }
 
+  if (pathname.startsWith('/verkefni/stadarmaelingar')) {
+    crumbs.push({
+      to: '/verkefni/stadarmaelingar',
+      labelKey: 'nav.stadarmaelingar',
+    })
+    return crumbs
+  }
+
   const area = projectAreas.find((item) => pathname.startsWith(item.to))
   if (area) {
     crumbs.push({ to: area.to, labelKey: area.titleKey })

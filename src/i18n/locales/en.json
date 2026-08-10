@@ -135,6 +135,7 @@
     "adgangsstyring": "Access Controls",
     "ferlar": "Processes",
     "verkferill": "Job pipeline",
+    "stadarmaelingar": "Site measurements",
     "kostnadargreining": "Job cost analysis",
     "utgjold": "Expense register"
   },
@@ -210,6 +211,9 @@
       },
       "verkferill": {
         "description": "Track job stages and pipeline progress across projects."
+      },
+      "stadarmaelingar": {
+        "description": "Record and review field measurements for active project sites."
       }
     },
     "stjornun": {
@@ -217,6 +221,34 @@
       "openSection": "Open",
       "accessControlsDescription": "Define access modes and assign them to employees.",
       "accessControlsPageDescription": "Toggle between customizing access levels and assigning those levels to staff."
+    }
+  },
+  "siteMeasurements": {
+    "fields": {
+      "job": "Job",
+      "jobPlaceholder": "Select a job",
+      "measured": "What was measured?",
+      "quantity": "Quantity",
+      "quantityPlaceholder": "Enter quantity",
+      "note": "Note",
+      "optional": "optional",
+      "notePlaceholder": "Add a note"
+    },
+    "actions": {
+      "send": "Send"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "pcs": "pcs"
+    },
+    "types": {
+      "asphalt": "Asphalt",
+      "subBase": "Sub-base",
+      "sawing": "Sawing",
+      "milling": "Milling",
+      "manholes": "Manholes",
+      "gullies": "Gullies"
     }
   },
   "processes": {

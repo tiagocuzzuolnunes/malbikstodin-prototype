@@ -135,6 +135,7 @@
     "adgangsstyring": "Aðgangsstýring",
     "ferlar": "Ferlar",
     "verkferill": "Verkferill",
+    "stadarmaelingar": "Staðarmælingar",
     "kostnadargreining": "Kostnaðargreining verks",
     "utgjold": "Útgjaldaskrá"
   },
@@ -210,6 +211,9 @@
       },
       "verkferill": {
         "description": "Fylgstu með stigum og framvindu verkefna í verkferlinum."
+      },
+      "stadarmaelingar": {
+        "description": "Skráðu og yfirfarðu mælingar á vettvangi fyrir virk verkefni."
       }
     },
     "stjornun": {
@@ -217,6 +221,34 @@
       "openSection": "Opna",
       "accessControlsDescription": "Skilgreindu aðgangshamla og úthlutaðu þeim til starfsmanna.",
       "accessControlsPageDescription": "Skiptu á milli þess að aðlaga aðgangsstig og að úthluta þeim til starfsfólks."
+    }
+  },
+  "siteMeasurements": {
+    "fields": {
+      "job": "Verk",
+      "jobPlaceholder": "Veldu verk",
+      "measured": "Hvað var mælt?",
+      "quantity": "Magn",
+      "quantityPlaceholder": "Sláðu inn magn",
+      "note": "Athugasemd",
+      "optional": "valfrjálst",
+      "notePlaceholder": "Bættu við athugasemd"
+    },
+    "actions": {
+      "send": "Senda"
+    },
+    "units": {
+      "m": "m",
+      "m2": "m²",
+      "pcs": "stk"
+    },
+    "types": {
+      "asphalt": "Malbik",
+      "subBase": "Undirlag",
+      "sawing": "Sögun",
+      "milling": "Fræsing",
+      "manholes": "Brunnar",
+      "gullies": "Niðurföll"
     }
   },
   "processes": {
