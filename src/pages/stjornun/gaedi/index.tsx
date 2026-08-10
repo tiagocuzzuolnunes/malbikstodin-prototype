@@ -1,46 +1,32 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { BadgeCheck, Scale, ShieldCheck } from 'lucide-react'
-import { SectionPage } from '../../components/shared'
-import { cn } from '../../lib/utils'
-import { buttonVariants, CardShell } from '../../components/ui'
+import { FlaskConical } from 'lucide-react'
+import { SectionPage } from '../../../components/shared'
+import { buttonVariants, CardShell } from '../../../components/ui'
+import { cn } from '../../../lib/utils'
 
-const hubLinks = [
+const qualityLinks = [
   {
-    id: 'adgangsstyring',
-    to: '/stjornun/adgangsstyring',
-    titleKey: 'nav.adgangsstyring',
-    descriptionKey: 'pages.stjornun.accessControlsDescription',
-    icon: ShieldCheck,
-  },
-  {
-    id: 'gaedi',
-    to: '/stjornun/gaedi',
-    titleKey: 'nav.gaedi',
-    descriptionKey: 'pages.stjornun.qualityHubDescription',
-    icon: BadgeCheck,
-  },
-  {
-    id: 'eignarhald',
-    to: '/stjornun/eignarhald',
-    titleKey: 'nav.eignarhald',
-    descriptionKey: 'pages.stjornun.ownershipDescription',
-    icon: Scale,
+    id: 'rannsoknarskra',
+    to: '/stjornun/gaedi/rannsoknarskra',
+    titleKey: 'nav.rannsoknarskra',
+    descriptionKey: 'pages.stjornun.labRegisterDescription',
+    icon: FlaskConical,
   },
 ] as const
 
-export default function StjornunPage() {
+export default function GaediPage() {
   const { t } = useTranslation()
 
   return (
     <div className="space-y-8">
       <SectionPage
-        titleKey="nav.stjornun"
-        descriptionKey="pages.stjornun.description"
+        titleKey="nav.gaedi"
+        descriptionKey="pages.stjornun.qualityDescription"
       />
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {hubLinks.map((item) => {
+        {qualityLinks.map((item) => {
           const Icon = item.icon
 
           return (

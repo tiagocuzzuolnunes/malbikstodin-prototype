@@ -133,9 +133,13 @@
     "taeki": "Equipment",
     "stjornun": "Management",
     "adgangsstyring": "Access Controls",
+    "gaedi": "Quality",
+    "rannsoknarskra": "Lab register",
+    "eignarhald": "Ownership",
     "ferlar": "Processes",
     "verkferill": "Job pipeline",
     "stadarmaelingar": "Site measurements",
+    "lugan": "The Hatch",
     "kostnadargreining": "Job cost analysis",
     "utgjold": "Expense register"
   },
@@ -214,13 +218,193 @@
       },
       "stadarmaelingar": {
         "description": "Record and review field measurements for active project sites."
+      },
+      "lugan": {
+        "description": "One button for deviations, breakdowns, complaints, and praise — photo, type, job, one sentence."
       }
     },
     "stjornun": {
       "description": "Company administration tools for people, permissions, and oversight.",
       "openSection": "Open",
       "accessControlsDescription": "Define access modes and assign them to employees.",
-      "accessControlsPageDescription": "Toggle between customizing access levels and assigning those levels to staff."
+      "accessControlsPageDescription": "Toggle between customizing access levels and assigning those levels to staff.",
+      "qualityHubDescription": "Quality control tools, lab results, and compliance records.",
+      "qualityDescription": "Manage quality workflows and laboratory registrations.",
+      "labRegisterDescription": "Record and review laboratory sample results.",
+      "labRegisterPageDescription": "Enter and track laboratory sample registrations.",
+      "ownershipDescription": "Decide which system owns each business object — bik.is or SharePoint."
+    }
+  },
+  "dataOwnership": {
+    "title": "Data ownership — bik.is and SharePoint",
+    "subtitle": "Innri vefurinn — SharePoint connection. A decision sheet, not a normal screen.",
+    "ruleLabel": "{{author}} wrote the rule:",
+    "rule": "bik.is collects, SharePoint displays. The same thing is never designed in both places.",
+    "meetingHint": "Settle collisions in one meeting before the V4, V8, V12 and V13 specs — they are all dashboard-shaped.",
+    "actions": {
+      "excel": "Excel for the meeting"
+    },
+    "stats": {
+      "objects": "Objects",
+      "decided": "Decided",
+      "needsDecision": "Needs decision",
+      "conflicts": "Conflicts"
+    },
+    "tableTitle": "Data ownership",
+    "tableSubtitle": "bik.is ↔ SharePoint · 42 objects",
+    "columns": {
+      "object": "Object",
+      "area": "Area",
+      "owner": "Owner",
+      "displayedIn": "Displayed in",
+      "sync": "Sync",
+      "responsible": "Responsible",
+      "status": "Status"
+    },
+    "status": {
+      "decided": "Decided",
+      "needsDecision": "Needs decision",
+      "conflict": "Conflict",
+      "doubleEntry": "Double entry",
+      "beingBuilt": "Being built"
+    },
+    "objects": {
+      "workRequest": "Work request from department",
+      "equipmentRegister": "Equipment register",
+      "deviationsReports": "Deviations and reports",
+      "workingTime": "Recorded working time",
+      "newsHr": "News and HR",
+      "qualityMeasurements": "Quality measurements on jobs",
+      "accessControl": "Access control"
+    },
+    "areas": {
+      "v7SiteOps": "V7 · Site ops",
+      "v12Equipment": "V12 · Equipment",
+      "v9Hatch": "V9 · The Hatch",
+      "v1Registration": "V1 · Registration",
+      "people": "People",
+      "v7v8Quality": "V7/V8 · Quality",
+      "v5Security": "V5 · Security"
+    },
+    "sync": {
+      "dashboard15min": "Dashboard, every 15 min",
+      "none": "None — bik.is doesn't touch it",
+      "apiList": "API → list"
+    }
+  },
+  "hatch": {
+    "views": {
+      "label": "The Hatch view",
+      "register": "The Hatch",
+      "reports": "Reports"
+    },
+    "fields": {
+      "photo": "Photo",
+      "photoCount": "{{count}} photos",
+      "whatIsIt": "What is it?",
+      "job": "Job",
+      "jobPlaceholder": "Select a job",
+      "description": "Description",
+      "descriptionPlaceholder": "One sentence about what happened"
+    },
+    "actions": {
+      "takePhoto": "Take photo",
+      "send": "Send"
+    },
+    "hint": {
+      "foreman": "Goes automatically to the department foreman."
+    },
+    "types": {
+      "equipmentBreakdown": "Equipment breakdown",
+      "deviation": "Deviation",
+      "complaint": "Complaint",
+      "praise": "Praise"
+    },
+    "jobs": {
+      "reykjanesbraut": "Reykjanesbraut",
+      "vegagerdin": "Vegagerðin",
+      "kopavogsbaer": "Kópavogsbær",
+      "hafnarfjordur": "Hafnarfjörður",
+      "reykjavik": "Reykjavík"
+    },
+    "reportsTitle": "Deviations and reports",
+    "reportsFilter": "Open · all departments",
+    "stats": {
+      "newUnassigned": "New — unassigned",
+      "inProgress": "In progress",
+      "closedInJuly": "Closed in July"
+    },
+    "columns": {
+      "number": "No.",
+      "type": "Type",
+      "job": "Job",
+      "report": "Report",
+      "photos": "Photos",
+      "owner": "Owner",
+      "status": "Status"
+    },
+    "status": {
+      "new": "New",
+      "inProgress": "In progress",
+      "awaitingReply": "Awaiting reply",
+      "closed": "Closed"
+    },
+    "reports": {
+      "tyreBlown": "Right rear tyre blown — didn't run the last 2 trips",
+      "subBase": "Sub-base not compacted before paving on section 4",
+      "dust": "Resident complains about dust — awaiting client reply",
+      "manholes": "Client praised the finish around the manholes"
+    }
+  },
+  "labRegister": {
+    "title": "Lab register — tests and batches",
+    "month": {
+      "july2026": "July 2026"
+    },
+    "noBatch": "— no batch",
+    "actions": {
+      "newBatch": "New batch",
+      "recordTest": "Record test"
+    },
+    "stats": {
+      "testsThisMonth": "Tests this month",
+      "awaitingResult": "Awaiting result",
+      "failingSpec": "Failing spec",
+      "samplesNoBatch": "Samples with no batch"
+    },
+    "columns": {
+      "batch": "Batch",
+      "date": "Date",
+      "job": "Job",
+      "product": "Product",
+      "testType": "Test type",
+      "result": "Result",
+      "spec": "Spec",
+      "status": "Status"
+    },
+    "status": {
+      "pass": "Pass",
+      "borderline": "Borderline",
+      "fail": "Fail",
+      "awaitingResult": "Awaiting result",
+      "noBatch": "No batch"
+    },
+    "jobs": {
+      "reykjanesbraut": "Reykjanesbraut",
+      "vegagerdin": "Vegagerðin",
+      "kopavogsbaer": "Kópavogsbær",
+      "weighingSample": "Sample from weighing {{weighing}}"
+    },
+    "products": {
+      "y16Wearing": "Y16 wearing",
+      "th11Binder": "Þ11 binder"
+    },
+    "tests": {
+      "binderContent": "Binder content",
+      "airVoids": "Air voids",
+      "grading8mm": "Grading 8 mm",
+      "coreCompaction": "Core — compaction",
+      "notRecorded": "Not recorded"
     }
   },
   "siteMeasurements": {

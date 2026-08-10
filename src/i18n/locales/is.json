@@ -133,9 +133,13 @@
     "taeki": "Tæki",
     "stjornun": "Stjórnun",
     "adgangsstyring": "Aðgangsstýring",
+    "gaedi": "Gæði",
+    "rannsoknarskra": "Rannsóknaskrá",
+    "eignarhald": "Eignarhald",
     "ferlar": "Ferlar",
     "verkferill": "Verkferill",
     "stadarmaelingar": "Staðarmælingar",
+    "lugan": "Lúgan",
     "kostnadargreining": "Kostnaðargreining verks",
     "utgjold": "Útgjaldaskrá"
   },
@@ -214,13 +218,193 @@
       },
       "stadarmaelingar": {
         "description": "Skráðu og yfirfarðu mælingar á vettvangi fyrir virk verkefni."
+      },
+      "lugan": {
+        "description": "Einn hnappur fyrir frávik, bilanir, kvartanir og hrósa — mynd, tegund, verk, ein setning."
       }
     },
     "stjornun": {
       "description": "Stjórnunartól fyrirtækisins fyrir fólk, heimildir og eftirlit.",
       "openSection": "Opna",
       "accessControlsDescription": "Skilgreindu aðgangshamla og úthlutaðu þeim til starfsmanna.",
-      "accessControlsPageDescription": "Skiptu á milli þess að aðlaga aðgangsstig og að úthluta þeim til starfsfólks."
+      "accessControlsPageDescription": "Skiptu á milli þess að aðlaga aðgangsstig og að úthluta þeim til starfsfólks.",
+      "qualityHubDescription": "Gæðaeftirlit, rannsóknarniðurstöður og fylgniskrár.",
+      "qualityDescription": "Stjórnaðu gæðuferlum og skráningum frá rannsóknarstofu.",
+      "labRegisterDescription": "Skráðu og yfirfarðu niðurstöður sýna frá rannsóknarstofu.",
+      "labRegisterPageDescription": "Skráðu og fylgstu með skráningum sýna frá rannsóknarstofu.",
+      "ownershipDescription": "Ákveðið hvaða kerfi á hvert viðskiptaobjekt — bik.is eða SharePoint."
+    }
+  },
+  "dataOwnership": {
+    "title": "Gagnaeignarhald — bik.is og SharePoint",
+    "subtitle": "Innri vefurinn — SharePoint-tenging. Ákvarðanablað, ekki venjulegur skjár.",
+    "ruleLabel": "{{author}} skrifaði regluna:",
+    "rule": "bik.is safnar, SharePoint sýnir. Sama hluturinn er aldrei hannaður á báðum stöðum.",
+    "meetingHint": "Leysið árekstra í einum fundi áður en V4, V8, V12 og V13 forskriftirnar — þær eru allar mælaborðslegar.",
+    "actions": {
+      "excel": "Excel fyrir fundinn"
+    },
+    "stats": {
+      "objects": "Atriði",
+      "decided": "Ákveðið",
+      "needsDecision": "Þarf ákvörðun",
+      "conflicts": "Árekstrar"
+    },
+    "tableTitle": "Gagnaeignarhald",
+    "tableSubtitle": "bik.is ↔ SharePoint · 42 atriði",
+    "columns": {
+      "object": "Atriði",
+      "area": "Svæði",
+      "owner": "Eigandi",
+      "displayedIn": "Birt í",
+      "sync": "Samstilling",
+      "responsible": "Ábyrgðaraðili",
+      "status": "Staða"
+    },
+    "status": {
+      "decided": "Ákveðið",
+      "needsDecision": "Þarf ákvörðun",
+      "conflict": "Árekstur",
+      "doubleEntry": "Tvískráning",
+      "beingBuilt": "Í smíðum"
+    },
+    "objects": {
+      "workRequest": "Verkbeiðni frá deild",
+      "equipmentRegister": "Tækjaskrá",
+      "deviationsReports": "Frávik og tilkynningar",
+      "workingTime": "Skráður vinnutími",
+      "newsHr": "Fréttir og mannauður",
+      "qualityMeasurements": "Gæðamælingar á verkum",
+      "accessControl": "Aðgangsstýring"
+    },
+    "areas": {
+      "v7SiteOps": "V7 · Staðarrekstur",
+      "v12Equipment": "V12 · Tæki",
+      "v9Hatch": "V9 · Lúgan",
+      "v1Registration": "V1 · Skráning",
+      "people": "Fólk",
+      "v7v8Quality": "V7/V8 · Gæði",
+      "v5Security": "V5 · Öryggi"
+    },
+    "sync": {
+      "dashboard15min": "Mælaborð, á 15 mín. fresti",
+      "none": "Engin — bik.is snertir þetta ekki",
+      "apiList": "API → listi"
+    }
+  },
+  "hatch": {
+    "views": {
+      "label": "Yfirlit Lúgunnar",
+      "register": "Lúgan",
+      "reports": "Tilkynningar"
+    },
+    "fields": {
+      "photo": "Mynd",
+      "photoCount": "{{count}} myndir",
+      "whatIsIt": "Hvað er þetta?",
+      "job": "Verk",
+      "jobPlaceholder": "Veldu verk",
+      "description": "Lýsing",
+      "descriptionPlaceholder": "Ein setning um það sem gerðist"
+    },
+    "actions": {
+      "takePhoto": "Taka mynd",
+      "send": "Senda"
+    },
+    "hint": {
+      "foreman": "Fer sjálfkrafa til verkstjóra deildarinnar."
+    },
+    "types": {
+      "equipmentBreakdown": "Bilanir á tækjum",
+      "deviation": "Frávik",
+      "complaint": "Kvörtun",
+      "praise": "Hrósa"
+    },
+    "jobs": {
+      "reykjanesbraut": "Reykjanesbraut",
+      "vegagerdin": "Vegagerðin",
+      "kopavogsbaer": "Kópavogsbær",
+      "hafnarfjordur": "Hafnarfjörður",
+      "reykjavik": "Reykjavík"
+    },
+    "reportsTitle": "Frávik og tilkynningar",
+    "reportsFilter": "Opnar · allar deildir",
+    "stats": {
+      "newUnassigned": "Nýtt — óúthlutað",
+      "inProgress": "Í vinnslu",
+      "closedInJuly": "Lokið í júlí"
+    },
+    "columns": {
+      "number": "Nr.",
+      "type": "Tegund",
+      "job": "Verk",
+      "report": "Tilkynning",
+      "photos": "Myndir",
+      "owner": "Ábyrgðaraðili",
+      "status": "Staða"
+    },
+    "status": {
+      "new": "Nýtt",
+      "inProgress": "Í vinnslu",
+      "awaitingReply": "Bíður svars",
+      "closed": "Lokið"
+    },
+    "reports": {
+      "tyreBlown": "Hægri afturdekk sprungið — keyrði ekki síðustu 2 ferðir",
+      "subBase": "Undirlag ekki þjappað fyrir malbikun á kafla 4",
+      "dust": "Íbúi kvartaði yfir ryki — bíður svars frá viðskiptavini",
+      "manholes": "Viðskiptavinur hrósaði frágangi í kringum brunnana"
+    }
+  },
+  "labRegister": {
+    "title": "Rannsóknaskrá — prófanir og lotur",
+    "month": {
+      "july2026": "Júlí 2026"
+    },
+    "noBatch": "— engin lota",
+    "actions": {
+      "newBatch": "Ný lota",
+      "recordTest": "Skrá próf"
+    },
+    "stats": {
+      "testsThisMonth": "Prófanir í mánuðinum",
+      "awaitingResult": "Bíða niðurstöðu",
+      "failingSpec": "Falla á forskrift",
+      "samplesNoBatch": "Sýni án lotu"
+    },
+    "columns": {
+      "batch": "Lota",
+      "date": "Dagsetning",
+      "job": "Verk",
+      "product": "Vara",
+      "testType": "Próftegund",
+      "result": "Niðurstaða",
+      "spec": "Forskrift",
+      "status": "Staða"
+    },
+    "status": {
+      "pass": "Staðist",
+      "borderline": "Á mörkum",
+      "fail": "Fallað",
+      "awaitingResult": "Bíður niðurstöðu",
+      "noBatch": "Engin lota"
+    },
+    "jobs": {
+      "reykjanesbraut": "Reykjanesbraut",
+      "vegagerdin": "Vegagerðin",
+      "kopavogsbaer": "Kópavogsbær",
+      "weighingSample": "Sýni úr vigtun {{weighing}}"
+    },
+    "products": {
+      "y16Wearing": "Y16 slitlag",
+      "th11Binder": "Þ11 bindiefni"
+    },
+    "tests": {
+      "binderContent": "Bindiefnisinnihald",
+      "airVoids": "Holrými",
+      "grading8mm": "Kornastærð 8 mm",
+      "coreCompaction": "Kjarni — þjöppun",
+      "notRecorded": "Ekki skráð"
     }
   },
   "siteMeasurements": {

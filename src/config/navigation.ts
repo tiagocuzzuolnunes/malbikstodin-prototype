@@ -153,6 +153,34 @@ export function getBreadcrumbKeys(pathname: string) {
         to: '/stjornun/adgangsstyring',
         labelKey: 'nav.adgangsstyring',
       })
+      return crumbs
+    }
+
+    if (pathname.startsWith('/stjornun/gaedi')) {
+      crumbs.push({ to: '/stjornun/gaedi', labelKey: 'nav.gaedi' })
+
+      if (
+        pathname === '/stjornun/gaedi/rannsoknarskra' ||
+        pathname.startsWith('/stjornun/gaedi/rannsoknarskra/')
+      ) {
+        crumbs.push({
+          to: '/stjornun/gaedi/rannsoknarskra',
+          labelKey: 'nav.rannsoknarskra',
+        })
+      }
+
+      return crumbs
+    }
+
+    if (
+      pathname === '/stjornun/eignarhald' ||
+      pathname.startsWith('/stjornun/eignarhald/')
+    ) {
+      crumbs.push({
+        to: '/stjornun/eignarhald',
+        labelKey: 'nav.eignarhald',
+      })
+      return crumbs
     }
 
     return crumbs
@@ -180,6 +208,14 @@ export function getBreadcrumbKeys(pathname: string) {
     crumbs.push({
       to: '/verkefni/stadarmaelingar',
       labelKey: 'nav.stadarmaelingar',
+    })
+    return crumbs
+  }
+
+  if (pathname.startsWith('/verkefni/lugan')) {
+    crumbs.push({
+      to: '/verkefni/lugan',
+      labelKey: 'nav.lugan',
     })
     return crumbs
   }
