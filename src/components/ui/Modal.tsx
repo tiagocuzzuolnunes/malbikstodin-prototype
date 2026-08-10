@@ -65,7 +65,8 @@ export function Modal({
         aria-labelledby={titleId}
         tabIndex={-1}
         className={cn(
-          'relative z-10 max-h-[min(90dvh,44rem)] w-full max-w-lg rounded-card border border-border bg-surface p-6 shadow-card outline-none md:p-8',
+          // Cap to overlay height (viewport − header − p-4) so tall lists keep vertical padding.
+          'relative z-10 max-h-[min(44rem,calc(100dvh-var(--app-header-height,4.5rem)-2rem))] w-full max-w-lg rounded-card border border-border bg-surface p-6 shadow-card outline-none md:p-8',
           contentOverflow === 'visible' ? 'overflow-visible' : 'overflow-y-auto',
           className,
         )}
