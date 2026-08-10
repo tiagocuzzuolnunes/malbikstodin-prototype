@@ -224,6 +224,11 @@
     }
   },
   "siteMeasurements": {
+    "views": {
+      "label": "Yfirlit staðarmælinga",
+      "register": "Skrá",
+      "measurements": "Mælingar"
+    },
     "fields": {
       "job": "Verk",
       "jobPlaceholder": "Veldu verk",
@@ -249,6 +254,26 @@
       "milling": "Fræsing",
       "manholes": "Brunnar",
       "gullies": "Niðurföll"
+    },
+    "status": {
+      "sent": "Sent",
+      "reviewed": "Yfirfarið",
+      "needsReview": "Þarf yfirferð",
+      "awaitingFix": "Bíður leiðréttingar"
+    },
+    "table": {
+      "title": "Skráningar",
+      "subtitle": "Staðarmælingar skráðar á virk verk.",
+      "count": "{{count}} skráningar",
+      "columns": {
+        "date": "Dagsetning",
+        "job": "Verk",
+        "type": "Mælt",
+        "quantity": "Magn",
+        "status": "Staða",
+        "note": "Athugasemd",
+        "recordedBy": "Skráð af"
+      }
     }
   },
   "processes": {

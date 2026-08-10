@@ -224,6 +224,11 @@
     }
   },
   "siteMeasurements": {
+    "views": {
+      "label": "Site measurements view",
+      "register": "Register",
+      "measurements": "Measurements"
+    },
     "fields": {
       "job": "Job",
       "jobPlaceholder": "Select a job",
@@ -249,6 +254,26 @@
       "milling": "Milling",
       "manholes": "Manholes",
       "gullies": "Gullies"
+    },
+    "status": {
+      "sent": "Sent",
+      "reviewed": "Reviewed",
+      "needsReview": "Needs review",
+      "awaitingFix": "Awaiting fix"
+    },
+    "table": {
+      "title": "Registrations",
+      "subtitle": "Field measurements recorded for active jobs.",
+      "count": "{{count}} registrations",
+      "columns": {
+        "date": "Date",
+        "job": "Job",
+        "type": "Measured",
+        "quantity": "Quantity",
+        "status": "Status",
+        "note": "Note",
+        "recordedBy": "Recorded by"
+      }
     }
   },
   "processes": {
