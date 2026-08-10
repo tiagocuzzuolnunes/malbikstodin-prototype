@@ -1,14 +1,66 @@
-import { useMemo, useState, type FormEvent } from 'react'
+import { useMemo, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Send } from 'lucide-react'
 import {
   measurementJobs,
   measurementTypes,
   type MeasurementTypeId,
+  type MeasurementUnit,
 } from '../../data/siteMeasurements'
 import { cn } from '../../lib/utils'
 import { Button, Card, Input, Label, Select } from '../ui'
 import { inputVariants } from '../ui/inputVariants'
+
+/** Canonical quantity string: digits with optional single "." decimal (no grouping). */
+function sanitizeQuantity(raw: string, allowDecimals: boolean) {
+  if (!allowDecimals) return raw.replace(/\D/g, '')
+
+  let normalized = raw
+
+  // Comma as decimal: "12,5" or trailing "12," — not thousand groups like "1,240".
+  if (!normalized.includes('.')) {
+    const commaCount = (normalized.match(/,/g) ?? []).length
+    if (commaCount === 1) {
+      const [left, right = ''] = normalized.split(',')
+      if (right.length <= 1) {
+        normalized = `${left}.${right}`
+      }
+    }
+  }
+
+  // Remaining commas are thousand separators.
+  normalized = normalized.replace(/,/g, '')
+  normalized = normalized.replace(/[^\d.]/g, '')
+
+  const firstDot = normalized.indexOf('.')
+  if (firstDot === -1) return normalized
+
+  const intPart = normalized.slice(0, firstDot).replace(/\D/g, '')
+  const decPart = normalized
+    .slice(firstDot + 1)
+    .replace(/\D/g, '')
+    .slice(0, 1)
+  return `${intPart}.${decPart}`
+}
+
+function formatQuantity(value: string) {
+  if (!value) return ''
+
+  const [intPart = '', decPart] = value.split('.')
+  const grouped = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+  if (value.includes('.')) {
+    return `${grouped}.${decPart ?? ''}`
+  }
+
+  return grouped
+}
+
+function allowsDecimals(unit: MeasurementUnit | undefined) {
+  // Before a type is chosen, allow decimals; pcs strips them on select.
+  if (!unit) return true
+  return unit === 'm' || unit === 'm2'
+}
 
 export default function SiteMeasurements() {
   const { t } = useTranslation()
@@ -18,6 +70,10 @@ export default function SiteMeasurements() {
   const [note, setNote] = useState('')
 
   const selectedType = measurementTypes.find((type) => type.id === typeId)
+  const allowDecimals = allowsDecimals(selectedType?.unit)
+  const unitLabel = selectedType
+    ? t(`siteMeasurements.units.${selectedType.unit}`)
+    : null
 
   const jobOptions = useMemo(
     () =>
@@ -28,9 +84,55 @@ export default function SiteMeasurements() {
     [t],
   )
 
+  function handleTypeSelect(nextTypeId: MeasurementTypeId) {
+    setTypeId(nextTypeId)
+    const nextType = measurementTypes.find((type) => type.id === nextTypeId)
+    if (!allowsDecimals(nextType?.unit) && quantity.includes('.')) {
+      setQuantity(quantity.split('.')[0] ?? '')
+    }
+  }
+
+  function handleQuantityChange(raw: string) {
+    setQuantity(sanitizeQuantity(raw, allowDecimals))
+  }
+
+  function handleQuantityKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.ctrlKey || event.metaKey || event.altKey) return
+
+    const allowedKeys = [
+      'Backspace',
+      'Delete',
+      'Tab',
+      'Escape',
+      'Enter',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowUp',
+      'ArrowDown',
+      'Home',
+      'End',
+    ]
+    if (allowedKeys.includes(event.key)) return
+
+    if (/^\d$/.test(event.key)) return
+
+    // Accept "." or "," as decimal; store as ".".
+    if (
+      allowDecimals &&
+      (event.key === '.' || event.key === ',') &&
+      !quantity.includes('.')
+    ) {
+      event.preventDefault()
+      setQuantity(`${quantity}.`)
+      return
+    }
+
+    event.preventDefault()
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (!jobId || !typeId || !quantity.trim()) return
+    if (!jobId || !typeId || !quantity || quantity === '.') return
 
     setJobId('')
     setTypeId('')
@@ -80,7 +182,7 @@ export default function SiteMeasurements() {
                   type="button"
                   role="radio"
                   aria-checked={active}
-                  onClick={() => setTypeId(type.id)}
+                  onClick={() => handleTypeSelect(type.id)}
                   className={cn(
                     'flex cursor-pointer flex-col items-center justify-center gap-1 rounded-control border px-2 py-3 text-center transition-colors outline-none focus-visible:ring-2 focus-visible:ring-accent/40 sm:px-3 sm:py-4',
                     active
@@ -109,21 +211,30 @@ export default function SiteMeasurements() {
       <div className="order-3 flex w-full max-w-md flex-col gap-2 lg:order-0 lg:col-start-1 lg:row-start-2 lg:max-w-none">
         <Label htmlFor="site-measurement-quantity" className="mb-0!">
           {t('siteMeasurements.fields.quantity')}
-          {selectedType
-            ? ` (${t(`siteMeasurements.units.${selectedType.unit}`)})`
-            : ''}
         </Label>
-        <Input
-          id="site-measurement-quantity"
-          type="number"
-          inputMode="decimal"
-          min="0"
-          step="any"
-          required
-          placeholder={t('siteMeasurements.fields.quantityPlaceholder')}
-          value={quantity}
-          onChange={(event) => setQuantity(event.target.value)}
-        />
+        <div className="relative">
+          <Input
+            id="site-measurement-quantity"
+            type="text"
+            inputMode={allowDecimals ? 'decimal' : 'numeric'}
+            pattern={allowDecimals ? '[0-9.,]*' : '[0-9,]*'}
+            required
+            disabled={!typeId}
+            placeholder={t('siteMeasurements.fields.quantityPlaceholder')}
+            value={formatQuantity(quantity)}
+            onChange={(event) => handleQuantityChange(event.target.value)}
+            onKeyDown={handleQuantityKeyDown}
+            className={cn(
+              'h-14 text-2xl font-semibold tracking-tight tabular-nums',
+              unitLabel ? 'pr-14' : undefined,
+            )}
+          />
+          {unitLabel ? (
+            <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-base font-semibold text-foreground-muted">
+              {unitLabel}
+            </span>
+          ) : null}
+        </div>
       </div>
 
       <div className="order-4 flex w-full max-w-md flex-col gap-2 lg:order-0 lg:col-start-1 lg:row-start-3 lg:max-w-none">
@@ -149,7 +260,7 @@ export default function SiteMeasurements() {
           variant="primary"
           size="lg"
           className="w-full px-5 sm:w-auto sm:px-6"
-          disabled={!jobId || !typeId || !quantity.trim()}
+          disabled={!jobId || !typeId || !quantity || quantity === '.'}
         >
           <Send className="h-5 w-5" aria-hidden />
           {t('siteMeasurements.actions.send')}
