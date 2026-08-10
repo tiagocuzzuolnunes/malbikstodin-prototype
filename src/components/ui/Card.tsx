@@ -100,7 +100,8 @@ export function CardShell({
       {footer ? (
         <CardFooter
           className={cn(
-            children ? (compact ? 'mt-4' : 'mt-8') : contentSpacing,
+            // Keep open actions aligned across equal-height grid cards.
+            compact ? 'mt-auto pt-4' : 'mt-auto pt-8',
             compact && 'gap-2',
             interactive &&
               '[&_a]:after:absolute [&_a]:after:inset-0 [&_a]:group-hover:bg-accent-hover',

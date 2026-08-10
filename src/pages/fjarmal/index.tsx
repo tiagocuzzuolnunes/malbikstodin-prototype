@@ -56,7 +56,7 @@ export default function FjarmalPage() {
                   to={item.to}
                   className={cn(
                     buttonVariants({ variant: 'primary', size: 'lg' }),
-                    'min-h-11 px-5',
+                    'min-h-12 px-5 text-base',
                   )}
                 >
                   {t('pages.fjarmal.openSection')}
