@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { GitBranch, Ruler, Workflow } from 'lucide-react'
+import { GitBranch, Inbox, Ruler, Workflow } from 'lucide-react'
 import { SectionPage } from '../../components/shared'
 import { projectAreas } from '../../config/projects'
 import { cn } from '../../lib/utils'
@@ -99,15 +99,27 @@ export default function VerkefniPage() {
             </Link>
           }
         />
-      </div>
-
-      <div className="flex justify-end">
-        <Link
-          to="/verkefni/events"
-          className={cn(buttonVariants({ variant: 'ghost', size: 'md' }), 'text-sm')}
-        >
-          {t('home.events.viewAll')}
-        </Link>
+        <CardShell
+          interactive
+          title={
+            <span className="flex items-center gap-3">
+              <Inbox className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
+              {t('nav.lugan')}
+            </span>
+          }
+          description={t('pages.verkefni.lugan.description')}
+          footer={
+            <Link
+              to="/verkefni/lugan"
+              className={cn(
+                buttonVariants({ variant: 'primary', size: 'lg' }),
+                'min-h-12 px-5 text-base',
+              )}
+            >
+              {t('pages.verkefni.openArea')}
+            </Link>
+          }
+        />
       </div>
     </div>
   )
