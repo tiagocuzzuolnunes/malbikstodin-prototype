@@ -848,6 +848,9 @@
   },
   "jobPipeline": {
     "daysInStage": "{{count}} d",
+    "actions": {
+      "excel": "Excel"
+    },
     "stats": {
       "inProgress": "Verk í vinnslu",
       "stuck": "Strönduð yfir 14 daga",

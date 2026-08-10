@@ -848,6 +848,9 @@
   },
   "jobPipeline": {
     "daysInStage": "{{count}} d",
+    "actions": {
+      "excel": "Excel"
+    },
     "stats": {
       "inProgress": "Jobs in progress",
       "stuck": "Stuck over 14 days",
