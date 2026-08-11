@@ -1,10 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Gauge, Wrench, CircleDollarSign } from 'lucide-react'
 import {
-  equipmentHistoryRows,
-  equipmentMaintenanceMachine,
-  equipmentMaintenanceStats,
   type EquipmentHistoryType,
+  type EquipmentMaintenanceMachine,
   type EquipmentServiceStatus,
 } from '../../data/equipmentMaintenance'
 import { statusRowBg } from '../../lib/statusRowTint'
@@ -79,13 +77,16 @@ function HistoryTypeBadge({ type }: { type: EquipmentHistoryType }) {
   )
 }
 
-export default function EquipmentMaintenance() {
+export default function EquipmentMaintenance({
+  machine,
+}: {
+  machine: EquipmentMaintenanceMachine
+}) {
   const { t, i18n } = useTranslation()
   const locale = i18n.resolvedLanguage ?? i18n.language
-  const machine = equipmentMaintenanceMachine
   const hoursUnit = t('equipmentMaintenance.hoursUnit')
 
-  function formatStat(stat: (typeof equipmentMaintenanceStats)[number]) {
+  function formatStat(stat: EquipmentMaintenanceMachine['stats'][number]) {
     if (stat.valueKey) {
       return t(stat.valueKey, stat.valueParams)
     }
@@ -150,10 +151,14 @@ export default function EquipmentMaintenance() {
       </div>
 
       <div className="grid grid-cols-1 gap-3 min-[560px]:grid-cols-2 sm:gap-4 xl:grid-cols-4">
-        {equipmentMaintenanceStats.map((stat) => (
+        {machine.stats.map((stat) => (
           <Card key={stat.id} elevated padding="md" className="@container min-h-0 min-w-0">
             <p className="truncate text-xs font-medium tracking-wide text-foreground-muted sm:text-sm">
-              {t(stat.labelKey)}
+              {stat.id === 'nextService'
+                ? t('equipmentMaintenance.stats.nextServiceLabel', {
+                    service: t(stat.labelKey),
+                  })
+                : t(stat.labelKey)}
             </p>
             <p
               className={cn(
@@ -184,7 +189,7 @@ export default function EquipmentMaintenance() {
 
         <div className="mt-6 min-w-0 overflow-hidden rounded-card border border-border">
           <div className="md:hidden">
-            {equipmentHistoryRows.map((row) => (
+            {machine.history.map((row) => (
               <article
                 key={row.id}
                 className={cn(
@@ -290,7 +295,7 @@ export default function EquipmentMaintenance() {
                 </tr>
               </thead>
               <tbody>
-                {equipmentHistoryRows.map((row) => (
+                {machine.history.map((row) => (
                   <tr
                     key={row.id}
                     className={cn(

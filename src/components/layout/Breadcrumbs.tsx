@@ -31,7 +31,7 @@ export default function Breadcrumbs() {
         <ol className="flex flex-wrap items-center gap-1 text-sm text-foreground-muted">
           {crumbs.map((crumb, index) => {
             const isLast = index === crumbs.length - 1
-            const label = t(crumb.labelKey)
+            const label = crumb.label ?? t(crumb.labelKey)
 
             return (
               <li key={crumb.to} className="flex items-center gap-1">

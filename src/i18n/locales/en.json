@@ -226,7 +226,7 @@
         "description": "One button for deviations, breakdowns, complaints, and praise — photo, type, job, one sentence."
       },
       "vidhald": {
-        "description": "One machine, one page: repairs, running hours, parts, meter reading, and next service due."
+        "description": "Choose a machine to open its maintenance page — repairs, hours, parts, meter, and next service."
       }
     },
     "stjornun": {
@@ -980,12 +980,55 @@
     }
   },
   "equipmentMaintenance": {
+    "list": {
+      "title": "Equipment — maintenance and operations",
+      "subtitle": "Select a machine to see everything booked to it, plus meter reading and next service due.",
+      "open": "Open",
+      "stats": {
+        "total": "Machines",
+        "overdue": "Service overdue",
+        "dueSoon": "Due soon",
+        "ok": "Up to date"
+      },
+      "columns": {
+        "serial": "Serial",
+        "name": "Machine",
+        "department": "Department",
+        "status": "Status",
+        "meter": "Meter",
+        "nextService": "Next service"
+      }
+    },
     "machine": {
-      "name": "Roller — Hamm HD90",
-      "owner": "Owned by Malbikstöðin",
-      "department": "dept 30 Asphalt",
-      "nextServiceOil": "Oil change",
-      "yesterdayLocation": "Workshop bay 2"
+      "owner": "Owned by Malbikstöðin"
+    },
+    "machines": {
+      "tf812": "Roller — Hamm HD90",
+      "mu471": "4-axle truck",
+      "af208": "Material haul truck T-9",
+      "es101": "Quarry haul truck",
+      "mb401": "Emergency response truck"
+    },
+    "departments": {
+      "asphalt": "dept 30 Asphalt",
+      "paving": "dept 40 Paving",
+      "airport": "dept 50 Airport",
+      "quarry": "dept 20 Quarry",
+      "ops": "dept 10 Operations"
+    },
+    "locations": {
+      "workshopBay2": "Workshop bay 2",
+      "miklabraut": "Miklabraut site",
+      "airside": "Airside apron",
+      "quarry": "Esja quarry",
+      "yard": "Equipment yard"
+    },
+    "nextService": {
+      "oilChange": "Oil change",
+      "brakeInspection": "Brake inspection",
+      "hydraulic": "Hydraulic check",
+      "engineService": "Engine service",
+      "general": "General service"
     },
     "serviceStatus": {
       "overdue": "Service overdue",
@@ -1005,7 +1048,7 @@
       "hoursThisYear": "Hours logged this year",
       "costPerHour": "Cost per hour",
       "iskPerHourValue": "{{amount}}/h",
-      "nextService": "Next service — oil change",
+      "nextServiceLabel": "Next service — {{service}}",
       "nextServiceValue": "in {{hours}} h"
     },
     "historyTitle": "Machine history",
@@ -1030,11 +1073,22 @@
       "drumWearPlate": "Replaced drum wear plate",
       "pavingOverlay": "Paving — overlay",
       "oilFilters": "Oil and filters — Olís",
-      "scheduled500h": "Scheduled — 500 h"
+      "scheduled500h": "Scheduled — 500 h",
+      "scheduled1000h": "Scheduled — 1,000 h",
+      "haulage": "Haulage — overlay",
+      "tyres": "Tyres — N1",
+      "airsideSupport": "Airside support",
+      "tailgateLatch": "Tailgate latch repair",
+      "quarryHaul": "Quarry haul",
+      "filters": "Filters and fluids",
+      "emergencyStandby": "Emergency standby"
     },
     "jobs": {
       "workshop": "— workshop",
-      "miklabraut": "26-0412 Miklabraut"
+      "miklabraut": "26-0412 Miklabraut",
+      "airportApron": "26-0390 Airport apron",
+      "esjaPlant": "26-0375 Esja plant",
+      "opsDesk": "— ops desk"
     },
     "workers": {
       "hafthor": "Hafþór Jónsson",

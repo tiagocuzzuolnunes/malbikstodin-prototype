@@ -226,7 +226,7 @@
         "description": "Einn hnappur fyrir frávik, bilanir, kvartanir og hrósa — mynd, tegund, verk, ein setning."
       },
       "vidhald": {
-        "description": "Eitt tæki, ein síða: viðgerðir, rekstrartímar, varahlutir, mælir og næsta þjónusta."
+        "description": "Veldu tæki til að opna viðhaldssíðu þess — viðgerðir, tímar, varahlutir, mælir og næsta þjónusta."
       }
     },
     "stjornun": {
@@ -980,12 +980,55 @@
     }
   },
   "equipmentMaintenance": {
+    "list": {
+      "title": "Tæki og búnaður — viðhald og rekstur",
+      "subtitle": "Veldu tæki til að sjá allt sem bókað er á það, auk mælis og næstu þjónustu.",
+      "open": "Opna",
+      "stats": {
+        "total": "Tæki",
+        "overdue": "Þjónusta í vanskilum",
+        "dueSoon": "Bráðum",
+        "ok": "Í lagi"
+      },
+      "columns": {
+        "serial": "Raðnúmer",
+        "name": "Tæki",
+        "department": "Deild",
+        "status": "Staða",
+        "meter": "Mælir",
+        "nextService": "Næsta þjónusta"
+      }
+    },
     "machine": {
-      "name": "Vals — Hamm HD90",
-      "owner": "Í eigu Malbikstöðvarinnar",
-      "department": "deild 30 Asfalt",
-      "nextServiceOil": "Olíuskipti",
-      "yesterdayLocation": "Verkstæði, stæði 2"
+      "owner": "Í eigu Malbikstöðvarinnar"
+    },
+    "machines": {
+      "tf812": "Vals — Hamm HD90",
+      "mu471": "4-ása vörubíll",
+      "af208": "Efnisflutningabíll T-9",
+      "es101": "Námuflutningabíll",
+      "mb401": "Neyðarviðbragðsbíll"
+    },
+    "departments": {
+      "asphalt": "deild 30 Asfalt",
+      "paving": "deild 40 Malbikun",
+      "airport": "deild 50 Flugvöllur",
+      "quarry": "deild 20 Náma",
+      "ops": "deild 10 Rekstrur"
+    },
+    "locations": {
+      "workshopBay2": "Verkstæði, stæði 2",
+      "miklabraut": "Miklabrautarsvæði",
+      "airside": "Flugvallarsvæði",
+      "quarry": "Esjunáma",
+      "yard": "Tækjagarður"
+    },
+    "nextService": {
+      "oilChange": "Olíuskipti",
+      "brakeInspection": "Bremsuskoðun",
+      "hydraulic": "Vökvakerfisskoðun",
+      "engineService": "Vélaþjónusta",
+      "general": "Almenn þjónusta"
     },
     "serviceStatus": {
       "overdue": "Þjónusta í vanskilum",
@@ -1005,7 +1048,7 @@
       "hoursThisYear": "Skráðar klst. árið",
       "costPerHour": "Kostnaður á klst.",
       "iskPerHourValue": "{{amount}}/klst",
-      "nextService": "Næsta þjónusta — olíuskipti",
+      "nextServiceLabel": "Næsta þjónusta — {{service}}",
       "nextServiceValue": "eftir {{hours}} klst"
     },
     "historyTitle": "Saga tækis",
@@ -1030,11 +1073,22 @@
       "drumWearPlate": "Skipt um slitplötu á tromlu",
       "pavingOverlay": "Malbikun — yfirlag",
       "oilFilters": "Olía og síur — Olís",
-      "scheduled500h": "Áætlun — 500 klst"
+      "scheduled500h": "Áætlun — 500 klst",
+      "scheduled1000h": "Áætlun — 1.000 klst",
+      "haulage": "Flutningur — yfirlag",
+      "tyres": "Dekk — N1",
+      "airsideSupport": "Stuðningur á flugvallarsvæði",
+      "tailgateLatch": "Viðgerð á afturloku",
+      "quarryHaul": "Námuflutningur",
+      "filters": "Síur og vökvar",
+      "emergencyStandby": "Neyðarviðbúnaður"
     },
     "jobs": {
       "workshop": "— verkstæði",
-      "miklabraut": "26-0412 Miklabraut"
+      "miklabraut": "26-0412 Miklabraut",
+      "airportApron": "26-0390 Flugvallarsvæði",
+      "esjaPlant": "26-0375 Esjustöð",
+      "opsDesk": "— rekstrarborð"
     },
     "workers": {
       "hafthor": "Hafþór Jónsson",

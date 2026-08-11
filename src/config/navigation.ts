@@ -9,6 +9,7 @@ import {
   ClipboardList,
   Settings2,
 } from 'lucide-react'
+import { getMaintenanceEquipment } from '../data/equipmentMaintenance'
 import { projectAreas } from './projects'
 
 export type NavItem = {
@@ -29,7 +30,9 @@ export const navItems: NavItem[] = [
 ]
 
 export function getBreadcrumbKeys(pathname: string) {
-  const crumbs = [{ to: '/', labelKey: 'nav.heim' }]
+  const crumbs: { to: string; labelKey: string; label?: string }[] = [
+    { to: '/', labelKey: 'nav.heim' },
+  ]
 
   if (pathname === '/') return crumbs
 
@@ -236,6 +239,18 @@ export function getBreadcrumbKeys(pathname: string) {
       to: '/verkefni/vidhald',
       labelKey: 'nav.vidhald',
     })
+
+    const equipmentMatch = pathname.match(/^\/verkefni\/vidhald\/([^/]+)\/?$/)
+    if (equipmentMatch) {
+      const equipmentId = decodeURIComponent(equipmentMatch[1])
+      const machine = getMaintenanceEquipment(equipmentId)
+      crumbs.push({
+        to: `/verkefni/vidhald/${equipmentId}`,
+        labelKey: machine?.nameKey ?? 'nav.vidhald',
+        label: machine?.serial,
+      })
+    }
+
     return crumbs
   }
 
