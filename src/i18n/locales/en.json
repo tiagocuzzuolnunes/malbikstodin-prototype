@@ -141,6 +141,7 @@
     "stadarmaelingar": "Site measurements",
     "lugan": "The Hatch",
     "vidhald": "Equipment",
+    "dagskraVorubila": "Truck day plan",
     "kostnadargreining": "Job cost analysis",
     "verkbokhald": "Job ledger reconciliation",
     "utgjold": "Expense register"
@@ -227,6 +228,9 @@
       },
       "vidhald": {
         "description": "Choose a machine to open its maintenance page — repairs, hours, parts, meter, and next service."
+      },
+      "dagskraVorubila": {
+        "description": "Plan each truck’s day — job, material, quarry, loads — and compare plan to registered trips."
       }
     },
     "stjornun": {
@@ -977,6 +981,67 @@
       "available": "Available",
       "onHold": "On hold",
       "broken": "Broken"
+    }
+  },
+  "truckDayPlan": {
+    "title": "Truck day plan",
+    "date": {
+      "monday2707": "Monday 27.07.2026"
+    },
+    "plant": {
+      "asphalt": "asphalt plant"
+    },
+    "actions": {
+      "copyYesterday": "Copy yesterday",
+      "loadActuals": "Load actuals",
+      "savePlan": "Save plan"
+    },
+    "stats": {
+      "trucksPlanned": "Trucks planned",
+      "trucksPlannedValue": "{{planned}} of {{total}}",
+      "plannedTrips": "Planned trips",
+      "plannedTonnes": "Planned tonnes",
+      "variance": "Variance",
+      "varianceValue": "{{count}} trucks"
+    },
+    "columns": {
+      "vehicleDriver": "Vehicle / Driver",
+      "planned": "Planned",
+      "actual": "Actual",
+      "variance": "Variance"
+    },
+    "slots": {
+      "slot07010": "07–10",
+      "slot10013": "10–13",
+      "slot13016": "13–16",
+      "slot16019": "16–19"
+    },
+    "noDriver": "No driver assigned",
+    "rowStatus": {
+      "unassigned": "Unassigned",
+      "broken": "Broken down"
+    },
+    "breakdown": {
+      "awaitingPart": "Broken down — awaiting part"
+    },
+    "hatchReport": "Reported via the Hatch: {{ref}}",
+    "tripsCount": "{{count}} trips",
+    "tripsVariance": "{{value}} trips",
+    "drivers": {
+      "gudmundur": "Guðmundur Þórsson",
+      "sigurdur": "Sigurður Páll Ó.",
+      "kristjan": "Kristján Örn H."
+    },
+    "jobs": {
+      "hringbraut": "26-0412 Hringbraut",
+      "reykjanesbraut": "26-0388 Reykjanesbraut",
+      "rawToPlant": "Raw material to plant"
+    },
+    "details": {
+      "y16x4": "Y16 wearing · 4 trips",
+      "y16x3": "Y16 wearing · 3 trips",
+      "th11x3": "Þ11 binder · 3 trips",
+      "gravelBolaoldurx2": "Gravel 0-16 · Bolaöldur · 2 trips"
     }
   },
   "equipmentMaintenance": {

@@ -141,6 +141,7 @@
     "stadarmaelingar": "Staðarmælingar",
     "lugan": "Lúgan",
     "vidhald": "Tæki og búnaður",
+    "dagskraVorubila": "Dagskrá vörubíla",
     "kostnadargreining": "Kostnaðargreining verks",
     "verkbokhald": "Verkbókhald",
     "utgjold": "Útgjaldaskrá"
@@ -227,6 +228,9 @@
       },
       "vidhald": {
         "description": "Veldu tæki til að opna viðhaldssíðu þess — viðgerðir, tímar, varahlutir, mælir og næsta þjónusta."
+      },
+      "dagskraVorubila": {
+        "description": "Skipuleggðu dag hvers vörubíls — verk, efni, náma, ferðir — og berðu áætlun saman við skráðar ferðir."
       }
     },
     "stjornun": {
@@ -977,6 +981,67 @@
       "available": "Tiltækur",
       "onHold": "Í bið",
       "broken": "Bilaður"
+    }
+  },
+  "truckDayPlan": {
+    "title": "Dagskrá vörubíla — flutningar og hráefni",
+    "date": {
+      "monday2707": "Mánudagur 27.07.2026"
+    },
+    "plant": {
+      "asphalt": "malbikunarstöð"
+    },
+    "actions": {
+      "copyYesterday": "Afrita í gær",
+      "loadActuals": "Sækja rauntölur",
+      "savePlan": "Vista áætlun"
+    },
+    "stats": {
+      "trucksPlanned": "Skipulagðir bílar",
+      "trucksPlannedValue": "{{planned}} af {{total}}",
+      "plannedTrips": "Áætlaðar ferðir",
+      "plannedTonnes": "Áætluð tonn",
+      "variance": "Frávik",
+      "varianceValue": "{{count}} bílar"
+    },
+    "columns": {
+      "vehicleDriver": "Ökutæki / ökumaður",
+      "planned": "Áætlað",
+      "actual": "Raun",
+      "variance": "Frávik"
+    },
+    "slots": {
+      "slot07010": "07–10",
+      "slot10013": "10–13",
+      "slot13016": "13–16",
+      "slot16019": "16–19"
+    },
+    "noDriver": "Enginn ökumaður",
+    "rowStatus": {
+      "unassigned": "Óúthlutað",
+      "broken": "Bilaður"
+    },
+    "breakdown": {
+      "awaitingPart": "Bilaður — bíður eftir varahlut"
+    },
+    "hatchReport": "Tilkynnt í Lúgunni: {{ref}}",
+    "tripsCount": "{{count}} ferðir",
+    "tripsVariance": "{{value}} ferðir",
+    "drivers": {
+      "gudmundur": "Guðmundur Þórsson",
+      "sigurdur": "Sigurður Páll Ó.",
+      "kristjan": "Kristján Örn H."
+    },
+    "jobs": {
+      "hringbraut": "26-0412 Hringbraut",
+      "reykjanesbraut": "26-0388 Reykjanesbraut",
+      "rawToPlant": "Hráefni á stöð"
+    },
+    "details": {
+      "y16x4": "Y16 slitlag · 4 ferðir",
+      "y16x3": "Y16 slitlag · 3 ferðir",
+      "th11x3": "Þ11 bindiefni · 3 ferðir",
+      "gravelBolaoldurx2": "Möl 0-16 · Bolaöldur · 2 ferðir"
     }
   },
   "equipmentMaintenance": {

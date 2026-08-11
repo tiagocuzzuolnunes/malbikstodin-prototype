@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { GitBranch, Inbox, Ruler, Wrench, Workflow } from 'lucide-react'
+import { GitBranch, Inbox, Ruler, Truck, Wrench, Workflow } from 'lucide-react'
 import { SectionPage } from '../../components/shared'
 import { projectAreas } from '../../config/projects'
 import { cn } from '../../lib/utils'
@@ -132,6 +132,27 @@ export default function VerkefniPage() {
           footer={
             <Link
               to="/verkefni/vidhald"
+              className={cn(
+                buttonVariants({ variant: 'primary', size: 'lg' }),
+                'min-h-12 px-5 text-base',
+              )}
+            >
+              {t('pages.verkefni.openArea')}
+            </Link>
+          }
+        />
+        <CardShell
+          interactive
+          title={
+            <span className="flex items-center gap-3">
+              <Truck className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
+              {t('nav.dagskraVorubila')}
+            </span>
+          }
+          description={t('pages.verkefni.dagskraVorubila.description')}
+          footer={
+            <Link
+              to="/verkefni/dagskra-vorubila"
               className={cn(
                 buttonVariants({ variant: 'primary', size: 'lg' }),
                 'min-h-12 px-5 text-base',
