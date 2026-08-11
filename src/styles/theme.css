@@ -60,8 +60,13 @@
 
 @layer base {
   :root {
-    /* 1 at ~900px viewport height — scales header/footer chrome while keeping proportions */
-    --shell-scale: clamp(0.82, 100dvh / 56.25rem, 1.12);
+    /*
+      Unitless chrome scale for header/footer.
+      Do NOT use `clamp(0.82, 100dvh / 56.25rem, 1.12)` — Firefox still rejects
+      length÷length → number (Bug 1827404), which breaks all shell-scale calcs.
+      JS (`useShellScale`) keeps this in sync with viewport height.
+    */
+    --shell-scale: 1;
   }
 
   .dark {

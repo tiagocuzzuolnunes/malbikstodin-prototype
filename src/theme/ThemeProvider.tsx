@@ -7,6 +7,7 @@ import {
   useState,
   type ReactNode,
 } from 'react'
+import { useShellScale } from '../hooks/useShellScale'
 
 export type Theme = 'light' | 'dark'
 
@@ -36,6 +37,7 @@ function applyTheme(theme: Theme) {
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => getPreferredTheme())
+  useShellScale()
 
   useEffect(() => {
     applyTheme(theme)
