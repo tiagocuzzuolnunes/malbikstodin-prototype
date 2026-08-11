@@ -140,6 +140,7 @@
     "verkferill": "Verkferill",
     "stadarmaelingar": "Staðarmælingar",
     "lugan": "Lúgan",
+    "vidhald": "Tæki og búnaður",
     "kostnadargreining": "Kostnaðargreining verks",
     "verkbokhald": "Verkbókhald",
     "utgjold": "Útgjaldaskrá"
@@ -223,6 +224,9 @@
       },
       "lugan": {
         "description": "Einn hnappur fyrir frávik, bilanir, kvartanir og hrósa — mynd, tegund, verk, ein setning."
+      },
+      "vidhald": {
+        "description": "Eitt tæki, ein síða: viðgerðir, rekstrartímar, varahlutir, mælir og næsta þjónusta."
       }
     },
     "stjornun": {
@@ -973,6 +977,74 @@
       "available": "Tiltækur",
       "onHold": "Í bið",
       "broken": "Bilaður"
+    }
+  },
+  "equipmentMaintenance": {
+    "machine": {
+      "name": "Vals — Hamm HD90",
+      "owner": "Í eigu Malbikstöðvarinnar",
+      "department": "deild 30 Asfalt",
+      "nextServiceOil": "Olíuskipti",
+      "yesterdayLocation": "Verkstæði, stæði 2"
+    },
+    "serviceStatus": {
+      "overdue": "Þjónusta í vanskilum",
+      "dueSoon": "Þjónusta bráðum",
+      "ok": "Þjónusta í lagi"
+    },
+    "meterReading": "Mælir {{hours}}",
+    "yesterday": "Í gær · {{location}}",
+    "hoursUnit": "klst",
+    "actions": {
+      "logService": "Skrá þjónustu",
+      "logMeter": "Skrá mæli",
+      "logCost": "Skrá kostnað"
+    },
+    "stats": {
+      "runningCost30d": "Rekstrarkostnaður 30 d",
+      "hoursThisYear": "Skráðar klst. árið",
+      "costPerHour": "Kostnaður á klst.",
+      "iskPerHourValue": "{{amount}}/klst",
+      "nextService": "Næsta þjónusta — olíuskipti",
+      "nextServiceValue": "eftir {{hours}} klst"
+    },
+    "historyTitle": "Saga tækis",
+    "historySubtitle": "Allt sem bókað er á tækið — viðgerðir, tímar, varahlutir og þjónusta.",
+    "columns": {
+      "date": "Dagsetning",
+      "type": "Tegund",
+      "description": "Lýsing",
+      "job": "Verk",
+      "worker": "Starfsmaður",
+      "hours": "Klst.",
+      "cost": "Kostnaður",
+      "source": "Uppruni"
+    },
+    "types": {
+      "repair": "Viðgerð",
+      "runningHours": "Rekstrartímar",
+      "cost": "Kostnaður",
+      "service": "Þjónusta"
+    },
+    "history": {
+      "drumWearPlate": "Skipt um slitplötu á tromlu",
+      "pavingOverlay": "Malbikun — yfirlag",
+      "oilFilters": "Olía og síur — Olís",
+      "scheduled500h": "Áætlun — 500 klst"
+    },
+    "jobs": {
+      "workshop": "— verkstæði",
+      "miklabraut": "26-0412 Miklabraut"
+    },
+    "workers": {
+      "hafthor": "Hafþór Jónsson",
+      "jonBjarki": "Jón Bjarki G."
+    },
+    "sources": {
+      "docket118432": "Kvittun 118432",
+      "jobReport": "Verkskýrsla",
+      "invoice904471": "Reikningur 90-4471",
+      "serviceLog": "Þjónustuskýrsla"
     }
   },
   "schedule": {

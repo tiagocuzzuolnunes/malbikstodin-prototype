@@ -140,6 +140,7 @@
     "verkferill": "Job pipeline",
     "stadarmaelingar": "Site measurements",
     "lugan": "The Hatch",
+    "vidhald": "Equipment",
     "kostnadargreining": "Job cost analysis",
     "verkbokhald": "Job ledger reconciliation",
     "utgjold": "Expense register"
@@ -223,6 +224,9 @@
       },
       "lugan": {
         "description": "One button for deviations, breakdowns, complaints, and praise — photo, type, job, one sentence."
+      },
+      "vidhald": {
+        "description": "One machine, one page: repairs, running hours, parts, meter reading, and next service due."
       }
     },
     "stjornun": {
@@ -973,6 +977,74 @@
       "available": "Available",
       "onHold": "On hold",
       "broken": "Broken"
+    }
+  },
+  "equipmentMaintenance": {
+    "machine": {
+      "name": "Roller — Hamm HD90",
+      "owner": "Owned by Malbikstöðin",
+      "department": "dept 30 Asphalt",
+      "nextServiceOil": "Oil change",
+      "yesterdayLocation": "Workshop bay 2"
+    },
+    "serviceStatus": {
+      "overdue": "Service overdue",
+      "dueSoon": "Service due soon",
+      "ok": "Service up to date"
+    },
+    "meterReading": "Meter {{hours}}",
+    "yesterday": "Yesterday · {{location}}",
+    "hoursUnit": "h",
+    "actions": {
+      "logService": "Log service",
+      "logMeter": "Log meter",
+      "logCost": "Log cost"
+    },
+    "stats": {
+      "runningCost30d": "Running cost 30 d",
+      "hoursThisYear": "Hours logged this year",
+      "costPerHour": "Cost per hour",
+      "iskPerHourValue": "{{amount}}/h",
+      "nextService": "Next service — oil change",
+      "nextServiceValue": "in {{hours}} h"
+    },
+    "historyTitle": "Machine history",
+    "historySubtitle": "Everything booked to this machine — repairs, hours, parts, and services.",
+    "columns": {
+      "date": "Date",
+      "type": "Type",
+      "description": "Description",
+      "job": "Job",
+      "worker": "Worker",
+      "hours": "Hours",
+      "cost": "Cost",
+      "source": "Source"
+    },
+    "types": {
+      "repair": "Repair",
+      "runningHours": "Running hours",
+      "cost": "Cost",
+      "service": "Service"
+    },
+    "history": {
+      "drumWearPlate": "Replaced drum wear plate",
+      "pavingOverlay": "Paving — overlay",
+      "oilFilters": "Oil and filters — Olís",
+      "scheduled500h": "Scheduled — 500 h"
+    },
+    "jobs": {
+      "workshop": "— workshop",
+      "miklabraut": "26-0412 Miklabraut"
+    },
+    "workers": {
+      "hafthor": "Hafþór Jónsson",
+      "jonBjarki": "Jón Bjarki G."
+    },
+    "sources": {
+      "docket118432": "Docket 118432",
+      "jobReport": "Job report",
+      "invoice904471": "Invoice 90-4471",
+      "serviceLog": "Service log"
     }
   },
   "schedule": {

@@ -231,6 +231,14 @@ export function getBreadcrumbKeys(pathname: string) {
     return crumbs
   }
 
+  if (pathname.startsWith('/verkefni/vidhald')) {
+    crumbs.push({
+      to: '/verkefni/vidhald',
+      labelKey: 'nav.vidhald',
+    })
+    return crumbs
+  }
+
   const area = projectAreas.find((item) => pathname.startsWith(item.to))
   if (area) {
     crumbs.push({ to: area.to, labelKey: area.titleKey })
