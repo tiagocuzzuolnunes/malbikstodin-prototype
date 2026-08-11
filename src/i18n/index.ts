@@ -7,12 +7,13 @@ export type SupportedLocale = (typeof supportedLocales)[number]
 
 export const LOCALE_STORAGE_KEY = 'malbikstodin-locale'
 
-const localeLoaders: Record<
-  SupportedLocale,
-  () => Promise<{ default?: Record<string, unknown> } & Record<string, unknown>>
-> = {
-  en: () => import('./locales/en.json'),
-  is: () => import('./locales/is.json'),
+/**
+ * Emit locales as static `.json` assets (via `?url`) instead of JS modules.
+ * Keeps inactive languages out of the JS bundle budget while preserving lazy load.
+ */
+const localeUrls: Record<SupportedLocale, string> = {
+  en: new URL('./locales/en.json', import.meta.url).href,
+  is: new URL('./locales/is.json', import.meta.url).href,
 }
 
 function resolveInitialLocale(): SupportedLocale {
@@ -27,12 +28,14 @@ function resolveInitialLocale(): SupportedLocale {
   return defaultLocale
 }
 
-function asTranslation(mod: {
-  default?: Record<string, unknown>
-} & Record<string, unknown>): Record<string, unknown> {
-  if (mod.default && typeof mod.default === 'object') return mod.default
-  const { default: _ignored, ...rest } = mod
-  return rest
+async function fetchLocaleTranslation(
+  locale: SupportedLocale,
+): Promise<Record<string, unknown>> {
+  const response = await fetch(localeUrls[locale])
+  if (!response.ok) {
+    throw new Error(`Failed to load locale "${locale}" (${response.status})`)
+  }
+  return (await response.json()) as Record<string, unknown>
 }
 
 async function loadLocaleResources(
@@ -41,8 +44,8 @@ async function loadLocaleResources(
 ) {
   if (!force && i18n.hasResourceBundle(locale, 'translation')) return
 
-  const mod = await localeLoaders[locale]()
-  i18n.addResourceBundle(locale, 'translation', asTranslation(mod), true, true)
+  const translation = await fetchLocaleTranslation(locale)
+  i18n.addResourceBundle(locale, 'translation', translation, true, true)
 }
 
 export async function changeAppLocale(locale: SupportedLocale) {
@@ -62,14 +65,14 @@ export async function changeAppLocale(locale: SupportedLocale) {
 
 async function initI18n() {
   const initialLocale = resolveInitialLocale()
-  const mod = await localeLoaders[initialLocale]()
+  const translation = await fetchLocaleTranslation(initialLocale)
 
   await i18n.use(initReactI18next).init({
     resources: {
-      [initialLocale]: { translation: asTranslation(mod) },
+      [initialLocale]: { translation },
     },
     lng: initialLocale,
-    // Only the active locale is bundled at boot; missing keys stay as keys.
+    // Only the active locale is loaded at boot; missing keys stay as keys.
     fallbackLng: false,
     supportedLngs: [...supportedLocales],
     partialBundledLanguages: true,
@@ -93,6 +96,13 @@ export const i18nReady = initI18n()
 
 if (import.meta.hot) {
   import.meta.hot.accept(['./locales/en.json', './locales/is.json'], async () => {
+    // Bust browser cache for HMR by appending a query after re-resolve.
+    for (const locale of supportedLocales) {
+      localeUrls[locale] = new URL(
+        `./locales/${locale}.json`,
+        import.meta.url,
+      ).href
+    }
     await Promise.all(
       supportedLocales.map((locale) => loadLocaleResources(locale, { force: true })),
     )
