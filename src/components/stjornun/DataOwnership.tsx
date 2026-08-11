@@ -4,7 +4,6 @@ import {
   ownershipMeta,
   ownershipRows,
   ownershipStats,
-  ownershipStatuses,
   type OwnershipStatus,
 } from '../../data/dataOwnership'
 import { statusRowBg } from '../../lib/statusRowTint'
@@ -72,18 +71,6 @@ export default function DataOwnership() {
         </Button>
       </div>
 
-      <Card elevated padding="lg" className="min-w-0">
-        <p className="text-sm font-medium text-foreground-muted">
-          {t('dataOwnership.ruleLabel', { author: ownershipMeta.ruleAuthor })}
-        </p>
-        <blockquote className="mt-3 text-base leading-relaxed tracking-tight text-balance sm:text-lg">
-          “{t(ownershipMeta.ruleKey)}”
-        </blockquote>
-        <p className="mt-4 text-sm text-foreground-muted">
-          {t('dataOwnership.meetingHint')}
-        </p>
-      </Card>
-
       <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
         {ownershipStats.map((stat) => (
           <Card key={stat.id} elevated padding="md" className="min-h-0 min-w-0">
@@ -112,12 +99,6 @@ export default function DataOwnership() {
               {t('dataOwnership.tableSubtitle')}
             </p>
           </div>
-        </div>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {ownershipStatuses.map((status) => (
-            <OwnershipStatusBadge key={status} status={status} />
-          ))}
         </div>
 
         <div className="mt-6 min-w-0 overflow-hidden rounded-card border border-border">
@@ -173,8 +154,8 @@ export default function DataOwnership() {
             ))}
           </div>
 
-          <div className="hidden min-w-0 overflow-x-auto md:block">
-            <table className="w-full min-w-6xl table-fixed border-collapse text-left text-sm">
+          <div className="hidden min-w-0 md:block">
+            <table className="w-full table-fixed border-collapse text-left text-sm">
               <colgroup>
                 <col className="w-[18%]" />
                 <col className="w-[14%]" />
@@ -186,25 +167,25 @@ export default function DataOwnership() {
               </colgroup>
               <thead>
                 <tr className="border-b border-border bg-surface-muted">
-                  <th className="px-3 py-3 font-medium text-foreground-muted">
+                  <th className="px-2 py-3 font-medium text-foreground-muted">
                     {t('dataOwnership.columns.object')}
                   </th>
-                  <th className="px-3 py-3 font-medium text-foreground-muted">
+                  <th className="px-2 py-3 font-medium text-foreground-muted">
                     {t('dataOwnership.columns.area')}
                   </th>
-                  <th className="px-3 py-3 font-medium text-foreground-muted">
+                  <th className="px-2 py-3 font-medium text-foreground-muted">
                     {t('dataOwnership.columns.owner')}
                   </th>
-                  <th className="px-3 py-3 font-medium text-foreground-muted">
+                  <th className="px-2 py-3 font-medium text-foreground-muted">
                     {t('dataOwnership.columns.displayedIn')}
                   </th>
-                  <th className="px-3 py-3 font-medium text-foreground-muted">
+                  <th className="px-2 py-3 font-medium text-foreground-muted">
                     {t('dataOwnership.columns.sync')}
                   </th>
-                  <th className="px-3 py-3 font-medium text-foreground-muted">
+                  <th className="px-2 py-3 font-medium text-foreground-muted">
                     {t('dataOwnership.columns.responsible')}
                   </th>
-                  <th className="px-3 py-3 font-medium text-foreground-muted">
+                  <th className="px-2 py-3 font-medium text-foreground-muted">
                     {t('dataOwnership.columns.status')}
                   </th>
                 </tr>
@@ -218,23 +199,23 @@ export default function DataOwnership() {
                       statusRowTint[row.status],
                     )}
                   >
-                    <td className="truncate px-3 align-middle font-medium">
+                    <td className="truncate px-2 align-middle font-medium">
                       {t(row.objectKey)}
                     </td>
-                    <td className="truncate px-3 align-middle text-foreground-muted">
+                    <td className="truncate px-2 align-middle text-foreground-muted">
                       {t(row.areaKey)}
                     </td>
-                    <td className="truncate px-3 align-middle">
+                    <td className="truncate px-2 align-middle">
                       {cellValue(row.owner)}
                     </td>
-                    <td className="truncate px-3 align-middle">
+                    <td className="truncate px-2 align-middle">
                       {cellValue(row.displayedIn)}
                     </td>
-                    <td className="truncate px-3 align-middle text-foreground-muted">
+                    <td className="truncate px-2 align-middle text-foreground-muted">
                       {row.syncKey ? t(row.syncKey) : '—'}
                     </td>
-                    <td className="truncate px-3 align-middle">{row.responsible}</td>
-                    <td className="min-w-0 px-3 align-middle">
+                    <td className="truncate px-2 align-middle">{row.responsible}</td>
+                    <td className="min-w-0 truncate px-2 align-middle">
                       <OwnershipStatusBadge status={row.status} />
                     </td>
                   </tr>

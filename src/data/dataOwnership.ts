@@ -26,8 +26,6 @@ export type OwnershipRow = {
 
 export const ownershipMeta = {
   subtitleKey: 'dataOwnership.subtitle',
-  ruleKey: 'dataOwnership.rule',
-  ruleAuthor: 'Vilhjálmur',
 } as const
 
 export const ownershipStats: OwnershipStat[] = [
@@ -44,14 +42,6 @@ export const ownershipStats: OwnershipStat[] = [
     labelKey: 'dataOwnership.stats.needsDecision',
   },
   { id: 'conflicts', value: 6, labelKey: 'dataOwnership.stats.conflicts' },
-]
-
-export const ownershipStatuses: OwnershipStatus[] = [
-  'decided',
-  'needsDecision',
-  'conflict',
-  'doubleEntry',
-  'beingBuilt',
 ]
 
 export const ownershipRows: OwnershipRow[] = [
