@@ -69,7 +69,7 @@ export default function NotificationBell({ compact = false }: NotificationBellPr
           'relative transition-all duration-300 ease-out',
           compact
             ? 'p-[calc(0.5rem*var(--shell-scale))]'
-            : 'p-[calc(0.75rem*var(--shell-scale))]',
+            : 'p-[calc(0.625rem*var(--shell-scale))]',
         )}
       >
         <Bell
@@ -77,11 +77,11 @@ export default function NotificationBell({ compact = false }: NotificationBellPr
             'shrink-0 transition-all duration-300 ease-out',
             compact
               ? 'h-[calc(1.25rem*var(--shell-scale))] w-[calc(1.25rem*var(--shell-scale))]'
-              : 'h-[calc(1.5rem*var(--shell-scale))] w-[calc(1.5rem*var(--shell-scale))]',
+              : 'h-[calc(1.375rem*var(--shell-scale))] w-[calc(1.375rem*var(--shell-scale))]',
           )}
         />
         {unreadCount > 0 ? (
-          <span className="absolute top-[calc(0.375rem*var(--shell-scale))] right-[calc(0.375rem*var(--shell-scale))] h-[calc(0.625rem*var(--shell-scale))] w-[calc(0.625rem*var(--shell-scale))] rounded-full bg-danger" />
+          <span className="absolute top-[calc(0.375rem*var(--shell-scale))] right-[calc(0.375rem*var(--shell-scale))] h-[calc(0.5rem*var(--shell-scale))] w-[calc(0.5rem*var(--shell-scale))] rounded-full bg-danger" />
         ) : null}
       </Button>
 

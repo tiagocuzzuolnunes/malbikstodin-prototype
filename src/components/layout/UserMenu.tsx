@@ -24,7 +24,7 @@ export default function UserMenu({ compact = false }: UserMenuProps) {
           'transition-all duration-300 ease-out',
           compact
             ? 'p-[calc(0.5rem*var(--shell-scale))]'
-            : 'p-[calc(0.5rem*var(--shell-scale))] md:p-[calc(0.75rem*var(--shell-scale))]',
+            : 'p-[calc(0.5rem*var(--shell-scale))] md:p-[calc(0.625rem*var(--shell-scale))]',
         )}
       >
         <User
@@ -32,7 +32,7 @@ export default function UserMenu({ compact = false }: UserMenuProps) {
             'shrink-0 transition-all duration-300 ease-out',
             compact
               ? 'h-[calc(1.25rem*var(--shell-scale))] w-[calc(1.25rem*var(--shell-scale))]'
-              : 'h-[calc(1.5rem*var(--shell-scale))] w-[calc(1.5rem*var(--shell-scale))] md:h-[calc(2rem*var(--shell-scale))] md:w-[calc(2rem*var(--shell-scale))]',
+              : 'h-[calc(1.375rem*var(--shell-scale))] w-[calc(1.375rem*var(--shell-scale))] md:h-[calc(1.75rem*var(--shell-scale))] md:w-[calc(1.75rem*var(--shell-scale))]',
           )}
         />
       </Button>

@@ -47,19 +47,19 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
       data-app-header
       className={cn(
         'relative z-110 flex shrink-0 items-center justify-between bg-surface transition-[padding,gap] duration-300 ease-out',
-        'gap-[calc(0.75rem*var(--shell-scale))]',
-        'pt-[max(calc(1rem*var(--shell-scale)),env(safe-area-inset-top))]',
-        'pl-[max(calc(1rem*var(--shell-scale)),env(safe-area-inset-left))]',
-        'pr-[max(calc(1rem*var(--shell-scale)),env(safe-area-inset-right))]',
+        'gap-[calc(0.625rem*var(--shell-scale))]',
+        'pt-[max(calc(0.75rem*var(--shell-scale)),env(safe-area-inset-top))]',
+        'pl-[max(calc(0.75rem*var(--shell-scale)),env(safe-area-inset-left))]',
+        'pr-[max(calc(0.75rem*var(--shell-scale)),env(safe-area-inset-right))]',
         compact
           ? 'pb-[calc(0.625rem*var(--shell-scale))] md:px-[calc(1.75rem*var(--shell-scale))] md:py-[calc(0.75rem*var(--shell-scale))]'
-          : 'pb-[calc(1rem*var(--shell-scale))] md:p-[calc(1.75rem*var(--shell-scale))]',
+          : 'pb-[calc(0.75rem*var(--shell-scale))] md:px-[calc(1.25rem*var(--shell-scale))] md:py-[calc(1rem*var(--shell-scale))]',
       )}
     >
       <div
         className={cn(
           'flex min-w-0 items-center',
-          'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(0.75rem*var(--shell-scale))]',
+          'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(0.625rem*var(--shell-scale))]',
         )}
       >
         {onOpenMobileNav ? (
@@ -71,7 +71,7 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
             aria-label={t('sidebar.openMenu')}
             onClick={onOpenMobileNav}
           >
-            <Menu className="h-[calc(1.5rem*var(--shell-scale))] w-[calc(1.5rem*var(--shell-scale))]" />
+            <Menu className="h-[calc(1.375rem*var(--shell-scale))] w-[calc(1.375rem*var(--shell-scale))]" />
           </Button>
         ) : null}
 
@@ -79,7 +79,7 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
           to="/"
           className={cn(
             'flex min-w-0 items-center text-foreground',
-            'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(0.75rem*var(--shell-scale))]',
+            'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(0.625rem*var(--shell-scale))]',
           )}
         >
           <img
@@ -87,7 +87,7 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
               'w-auto object-contain transition-[height,width] duration-300 ease-out',
               compact
                 ? 'h-[calc(1.75rem*var(--shell-scale))]'
-                : 'h-[calc(2rem*var(--shell-scale))] md:h-[calc(2.5rem*var(--shell-scale))]',
+                : 'h-[calc(1.875rem*var(--shell-scale))] md:h-[calc(2.125rem*var(--shell-scale))]',
             )}
             src={logo}
             alt={t('brand.logoAlt')}
@@ -95,10 +95,9 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
           <p
             className={cn(
               'hidden font-black overflow-hidden whitespace-nowrap transition-all duration-300 ease-out sm:block',
-              'text-[length:calc(1rem*var(--shell-scale))]',
               compact
-                ? 'max-w-0 -translate-x-1 opacity-0'
-                : 'max-w-[calc(14rem*var(--shell-scale))] translate-x-0 opacity-100',
+                ? 'max-w-0 -translate-x-1 text-[length:calc(0.875rem*var(--shell-scale))] opacity-0'
+                : 'max-w-[calc(12rem*var(--shell-scale))] translate-x-0 text-[length:calc(0.875rem*var(--shell-scale))] opacity-100',
             )}
             aria-hidden={compact}
           >
@@ -112,7 +111,7 @@ export default function Header({ compact = false, onOpenMobileNav }: HeaderProps
           'flex shrink-0 items-center transition-[gap] duration-300 ease-out',
           compact
             ? 'gap-[calc(0.375rem*var(--shell-scale))] md:gap-[calc(0.5rem*var(--shell-scale))]'
-            : 'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(1rem*var(--shell-scale))]',
+            : 'gap-[calc(0.5rem*var(--shell-scale))] md:gap-[calc(0.75rem*var(--shell-scale))]',
         )}
       >
         <SettingsMenu compact={compact} />
