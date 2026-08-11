@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Calculator, FileText, Receipt } from 'lucide-react'
+import { BookOpenCheck, Calculator, FileText, Receipt } from 'lucide-react'
 import { SectionPage } from '../../components/shared'
 import { buttonVariants, CardShell } from '../../components/ui'
 import { cn } from '../../lib/utils'
@@ -19,6 +19,13 @@ const hubLinks = [
     titleKey: 'nav.kostnadargreining',
     descriptionKey: 'pages.fjarmal.costAnalysisDescription',
     icon: Calculator,
+  },
+  {
+    id: 'verkbokhald',
+    to: '/fjarmal/verkbokhald',
+    titleKey: 'nav.verkbokhald',
+    descriptionKey: 'pages.fjarmal.jobLedgerDescription',
+    icon: BookOpenCheck,
   },
   {
     id: 'reikningar',

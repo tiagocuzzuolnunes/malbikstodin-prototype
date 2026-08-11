@@ -121,6 +121,17 @@ export function getBreadcrumbKeys(pathname: string) {
     }
 
     if (
+      pathname === '/fjarmal/verkbokhald' ||
+      pathname.startsWith('/fjarmal/verkbokhald/')
+    ) {
+      crumbs.push({
+        to: '/fjarmal/verkbokhald',
+        labelKey: 'nav.verkbokhald',
+      })
+      return crumbs
+    }
+
+    if (
       pathname === '/fjarmal/reikningar' ||
       pathname.startsWith('/fjarmal/reikningar/')
     ) {

@@ -141,6 +141,7 @@
     "stadarmaelingar": "Site measurements",
     "lugan": "The Hatch",
     "kostnadargreining": "Job cost analysis",
+    "verkbokhald": "Job ledger reconciliation",
     "utgjold": "Expense register"
   },
   "pages": {
@@ -174,10 +175,11 @@
       "description": "IT dashboard with support tickets and system status."
     },
     "fjarmal": {
-      "description": "Choose expenses, job cost analysis, or invoices.",
+      "description": "Choose expenses, job cost analysis, ledger reconciliation, or invoices.",
       "openSection": "Open",
       "registerDescription": "Register expenses and review the company expense register.",
-      "costAnalysisDescription": "One job’s real cost — labour, haulage, materials and equipment — set against the tender amount while the job is still running."
+      "costAnalysisDescription": "One job’s real cost — labour, haulage, materials and equipment — set against the tender amount while the job is still running.",
+      "jobLedgerDescription": "Per job: what the financial ledger booked against what bik recorded, what is still un-recharged, and what blocks closing."
     },
     "reikningar": {
       "description": "Match supplier and rental invoices to approved trips — clock out what is wrong, not what is right.",
@@ -233,6 +235,75 @@
       "labRegisterDescription": "Record and review laboratory sample results.",
       "labRegisterPageDescription": "Enter and track laboratory sample registrations.",
       "ownershipDescription": "Decide which system owns each business object — bik.is or SharePoint."
+    }
+  },
+  "jobLedger": {
+    "title": "Job ledger reconciliation",
+    "period": {
+      "july2026": "July 2026"
+    },
+    "openJobs": "{{count}} open jobs",
+    "missingJob": "— missing",
+    "actions": {
+      "importDk": "Import postings (DK)",
+      "excel": "Excel",
+      "linkToJobs": "Link them to jobs"
+    },
+    "stats": {
+      "openJobs": "Open jobs",
+      "noJobNumber": "No job number",
+      "noJobNumberValue": "{{lines}} · {{amount}}",
+      "notRecharged": "Not recharged",
+      "dkBikDifference": "DK/bik difference"
+    },
+    "alert": {
+      "noJobNumber": "{{count}} postings came from DK with no job number — {{amount}} belonging to no job."
+    },
+    "linkModal": {
+      "title": "Link postings to jobs",
+      "subtitle": "{{count}} postings · {{amount}}. Choose a job for each line, then confirm.",
+      "postingNo": "Posting {{number}}",
+      "jobLabel": "Job",
+      "selectJob": "Select job",
+      "readyCount": "{{count}} ready to link",
+      "confirm": "Link {{count}}"
+    },
+    "orphans": {
+      "spareParts": "Spare parts, Bílanaust",
+      "fuelDepot": "Fuel — depot tank",
+      "hiredPlant": "Hired plant — roller",
+      "labFees": "Lab fees — binder test",
+      "bitumenAdj": "Bitumen price adjustment",
+      "transport": "Transport — aggregate haul"
+    },
+    "columns": {
+      "jobNo": "Job no.",
+      "job": "Job",
+      "department": "Department",
+      "costDk": "Cost DK",
+      "costBik": "Cost bik",
+      "difference": "Difference",
+      "notRecharged": "Not recharged",
+      "status": "Status"
+    },
+    "status": {
+      "difference": "Difference",
+      "balanced": "Balanced",
+      "notRecharged": "Not recharged",
+      "readyToClose": "Ready to close",
+      "noJobNumber": "No job number"
+    },
+    "jobs": {
+      "hringbraut": "Paving — Hringbraut 12–18",
+      "reykjanesbraut": "Overlay — Reykjanesbraut",
+      "millingKopavogur": "Milling — Kópavogsbær",
+      "groundworkHafnarfjordur": "Groundwork — Hafnarfjörður",
+      "missingPosting": "Posting 118432 · \"Spare parts, Bílanaust\""
+    },
+    "departments": {
+      "paving": "40 Paving",
+      "asphalt": "30 Asphalt",
+      "groundwork": "20 Groundwork"
     }
   },
   "dataOwnership": {

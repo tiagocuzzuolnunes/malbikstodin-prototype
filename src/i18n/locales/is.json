@@ -141,6 +141,7 @@
     "stadarmaelingar": "Staðarmælingar",
     "lugan": "Lúgan",
     "kostnadargreining": "Kostnaðargreining verks",
+    "verkbokhald": "Verkbókhald",
     "utgjold": "Útgjaldaskrá"
   },
   "pages": {
@@ -174,10 +175,11 @@
       "description": "Yfirlitssíða upplýsingatækni með þjónustubeiðnum og kerfisstöðu."
     },
     "fjarmal": {
-      "description": "Veldu útgjöld, kostnaðargreiningu verka eða reikninga.",
+      "description": "Veldu útgjöld, kostnaðargreiningu, verkbókhald eða reikninga.",
       "openSection": "Opna",
       "registerDescription": "Skrá útgjöld og skoða útgjaldaskrá fyrirtækisins.",
-      "costAnalysisDescription": "Raunkostnaður eins verks — vinna, flutningur, efni og tæki — borinn saman við tilboðsupphæð meðan verkið er enn í gangi."
+      "costAnalysisDescription": "Raunkostnaður eins verks — vinna, flutningur, efni og tæki — borinn saman við tilboðsupphæð meðan verkið er enn í gangi.",
+      "jobLedgerDescription": "Á hvert verk: hvað fjárhagsbókin bókaði á móti því sem bik skráði, hvað er óendurheimt, og hvað hindrar lokun."
     },
     "reikningar": {
       "description": "Para reikninga birgja og leigu við samþykktar ferðir — merktu aðeins það sem er rangt, ekki það sem er rétt.",
@@ -233,6 +235,75 @@
       "labRegisterDescription": "Skráðu og yfirfarðu niðurstöður sýna frá rannsóknarstofu.",
       "labRegisterPageDescription": "Skráðu og fylgstu með skráningum sýna frá rannsóknarstofu.",
       "ownershipDescription": "Ákveðið hvaða kerfi á hvert viðskiptaobjekt — bik.is eða SharePoint."
+    }
+  },
+  "jobLedger": {
+    "title": "Verkbókhald — BC tengt við verk í bik.is",
+    "period": {
+      "july2026": "Júlí 2026"
+    },
+    "openJobs": "{{count}} opin verk",
+    "missingJob": "— vantar",
+    "actions": {
+      "importDk": "Flytja inn færslur (DK)",
+      "excel": "Excel",
+      "linkToJobs": "Tengja við verk"
+    },
+    "stats": {
+      "openJobs": "Opin verk",
+      "noJobNumber": "Ekkert verknúmer",
+      "noJobNumberValue": "{{lines}} · {{amount}}",
+      "notRecharged": "Óendurheimt",
+      "dkBikDifference": "DK/bik mismunur"
+    },
+    "alert": {
+      "noJobNumber": "{{count}} færslur komu úr DK án verknúmers — {{amount}} sem tilheyra engu verki."
+    },
+    "linkModal": {
+      "title": "Tengja færslur við verk",
+      "subtitle": "{{count}} færslur · {{amount}}. Veldu verk fyrir hverja línu og staðfestu.",
+      "postingNo": "Færsla {{number}}",
+      "jobLabel": "Verk",
+      "selectJob": "Veldu verk",
+      "readyCount": "{{count}} tilbúin til tengingar",
+      "confirm": "Tengja {{count}}"
+    },
+    "orphans": {
+      "spareParts": "Varahlutir, Bílanaust",
+      "fuelDepot": "Eldsneyti — birgðageymsla",
+      "hiredPlant": "Leigt tæki — valtari",
+      "labFees": "Rannsóknargjöld — bindiefnispróf",
+      "bitumenAdj": "Verðleiðrétting á biki",
+      "transport": "Flutningur — malarflutningur"
+    },
+    "columns": {
+      "jobNo": "Verknr.",
+      "job": "Verk",
+      "department": "Deild",
+      "costDk": "Kostnaður DK",
+      "costBik": "Kostnaður bik",
+      "difference": "Mismunur",
+      "notRecharged": "Óendurheimt",
+      "status": "Staða"
+    },
+    "status": {
+      "difference": "Mismunur",
+      "balanced": "Í jafnvægi",
+      "notRecharged": "Óendurheimt",
+      "readyToClose": "Tilbúið til lokunar",
+      "noJobNumber": "Ekkert verknúmer"
+    },
+    "jobs": {
+      "hringbraut": "Malbikun — Hringbraut 12–18",
+      "reykjanesbraut": "Yfirlag — Reykjanesbraut",
+      "millingKopavogur": "Fræsing — Kópavogsbær",
+      "groundworkHafnarfjordur": "Jarðvinna — Hafnarfjörður",
+      "missingPosting": "Færsla 118432 · \"Varahlutir, Bílanaust\""
+    },
+    "departments": {
+      "paving": "40 Malbikun",
+      "asphalt": "30 Asfalt",
+      "groundwork": "20 Jarðvinna"
     }
   },
   "dataOwnership": {
