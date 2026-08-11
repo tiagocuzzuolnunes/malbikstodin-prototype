@@ -9,6 +9,8 @@ export type ModalProps = {
   title: ReactNode
   onClose: () => void
   children: ReactNode
+  /** Renders below the scrollable body and stays pinned. */
+  footer?: ReactNode
   className?: string
   /** Prefer visible when nested dropdowns need to escape the dialog. */
   contentOverflow?: 'auto' | 'visible'
@@ -19,6 +21,7 @@ export function Modal({
   title,
   onClose,
   children,
+  footer,
   className,
   contentOverflow = 'auto',
 }: ModalProps) {
@@ -66,12 +69,12 @@ export function Modal({
         tabIndex={-1}
         className={cn(
           // Cap to overlay height (viewport − header − p-4) so tall lists keep vertical padding.
-          'relative z-10 max-h-[min(44rem,calc(100dvh-var(--app-header-height,4.5rem)-2rem))] w-full max-w-lg rounded-card border border-border bg-surface p-6 shadow-card outline-none md:p-8',
-          contentOverflow === 'visible' ? 'overflow-visible' : 'overflow-y-auto',
+          'relative z-10 flex max-h-[min(44rem,calc(100dvh-var(--app-header-height,4.5rem)-2rem))] w-full max-w-lg flex-col rounded-card border border-border bg-surface p-6 shadow-card outline-none md:p-8',
+          contentOverflow === 'visible' ? 'overflow-visible' : 'overflow-hidden',
           className,
         )}
       >
-        <div className="mb-6 flex items-start justify-between gap-4">
+        <div className="mb-6 flex shrink-0 items-start justify-between gap-4">
           <h2 id={titleId} className="text-2xl font-semibold tracking-tight">
             {title}
           </h2>
@@ -86,7 +89,17 @@ export function Modal({
             <X className="h-5 w-5" />
           </Button>
         </div>
-        {children}
+        <div
+          className={cn(
+            'min-h-0 flex-1',
+            contentOverflow === 'visible' ? 'overflow-visible' : 'overflow-y-auto',
+          )}
+        >
+          {children}
+        </div>
+        {footer ? (
+          <div className="mt-5 shrink-0 border-t border-border pt-4">{footer}</div>
+        ) : null}
       </div>
     </div>,
     document.body,
