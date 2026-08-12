@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PanelLeftClose, PanelLeftOpen } from 'lucide-react'
-import { navItems } from '../../config/navigation'
+import { navItems, type NavItem } from '../../config/navigation'
 import { prefetchRoute } from '../../lib/prefetchRoute'
 import { cn } from '../../lib/utils'
 import { Button, Icon } from '../ui'
@@ -20,16 +20,150 @@ function getActiveNavTo(pathname: string) {
   return match?.to ?? null
 }
 
+function isChildActive(pathname: string, childTo: string) {
+  return pathname === childTo || pathname.startsWith(`${childTo}/`)
+}
+
 type Indicator = {
   top: number
   height: number
   ready: boolean
 }
 
+type SidebarNavGroupProps = {
+  item: NavItem
+  collapsed: boolean
+  activeTo: string | null
+  pathname: string
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  registerItem: (to: string, node: HTMLAnchorElement | null) => void
+}
+
+function SidebarNavGroup({
+  item,
+  collapsed,
+  activeTo,
+  pathname,
+  open,
+  onOpenChange,
+  registerItem,
+}: SidebarNavGroupProps) {
+  const { t } = useTranslation()
+  const label = t(item.labelKey)
+  const isCurrent = item.to === activeTo
+  const children = item.children
+  const canRevealChildren = Boolean(children?.length) && !collapsed
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => {
+        if (canRevealChildren) onOpenChange(true)
+        prefetchRoute(item.to)
+      }}
+      onMouseLeave={() => {
+        if (canRevealChildren) onOpenChange(false)
+      }}
+      onFocusCapture={() => {
+        if (canRevealChildren) onOpenChange(true)
+      }}
+      onBlurCapture={(event) => {
+        if (!canRevealChildren) return
+        const next = event.relatedTarget
+        if (next instanceof Node && event.currentTarget.contains(next)) return
+        onOpenChange(false)
+      }}
+    >
+      <NavLink
+        to={item.to}
+        end={item.to === '/'}
+        title={collapsed ? label : undefined}
+        onFocus={() => prefetchRoute(item.to)}
+        ref={(node) => registerItem(item.to, node)}
+        className={cn(
+          'relative z-10 flex cursor-pointer items-center gap-3 rounded-control p-3 text-lg whitespace-nowrap transition-colors duration-200',
+          isCurrent
+            ? 'font-bold text-foreground'
+            : 'font-medium text-foreground-muted hover:bg-interactive-hover hover:text-foreground',
+        )}
+      >
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center">
+          <Icon
+            icon={item.icon}
+            size="md"
+            aria-hidden
+            className={cn(
+              'transition-colors duration-200',
+              isCurrent && 'text-accent',
+            )}
+          />
+        </span>
+        <span
+          className={cn(
+            'pr-3 transition-opacity duration-150',
+            collapsed ? 'opacity-0' : 'opacity-100',
+          )}
+          aria-hidden={collapsed}
+        >
+          {label}
+        </span>
+      </NavLink>
+
+      {children?.length ? (
+        <div
+          className={cn(
+            'grid transition-[grid-template-rows] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
+            open && canRevealChildren ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+          )}
+          aria-hidden={!open || !canRevealChildren}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <ul
+              className={cn(
+                'flex flex-col gap-0.5 py-1 pl-5 pr-1 transition-[opacity,transform] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
+                open && canRevealChildren
+                  ? 'translate-y-0 opacity-100'
+                  : 'pointer-events-none -translate-y-1 opacity-0',
+              )}
+            >
+              {children.map((child) => {
+                const childLabel = t(child.labelKey)
+                const childCurrent = isChildActive(pathname, child.to)
+
+                return (
+                  <li key={child.to}>
+                    <NavLink
+                      to={child.to}
+                      title={childLabel}
+                      onMouseEnter={() => prefetchRoute(child.to)}
+                      onFocus={() => prefetchRoute(child.to)}
+                      tabIndex={open && canRevealChildren ? undefined : -1}
+                      className={cn(
+                        'relative z-10 block truncate rounded-control px-3 py-1.5 text-sm transition-colors duration-200',
+                        childCurrent
+                          ? 'font-semibold text-foreground'
+                          : 'font-medium text-foreground-muted hover:bg-interactive-hover hover:text-foreground',
+                      )}
+                    >
+                      {childLabel}
+                    </NavLink>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
 export default function Sidebar() {
   const { t } = useTranslation()
   const { pathname } = useLocation()
   const [collapsed, setCollapsed] = useState(false)
+  const [openTo, setOpenTo] = useState<string | null>(null)
   const shellRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLElement>(null)
@@ -71,7 +205,7 @@ export default function Sidebar() {
       observer.disconnect()
       window.removeEventListener('resize', updateScale)
     }
-  }, [collapsed])
+  }, [collapsed, openTo])
 
   useLayoutEffect(() => {
     const nav = navRef.current
@@ -84,9 +218,13 @@ export default function Sidebar() {
       const item = itemRefs.current.get(activeTo)
       if (!item) return
 
+      const navRect = nav.getBoundingClientRect()
+      const itemRect = item.getBoundingClientRect()
+      const scaleFactor = scale > 0 ? scale : 1
+
       setIndicator({
-        top: item.offsetTop,
-        height: item.offsetHeight,
+        top: (itemRect.top - navRect.top) / scaleFactor,
+        height: itemRect.height / scaleFactor,
         ready: true,
       })
     }
@@ -99,7 +237,7 @@ export default function Sidebar() {
     if (activeItem) observer.observe(activeItem)
 
     return () => observer.disconnect()
-  }, [activeTo, collapsed, scale])
+  }, [activeTo, collapsed, scale, openTo])
 
   const designWidthRem = collapsed ? COLLAPSED_WIDTH_REM : EXPANDED_WIDTH_REM
 
@@ -122,7 +260,10 @@ export default function Sidebar() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setCollapsed((value) => !value)}
+            onClick={() => {
+              setCollapsed((value) => !value)
+              setOpenTo(null)
+            }}
             aria-label={collapsed ? t('sidebar.expand') : t('sidebar.collapse')}
             aria-expanded={!collapsed}
             title={collapsed ? t('sidebar.expand') : t('sidebar.collapse')}
@@ -149,52 +290,23 @@ export default function Sidebar() {
             }}
           />
 
-          {navItems.map(({ to, labelKey, icon }) => {
-            const label = t(labelKey)
-            const isCurrent = to === activeTo
-
-            return (
-              <NavLink
-                key={to}
-                to={to}
-                end={to === '/'}
-                title={collapsed ? label : undefined}
-                onMouseEnter={() => prefetchRoute(to)}
-                onFocus={() => prefetchRoute(to)}
-                ref={(node) => {
-                  if (node) itemRefs.current.set(to, node)
-                  else itemRefs.current.delete(to)
-                }}
-                className={cn(
-                  'relative z-10 flex cursor-pointer items-center gap-3 rounded-control p-3 text-lg whitespace-nowrap transition-colors duration-200',
-                  isCurrent
-                    ? 'font-bold text-foreground'
-                    : 'font-medium text-foreground-muted hover:bg-interactive-hover hover:text-foreground',
-                )}
-              >
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center">
-                  <Icon
-                    icon={icon}
-                    size="md"
-                    aria-hidden
-                    className={cn(
-                      'transition-colors duration-200',
-                      isCurrent && 'text-accent',
-                    )}
-                  />
-                </span>
-                <span
-                  className={cn(
-                    'pr-3 transition-opacity duration-150',
-                    collapsed ? 'opacity-0' : 'opacity-100',
-                  )}
-                  aria-hidden={collapsed}
-                >
-                  {label}
-                </span>
-              </NavLink>
-            )
-          })}
+          {navItems.map((item) => (
+            <SidebarNavGroup
+              key={item.to}
+              item={item}
+              collapsed={collapsed}
+              activeTo={activeTo}
+              pathname={pathname}
+              open={openTo === item.to}
+              onOpenChange={(nextOpen) => {
+                setOpenTo(nextOpen ? item.to : null)
+              }}
+              registerItem={(to, node) => {
+                if (node) itemRefs.current.set(to, node)
+                else itemRefs.current.delete(to)
+              }}
+            />
+          ))}
         </nav>
       </div>
     </aside>
