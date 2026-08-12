@@ -107,14 +107,7 @@
     "skraning": "Skráning",
     "hours": "Tímar",
     "radstofunVigtana": "Ráðstöfun vigtana",
-    "frettir": "Fréttir",
-    "mannaudur": "Mannauður",
     "starfsfolk": "Starfsfólk",
-    "yfirlit": "Yfirlit",
-    "thjalfun": "Þjálfun & skírteini",
-    "leyfi": "Leyfi",
-    "abendingar": "Ábendingar & kvartanir",
-    "taekni": "Tækni",
     "fjarmal": "Fjármál",
     "reikningar": "Reikningar",
     "yfirferd": "Einföld yfirferð",
@@ -126,6 +119,7 @@
     "rekstrarsvid": "Rekstrarsvið",
     "flugusvid": "Flugusvið",
     "esjusvid": "Esjusvið",
+    "rekstur": "Rekstur",
     "worklist": "Verkefnalisti",
     "contracts": "Samningar",
     "skjalasafn": "Skjalasafn",
@@ -161,21 +155,6 @@
       "hoursDescription": "Fylltu út upplýsingarnar, byrjaðu vinnu og stöðvaðu svo til að skrá tíma sjálfkrafa.",
       "dispatchDescription": "Sýnir hverja vigtun á tímabilinu við hliðina á því hvert hún fór — ferð á verk, fylgiseðil til kaupanda eða innkaup sem bíða reiknings birgis."
     },
-    "frettir": {
-      "description": "Yfirlitssíða frétta með stöðu birtingar og tilkynningum."
-    },
-    "mannaudur": {
-      "description": "Veldu starfsmannaskrá, mælaborð mannauðs eða ábendingar & kvartanir.",
-      "openSection": "Opna",
-      "employeesDescription": "Skoða starfsfólk og sía eftir deildum.",
-      "dashboardDescription": "Mælikvarðar vinnuafls, þjálfun, nýráðningar og komandi mannauðsviðburðir.",
-      "trainingDescription": "Fylgjast með vottunum, komandi námskeiðum og framvindu þjálfunar eftir deildum.",
-      "licensesDescription": "Yfirlit og umsýsla með starfsleyfum starfsmanna þvert á deildir.",
-      "feedbackDescription": "Skrá kvartanir, ábendingar og ábendingar, og fylgja þeim eftir í gegnum rýni."
-    },
-    "taekni": {
-      "description": "Yfirlitssíða upplýsingatækni með þjónustubeiðnum og kerfisstöðu."
-    },
     "fjarmal": {
       "description": "Veldu útgjöld, kostnaðargreiningu, verkbókhald eða reikninga.",
       "openSection": "Opna",
@@ -203,16 +182,9 @@
         "scheduleDescription": "Dagsáætlun starfsmanna á lóðréttri tímalínu.",
         "equipmentDescription": "Spjöld og skrá yfir vörubílaflota með stöðunum tiltækt, í bið og bilað."
       },
-      "areas": {
-        "rekstrarsvid": {
-          "description": "Veldu verkefnalista, samninga, skjalasafn, dagskrá eða tæki fyrir rekstraráætlanagerð og eftirlit."
-        },
-        "flugusvid": {
-          "description": "Veldu verkefnalista, samninga, skjalasafn, dagskrá eða tæki fyrir malbikunarvinnu á flugvöllum og flugvallarsvæðum."
-        },
-        "esjusvid": {
-          "description": "Veldu verkefnalista, samninga, skjalasafn, dagskrá eða tæki fyrir framleiðslu og vettvangsstarfsemi á Esju."
-        }
+      "rekstur": {
+        "hubDescription": "Opnaðu verkefnalista, samninga, skjalasafn, dagskrá og tæki fyrir rekstur verkefna.",
+        "description": "Veldu verkefnalista, samninga, skjalasafn, dagskrá eða tæki fyrir rekstur verkefna."
       },
       "ferlar": {
         "description": "Skref-fyrir-skref tímalínur fyrir kjarnaferla í starfsemi fyrirtækisins."
@@ -236,6 +208,7 @@
     "stjornun": {
       "description": "Stjórnunartól fyrirtækisins fyrir fólk, heimildir og eftirlit.",
       "openSection": "Opna",
+      "employeesDescription": "Skoða starfsfólk og sía eftir deildum.",
       "accessControlsDescription": "Skilgreindu aðgangshamla og úthlutaðu þeim til starfsmanna.",
       "accessControlsPageDescription": "Skiptu á milli þess að aðlaga aðgangsstig og að úthluta þeim til starfsfólks.",
       "qualityHubDescription": "Gæðaeftirlit, rannsóknarniðurstöður og fylgniskrár.",
@@ -648,9 +621,6 @@
     "saved": "Aðgangsstýring vistuð fyrir þessa lotu.",
     "areas": {
       "intranet": "Innrivefur",
-      "news": "Fréttir",
-      "hr": "Mannauður",
-      "it": "Tölvudeild",
       "finance": "Fjármál",
       "projects": "Verkefni",
       "worklist": "Verkefnalisti",
@@ -690,7 +660,6 @@
     },
     "news": {
       "title": "Nýjustu fréttir",
-      "viewAll": "Skoða allar fréttir",
       "items": {
         "asphalt": {
           "title": "Áætlun sumarblöndu uppfærð",
@@ -752,147 +721,6 @@
       "fjarmal": "Fjármál",
       "sala": "Sala",
       "taekni": "Tækni"
-    },
-    "stats": {
-      "working": "Starfsmenn að störfum",
-      "newHires": "Nýráðningar 2026",
-      "vacancies": "Laus störf",
-      "inTraining": "Í þjálfun"
-    },
-    "newHires": {
-      "title": "Nýráðið fólk",
-      "subtitle": "Fólk sem gekk til liðs við fyrirtækið árið 2026.",
-      "count": "{{count}} ráðningar"
-    },
-    "inTraining": {
-      "title": "Starfsmenn í þjálfun",
-      "subtitle": "Fólk sem er skráð á virk námskeið sem stendur.",
-      "count": "{{count}} manns"
-    },
-    "licenses": {
-      "openHint": "Yfirlit & umsýsla leyfa",
-      "manageTitle": "Leyfaskrá",
-      "manageSubtitle": "Sía og yfirfara gildistíma leyfa hjá starfsfólki.",
-      "count": "{{count}} leyfi",
-      "filters": {
-        "label": "Síur fyrir stöðu leyfa",
-        "all": "Allt"
-      },
-      "stats": {
-        "employees": "Starfsmenn með leyfi",
-        "active": "Virk leyfi",
-        "expiring": "Rennur út fljótlega",
-        "expired": "Utrunnin"
-      },
-      "columns": {
-        "serial": "Raðnúmer",
-        "employee": "Starfsmaður",
-        "license": "Leyfi",
-        "department": "Deild",
-        "expires": "Rennur út",
-        "status": "Staða"
-      },
-      "status": {
-        "valid": "Gilt",
-        "expiringSoon": "Rennur út fljótlega",
-        "expired": "Utrunnið"
-      },
-      "types": {
-        "airsideAccess": "Aðgangur að flugvallarsvæði",
-        "heavyMachinery": "Vinnuvélaréttindi",
-        "siteSupervisor": "Verkstjóri á vettvangi",
-        "qualityInspector": "Gæðaeftirlitsmaður",
-        "itAdmin": "Kerfisstjóri tölvudeildar",
-        "clientSiteAccess": "Aðgangur að svæði viðskiptavinar",
-        "financeSigning": "Prókúruumboð / undirritun fjármála"
-      }
-    },
-    "feedback": {
-      "formTitle": "Skrá ábendingu",
-      "formSubtitle": "Sendu inn kvörtun, uppástungu eða ábendingu til rýni hjá mannauð.",
-      "submit": "Senda inn",
-      "submitted": "Ábendingu bætt við Nýtt.",
-      "anonymous": "Nafnlaust",
-      "fields": {
-        "type": "Gerð",
-        "title": "Titill",
-        "titlePlaceholder": "Stutt samantekt",
-        "description": "Nánari lýsing",
-        "descriptionPlaceholder": "Lýstu hugmyndinni, kvörtuninni eða ábendingunni",
-        "authorChoice": "Höfundarvarið",
-        "showAuthor": "Sýna mig sem höfund",
-        "anonymous": "Senda inn nafnlaust",
-        "detectedAuthor": "Verður skráð á {{name}}"
-      },
-      "types": {
-        "complaint": "Kvörtun",
-        "suggestion": "Uppástunga",
-        "tip": "Ábending"
-      },
-      "stats": {
-        "total": "Kvartanir / hugmyndir",
-        "inReview": "Í rýni",
-        "approved": "Samþykkt"
-      },
-      "columns": {
-        "new": "Nýtt",
-        "inReview": "Í rýni",
-        "approved": "Samþykkt",
-        "implemented": "Innleitt"
-      }
-    },
-    "training": {
-      "openHint": "Skoða þjálfun & skírteini",
-      "openButton": "Þjálfun & skírteini",
-      "certificationsTitle": "Vottanir",
-      "certificationsSubtitle": "Útgefin skírteini og núverandi námsstaða.",
-      "upcomingTitle": "Komandi námskeið",
-      "upcomingSubtitle": "Áætlaðar þjálfunarstundir hjá fyrirtækinu.",
-      "progressTitle": "Framvinda deilda",
-      "progressSubtitle": "Framvinda námskeiðsloka eftir deildum.",
-      "progressAria": "{{department}} framvinda námskeiðs: {{value}} prósent",
-      "status": {
-        "onCourse": "Á námskeiði",
-        "valid": "Gilt",
-        "expired": "Utrunnið"
-      },
-      "courses": {
-        "airsideSafety": "Öryggi á flugvallarsvæði",
-        "qualitySystems": "Gæðakerfi",
-        "financeCompliance": "Regluvörður fjármála",
-        "cyberSecurity": "Netöryggi",
-        "clientSafety": "Öryggi á vinnusvæðum viðskiptavina",
-        "equipmentHandling": "Meðferð tækja"
-      },
-      "certNames": {
-        "airsideSafety": "Skírteini fyrir flugvallarsvæði",
-        "heavyEquipment": "Vinnuvélapróf",
-        "firstAid": "Skyndihjálparskírteini",
-        "isoQuality": "ISO gæðakerfi",
-        "cyberBasics": "Grunnur í netöryggi",
-        "financeEthics": "Siðareglur í fjármálum",
-        "salesCompliance": "Reglufylgni í sölu",
-        "plantSafety": "Öryggisskírteini vinnustöðvar"
-      },
-      "upcomingCourses": {
-        "airsideRefresh": "Upprifjun á flugvallaröryggi",
-        "qualityWorkshop": "Gæðavinnustofa",
-        "cyberDrill": "Netöryggisæfing",
-        "leadershipBasics": "Undirstöður stjórnunar",
-        "firstAidRenewal": "Endurnýjun skyndihjálpar"
-      }
-    },
-    "events": {
-      "title": "Dagatal mannauðs",
-      "subtitle": "Komandi viðburðir tengdir starfsfólki og þjálfun.",
-      "upcoming": "Komandi viðburðir",
-      "items": {
-        "onboardingKickoff": "Móttaka og kynning nýrra starfsmanna",
-        "safetyTraining": "Skylduöryggisþjálfun",
-        "performanceReviews": "Starfsmannasamtöl miðs árs",
-        "benefitsInfoSession": "Kynningarfundur um fríðindi",
-        "leadershipWorkshop": "Vinnustofa fyrir stjórnendur"
-      }
     }
   },
   "worklist": {
@@ -1218,101 +1046,6 @@
       "blastWindowCoord": "Samhæfing sprengitíma",
       "accessRoadCheck": "Skoðun aðkomuvega",
       "endOfDayReview": "Yfirlit dagsins"
-    }
-  },
-  "news": {
-    "stats": {
-      "published": "Birt",
-      "drafts": "Drög",
-      "scheduled": "Tímasett",
-      "views": "Flettingar í þessum mánuði"
-    },
-    "feedTitle": "Fréttaveita",
-    "feedSubtitle": "Nýjustu sögur úr fyrirtækinu og birtingarstaða.",
-    "feedCount": "{{count}} færslur",
-    "announcementsTitle": "Tilkynningar",
-    "announcementsSubtitle": "Markviss skilaboð sem fara út í þessari viku.",
-    "categories": {
-      "operations": "Rekstur",
-      "safety": "Öryggi",
-      "people": "Fólk",
-      "company": "Fyrirtækið"
-    },
-    "status": {
-      "published": "Birt",
-      "draft": "Drög",
-      "scheduled": "Tímasett"
-    },
-    "audience": {
-      "allStaff": "Allt starfsfólk",
-      "fieldTeams": "Vinnuflokkar á vettvangi",
-      "managers": "Stjórnendur"
-    },
-    "announcements": {
-      "intranet": "Uppfærð forsíða innrivefjar er komin í loftið",
-      "fieldSafety": "Öryggisáminning fyrir vettvang á föstudag",
-      "leadership": "Minnispunktar af stjórnendafeð komnir"
-    },
-    "items": {
-      "plant": {
-        "title": "Helgartími Esjustöðvar",
-        "summary": "Áætlað framleiðslueftirlit og viðhald sía um helgina."
-      },
-      "benefits": {
-        "title": "Uppfærð handbók um starfskjör",
-        "summary": "Drög að samantekt á breytingum á starfskjörum fyrir árið 2026 til rýni innan fyrirtækisins."
-      }
-    }
-  },
-  "it": {
-    "stats": {
-      "openTickets": "Opnar beiðnir",
-      "systemsUp": "Uppi-tími kerfa",
-      "devices": "Stýrð tæki",
-      "pendingAccess": "Aðgangur í bið"
-    },
-    "ticketsTitle": "Þjónustubeiðnir",
-    "ticketsSubtitle": "Virkar beiðnir um aðstoð tölvudeildar.",
-    "ticketsCount": "{{count}} beiðnir",
-    "systemsTitle": "Staða kerfa",
-    "systemsSubtitle": "Kjarnakerfi fyrirtækisins og núverandi heilsa.",
-    "uptime": "Uppi-tími {{value}}",
-    "columns": {
-      "serial": "Raðnúmer",
-      "ticket": "Beiðni",
-      "requester": "Sendandi",
-      "priority": "Forgangur",
-      "status": "Staða",
-      "opened": "Opnað"
-    },
-    "priority": {
-      "high": "Hár",
-      "medium": "Miðlungs",
-      "low": "Lágur"
-    },
-    "ticketStatus": {
-      "open": "Opin",
-      "inProgress": "Í vinnslu",
-      "waiting": "Í bið"
-    },
-    "systemStatus": {
-      "operational": "Í rekstri",
-      "degraded": "Skert starfsemi",
-      "maintenance": "Viðhald"
-    },
-    "tickets": {
-      "vpnAccess": "VPN aðgangur fyrir fartölvu á vettvangi",
-      "laptopLock": "Aflæsa fartölvu nýliða",
-      "printerQueue": "Prentari fjármálasviðs stopp",
-      "emailShared": "Sameiginlegt pósthólf fyrir sölu",
-      "softwareInstall": "Setja upp CAD skoðunarforrit"
-    },
-    "systems": {
-      "intranet": "Innrivefur",
-      "email": "Tölvupóstur",
-      "vpn": "VPN",
-      "erp": "ERP / fjárhagskerfi",
-      "backup": "Afritunarkeyrslur"
     }
   },
   "finance": {
@@ -1922,7 +1655,9 @@
   "sidebar": {
     "expand": "Stækka hliðarstiku",
     "collapse": "Minkka hliðarstiku",
-    "openMenu": "Opna valmynd"
+    "openMenu": "Opna valmynd",
+    "expandSubnav": "Sýna síður undir {{section}}",
+    "collapseSubnav": "Fela síður undir {{section}}"
   },
   "auth": {
     "loginTitle": "Innskráning",

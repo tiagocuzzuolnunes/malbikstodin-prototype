@@ -1,32 +1,73 @@
 import type { LucideIcon } from 'lucide-react'
 import {
-  Newspaper,
   House,
   Package,
-  PersonStanding,
-  Laptop,
   HandCoins,
   ClipboardList,
   Settings2,
 } from 'lucide-react'
 import { getMaintenanceEquipment } from '../data/equipmentMaintenance'
-import { projectAreas } from './projects'
+
+export type NavChild = {
+  to: string
+  labelKey: string
+}
 
 export type NavItem = {
   to: string
   labelKey: string
   icon: LucideIcon
+  children?: NavChild[]
 }
 
 export const navItems: NavItem[] = [
   { to: '/', labelKey: 'nav.heim', icon: House },
-  { to: '/skraning', labelKey: 'nav.skraning', icon: ClipboardList },
-  { to: '/frettir', labelKey: 'nav.frettir', icon: Newspaper },
-  { to: '/mannaudur', labelKey: 'nav.mannaudur', icon: PersonStanding },
-  { to: '/taekni', labelKey: 'nav.taekni', icon: Laptop },
-  { to: '/fjarmal', labelKey: 'nav.fjarmal', icon: HandCoins },
-  { to: '/verkefni', labelKey: 'nav.verkefni', icon: Package },
-  { to: '/stjornun', labelKey: 'nav.stjornun', icon: Settings2 },
+  {
+    to: '/skraning',
+    labelKey: 'nav.skraning',
+    icon: ClipboardList,
+    children: [
+      { to: '/skraning/hours', labelKey: 'nav.hours' },
+      { to: '/skraning/radstofun-vigtana', labelKey: 'nav.radstofunVigtana' },
+    ],
+  },
+  {
+    to: '/fjarmal',
+    labelKey: 'nav.fjarmal',
+    icon: HandCoins,
+    children: [
+      { to: '/fjarmal/utgjold', labelKey: 'nav.utgjold' },
+      { to: '/fjarmal/kostnadargreining', labelKey: 'nav.kostnadargreining' },
+      { to: '/fjarmal/verkbokhald', labelKey: 'nav.verkbokhald' },
+      { to: '/fjarmal/reikningar', labelKey: 'nav.reikningar' },
+    ],
+  },
+  {
+    to: '/verkefni',
+    labelKey: 'nav.verkefni',
+    icon: Package,
+    children: [
+      { to: '/verkefni/rekstur', labelKey: 'nav.rekstur' },
+      { to: '/verkefni/events', labelKey: 'nav.events' },
+      { to: '/verkefni/ferlar', labelKey: 'nav.ferlar' },
+      { to: '/verkefni/verkferill', labelKey: 'nav.verkferill' },
+      { to: '/verkefni/stadarmaelingar', labelKey: 'nav.stadarmaelingar' },
+      { to: '/verkefni/lugan', labelKey: 'nav.lugan' },
+      { to: '/verkefni/vidhald', labelKey: 'nav.vidhald' },
+      { to: '/verkefni/dagskra-vorubila', labelKey: 'nav.dagskraVorubila' },
+    ],
+  },
+  {
+    to: '/stjornun',
+    labelKey: 'nav.stjornun',
+    icon: Settings2,
+    children: [
+      { to: '/stjornun/starfsfolk', labelKey: 'nav.starfsfolk' },
+      { to: '/stjornun/adgangsstyring', labelKey: 'nav.adgangsstyring' },
+      { to: '/stjornun/gaedi', labelKey: 'nav.gaedi' },
+      { to: '/stjornun/eignarhald', labelKey: 'nav.eignarhald' },
+    ],
+  },
 ]
 
 export function getBreadcrumbKeys(pathname: string) {
@@ -55,50 +96,6 @@ export function getBreadcrumbKeys(pathname: string) {
         to: '/skraning/radstofun-vigtana',
         labelKey: 'nav.radstofunVigtana',
       })
-      return crumbs
-    }
-  }
-
-  if (pathname.startsWith('/mannaudur/')) {
-    if (
-      pathname === '/mannaudur/starfsfolk' ||
-      pathname.startsWith('/mannaudur/starfsfolk/')
-    ) {
-      crumbs.push({ to: '/mannaudur/starfsfolk', labelKey: 'nav.starfsfolk' })
-      return crumbs
-    }
-
-    if (
-      pathname === '/mannaudur/yfirlit' ||
-      pathname.startsWith('/mannaudur/yfirlit/')
-    ) {
-      crumbs.push({ to: '/mannaudur/yfirlit', labelKey: 'nav.yfirlit' })
-      return crumbs
-    }
-
-    if (
-      pathname === '/mannaudur/thjalfun' ||
-      pathname.startsWith('/mannaudur/thjalfun/')
-    ) {
-      crumbs.push({ to: '/mannaudur/yfirlit', labelKey: 'nav.yfirlit' })
-      crumbs.push({ to: '/mannaudur/thjalfun', labelKey: 'nav.thjalfun' })
-      return crumbs
-    }
-
-    if (
-      pathname === '/mannaudur/leyfi' ||
-      pathname.startsWith('/mannaudur/leyfi/')
-    ) {
-      crumbs.push({ to: '/mannaudur/yfirlit', labelKey: 'nav.yfirlit' })
-      crumbs.push({ to: '/mannaudur/leyfi', labelKey: 'nav.leyfi' })
-      return crumbs
-    }
-
-    if (
-      pathname === '/mannaudur/abendingar' ||
-      pathname.startsWith('/mannaudur/abendingar/')
-    ) {
-      crumbs.push({ to: '/mannaudur/abendingar', labelKey: 'nav.abendingar' })
       return crumbs
     }
   }
@@ -160,6 +157,17 @@ export function getBreadcrumbKeys(pathname: string) {
 
   if (pathname.startsWith('/stjornun')) {
     if (
+      pathname === '/stjornun/starfsfolk' ||
+      pathname.startsWith('/stjornun/starfsfolk/')
+    ) {
+      crumbs.push({
+        to: '/stjornun/starfsfolk',
+        labelKey: 'nav.starfsfolk',
+      })
+      return crumbs
+    }
+
+    if (
       pathname === '/stjornun/adgangsstyring' ||
       pathname.startsWith('/stjornun/adgangsstyring/')
     ) {
@@ -202,6 +210,35 @@ export function getBreadcrumbKeys(pathname: string) {
 
   if (pathname.startsWith('/verkefni/events')) {
     crumbs.push({ to: '/verkefni/events', labelKey: 'nav.events' })
+    return crumbs
+  }
+
+  if (pathname.startsWith('/verkefni/rekstur')) {
+    crumbs.push({ to: '/verkefni/rekstur', labelKey: 'nav.rekstur' })
+    return crumbs
+  }
+
+  if (pathname === '/verkefni/worklist' || pathname.startsWith('/verkefni/worklist/')) {
+    crumbs.push({ to: '/verkefni/rekstur', labelKey: 'nav.rekstur' })
+    crumbs.push({ to: '/verkefni/worklist', labelKey: 'nav.worklist' })
+    return crumbs
+  }
+
+  if (pathname === '/verkefni/contracts' || pathname.startsWith('/verkefni/contracts/')) {
+    crumbs.push({ to: '/verkefni/rekstur', labelKey: 'nav.rekstur' })
+    crumbs.push({ to: '/verkefni/contracts', labelKey: 'nav.contracts' })
+    return crumbs
+  }
+
+  if (pathname === '/verkefni/skjalasafn' || pathname.startsWith('/verkefni/skjalasafn/')) {
+    crumbs.push({ to: '/verkefni/rekstur', labelKey: 'nav.rekstur' })
+    crumbs.push({ to: '/verkefni/skjalasafn', labelKey: 'nav.skjalasafn' })
+    return crumbs
+  }
+
+  if (pathname === '/verkefni/taeki' || pathname.startsWith('/verkefni/taeki/')) {
+    crumbs.push({ to: '/verkefni/rekstur', labelKey: 'nav.rekstur' })
+    crumbs.push({ to: '/verkefni/taeki', labelKey: 'nav.taeki' })
     return crumbs
   }
 
@@ -262,29 +299,10 @@ export function getBreadcrumbKeys(pathname: string) {
     return crumbs
   }
 
-  const area = projectAreas.find((item) => pathname.startsWith(item.to))
-  if (area) {
-    crumbs.push({ to: area.to, labelKey: area.titleKey })
-
-    if (pathname === `${area.to}/worklist` || pathname.startsWith(`${area.to}/worklist/`)) {
-      crumbs.push({ to: `${area.to}/worklist`, labelKey: 'nav.worklist' })
-    }
-
-    if (pathname === `${area.to}/contracts` || pathname.startsWith(`${area.to}/contracts/`)) {
-      crumbs.push({ to: `${area.to}/contracts`, labelKey: 'nav.contracts' })
-    }
-
-    if (pathname === `${area.to}/skjalasafn` || pathname.startsWith(`${area.to}/skjalasafn/`)) {
-      crumbs.push({ to: `${area.to}/skjalasafn`, labelKey: 'nav.skjalasafn' })
-    }
-
-    if (pathname === `${area.to}/dagskra` || pathname.startsWith(`${area.to}/dagskra/`)) {
-      crumbs.push({ to: `${area.to}/dagskra`, labelKey: 'nav.dagskra' })
-    }
-
-    if (pathname === `${area.to}/taeki` || pathname.startsWith(`${area.to}/taeki/`)) {
-      crumbs.push({ to: `${area.to}/taeki`, labelKey: 'nav.taeki' })
-    }
+  if (pathname === '/verkefni/dagskra' || pathname.startsWith('/verkefni/dagskra/')) {
+    crumbs.push({ to: '/verkefni/rekstur', labelKey: 'nav.rekstur' })
+    crumbs.push({ to: '/verkefni/dagskra', labelKey: 'nav.dagskra' })
+    return crumbs
   }
 
   return crumbs
