@@ -46,15 +46,7 @@ export default function HeimPage() {
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-end justify-between gap-4">
-          <h2 className="text-2xl font-semibold tracking-tight">{t('home.news.title')}</h2>
-          <Link
-            to="/frettir"
-            className={cn(buttonVariants({ variant: 'ghost', size: 'md' }), 'text-sm')}
-          >
-            {t('home.news.viewAll')}
-          </Link>
-        </div>
+        <h2 className="text-2xl font-semibold tracking-tight">{t('home.news.title')}</h2>
 
         <div className="-mx-4 -mb-6 overflow-x-auto pb-10 pl-4 sm:-mx-5 sm:pl-5 md:-mx-6 md:pl-6">
           <div className="flex w-max items-stretch gap-4 pt-2">

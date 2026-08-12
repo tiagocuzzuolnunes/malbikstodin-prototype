@@ -1,8 +1,5 @@
 export const systemAreas = [
   'intranet',
-  'news',
-  'hr',
-  'it',
   'finance',
   'projects',
   'worklist',
@@ -48,7 +45,6 @@ export const defaultAccessModes: AccessMode[] = [
     name: 'Manager',
     access: access({
       default: true,
-      it: false,
     }),
   },
   {
@@ -56,9 +52,6 @@ export const defaultAccessModes: AccessMode[] = [
     name: 'Employee',
     access: access({
       intranet: true,
-      news: true,
-      hr: true,
-      it: true,
       finance: false,
       projects: true,
       worklist: true,
@@ -71,9 +64,6 @@ export const defaultAccessModes: AccessMode[] = [
     name: 'Field staff',
     access: access({
       intranet: true,
-      news: true,
-      hr: false,
-      it: false,
       finance: false,
       projects: true,
       worklist: true,
@@ -86,9 +76,6 @@ export const defaultAccessModes: AccessMode[] = [
     name: 'External',
     access: access({
       intranet: false,
-      news: true,
-      hr: false,
-      it: false,
       finance: false,
       projects: true,
       worklist: true,
