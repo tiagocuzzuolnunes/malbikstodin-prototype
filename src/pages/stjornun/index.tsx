@@ -1,11 +1,18 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { BadgeCheck, Scale, ShieldCheck } from 'lucide-react'
+import { BadgeCheck, Scale, ShieldCheck, Users } from 'lucide-react'
 import { SectionPage } from '../../components/shared'
 import { cn } from '../../lib/utils'
 import { buttonVariants, CardShell } from '../../components/ui'
 
 const hubLinks = [
+  {
+    id: 'starfsfolk',
+    to: '/stjornun/starfsfolk',
+    titleKey: 'nav.starfsfolk',
+    descriptionKey: 'pages.stjornun.employeesDescription',
+    icon: Users,
+  },
   {
     id: 'adgangsstyring',
     to: '/stjornun/adgangsstyring',
