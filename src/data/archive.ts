@@ -43,6 +43,7 @@ export const archiveDocuments: ArchiveDocument[] = [
   { id: 'ea6', serial: 'A-E06', name: 'Blast window coordination letter', date: '2026-01-22', insertedByEmployeeId: '3', type: 'word', status: 'approved', areaId: 'esjusvid' },
 ]
 
-export function getArchiveByArea(areaId: ProjectAreaId): ArchiveDocument[] {
+export function getArchiveByArea(areaId?: ProjectAreaId): ArchiveDocument[] {
+  if (!areaId) return archiveDocuments
   return archiveDocuments.filter((document) => document.areaId === areaId)
 }

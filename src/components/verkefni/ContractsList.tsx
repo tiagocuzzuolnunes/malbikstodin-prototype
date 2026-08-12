@@ -10,7 +10,7 @@ import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 
 type ContractsListProps = {
-  areaId: ProjectAreaId
+  areaId?: ProjectAreaId
 }
 
 const statusClass: Record<ContractStatus, string> = {

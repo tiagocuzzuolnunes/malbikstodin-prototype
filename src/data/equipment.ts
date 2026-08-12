@@ -46,7 +46,8 @@ export const equipmentItems: EquipmentItem[] = [
   { id: 'eq-e8', serial: 'TR-E08', name: 'Plant spare dump truck', plate: 'ES-278', status: 'broken', assignedEmployeeId: null, lastServiceAt: '2026-01-15', areaId: 'esjusvid' },
 ]
 
-export function getEquipmentByArea(areaId: ProjectAreaId): EquipmentItem[] {
+export function getEquipmentByArea(areaId?: ProjectAreaId): EquipmentItem[] {
+  if (!areaId) return equipmentItems
   return equipmentItems.filter((item) => item.areaId === areaId)
 }
 

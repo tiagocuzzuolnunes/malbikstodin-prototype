@@ -98,6 +98,7 @@ export const tasks: Task[] = [
   { id: 'e24', serial: 'E18-A', title: 'Close weekly plant production log', employeeId: '4', projectName: 'Esja plant upkeep', priority: 'low', status: 'inCourse', dueDate: '2026-07-19', areaId: 'esjusvid' },
 ]
 
-export function getTasksByArea(areaId: ProjectAreaId): Task[] {
+export function getTasksByArea(areaId?: ProjectAreaId): Task[] {
+  if (!areaId) return tasks
   return tasks.filter((task) => task.areaId === areaId)
 }

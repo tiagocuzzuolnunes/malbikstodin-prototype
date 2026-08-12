@@ -13,7 +13,7 @@ import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 
 type WorklistProps = {
-  areaId: ProjectAreaId
+  areaId?: ProjectAreaId
 }
 
 const ROW_HEIGHT = 56

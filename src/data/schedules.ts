@@ -121,3 +121,9 @@ export const areaSchedules: AreaDaySchedule[] = [
 export function getScheduleByArea(areaId: ProjectAreaId): AreaDaySchedule | undefined {
   return areaSchedules.find((schedule) => schedule.areaId === areaId)
 }
+
+export function getSchedules(areaId?: ProjectAreaId): AreaDaySchedule[] {
+  if (!areaId) return areaSchedules
+  const schedule = getScheduleByArea(areaId)
+  return schedule ? [schedule] : []
+}

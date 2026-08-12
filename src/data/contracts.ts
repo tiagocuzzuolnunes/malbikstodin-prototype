@@ -77,6 +77,7 @@ export const contracts: Contract[] = [
   { id: 'ec18', serial: 'C25', name: 'Saturday night binder delivery', amountIsk: 8_050_000, startDate: '2025-10-15', endDate: '2026-10-14', status: 'active', areaId: 'esjusvid' },
 ]
 
-export function getContractsByArea(areaId: ProjectAreaId): Contract[] {
+export function getContractsByArea(areaId?: ProjectAreaId): Contract[] {
+  if (!areaId) return contracts
   return contracts.filter((contract) => contract.areaId === areaId)
 }

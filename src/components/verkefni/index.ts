@@ -1,4 +1,3 @@
-export { default as ProjectAreaHub } from './ProjectAreaHub'
 export { default as Worklist } from './Worklist'
 export { default as ScheduleTimeline } from './ScheduleTimeline'
 export { default as EquipmentList } from './EquipmentList'

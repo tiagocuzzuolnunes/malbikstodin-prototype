@@ -1,12 +1,13 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { ProjectAreaId } from '../../config/projects'
+import { projectAreas } from '../../config/projects'
 import { employees } from '../../data/employees'
-import { getScheduleByArea, type ScheduleBlock } from '../../data/schedules'
+import { getSchedules, type AreaDaySchedule, type ScheduleBlock } from '../../data/schedules'
 import { cn } from '../../lib/utils'
 
 type ScheduleTimelineProps = {
-  areaId: ProjectAreaId
+  areaId?: ProjectAreaId
 }
 
 function employeeById(employeeId: string) {
@@ -66,22 +67,23 @@ function BlockItem({
   )
 }
 
-export default function ScheduleTimeline({ areaId }: ScheduleTimelineProps) {
+function ScheduleDay({
+  schedule,
+  showAreaTitle,
+}: {
+  schedule: AreaDaySchedule
+  showAreaTitle: boolean
+}) {
   const { t, i18n } = useTranslation()
-  const schedule = useMemo(() => getScheduleByArea(areaId), [areaId])
-
-  if (!schedule) {
-    return (
-      <p className="text-sm text-foreground-muted">{t('schedule.empty')}</p>
-    )
-  }
+  const area = projectAreas.find((item) => item.id === schedule.areaId)
+  const headingId = `schedule-heading-${schedule.areaId}`
 
   return (
-    <section className="space-y-6" aria-labelledby="schedule-heading">
+    <section className="space-y-6" aria-labelledby={headingId}>
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 id="schedule-heading" className="text-2xl font-semibold tracking-tight">
-            {t('schedule.title')}
+          <h2 id={headingId} className="text-2xl font-semibold tracking-tight">
+            {showAreaTitle && area ? t(area.titleKey) : t('schedule.title')}
           </h2>
           <p className="mt-1 text-sm text-foreground-muted">
             {formatDay(schedule.date, i18n.language)}
@@ -95,16 +97,17 @@ export default function ScheduleTimeline({ areaId }: ScheduleTimelineProps) {
       <div className="grid gap-6 lg:grid-cols-3">
         {schedule.employees.map((entry) => {
           const employee = employeeById(entry.employeeId)
+          const employeeHeadingId = `schedule-employee-${schedule.areaId}-${entry.employeeId}`
 
           return (
             <article
-              key={entry.employeeId}
+              key={`${schedule.areaId}-${entry.employeeId}`}
               className="overflow-hidden rounded-card border border-border bg-surface shadow-card"
-              aria-labelledby={`schedule-employee-${entry.employeeId}`}
+              aria-labelledby={employeeHeadingId}
             >
               <header className="border-b border-border px-5 py-4">
                 <h3
-                  id={`schedule-employee-${entry.employeeId}`}
+                  id={employeeHeadingId}
                   className="text-lg font-semibold tracking-tight"
                 >
                   {employee?.name ?? '—'}
@@ -128,5 +131,30 @@ export default function ScheduleTimeline({ areaId }: ScheduleTimelineProps) {
         })}
       </div>
     </section>
+  )
+}
+
+export default function ScheduleTimeline({ areaId }: ScheduleTimelineProps) {
+  const { t } = useTranslation()
+  const schedules = useMemo(() => getSchedules(areaId), [areaId])
+
+  if (schedules.length === 0) {
+    return (
+      <p className="text-sm text-foreground-muted">{t('schedule.empty')}</p>
+    )
+  }
+
+  const showAreaTitle = schedules.length > 1
+
+  return (
+    <div className={showAreaTitle ? 'space-y-10' : undefined}>
+      {schedules.map((schedule) => (
+        <ScheduleDay
+          key={schedule.areaId}
+          schedule={schedule}
+          showAreaTitle={showAreaTitle}
+        />
+      ))}
+    </div>
   )
 }

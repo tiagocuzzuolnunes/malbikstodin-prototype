@@ -1,10 +1,69 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { GitBranch, Inbox, Ruler, Truck, Wrench, Workflow } from 'lucide-react'
+import {
+  Briefcase,
+  GitBranch,
+  Inbox,
+  Ruler,
+  Truck,
+  Wrench,
+  Workflow,
+} from 'lucide-react'
 import { SectionPage } from '../../components/shared'
-import { projectAreas } from '../../config/projects'
 import { cn } from '../../lib/utils'
 import { buttonVariants, CardShell } from '../../components/ui'
+
+const hubLinks = [
+  {
+    id: 'rekstur',
+    to: '/verkefni/rekstur',
+    titleKey: 'nav.rekstur',
+    descriptionKey: 'pages.verkefni.rekstur.hubDescription',
+    icon: Briefcase,
+  },
+  {
+    id: 'ferlar',
+    to: '/verkefni/ferlar',
+    titleKey: 'nav.ferlar',
+    descriptionKey: 'pages.verkefni.ferlar.description',
+    icon: GitBranch,
+  },
+  {
+    id: 'verkferill',
+    to: '/verkefni/verkferill',
+    titleKey: 'nav.verkferill',
+    descriptionKey: 'pages.verkefni.verkferill.description',
+    icon: Workflow,
+  },
+  {
+    id: 'stadarmaelingar',
+    to: '/verkefni/stadarmaelingar',
+    titleKey: 'nav.stadarmaelingar',
+    descriptionKey: 'pages.verkefni.stadarmaelingar.description',
+    icon: Ruler,
+  },
+  {
+    id: 'lugan',
+    to: '/verkefni/lugan',
+    titleKey: 'nav.lugan',
+    descriptionKey: 'pages.verkefni.lugan.description',
+    icon: Inbox,
+  },
+  {
+    id: 'vidhald',
+    to: '/verkefni/vidhald',
+    titleKey: 'nav.vidhald',
+    descriptionKey: 'pages.verkefni.vidhald.description',
+    icon: Wrench,
+  },
+  {
+    id: 'dagskra-vorubila',
+    to: '/verkefni/dagskra-vorubila',
+    titleKey: 'nav.dagskraVorubila',
+    descriptionKey: 'pages.verkefni.dagskraVorubila.description',
+    icon: Truck,
+  },
+] as const
 
 export default function VerkefniPage() {
   const { t } = useTranslation()
@@ -13,155 +72,35 @@ export default function VerkefniPage() {
     <div className="space-y-8">
       <SectionPage titleKey="nav.verkefni" descriptionKey="pages.verkefni.description" />
 
-      <div className="grid gap-6 md:grid-cols-3">
-        {projectAreas.map((area) => (
-          <CardShell
-            key={area.id}
-            interactive
-            title={t(area.titleKey)}
-            description={t(area.descriptionKey)}
-            footer={
-              <Link
-                to={area.to}
-                className={cn(
-                  buttonVariants({ variant: 'primary', size: 'lg' }),
-                  'min-h-12 px-5 text-base',
-                )}
-              >
-                {t('pages.verkefni.openArea')}
-              </Link>
-            }
-          />
-        ))}
-      </div>
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {hubLinks.map((item) => {
+          const Icon = item.icon
 
-      <div className="grid gap-6 md:grid-cols-3">
-        <CardShell
-          interactive
-          title={
-            <span className="flex items-center gap-3">
-              <GitBranch className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
-              {t('nav.ferlar')}
-            </span>
-          }
-          description={t('pages.verkefni.ferlar.description')}
-          footer={
-            <Link
-              to="/verkefni/ferlar"
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'lg' }),
-                'min-h-12 px-5 text-base',
-              )}
-            >
-              {t('pages.verkefni.openArea')}
-            </Link>
-          }
-        />
-        <CardShell
-          interactive
-          title={
-            <span className="flex items-center gap-3">
-              <Workflow className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
-              {t('nav.verkferill')}
-            </span>
-          }
-          description={t('pages.verkefni.verkferill.description')}
-          footer={
-            <Link
-              to="/verkefni/verkferill"
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'lg' }),
-                'min-h-12 px-5 text-base',
-              )}
-            >
-              {t('pages.verkefni.openArea')}
-            </Link>
-          }
-        />
-        <CardShell
-          interactive
-          title={
-            <span className="flex items-center gap-3">
-              <Ruler className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
-              {t('nav.stadarmaelingar')}
-            </span>
-          }
-          description={t('pages.verkefni.stadarmaelingar.description')}
-          footer={
-            <Link
-              to="/verkefni/stadarmaelingar"
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'lg' }),
-                'min-h-12 px-5 text-base',
-              )}
-            >
-              {t('pages.verkefni.openArea')}
-            </Link>
-          }
-        />
-        <CardShell
-          interactive
-          title={
-            <span className="flex items-center gap-3">
-              <Inbox className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
-              {t('nav.lugan')}
-            </span>
-          }
-          description={t('pages.verkefni.lugan.description')}
-          footer={
-            <Link
-              to="/verkefni/lugan"
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'lg' }),
-                'min-h-12 px-5 text-base',
-              )}
-            >
-              {t('pages.verkefni.openArea')}
-            </Link>
-          }
-        />
-        <CardShell
-          interactive
-          title={
-            <span className="flex items-center gap-3">
-              <Wrench className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
-              {t('nav.vidhald')}
-            </span>
-          }
-          description={t('pages.verkefni.vidhald.description')}
-          footer={
-            <Link
-              to="/verkefni/vidhald"
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'lg' }),
-                'min-h-12 px-5 text-base',
-              )}
-            >
-              {t('pages.verkefni.openArea')}
-            </Link>
-          }
-        />
-        <CardShell
-          interactive
-          title={
-            <span className="flex items-center gap-3">
-              <Truck className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
-              {t('nav.dagskraVorubila')}
-            </span>
-          }
-          description={t('pages.verkefni.dagskraVorubila.description')}
-          footer={
-            <Link
-              to="/verkefni/dagskra-vorubila"
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'lg' }),
-                'min-h-12 px-5 text-base',
-              )}
-            >
-              {t('pages.verkefni.openArea')}
-            </Link>
-          }
-        />
+          return (
+            <CardShell
+              key={item.id}
+              interactive
+              title={
+                <span className="flex items-center gap-3">
+                  <Icon className="h-6 w-6 shrink-0 text-foreground-muted" aria-hidden />
+                  {t(item.titleKey)}
+                </span>
+              }
+              description={t(item.descriptionKey)}
+              footer={
+                <Link
+                  to={item.to}
+                  className={cn(
+                    buttonVariants({ variant: 'primary', size: 'lg' }),
+                    'min-h-12 px-5 text-base',
+                  )}
+                >
+                  {t('pages.verkefni.openArea')}
+                </Link>
+              }
+            />
+          )
+        })}
       </div>
     </div>
   )

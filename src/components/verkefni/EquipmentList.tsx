@@ -13,7 +13,7 @@ import { cn } from '../../lib/utils'
 import { Card } from '../ui'
 
 type EquipmentListProps = {
-  areaId: ProjectAreaId
+  areaId?: ProjectAreaId
 }
 
 const statusClass: Record<EquipmentStatus, string> = {

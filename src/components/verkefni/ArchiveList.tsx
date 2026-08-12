@@ -12,7 +12,7 @@ import { statusRowBg } from '../../lib/statusRowTint'
 import { cn } from '../../lib/utils'
 
 type ArchiveListProps = {
-  areaId: ProjectAreaId
+  areaId?: ProjectAreaId
 }
 
 const statusClass: Record<ArchiveStatus, string> = {
