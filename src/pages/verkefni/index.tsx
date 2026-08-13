@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   Briefcase,
+  FolderPlus,
   GitBranch,
   Inbox,
   Ruler,
@@ -70,7 +71,22 @@ export default function VerkefniPage() {
 
   return (
     <div className="space-y-8">
-      <SectionPage titleKey="nav.verkefni" descriptionKey="pages.verkefni.description" />
+      <SectionPage
+        titleKey="nav.verkefni"
+        descriptionKey="pages.verkefni.description"
+        actions={
+          <Link
+            to="/skraning/nytt-verkefni"
+            className={cn(
+              buttonVariants({ variant: 'primary', size: 'md' }),
+              'min-h-10 px-4',
+            )}
+          >
+            <FolderPlus className="h-4 w-4" aria-hidden />
+            {t('nav.nyttVerkefni')}
+          </Link>
+        }
+      />
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {hubLinks.map((item) => {
