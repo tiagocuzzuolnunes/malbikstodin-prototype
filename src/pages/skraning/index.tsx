@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Clock3, Scale } from 'lucide-react'
+import { Clock3, FolderPlus, Scale } from 'lucide-react'
 import { SectionPage } from '../../components/shared'
 import { cn } from '../../lib/utils'
 import { buttonVariants, CardShell } from '../../components/ui'
@@ -20,6 +20,13 @@ const registrationHubLinks = [
     descriptionKey: 'pages.skraning.dispatchDescription',
     icon: Scale,
   },
+  {
+    id: 'nytt-verkefni',
+    to: '/skraning/nytt-verkefni',
+    titleKey: 'nav.nyttVerkefni',
+    descriptionKey: 'pages.skraning.createProjectDescription',
+    icon: FolderPlus,
+  },
 ] as const
 
 export default function SkraningHubPage() {
@@ -29,7 +36,7 @@ export default function SkraningHubPage() {
     <div className="space-y-8">
       <SectionPage titleKey="nav.skraning" descriptionKey="pages.skraning.description" />
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {registrationHubLinks.map((item) => {
           const Icon = item.icon
 

@@ -107,6 +107,7 @@
     "skraning": "Registration",
     "hours": "Hours",
     "radstofunVigtana": "Weighing dispatch",
+    "nyttVerkefni": "Create project",
     "starfsfolk": "Employees",
     "fjarmal": "Finance",
     "reikningar": "Invoices",
@@ -150,10 +151,11 @@
       "backHome": "Back to home"
     },
     "skraning": {
-      "description": "Choose hours registration or weighing dispatch for the plant.",
+      "description": "Choose hours registration, weighing dispatch, or create a project.",
       "openSection": "Open",
       "hoursDescription": "Fill in the details, start work, then stop to log hours automatically.",
-      "dispatchDescription": "See every weighing in the period next to where it went — a trip on a job, a docket to a buyer, or a purchase awaiting the supplier invoice."
+      "dispatchDescription": "See every weighing in the period next to where it went — a trip on a job, a docket to a buyer, or a purchase awaiting the supplier invoice.",
+      "createProjectDescription": "Register a new project with job number, area, and start date."
     },
     "fjarmal": {
       "description": "Choose expenses, job cost analysis, ledger reconciliation, or invoices.",
@@ -1046,6 +1048,23 @@
       "blastWindowCoord": "Blast window coordination",
       "accessRoadCheck": "Access road check",
       "endOfDayReview": "End-of-day review"
+    }
+  },
+  "createProject": {
+    "formTitle": "New project",
+    "formSubtitle": "Enter the project details to register it in the portal.",
+    "submit": "Create project",
+    "submitted": "Project created.",
+    "fields": {
+      "name": "Project name",
+      "namePlaceholder": "e.g. Local road works Mosfellsbær",
+      "jobNumber": "Job number",
+      "jobNumberPlaceholder": "e.g. 26-0412",
+      "area": "Area",
+      "areaPlaceholder": "Select area",
+      "startDate": "Start date",
+      "description": "Description",
+      "descriptionPlaceholder": "Optional notes about the project"
     }
   },
   "finance": {

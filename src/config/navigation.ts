@@ -29,6 +29,7 @@ export const navItems: NavItem[] = [
     children: [
       { to: '/skraning/hours', labelKey: 'nav.hours' },
       { to: '/skraning/radstofun-vigtana', labelKey: 'nav.radstofunVigtana' },
+      { to: '/skraning/nytt-verkefni', labelKey: 'nav.nyttVerkefni' },
     ],
   },
   {
@@ -95,6 +96,17 @@ export function getBreadcrumbKeys(pathname: string) {
       crumbs.push({
         to: '/skraning/radstofun-vigtana',
         labelKey: 'nav.radstofunVigtana',
+      })
+      return crumbs
+    }
+
+    if (
+      pathname === '/skraning/nytt-verkefni' ||
+      pathname.startsWith('/skraning/nytt-verkefni/')
+    ) {
+      crumbs.push({
+        to: '/skraning/nytt-verkefni',
+        labelKey: 'nav.nyttVerkefni',
       })
       return crumbs
     }

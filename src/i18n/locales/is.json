@@ -107,6 +107,7 @@
     "skraning": "Skráning",
     "hours": "Tímar",
     "radstofunVigtana": "Ráðstöfun vigtana",
+    "nyttVerkefni": "Stofna verkefni",
     "starfsfolk": "Starfsfólk",
     "fjarmal": "Fjármál",
     "reikningar": "Reikningar",
@@ -150,10 +151,11 @@
       "backHome": "Til baka heim"
     },
     "skraning": {
-      "description": "Veldu tímaskráningu eða ráðstöfun vigtana fyrir stöðina.",
+      "description": "Veldu tímaskráningu, ráðstöfun vigtana eða stofnun verkefnis.",
       "openSection": "Opna",
       "hoursDescription": "Fylltu út upplýsingarnar, byrjaðu vinnu og stöðvaðu svo til að skrá tíma sjálfkrafa.",
-      "dispatchDescription": "Sýnir hverja vigtun á tímabilinu við hliðina á því hvert hún fór — ferð á verk, fylgiseðil til kaupanda eða innkaup sem bíða reiknings birgis."
+      "dispatchDescription": "Sýnir hverja vigtun á tímabilinu við hliðina á því hvert hún fór — ferð á verk, fylgiseðil til kaupanda eða innkaup sem bíða reiknings birgis.",
+      "createProjectDescription": "Skráðu nýtt verkefni með verknúmeri, sviði og upphafsdegi."
     },
     "fjarmal": {
       "description": "Veldu útgjöld, kostnaðargreiningu, verkbókhald eða reikninga.",
@@ -1046,6 +1048,23 @@
       "blastWindowCoord": "Samhæfing sprengitíma",
       "accessRoadCheck": "Skoðun aðkomuvega",
       "endOfDayReview": "Yfirlit dagsins"
+    }
+  },
+  "createProject": {
+    "formTitle": "Nýtt verkefni",
+    "formSubtitle": "Sláðu inn upplýsingar um verkefnið til að skrá það í gáttina.",
+    "submit": "Stofna verkefni",
+    "submitted": "Verkefni stofnað.",
+    "fields": {
+      "name": "Heiti verkefnis",
+      "namePlaceholder": "t.d. Staðbundnar viðgerðir Mosfellsbæ",
+      "jobNumber": "Verknúmer",
+      "jobNumberPlaceholder": "t.d. 26-0412",
+      "area": "Svið",
+      "areaPlaceholder": "Veldu svið",
+      "startDate": "Upphafsdagur",
+      "description": "Lýsing",
+      "descriptionPlaceholder": "Valfrjálsar athugasemdir um verkefnið"
     }
   },
   "finance": {
